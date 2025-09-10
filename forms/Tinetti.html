@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Tinetti Assessment (POMA)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background: #fff;
+            padding: 25px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 10px;
+        }
+        fieldset {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            background-color: #fff;
+        }
+        legend {
+            font-size: 1.15em;
+            font-weight: bold;
+            color: #34495e;
+            padding: 0 10px;
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .option {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+        .option:hover {
+            background-color: #f8f9fa;
+        }
+        input[type="radio"] {
+            margin-top: 5px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        label {
+            cursor: pointer;
+        }
+        #results-container {
+            background-color: #eaf2f8;
+            border: 1px solid #aed6f1;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        .score-display {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+        .score-box {
+            padding: 10px;
+        }
+        .score-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2980b9;
+        }
+        #interpretation {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        button[type="reset"] {
+            background-color: #c0392b;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+            transition: background-color 0.2s;
+        }
+        button[type="reset"]:hover {
+            background-color: #a93226;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Tinetti Performance-Oriented Mobility Assessment (POMA)</h1>
+        <p>This tool helps quantify the evaluation of older adults' gait and balance. A hard, armless chair, a timer, and a short walkway are required.</p>
+
+        <form id="tinettiForm">
+
+            <h2>Balance Assessment</h2>
+
+            <fieldset>
+                <legend>Sitting Balance</legend>
+                <div class="options-grid">
+                    <div class="option"><input type="radio" data-section="balance" id="sb_0" name="sitting_balance" value="0"><label for="sb_0">(0) Leans or slides in chair</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="sb_1" name="sitting_balance" value="1"><label for="sb_1">(1) Steady, safe</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Rises from Chair</legend>
+                <div class="options-grid">
+                    <div class="option"><input type="radio" data-section="balance" id="rfc_0" name="rises" value="0"><label for="rfc_0">(0) Unable without help</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="rfc_1" name="rises" value="1"><label for="rfc_1">(1) Able, uses arms to help</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="rfc_2" name="rises" value="2"><label for="rfc_2">(2) Able without using arms</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Attempts to Arise</legend>
+                <div class="options-grid">
+                    <div class="option"><input type="radio" data-section="balance" id="ata_0" name="attempts_arise" value="0"><label for="ata_0">(0) Unable without help</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="ata_1" name="attempts_arise" value="1"><label for="ata_1">(1) Able, requires > 1 attempt</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="ata_2" name="attempts_arise" value="2"><label for="ata_2">(2) Able to rise, 1 attempt</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Immediate Standing Balance (first 5 seconds)</legend>
+                <div class="options-grid">
+                    <div class="option"><input type="radio" data-section="balance" id="isb_0" name="immediate_standing" value="0"><label for="isb_0">(0) Unsteady (swaggers, moves feet, trunk sway)</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="isb_1" name="immediate_standing" value="1"><label for="isb_1">(1) Steady, but uses walker or other support</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="isb_2" name="immediate_standing" value="2"><label for="isb_2">(2) Steady, without walker or other support</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Standing Balance</legend>
+                <div class="options-grid">
+                    <div class="option"><input type="radio" data-section="balance" id="stb_0" name="standing_balance" value="0"><label for="stb_0">(0) Unsteady</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="stb_1" name="standing_balance" value="1"><label for="stb_1">(1) Steady, but wide stance (> 4" apart) and uses support</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="stb_2" name="standing_balance" value="2"><label for="stb_2">(2) Narrow stance without support</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Nudged (sternal push x3)</legend>
+                <div class="options-grid">
+                    <div class="option"><input type="radio" data-section="balance" id="nud_0" name="nudged" value="0"><label for="nud_0">(0) Begins to fall</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="nud_1" name="nudged" value="1"><label for="nud_1">(1) Staggers, grabs, catches self</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="nud_2" name="nudged" value="2"><label for="nud_2">(2) Steady</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Eyes Closed</legend>
+                <div class="options-grid">
+                    <div class="option"><input type="radio" data-section="balance" id="ec_0" name="eyes_closed" value="0"><label for="ec_0">(0) Unsteady</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="ec_1" name="eyes_closed" value="1"><label for="ec_1">(1) Steady</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Turning 360 Degrees - Steps</legend>
+                <div class="options-grid">
+                    <div class="option"><input type="radio" data-section="balance" id="t360s_0" name="turn_steps" value="0"><label for="t360s_0">(0) Discontinuous steps</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="t360s_1" name="turn_steps" value="1"><label for="t360s_1">(1) Continuous steps</label></div>
+                </div>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Turning 360 Degrees - Stability</legend>
+                <div class="options-grid">
+                    <div class="option"><input type="radio" data-section="balance" id="t360b_0" name="turn_balance" value="0"><label for="t360b_0">(0) Unsteady (grabs, staggers)</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="t360b_1" name="turn_balance" value="1"><label for="t360b_1">(1) Steady</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Sitting Down</legend>
+                <div class="options-grid">
+                    <div class="option"><input type="radio" data-section="balance" id="sd_0" name="sitting_down" value="0"><label for="sd_0">(0) Unsafe (misjudges distance, falls into chair)</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="sd_1" name="sitting_down" value="1"><label for="sd_1">(1) Uses arms or not a smooth motion</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="sd_2" name="sitting_down" value="2"><label for="sd_2">(2) Safe, smooth motion</label></div>
+                </div>
+            </fieldset>
+
+            <h2>Gait Assessment</h2>
+
+            <fieldset>
+                <legend>Initiation of Gait</legend>
+                <div class="options-grid">
+                    <div class="option"><input type="radio" data-section="gait" id="iog_0" name="init_gait" value="0"><label for="iog_0">(0) Any hesitance or multiple attempts to start</label></div>
+                    <div class="option"><input type="radio" data-section="gait" id="iog_1" name="init_gait" value="1"><label for="iog_1">(1) No hesitancy</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Step Length & Height (Right)</legend>
+                <div class="options-grid">
+                    <div class="option"><input type="radio" data-section="gait" id="slr_0" name="step_length_r" value="0"><label for="slr_0">(0) R foot does not pass L stance foot</label></div>
+                    <div class="option"><input type="radio" data-section="gait" id="slr_1" name="step_length_r" value="1"><label for="slr_1">(1) R foot passes L stance foot</label></div>
+                    <div class="option"><input type="radio" data-section="gait" id="shr_0" name="step_height_r" value="0"><label for="shr_0">(0) R foot does not clear floor completely</label></div>
+                    <div class="option"><input type="radio" data-section="gait" id="shr_1" name="step_height_r" value="1"><label for="shr_1">(1) R foot clears floor completely</label></div>
+                </div>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Step Length & Height (Left)</legend>
+                <div class="options-grid">
+                    <div class="option"><input type="radio" data-section="gait" id="sll_0" name="step_length_l" value="0"><label for="sll_0">(0) L foot does not pass R stance foot</label></div>
+                    <div class="option"><input type="radio" data-section="gait" id="sll_1" name="step_length_l" value="1"><label for="sll_1">(1) L foot passes R stance foot</label></div>
+                    <div class="option"><input type="radio" data-section="gait" id="shl_0" name="step_height_l" value="0"><label for="shl_0">(0) L foot does not clear floor completely</label></div>
+                    <div class="option"><input type="radio" data-section="gait" id="shl_1" name="step_height_l" value="1"><label for="shl_1">(1) L foot clears floor completely</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Step Continuity</legend>
+                <div class="options-grid">
+                    <div class="option"><input type="radio" data-section="gait" id="sc_0" name="step_continuity" value="0"><label for="sc_0">(0) Stopping or discontinuity between steps</label></div>
+                    <div class="option"><input type="radio" data-section="gait" id="sc_1" name="step_continuity" value="1"><label for="sc_1">(1) Steps appear continuous</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Path</legend>
+                <div class="options-grid">
+                    <div class="option"><input type="radio" data-section="gait" id="path_0" name="path" value="0"><label for="path_0">(0) Marked deviation</label></div>
+                    <div class="option"><input type="radio" data-section="gait" id="path_1" name="path" value="1"><label for="path_1">(1) Mild/moderate deviation or uses aid</label></div>
+                    <div class="option"><input type="radio" data-section="gait" id="path_2" name="path" value="2"><label for="path_2">(2) Straight walking without aid</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Trunk</legend>
+                <div class="options-grid">
+                    <div class="option"><input type="radio" data-section="gait" id="trunk_0" name="trunk" value="0"><label for="trunk_0">(0) Marked sway or uses walking aid</label></div>
+                    <div class="option"><input type="radio" data-section="gait" id="trunk_1" name="trunk" value="1"><label for="trunk_1">(1) No sway, but flexion or spreads arms</label></div>
+                    <div class="option"><input type="radio" data-section="gait" id="trunk_2" name="trunk" value="2"><label for="trunk_2">(2) No sway, flexion, or use of arms/aid</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Walking Stance</legend>
+                <div class="options-grid">
+                    <div class="option"><input type="radio" data-section="gait" id="ws_0" name="walking_stance" value="0"><label for="ws_0">(0) Heels apart</label></div>
+                    <div class="option"><input type="radio" data-section="gait" id="ws_1" name="walking_stance" value="1"><label for="ws_1">(1) Heels almost touching while walking</label></div>
+                </div>
+            </fieldset>
+
+            <button type="reset">Clear Form & Scores</button>
+        </form>
+
+        <div id="results-container">
+            <h2>Results</h2>
+            <div class="score-display">
+                <div class="score-box">
+                    Balance Score<br>
+                    <span class="score-value" id="balanceScore">0</span> / 16
+                </div>
+                <div class="score-box">
+                    Gait Score<br>
+                    <span class="score-value" id="gaitScore">0</span> / 12
+                </div>
+                <div class="score-box">
+                    Total POMA Score<br>
+                    <span class="score-value" id="totalScore">0</span> / 28
+                </div>
+            </div>
+            <div id="interpretation">Select options to see fall risk interpretation.</div>
+        </div>
+
+    </div>
+
+    <script>
+        // JavaScript for Live Scoring
+        function calculateScores() {
+            let balanceScore = 0;
+            let gaitScore = 0;
+            
+            // Select all radio buttons that are currently checked
+            const checkedInputs = document.querySelectorAll('input[type="radio"]:checked');
+            
+            // Loop through checked buttons and add their values to the correct subscore
+            checkedInputs.forEach(input => {
+                if (input.dataset.section === 'balance') {
+                    balanceScore += parseInt(input.value);
+                } else if (input.dataset.section === 'gait') {
+                    gaitScore += parseInt(input.value);
+                }
+            });
+            
+            const totalScore = balanceScore + gaitScore;
+
+            // Get the elements where we will display the results
+            const balanceScoreDisplay = document.getElementById('balanceScore');
+            const gaitScoreDisplay = document.getElementById('gaitScore');
+            const totalScoreDisplay = document.getElementById('totalScore');
+            const interpretationDisplay = document.getElementById('interpretation');
+            
+            // Update the score displays
+            balanceScoreDisplay.textContent = balanceScore;
+            gaitScoreDisplay.textContent = gaitScore;
+            totalScoreDisplay.textContent = totalScore;
+            
+            // Update the interpretation based on the total score
+            if (totalScore < 19) {
+                interpretationDisplay.textContent = "High Fall Risk";
+                interpretationDisplay.style.backgroundColor = '#f5b7b1'; // Red
+                interpretationDisplay.style.color = '#78281f';
+            } else if (totalScore >= 19 && totalScore <= 24) {
+                interpretationDisplay.textContent = "Medium Fall Risk";
+                interpretationDisplay.style.backgroundColor = '#fdebd0'; // Orange
+                interpretationDisplay.style.color = '#7e5109';
+            } else { // 25-28
+                interpretationDisplay.textContent = "Low Fall Risk";
+                interpretationDisplay.style.backgroundColor = '#d5f5e3'; // Green
+                interpretationDisplay.style.color = '#186a3b';
+            }
+        }
+
+        const tinettiForm = document.getElementById('tinettiForm');
+        // Add an event listener to the form to detect any change and recalculate
+        tinettiForm.addEventListener('change', calculateScores);
+        
+        // Add an event listener for the reset button to clear scores
+        tinettiForm.addEventListener('reset', () => {
+            // Use a short delay to allow the form to reset before resetting the score display
+            setTimeout(() => {
+                document.getElementById('balanceScore').textContent = '0';
+                document.getElementById('gaitScore').textContent = '0';
+                document.getElementById('totalScore').textContent = '0';
+                const interpretationDisplay = document.getElementById('interpretation');
+                interpretationDisplay.textContent = 'Select options to see fall risk interpretation.';
+                interpretationDisplay.style.backgroundColor = 'transparent';
+                interpretationDisplay.style.color = '#333';
+            }, 10);
+        });
+    </script>
+
+</body>
+</html>
