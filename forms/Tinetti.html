@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Tinetti Assessment (POMA)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background: #fff;
+            padding: 25px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 10px;
+        }
+        fieldset {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            background-color: #fff;
+        }
+        legend {
+            font-size: 1.15em;
+            font-weight: bold;
+            color: #34495e;
+            padding: 0 10px;
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .option {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+        .option:hover {
+            background-color: #f8f9fa;
+        }
+        input[type="radio"] {
+            margin-top: 5px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        label {
+            cursor: pointer;
+        }
+        #results-container {
+            background-color: #eaf2f8;
+            border: 1px solid #aed6f1;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        .score-display {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+        .score-box {
+            padding: 10px;
+        }
+        .score-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2980b9;
+        }
+        #interpretation {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        button[type="reset"] {
+            background-color: #c0392b;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+            transition: background-color 0.2s;
+        }
+        button[type="reset"]:hover {
+            background-color: #a93226;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Tinetti Performance-Oriented Mobility Assessment (POMA)</h1>
+        <p>This tool helps quantify the evaluation of older adults' gait and balance. A hard, armless chair, a timer, and a short walkway are required.</p>
+
+        <form id="tinettiForm">
+
+            <h2>Balance Assessment</h2>
+
+            <fieldset>
+                <legend>Sitting Balance</legend>
+                <div class="options-grid">
+                    <div class="option"><input type="radio" data-section="balance" id="sb_0" name="sitting_balance" value="0"><label for="sb_0">(0) Leans or slides in chair</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="sb_1" name="sitting_balance" value="1"><label for="sb_1">(1) Steady, safe</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Rises from Chair</legend>
+                <div class="options-grid">
+                    <div class="option"><input type="radio" data-section="balance" id="rfc_0" name="rises" value="0"><label for="rfc_0">(0) Unable without help</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="rfc_1" name="rises" value="1"><label for="rfc_1">(1) Able, uses arms to help</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="rfc_2" name="rises" value="2"><label for="rfc_2">(2) Able without using arms</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Attempts to Arise</legend>
+                <div class="options-grid">
+                    <div class="option"><input type="radio" data-section="balance" id="ata_0" name="attempts_arise" value="0"><label for="ata_0">(0) Unable without help</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="ata_1" name="attempts_arise" value="1"><label for="ata_1">(1) Able, requires > 1 attempt</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="ata_2" name="attempts_arise" value="2"><label for="ata_2">(2) Able to rise, 1 attempt</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Immediate Standing Balance (first 5 seconds)</legend>
+                <div class="options-grid">
+                    <div class="option"><input type="radio" data-section="balance" id="isb_0" name="immediate_standing" value="0"><label for="isb_0">(0) Unsteady (swaggers, moves feet, trunk sway)</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="isb_1" name="immediate_standing" value="1"><label for="isb_1">(1) Steady, but uses walker or other support</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="isb_2" name="immediate_standing" value="2"><label for="isb_2">(2) Steady, without walker or other support</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Standing Balance</legend>
+                <div class="options-grid">
+                    <div class="option"><input type="radio" data-section="balance" id="stb_0" name="standing_balance" value="0"><label for="stb_0">(0) Unsteady</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="stb_1" name="standing_balance" value="1"><label for="stb_1">(1) Steady, but wide stance (> 4" apart) and uses support</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="stb_2" name="standing_balance" value="2"><label for="stb_2">(2) Narrow stance without support</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Nudged (sternal push x3)</legend>
+                <div class="options-grid">
+                    <div class="option"><input type="radio" data-section="balance" id="nud_0" name="nudged" value="0"><label for="nud_0">(0) Begins to fall</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="nud_1" name="nudged" value="1"><label for="nud_1">(1) Staggers, grabs, catches self</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="nud_2" name="nudged" value="2"><label for="nud_2">(2) Steady</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Eyes Closed</legend>
+                <div class="options-grid">
+                    <div class="option"><input type="radio" data-section="balance" id="ec_0" name="eyes_closed" value="0"><label for="ec_0">(0) Unsteady</label></div>
+                    <div class="option"><input type="radio" data-section="balance" id="ec_1" name="eyes_closed" value="1"><label for="ec_1">(1) Steady</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Turning 360 Degrees - Steps</legend>
+                <div class="options-grid">
+                    <div class="option"><input type="radio" data-section="balance" id="t360s_0" name="turn_steps" value="0
