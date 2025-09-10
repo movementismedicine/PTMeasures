@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Dynamic Gait Index (DGI)</title>
+    <style>
+        /* Basic Styling for Readability */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #0056b3;
+            border-bottom: 2px solid #eef;
+            padding-bottom: 10px;
+        }
+        fieldset {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #fdfdfd;
+        }
+        legend {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            padding: 0 10px;
+        }
+        .instructions {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        .options div {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+        input[type="radio"] {
+            margin-top: 5px;
+            margin-right: 10px;
+        }
+        label {
+            cursor: pointer;
+        }
+        #results {
+            background-color: #e6f7ff;
+            border: 1px solid #b3e0ff;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        #totalScoreDisplay {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #0056b3;
+        }
+        #interpretation {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        button {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+        }
+        button[type="reset"] {
+            background-color: #dc3545;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Dynamic Gait Index (DGI)</h1>
+        <p><strong>Instructions:</strong> DGI is used to assess fall risk in older adults. A shoebox, 2 cones, stairs, and a short walkway are required. For each item, select the radio button that corresponds to the lowest score that applies.</p>
+
+        <form id="dgiForm">
+
+            <fieldset>
+                <legend>1. Gait (level surface)</legend>
+                <p class="instructions">Walk at your normal speed from here to the next mark (20’).</p>
+                <div class="options">
+                    <div><input type="radio" id="item1_3" name="item1" value="3"><label for="item1_3"><strong>(3) Normal:</strong> Walks 20’, no assistive devices, good speed, no evidence for imbalance, normal gait pattern.</label></div>
+                    <div><input type="radio" id="item1_2" name="item1" value="2"><label for="item1_2"><strong>(2) Mild Impairment:</strong> Walks 20’, uses assistive devices, slower speed, mild gait deviations.</label></div>
+                    <div><input type="radio" id="item1_1" name="item1" value="1"><label for="item1_1"><strong>(1) Moderate Impairment:</strong> Walks 20’, slow speed, abnormal gait pattern, evidence for imbalance.</label></div>
+                    <div><input type="radio" id="item1_0" name="item1" value="0"><label for="item1_0"><strong>(0) Severe Impairment:</strong> Cannot walk 20’ without assistance, severe gait deviations or imbalance.</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>2. Change in gait speed</legend>
+                <p class="instructions">Begin walking at your normal pace (for 5’), when I tell you “go,” walk as fast as you can (for 5’). When I tell you “slow,” walk as slowly as you can (for 5’).</p>
+                <div class="options">
+                    <div><input type="radio" id="item2_3" name="item2" value="3"><label for="item2_3"><strong>(3) Normal:</strong> Able to smoothly change walking speed without loss of balance or gait deviation. Shows a significant difference in walking speeds between normal, fast and slow speeds.</label></div>
+                    <div><input type="radio" id="item2_2" name="item2" value="2"><label for="item2_2"><strong>(2) Mild Impairment:</strong> Is able to change speed but demonstrates mild gait deviations, or no gait deviations but unable to achieve a significant change in velocity, or uses an assistive device.</label></div>
+                    <div><input type="radio" id="item2_1" name="item2" value="1"><label for="item2_1"><strong>(1) Moderate Impairment:</strong> Makes only minor adjustments to walking speed, or accomplishes a change in speed with significant gait deviations, or changes speed but has significant gait deviations, or changes speed but loses balance but is able to recover and continue walking.</label></div>
+                    <div><input type="radio" id="item2_0" name="item2" value="0"><label for="item2_0"><strong>(0) Severe Impairment:</strong> Cannot change speeds, or loses balance and has to reach for wall or be caught.</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>3. Gait with horizontal head turns</legend>
+                <p class="instructions">Begin walking at your normal pace. When I tell you to “look right,” keep walking straight, but turn your head to the right. Keep looking to the right until I tell you, “look left,” then keep walking straight and turn your head to the left. Keep your head to the left until I tell you “look straight,“ then keep walking straight, but return your head to the center.</p>
+                <div class="options">
+                    <div><input type="radio" id="item3_3" name="item3" value="3"><label for="item3_3"><strong>(3) Normal:</strong> Performs head turns smoothly with no change in gait.</label></div>
+                    <div><input type="radio" id="item3_2" name="item3" value="2"><label for="item3_2"><strong>(2) Mild Impairment:</strong> Performs head turns smoothly with slight change in gait velocity, i.e., minor disruption to smooth gait path or uses walking aid.</label></div>
+                    <div><input type="radio" id="item3_1" name="item3" value="1"><label for="item3_1"><strong>(1) Moderate Impairment:</strong> Performs head turns with moderate change in gait velocity, slows down, staggers but recovers, can continue to walk.</label></div>
+                    <div><input type="radio" id="item3_0" name="item3" value="0"><label for="item3_0"><strong>(0) Severe Impairment:</strong> Performs task with severe disruption of gait, i.e., staggers outside 15” path, loses balance, stops, reaches for wall.</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>4. Gait with vertical head turns</legend>
+                <p class="instructions">Begin walking at your normal pace. When I tell you to “look up,” keep walking straight, but tip your head up. Keep looking up until I tell you, “look down,” then keep walking straight and tip your head down. Keep your head down until I tell you “look straight,“ then keep walking straight, but return your head to the center.</p>
+                <div class="options">
+                    <div><input type="radio" id="item4_3" name="item4" value="3"><label for="item4_3"><strong>(3) Normal:</strong> Performs head turns smoothly with no change in gait.</label></div>
+                    <div><input type="radio" id="item4_2" name="item4" value="2"><label for="item4_2"><strong>(2) Mild Impairment:</strong> Performs head turns smoothly with slight change in gait velocity, i.e., minor disruption to smooth gait path or uses walking aid.</label></div>
+                    <div><input type="radio" id="item4_1" name="item4" value="1"><label for="item4_1"><strong>(1) Moderate Impairment:</strong> Performs head turns with moderate change in gait velocity, slows down, staggers but recovers, can continue to walk.</label></div>
+                    <div><input type="radio" id="item4_0" name="item4" value="0"><label for="item4_0"><strong>(0) Severe Impairment:</strong> Performs task with severe disruption of gait, i.e., staggers outside 15” path, loses balance, stops, reaches for wall.</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>5. Gait and pivot turn</legend>
+                <p class="instructions">Begin walking at your normal pace. When I tell you, “turn and stop,” turn as quickly as you can to face the opposite direction and stop.</p>
+                <div class="options">
+                    <div><input type="radio" id="item5_3" name="item5" value="3"><label for="item5_3"><strong>(3) Normal:</strong> Pivot turns safely within 3 seconds and stops quickly with no loss of balance.</label></div>
+                    <div><input type="radio" id="item5_2" name="item5" value="2"><label for="item5_2"><strong>(2) Mild Impairment:</strong> Pivot turns safely in > 3 seconds and stops with no loss of balance.</label></div>
+                    <div><input type="radio" id="item5_1" name="item5" value="1"><label for="item5_1"><strong>(1) Moderate Impairment:</strong> Turns slowly, requires verbal cueing, requires several small steps to catch balance following turn and stop.</label></div>
+                    <div><input type="radio" id="item5_0" name="item5" value="0"><label for="item5_0"><strong>(0) Severe Impairment:</strong> Cannot turn safely, requires assistance to turn and stop.</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>6. Step over obstacle</legend>
+                <p class="instructions">Begin walking at your normal speed. When you come to the shoebox, step over it, not around it, and keep walking.</p>
+                <div class="options">
+                    <div><input type="radio" id="item6_3" name="item6" value="3"><label for="item6_3"><strong>(3) Normal:</strong> Is able to step over the box without changing gait speed, no evidence of imbalance.</label></div>
+                    <div><input type="radio" id="item6_2" name="item6" value="2"><label for="item6_2"><strong>(2) Mild Impairment:</strong> Is able to step over box, but must slow down and adjust steps to clear box safely.</label></div>
+                    <div><input type="radio" id="item6_1" name="item6" value="1"><label for="item6_1"><strong>(1) Moderate Impairment:</strong> Is able to step over box but must stop, then step over. May require verbal cueing.</label></div>
+                    <div><input type="radio" id="item6_0" name="item6" value="0"><label for="item6_0"><strong>(0) Severe Impairment:</strong> Cannot perform without assistance.</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>7. Step around obstacles</legend>
+                <p class="instructions">Begin walking at normal speed. When you come to the first cone (about 6’ away), walk around the right side of it. When you come to the second cone (6’ past first cone), walk around it to the left.</p>
+                <div class="options">
+                    <div><input type="radio" id="item7_3" name="item7" value="3"><label for="item7_3"><strong>(3) Normal:</strong> Is able to walk around cones safely without changing gait speed; no evidence of imbalance.</label></div>
+                    <div><input type="radio" id="item7_2" name="item7" value="2"><label for="item7_2"><strong>(2) Mild Impairment:</strong> Is able to step around both cones, but must slow down and adjust steps to clear cones.</label></div>
+                    <div><input type="radio" id="item7_1" name="item7" value="1"><label for="item7_1"><strong>(1) Moderate Impairment:</strong> Is able to clear cones but must significantly slow speed to accomplish task, or requires verbal cueing.</label></div>
+                    <div><input type="radio" id="item7_0" name="item7" value="0"><label for="item7_0"><strong>(0) Severe Impairment:</strong> Unable to clear cones, walks into one or both cones, or requires physical assistance.</label></div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>8. Steps</legend>
+                <p class="instructions">Walk up these stairs as you would at home, i.e., using the railing if necessary. At the top, turn around and walk down.</p>
+                <div class="options">
+                    <div><input type="radio" id="item8_3" name="item8" value="3"><label for="item8_3"><strong>(3) Normal:</strong> Alternating feet, no rail.</label></div>
+                    <div><input type="radio" id="item8_2" name="item8" value="2"><label for="item8_2"><strong>(2) Mild Impairment:</strong> Alternating feet, must use rail.</label></div>
+                    <div><input type="radio" id="item8_1" name="item8" value="1"><label for="item8_1"><strong>(1) Moderate Impairment:</strong> Two feet to a stair, must use rail.</label></div>
+                    <div><input type="radio" id="item8_0" name="item8" value="0"><label for="item8_0"><strong>(0) Severe Impairment:</strong> Cannot do safely.</label></div>
+                </div>
+            </fieldset>
+            
+            <button type="reset">Reset Form</button>
+        </form>
+
+        <div id="results">
+            <h2>Total Score</h2>
+            <p id="totalScoreDisplay">0 / 24</p>
+            <p id="interpretation">Complete the form to see the interpretation.</p>
+        </div>
+
+    </div>
+
+    <script>
+        // JavaScript for Live Scoring
+        function calculateScore() {
+            let totalScore = 0;
+            // Select all radio buttons that are currently checked
+            const checkedInputs = document.querySelectorAll('input[type="radio"]:checked');
+            
+            // Loop through the checked buttons and add their values to the total
+            checkedInputs.forEach(input => {
+                totalScore += parseInt(input.value);
+            });
+
+            // Get the elements where we will display the results
+            const scoreDisplay = document.getElementById('totalScoreDisplay');
+            const interpretationDisplay = document.getElementById('interpretation');
+            
+            // Update the score display
+            scoreDisplay.textContent = totalScore + " / 24";
+            
+            // Update the interpretation based on the total score
+            if (totalScore < 19) {
+                interpretationDisplay.textContent = "<19/24: Predictive of falls in community-dwelling elderly.";
+                interpretationDisplay.style.color = '#c00'; // Red for high risk
+            } else {
+                interpretationDisplay.textContent = "≥19/24: Lower risk of falls.";
+                interpretationDisplay.style.color = '#080'; // Green for low risk
+            }
+        }
+
+        // Add an event listener to the form to detect any change
+        const dgiForm = document.getElementById('dgiForm');
+        dgiForm.addEventListener('change', calculateScore);
+        
+        // Add an event listener for the reset button
+        dgiForm.addEventListener('reset', () => {
+            // Use a short delay to allow the form to reset before resetting the score display
+            setTimeout(() => {
+                const scoreDisplay = document.getElementById('totalScoreDisplay');
+                const interpretationDisplay = document.getElementById('interpretation');
+                scoreDisplay.textContent = "0 / 24";
+                interpretationDisplay.textContent = "Complete the form to see the interpretation.";
+                interpretationDisplay.style.color = '#333';
+            }, 10);
+        });
+    </script>
+
+</body>
+</html>
