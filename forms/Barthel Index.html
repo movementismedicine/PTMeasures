@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barthel Index</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #007bff;
+            text-align: center;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+
+        .instructions {
+            background-color: #e9f5ff;
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .item-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .option {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .option input[type="radio"] {
+            margin-top: 4px;
+            margin-right: 10px;
+        }
+
+        .option label {
+            flex-grow: 1;
+        }
+
+        .score-display {
+            font-size: 1.8em;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+        }
+
+        .reference {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Barthel Index</h1>
+    <div class="instructions">
+        <p>The Barthel Index is used to assess an individual's functional independence. Select the option that best describes the patient's performance for each item. The total score will be calculated automatically.</p>
+    </div>
+
+    <form id="barthelForm">
+        <div class="item">
+            <div class="item-title">Item 1: Feeding</div>
+            <div class="option">
+                <input type="radio" name="item1" value="0" id="i1-0" required>
+                <label for="i1-0">0 = unable</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="item1" value="5" id="i1-5">
+                <label for="i1-5">5 = needs help cutting, spreading butter, etc., or requires modified diet</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="item1" value="10" id="i1-10">
+                <label for="i1-10">10 = independent</label>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item-title">Item 2: Bathing</div>
+            <div class="option">
+                <input type="radio" name="item2" value="0" id="i2-0" required>
+                <label for="i2-0">0 = dependent</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="item2" value="5" id="i2-5">
+                <label for="i2-5">5 = independent (or in shower)</label>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item-title">Item 3: Grooming</div>
+            <div class="option">
+                <input type="radio" name="item3" value="0" id="i3-0" required>
+                <label for="i3-0">0 = needs help with personal care</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="item3" value="5" id="i3-5">
+                <label for="i3-5">5 = independent face/hair/teeth/shaving (implements provided)</label>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item-title">Item 4: Dressing</div>
+            <div class="option">
+                <input type="radio" name="item4" value="0" id="i4-0" required>
+                <label for="i4-0">0 = dependent</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="item4" value="5" id="i4-5">
+                <label for="i4-5">5 = needs help but can do about half unaided</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="item4" value="10" id="i4-10">
+                <label for="i4-10">10 = independent (including buttons, zips, laces, etc.)</label>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item-title">Item 5: Bowels</div>
+            <div class="option">
+                <input type="radio" name="item5" value="0" id="i5-0" required>
+                <label for="i5-0">0 = incontinent (or needs to be given enemas)</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="item5" value="5" id="i5-5">
+                <label for="i5-5">5 = occasional accident</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="item5" value="10" id="i5-10">
+                <label for="i5-10">10 = continent</label>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item-title">Item 6: Bladder</div>
+            <div class="option">
+                <input type="radio" name="item6" value="0" id="i6-0" required>
+                <label for="i6-0">0 = incontinent, or catheterized and unable to manage alone</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="item6" value="5" id="i6-5">
+                <label for="i6-5">5 = occasional accident</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="item6" value="10" id="i6-10">
+                <label for="i6-10">10 = continent</label>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item-title">Item 7: Toilet use</div>
+            <div class="option">
+                <input type="radio" name="item7" value="0" id="i7-0" required>
+                <label for="i7-0">0 = dependent</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="item7" value="5" id="i7-5">
+                <label for="i7-5">5 = needs some help, but can do something alone</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="item7" value="10" id="i7-10">
+                <label for="i7-10">10 = independent (on and off, dressing, wiping)</label>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item-title">Item 8: Transfers (bed to chair and back)</div>
+            <div class="option">
+                <input type="radio" name="item8" value="0" id="i8-0" required>
+                <label for="i8-0">0 = unable, no sitting balance</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="item8" value="5" id="i8-5">
+                <label for="i8-5">5 = major help (one or two people, physical), can sit</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="item8" value="10" id="i8-10">
+                <label for="i8-10">10 = minor help (verbal or physical)</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="item8" value="15" id="i8-15">
+                <label for="i8-15">15 = independent</label>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item-title">Item 9: Mobility (on level surfaces)</div>
+            <div class="option">
+                <input type="radio" name="item9" value="0" id="i9-0" required>
+                <label for="i9-0">0 = immobile or < 50 yards</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="item9" value="5" id="i9-5">
+                <label for="i9-5">5 = wheelchair independent, including corners, > 50 yards</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="item9" value="10" id="i9-10">
+                <label for="i9-10">10 = walks with help of one person (verbal or physical) > 50 yards</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="item9" value="15" id="i9-15">
+                <label for="i9-15">15 = independent (but may use any aid; for example, stick) > 50 yards</label>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item-title">Item 10: Stairs</div>
+            <div class="option">
+                <input type="radio" name="item10" value="0" id="i10-0" required>
+                <label for="i10-0">0 = unable</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="item10" value="5" id="i10-5">
+                <label for="i10-5">5 = needs help (verbal, physical, carrying aid)</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="item10" value="10" id="i10-10">
+                <label for="i10-10">10 = independent</label>
+            </div>
+        </div>
+    </form>
+
+    <div class="score-display">
+        Total Score: <span id="totalScore">0</span> / 100
+    </div>
+
+    <div class="reference">
+        <p>Reference: <a href="https://pubmed.ncbi.nlm.nih.gov/7807430/" target="_blank">https://pubmed.ncbi.nlm.nih.gov/7807430/</a></p>
+    </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('barthelForm');
+    const totalScoreDisplay = document.getElementById('totalScore');
+
+    form.addEventListener('change', () => {
+        let totalScore = 0;
+        // Select all radio buttons that are checked
+        const checkedRadios = form.querySelectorAll('input[type="radio"]:checked');
+
+        checkedRadios.forEach(radio => {
+            // Add the value of each checked radio button to the total score
+            totalScore += parseInt(radio.value, 10);
+        });
+
+        // Update the display with the new total score
+        totalScoreDisplay.textContent = totalScore;
+    });
+});
+</script>
+
+</body>
+</html>
