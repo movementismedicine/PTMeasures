@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini-BESTest</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #2c3e50;
+            --background-color: #f4f7f9;
+            --text-color: #34495e;
+            --card-bg: #ffffff;
+        }
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Lato', sans-serif;
+            padding-top: 2rem;
+        }
+        .container {
+            max-width: 900px;
+        }
+        .jumbotron {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 4rem 2rem;
+            margin-bottom: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+        .jumbotron h1 {
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        .jumbotron .lead {
+            font-size: 1.25rem;
+        }
+        .form-section {
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .form-section h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+        .form-item {
+            margin-bottom: 1.5rem;
+        }
+        .form-label {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        .instruction {
+            font-style: italic;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            border-radius: 0.5rem;
+            font-weight: bold;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .result-box {
+            margin-top: 1rem;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .sub-score-display {
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: #e9ecef;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="jumbotron text-center">
+        <h1>Mini-BESTest</h1>
+        <p class="lead">Balance Evaluation Systems Test</p>
+    </div>
+
+    <form id="mini-bestest-form">
+        <div class="form-section">
+            <h4>First Section: Anticipatory</h4>
+            <div class="form-item">
+                <p class="form-label">1. Sit to Stand</p>
+                <p class="instruction">“Cross your arms across your chest. Try not to use your hands unless you must. Do not let your legs lean against the back of the chair when you stand. Please stand up now.”</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="item1" value="2">
+                    <label class="form-check-label">2 – Normal: Comes to stand without use of hands and stabilizes independently.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="item1" value="1">
+                    <label class="form-check-label">1 – Moderate: Comes to stand WITH use of hands on first attempt.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="item1" value="0">
+                    <label class="form-check-label">0 – Severe: Unable to stand up from chair without assistance, OR needs several attempts with use of hands.</label>
+                </div>
+            </div>
+
+            <div class="form-item">
+                <p class="form-label">2. Rise to Toes</p>
+                <p class="instruction">“Place your feet shoulder width apart. Place your hands on your hips. Try to rise as high as you can onto your toes. I will count out loud to 3 seconds. Try to hold this pose for at least 3 seconds. Look straight ahead. Rise now.”</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="item2" value="2">
+                    <label class="form-check-label">2 – Normal: Stable for 3 s with maximum height.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="item2" value="1">
+                    <label class="form-check-label">1 – Moderate: Heels up, but not full range, OR noticeable instability for 3 s.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="item2" value="0">
+                    <label class="form-check-label">0 – Severe: <= 3 s.</label>
+                </div>
+            </div>
+
+            <div class="form-item">
+                <p class="form-label">3. Stand on One Leg</p>
+                <p class="instruction">“Look straight ahead. Keep your hands on your hips. Lift your leg off of the ground behind you without touching or resting your raised leg upon your other standing leg. Stay standing on one leg as long as you can. Look straight ahead. Lift now.”</p>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <p class="form-label">Left Leg</p>
+                        <div class="mb-3">
+                            <label for="item3-left-time" class="form-label">Time (seconds):</label>
+                            <input type="number" class="form-control" id="item3-left-time" min="0" max="20" placeholder="e.g., 15">
+                        </div>
+                        <div id="item3-left-score-display" class="result-box">Score: 0</div>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="form-label">Right Leg</p>
+                        <div class="mb-3">
+                            <label for="item3-right-time" class="form-label">Time (seconds):</label>
+                            <input type="number" class="form-control" id="item3-right-time" min="0" max="20" placeholder="e.g., 18">
+                        </div>
+                        <div id="item3-right-score-display" class="result-box">Score: 0</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sub-score-display">
+                <h5 class="fw-bold">Anticipatory Sub-Scale Score (6 points possible)</h5>
+                <div id="anticipatory-score" class="result-box">Score: 0</div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h4>Second Section: Reactive Postural Control</h4>
+            <div class="form-item">
+                <p class="form-label">4. Compensatory Stepping Correction – Forward</p>
+                <p class="instruction">“Stand with your feet shoulder width apart, arms at your sides. Lean forward against my hands beyond your forward limits. When I let go, do whatever is necessary, including taking a step, to avoid a fall.”</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="item4" value="2">
+                    <label class="form-check-label">2 – Normal: Recovers independently with a single, large step.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="item4" value="1">
+                    <label class="form-check-label">1 – Moderate: More than one step used to recover equilibrium.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="item4" value="0">
+                    <label class="form-check-label">0 – Severe: No step, OR would fall if not caught, OR falls spontaneously.</label>
+                </div>
+            </div>
+            <div class="form-item">
+                <p class="form-label">5. Compensatory Stepping Correction – Backward</p>
+                <p class="instruction">“Stand with your feet shoulder width apart, arms at your sides. Lean backward against my hands beyond your backward limits. When I let go, do whatever is necessary, including taking a step, to avoid a fall.”</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="item5" value="2">
+                    <label class="form-check-label">2 – Normal: Recovers independently with a single, large step.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="item5" value="1">
+                    <label class="form-check-label">1 – Moderate: More than one step used to recover equilibrium.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="item5" value="0">
+                    <label class="form-check-label">0 – Severe: No step, OR would fall if not caught, OR falls spontaneously.</label>
+                </div>
+            </div>
+            <div class="form-item">
+                <p class="form-label">6. Compensatory Stepping Correction – Lateral</p>
+                <p class="instruction">“Stand with your feet together, arms down at your sides. Lean into my hand beyond your sideways limit. When I let go, do whatever is necessary, including taking a step, to avoid a fall.”</p>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <p class="form-label">Left Side</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="item6_left" value="2">
+                            <label class="form-check-label">2 – Normal: Recovers with 1 step.</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="item6_left" value="1">
+                            <label class="form-check-label">1 – Moderate: Several steps to recover equilibrium.</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="item6_left" value="0">
+                            <label class="form-check-label">0 – Severe: Falls, or cannot step.</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="form-label">Right Side</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="item6_right" value="2">
+                            <label class="form-check-label">2 – Normal: Recovers with 1 step.</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="item6_right" value="1">
+                            <label class="form-check-label">1 – Moderate: Several steps to recover equilibrium.</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="item6_right" value="0">
+                            <label class="form-check-label">0 – Severe: Falls, or cannot step.</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sub-score-display">
+                <h5 class="fw-bold">Reactive Postural Control Sub-Scale Score (6 points possible)</h5>
+                <div id="reactive-score" class="result-box">Score: 0</div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h4>Third Section: Sensory Orientation</h4>
+            <div class="form-item">
+                <p class="form-label">7. Stance (Feet Together); Eyes Open, Firm Surface</p>
+                <p class="instruction">“Place your hands on your hips. Place your feet together until almost touching. Look straight ahead. Be as stable and still as possible, until I say stop.”</p>
+                <div class="mb-3">
+                    <label for="item7-time" class="form-label">Time (seconds):</label>
+                    <input type="number" class="form-control" id="item7-time" min="0" max="30" placeholder="e.g., 25">
+                </div>
+                <div id="item7-score-display" class="result-box">Score: 0</div>
+            </div>
+            <div class="form-item">
+                <p class="form-label">8. Stance (Feet Together); Eyes Closed, Foam Surface</p>
+                <p class="instruction">“Step onto the foam. Place your hands on your hips. Place your feet together until almost touching. Be as stable and still as possible, until I say stop. I will start timing when you close your eyes.”</p>
+                <div class="mb-3">
+                    <label for="item8-time" class="form-label">Time (seconds):</label>
+                    <input type="number" class="form-control" id="item8-time" min="0" max="30" placeholder="e.g., 28">
+                </div>
+                <div id="item8-score-display" class="result-box">Score: 0</div>
+            </div>
+            <div class="form-item">
+                <p class="form-label">9. Incline – Eyes Closed</p>
+                <p class="instruction">“Step onto the incline ramp. Please stand on the incline ramp with your toes toward the top. Place your feet shoulder width apart and have your arms down at your sides. I will start timing when you close your eyes.”</p>
+                <div class="mb-3">
+                    <label for="item9-time" class="form-label">Time (seconds):</label>
+                    <input type="number" class="form-control" id="item9-time" min="0" max="30" placeholder="e.g., 30">
+                </div>
+                <div id="item9-score-display" class="result-box">Score: 0</div>
+            </div>
+            <div class="sub-score-display">
+                <h5 class="fw-bold">Sensory Orientation Sub-Scale Score (6 points possible)</h5>
+                <div id="sensory-score" class="result-box">Score: 0</div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h4>Fourth Section: Dynamic Gait</h4>
+            <div class="form-item">
+                <p class="form-label">10. Change in Gait Speed</p>
+                <p class="instruction">“Begin walking at your normal speed, when I tell you ‘fast’, walk as fast as you can. When I say ‘slow’, walk very slowly.”</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="item10" value="2">
+                    <label class="form-check-label">2 – Normal: Significantly changes speed without imbalance.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="item10" value="1">
+                    <label class="form-check-label">1 – Moderate: Unable to change speed or signs of imbalance.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="item10" value="0">
+                    <label class="form-check-label">0 – Severe: Unable to achieve significant change AND signs of imbalance.</label>
+                </div>
+            </div>
+            <div class="form-item">
+                <p class="form-label">11. Walk with Head Turns – Horizontal</p>
+                <p class="instruction">“Begin walking at your normal speed, when I say “right”, turn your head and look to the right. When I say “left” turn your head and look to the left. Try to keep yourself walking in a straight line.”</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="item11" value="2">
+                    <label class="form-check-label">2 – Normal: Performs head turns with no change in gait speed and good balance.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="item11" value="1">
+                    <label class="form-check-label">1 – Moderate: Performs head turns with reduction in gait speed.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="item11" value="0">
+                    <label class="form-check-label">0 – Severe: Performs head turns with imbalance.</label>
+                </div>
+            </div>
+            <div class="form-item">
+                <p class="form-label">12. Walk with Pivot Turns</p>
+                <p class="instruction">“Begin walking at your normal speed, when I say “right”, turn your head and look to the right. When I say “left” turn your head and look to the left. Try to keep yourself walking in a straight line.”</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="item12" value="2">
+                    <label class="form-check-label">2 – Normal: Turns with feet close FAST (< 3 steps) with good balance.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="item12" value="1">
+                    <label class="form-check-label">1 – Moderate: Turns with feet close SLOW (>=4 steps) with good balance.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="item12" value="0">
+                    <label class="form-check-label">0 – Severe: Cannot turn with feet close at any speed without imbalance.</label>
+                </div>
+            </div>
+            <div class="form-item">
+                <p class="form-label">13. Step over Obstacles</p>
+                <p class="instruction">“Begin walking at your normal speed. When you get to the box, step over it, not around it and keep walking.”</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="item13" value="2">
+                    <label class="form-check-label">2 – Normal: Able to step over box with minimal change of gait speed and with good balance.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="item13" value="1">
+                    <label class="form-check-label">1 – Moderate: Steps over box but touches box OR displays cautious behavior by slowing gait.</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="item13" value="0">
+                    <label class="form-check-label">0 – Severe: Unable to step over box OR steps around box.</label>
+                </div>
+            </div>
+            <div class="form-item">
+                <p class="form-label">14. Timed Up & Go with Dual Task (3 meter walk)</p>
+                <p class="instruction">TUG: “When I say ‘Go’, stand up from chair, walk at your normal speed across the tape on the floor, turn around, and come back to sit in the chair.”<br><br>Instruction TUG with Dual Task: “Count backwards by threes starting at __. When I say ‘Go’, stand up from chair, walk at your normal speed across the tape on the floor, turn around, and come back to sit in the chair. Continue counting backwards the entire time.”</p>
+                <div class="mb-3">
+                    <label for="item14-tug" class="form-label">TUG time (seconds):</label>
+                    <input type="number" class="form-control" id="item14-tug" min="0" placeholder="e.g., 10">
+                </div>
+                <div class="mb-3">
+                    <label for="item14-tug-dual" class="form-label">TUG with Dual Task time (seconds):</label>
+                    <input type="number" class="form-control" id="item14-tug-dual" min="0" placeholder="e.g., 12">
+                </div>
+                <div id="item14-score-display" class="result-box">Score: 0</div>
+            </div>
+            <div class="sub-score-display">
+                <h5 class="fw-bold">Dynamic Gait Sub-Scale Score (10 points possible)</h5>
+                <div id="gait-score" class="result-box">Score: 0</div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5 mb-5">
+            <button type="button" class="btn btn-primary btn-lg" onclick="calculateTotalScore()">Calculate Total Mini-BESTest Score and All Subscores</button>
+            <div class="sub-score-display mt-4">
+                <h5 class="fw-bold">Overall Total Score (28 points possible)</h5>
+                <div id="total-score" class="result-box">Score: 0</div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script>
+    // Helper function to get the value of a single radio group
+    function getRadioValue(name) {
+        const selected = document.querySelector(`input[name="${name}"]:checked`);
+        return selected ? parseInt(selected.value) : null;
+    }
+
+    // Function to calculate score for a range of radio button items
+    function calculateSubscore(start, end) {
+        let total = 0;
+        let countedItems = 0;
+        for (let i = start; i <= end; i++) {
+            const value = getRadioValue(`item${i}`);
+            if (value !== null) {
+                total += value;
+                countedItems++;
+            }
+        }
+        return { total, countedItems };
+    }
+
+    // Main function to update all scores
+    function updateScores() {
+        let anticipatoryScore = 0;
+        let reactiveScore = 0;
+        let sensoryScore = 0;
+        let gaitScore = 0;
+        let countedAnticipatory = 0;
+        let countedReactive = 0;
+        let countedSensory = 0;
+        let countedGait = 0;
+
+        // Anticipatory (Items 1-3)
+        const item1 = getRadioValue('item1');
+        if (item1 !== null) {
+            anticipatoryScore += item1;
+            countedAnticipatory++;
+        }
+        const item2 = getRadioValue('item2');
+        if (item2 !== null) {
+            anticipatoryScore += item2;
+            countedAnticipatory++;
+        }
+        const item3LeftTime = parseFloat(document.getElementById('item3-left-time').value);
+        const item3RightTime = parseFloat(document.getElementById('item3-right-time').value);
+        let item3Score = null;
+        if (!isNaN(item3LeftTime) || !isNaN(item3RightTime)) {
+            let leftScore = 0;
+            if (!isNaN(item3LeftTime)) {
+                if (item3LeftTime >= 20) leftScore = 2;
+                else if (item3LeftTime > 0) leftScore = 1;
+                else leftScore = 0;
+            } else {
+                leftScore = 2; // Treat as 2 for comparison if not timed
+            }
+
+            let rightScore = 0;
+            if (!isNaN(item3RightTime)) {
+                if (item3RightTime >= 20) rightScore = 2;
+                else if (item3RightTime > 0) rightScore = 1;
+                else rightScore = 0;
+            } else {
+                rightScore = 2; // Treat as 2 for comparison if not timed
+            }
+            
+            item3Score = Math.min(leftScore, rightScore);
+            anticipatoryScore += item3Score;
+            countedAnticipatory++;
+        }
+        document.getElementById('item3-left-score-display').innerText = `Score: ${!isNaN(item3LeftTime) ? ((item3LeftTime >= 20) ? 2 : (item3LeftTime > 0 ? 1 : 0)) : 0}`;
+        document.getElementById('item3-right-score-display').innerText = `Score: ${!isNaN(item3RightTime) ? ((item3RightTime >= 20) ? 2 : (item3RightTime > 0 ? 1 : 0)) : 0}`;
+        document.getElementById('anticipatory-score').innerText = `Score: ${anticipatoryScore} (from ${countedAnticipatory} item(s))`;
+
+        // Reactive Postural Control (Items 4-6)
+        const item4 = getRadioValue('item4');
+        if (item4 !== null) {
+            reactiveScore += item4;
+            countedReactive++;
+        }
+        const item5 = getRadioValue('item5');
+        if (item5 !== null) {
+            reactiveScore += item5;
+            countedReactive++;
+        }
+        const item6Left = getRadioValue('item6_left');
+        const item6Right = getRadioValue('item6_right');
+        if (item6Left !== null || item6Right !== null) {
+            let item6Score = 0;
+            if (item6Left === null && item6Right === null) {
+                // Do nothing
+            } else if (item6Left === null) {
+                item6Score = item6Right;
+            } else if (item6Right === null) {
+                item6Score = item6Left;
+            } else {
+                item6Score = Math.min(item6Left, item6Right);
+            }
+            reactiveScore += item6Score;
+            countedReactive++;
+        }
+        document.getElementById('reactive-score').innerText = `Score: ${reactiveScore} (from ${countedReactive} item(s))`;
+
+        // Sensory Orientation (Items 7-9)
+        const item7Time = parseFloat(document.getElementById('item7-time').value);
+        if (!isNaN(item7Time)) {
+            const score = item7Time >= 30 ? 2 : (item7Time > 0 ? 1 : 0);
+            sensoryScore += score;
+            countedSensory++;
+            document.getElementById('item7-score-display').innerText = `Score: ${score}`;
+        }
+        const item8Time = parseFloat(document.getElementById('item8-time').value);
+        if (!isNaN(item8Time)) {
+            const score = item8Time >= 30 ? 2 : (item8Time > 0 ? 1 : 0);
+            sensoryScore += score;
+            countedSensory++;
+            document.getElementById('item8-score-display').innerText = `Score: ${score}`;
+        }
+        const item9Time = parseFloat(document.getElementById('item9-time').value);
+        if (!isNaN(item9Time)) {
+            const score = item9Time >= 30 ? 2 : (item9Time > 0 ? 1 : 0);
+            sensoryScore += score;
+            countedSensory++;
+            document.getElementById('item9-score-display').innerText = `Score: ${score}`;
+        }
+        document.getElementById('sensory-score').innerText = `Score: ${sensoryScore} (from ${countedSensory} item(s))`;
+
+        // Dynamic Gait (Items 10-14)
+        const item10 = getRadioValue('item10');
+        if (item10 !== null) {
+            gaitScore += item10;
+            countedGait++;
+        }
+        const item11 = getRadioValue('item11');
+        if (item11 !== null) {
+            gaitScore += item11;
+            countedGait++;
+        }
+        const item12 = getRadioValue('item12');
+        if (item12 !== null) {
+            gaitScore += item12;
+            countedGait++;
+        }
+        const item13 = getRadioValue('item13');
+        if (item13 !== null) {
+            gaitScore += item13;
+            countedGait++;
+        }
+        const item14Tug = parseFloat(document.getElementById('item14-tug').value);
+        const item14TugDual = parseFloat(document.getElementById('item14-tug-dual').value);
+        if (!isNaN(item14Tug) && !isNaN(item14TugDual)) {
+            const percentageChange = ((item14TugDual - item14Tug) / item14Tug) * 100;
+            let score = 2;
+            if (percentageChange > 10) {
+                score = 1;
+            }
+            gaitScore += score;
+            countedGait++;
+            document.getElementById('item14-score-display').innerText = `Score: ${score}`;
+        } else {
+            document.getElementById('item14-score-display').innerText = `Score: 0`;
+        }
+        document.getElementById('gait-score').innerText = `Score: ${gaitScore} (from ${countedGait} item(s))`;
+    }
+
+    // Function for the final button
+    function calculateTotalScore() {
+        updateScores(); // Ensure all subscores are up-to-date
+        const anticipatoryScore = parseInt(document.getElementById('anticipatory-score').innerText.match(/Score: (\d+)/)[1]);
+        const reactiveScore = parseInt(document.getElementById('reactive-score').innerText.match(/Score: (\d+)/)[1]);
+        const sensoryScore = parseInt(document.getElementById('sensory-score').innerText.match(/Score: (\d+)/)[1]);
+        const gaitScore = parseInt(document.getElementById('gait-score').innerText.match(/Score: (\d+)/)[1]);
+        
+        const totalScore = anticipatoryScore + reactiveScore + sensoryScore + gaitScore;
+        document.getElementById('total-score').innerText = `Score: ${totalScore} out of 28 possible points`;
+    }
+
+    // Add event listeners to all relevant inputs
+    document.querySelectorAll('input[type="radio"]').forEach(input => {
+        input.addEventListener('change', updateScores);
+    });
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+        input.addEventListener('input', updateScores);
+    });
+
+    // Initial score calculation on page load
+    window.onload = updateScores;
+</script>
+
+</body>
+</html>
