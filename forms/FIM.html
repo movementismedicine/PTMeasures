@@ -84,192 +84,192 @@
         <p class="lead">Interactive Form</p>
     </div>
 
-    <form id="fim-form" onsubmit="event.preventDefault(); showOnlySelected();">
+    <form id="fim-form">
         <div class="form-section">
             <h4>Self-Care</h4>
             <div class="form-item">
                 <p class="form-label">1. Eating</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item1" id="item1-7" value="7">
+                    <input class="form-check-input" type="radio" name="item1" onchange="updateScores()" id="item1-7" value="7">
                     <label class="form-check-label" for="item1-7">7 – Complete Independence (timely, safely)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item1" id="item1-6" value="6">
+                    <input class="form-check-input" type="radio" name="item1" onchange="updateScores()" id="item1-6" value="6">
                     <label class="form-check-label" for="item1-6">6 – Modified Independence (device used)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item1" id="item1-5" value="5">
+                    <input class="form-check-input" type="radio" name="item1" onchange="updateScores()" id="item1-5" value="5">
                     <label class="form-check-label" for="item1-5">5 – Supervision required</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item1" id="item1-4" value="4">
+                    <input class="form-check-input" type="radio" name="item1" onchange="updateScores()" id="item1-4" value="4">
                     <label class="form-check-label" for="item1-4">4 – Minimal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item1" id="item1-3" value="3">
+                    <input class="form-check-input" type="radio" name="item1" onchange="updateScores()" id="item1-3" value="3">
                     <label class="form-check-label" for="item1-3">3 – Moderate assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item1" id="item1-2" value="2">
+                    <input class="form-check-input" type="radio" name="item1" onchange="updateScores()" id="item1-2" value="2">
                     <label class="form-check-label" for="item1-2">2 – Maximal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item1" id="item1-1" value="1">
+                    <input class="form-check-input" type="radio" name="item1" onchange="updateScores()" id="item1-1" value="1">
                     <label class="form-check-label" for="item1-1">1 – Total assistance, or not testable</label>
                 </div>
             </div>
             <div class="form-item">
                 <p class="form-label">2. Grooming</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item2" id="item2-7" value="7">
+                    <input class="form-check-input" type="radio" name="item2" onchange="updateScores()" id="item2-7" value="7">
                     <label class="form-check-label" for="item2-7">7 – Complete Independence (timely, safely)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item2" id="item2-6" value="6">
+                    <input class="form-check-input" type="radio" name="item2" onchange="updateScores()" id="item2-6" value="6">
                     <label class="form-check-label" for="item2-6">6 – Modified Independence (device used)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item2" id="item2-5" value="5">
+                    <input class="form-check-input" type="radio" name="item2" onchange="updateScores()" id="item2-5" value="5">
                     <label class="form-check-label" for="item2-5">5 – Supervision required</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item2" id="item2-4" value="4">
+                    <input class="form-check-input" type="radio" name="item2" onchange="updateScores()" id="item2-4" value="4">
                     <label class="form-check-label" for="item2-4">4 – Minimal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item2" id="item2-3" value="3">
+                    <input class="form-check-input" type="radio" name="item2" onchange="updateScores()" id="item2-3" value="3">
                     <label class="form-check-label" for="item2-3">3 – Moderate assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item2" id="item2-2" value="2">
+                    <input class="form-check-input" type="radio" name="item2" onchange="updateScores()" id="item2-2" value="2">
                     <label class="form-check-label" for="item2-2">2 – Maximal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item2" id="item2-1" value="1">
+                    <input class="form-check-input" type="radio" name="item2" onchange="updateScores()" id="item2-1" value="1">
                     <label class="form-check-label" for="item2-1">1 – Total assistance, or not testable</label>
                 </div>
             </div>
             <div class="form-item">
                 <p class="form-label">3. Bathing</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item3" id="item3-7" value="7">
+                    <input class="form-check-input" type="radio" name="item3" onchange="updateScores()" id="item3-7" value="7">
                     <label class="form-check-label" for="item3-7">7 – Complete Independence (timely, safely)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item3" id="item3-6" value="6">
+                    <input class="form-check-input" type="radio" name="item3" onchange="updateScores()" id="item3-6" value="6">
                     <label class="form-check-label" for="item3-6">6 – Modified Independence (device used)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item3" id="item3-5" value="5">
+                    <input class="form-check-input" type="radio" name="item3" onchange="updateScores()" id="item3-5" value="5">
                     <label class="form-check-label" for="item3-5">5 – Supervision required</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item3" id="item3-4" value="4">
+                    <input class="form-check-input" type="radio" name="item3" onchange="updateScores()" id="item3-4" value="4">
                     <label class="form-check-label" for="item3-4">4 – Minimal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item3" id="item3-3" value="3">
+                    <input class="form-check-input" type="radio" name="item3" onchange="updateScores()" id="item3-3" value="3">
                     <label class="form-check-label" for="item3-3">3 – Moderate assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item3" id="item3-2" value="2">
+                    <input class="form-check-input" type="radio" name="item3" onchange="updateScores()" id="item3-2" value="2">
                     <label class="form-check-label" for="item3-2">2 – Maximal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item3" id="item3-1" value="1">
+                    <input class="form-check-input" type="radio" name="item3" onchange="updateScores()" id="item3-1" value="1">
                     <label class="form-check-label" for="item3-1">1 – Total assistance, or not testable</label>
                 </div>
             </div>
             <div class="form-item">
                 <p class="form-label">4. Dressing (upper)</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item4" id="item4-7" value="7">
+                    <input class="form-check-input" type="radio" name="item4" onchange="updateScores()" id="item4-7" value="7">
                     <label class="form-check-label" for="item4-7">7 – Complete Independence (timely, safely)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item4" id="item4-6" value="6">
+                    <input class="form-check-input" type="radio" name="item4" onchange="updateScores()" id="item4-6" value="6">
                     <label class="form-check-label" for="item4-6">6 – Modified Independence (device used)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item4" id="item4-5" value="5">
+                    <input class="form-check-input" type="radio" name="item4" onchange="updateScores()" id="item4-5" value="5">
                     <label class="form-check-label" for="item4-5">5 – Supervision required</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item4" id="item4-4" value="4">
+                    <input class="form-check-input" type="radio" name="item4" onchange="updateScores()" id="item4-4" value="4">
                     <label class="form-check-label" for="item4-4">4 – Minimal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item4" id="item4-3" value="3">
+                    <input class="form-check-input" type="radio" name="item4" onchange="updateScores()" id="item4-3" value="3">
                     <label class="form-check-label" for="item4-3">3 – Moderate assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item4" id="item4-2" value="2">
+                    <input class="form-check-input" type="radio" name="item4" onchange="updateScores()" id="item4-2" value="2">
                     <label class="form-check-label" for="item4-2">2 – Maximal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item4" id="item4-1" value="1">
+                    <input class="form-check-input" type="radio" name="item4" onchange="updateScores()" id="item4-1" value="1">
                     <label class="form-check-label" for="item4-1">1 – Total assistance, or not testable</label>
                 </div>
             </div>
             <div class="form-item">
                 <p class="form-label">5. Dressing (lower)</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item5" id="item5-7" value="7">
+                    <input class="form-check-input" type="radio" name="item5" onchange="updateScores()" id="item5-7" value="7">
                     <label class="form-check-label" for="item5-7">7 – Complete Independence (timely, safely)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item5" id="item5-6" value="6">
+                    <input class="form-check-input" type="radio" name="item5" onchange="updateScores()" id="item5-6" value="6">
                     <label class="form-check-label" for="item5-6">6 – Modified Independence (device used)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item5" id="item5-5" value="5">
+                    <input class="form-check-input" type="radio" name="item5" onchange="updateScores()" id="item5-5" value="5">
                     <label class="form-check-label" for="item5-5">5 – Supervision required</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item5" id="item5-4" value="4">
+                    <input class="form-check-input" type="radio" name="item5" onchange="updateScores()" id="item5-4" value="4">
                     <label class="form-check-label" for="item5-4">4 – Minimal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item5" id="item5-3" value="3">
+                    <input class="form-check-input" type="radio" name="item5" onchange="updateScores()" id="item5-3" value="3">
                     <label class="form-check-label" for="item5-3">3 – Moderate assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item5" id="item5-2" value="2">
+                    <input class="form-check-input" type="radio" name="item5" onchange="updateScores()" id="item5-2" value="2">
                     <label class="form-check-label" for="item5-2">2 – Maximal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item5" id="item5-1" value="1">
+                    <input class="form-check-input" type="radio" name="item5" onchange="updateScores()" id="item5-1" value="1">
                     <label class="form-check-label" for="item5-1">1 – Total assistance, or not testable</label>
                 </div>
             </div>
             <div class="form-item">
                 <p class="form-label">6. Toileting</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item6" id="item6-7" value="7">
+                    <input class="form-check-input" type="radio" name="item6" onchange="updateScores()" id="item6-7" value="7">
                     <label class="form-check-label" for="item6-7">7 – Complete Independence (timely, safely)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item6" id="item6-6" value="6">
+                    <input class="form-check-input" type="radio" name="item6" onchange="updateScores()" id="item6-6" value="6">
                     <label class="form-check-label" for="item6-6">6 – Modified Independence (device used)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item6" id="item6-5" value="5">
+                    <input class="form-check-input" type="radio" name="item6" onchange="updateScores()" id="item6-5" value="5">
                     <label class="form-check-label" for="item6-5">5 – Supervision required</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item6" id="item6-4" value="4">
+                    <input class="form-check-input" type="radio" name="item6" onchange="updateScores()" id="item6-4" value="4">
                     <label class="form-check-label" for="item6-4">4 – Minimal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item6" id="item6-3" value="3">
+                    <input class="form-check-input" type="radio" name="item6" onchange="updateScores()" id="item6-3" value="3">
                     <label class="form-check-label" for="item6-3">3 – Moderate assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item6" id="item6-2" value="2">
+                    <input class="form-check-input" type="radio" name="item6" onchange="updateScores()" id="item6-2" value="2">
                     <label class="form-check-label" for="item6-2">2 – Maximal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item6" id="item6-1" value="1">
+                    <input class="form-check-input" type="radio" name="item6" onchange="updateScores()" id="item6-1" value="1">
                     <label class="form-check-label" for="item6-1">1 – Total assistance, or not testable</label>
                 </div>
             </div>
@@ -280,62 +280,62 @@
             <div class="form-item">
                 <p class="form-label">7. Bladder</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item7" id="item7-7" value="7">
+                    <input class="form-check-input" type="radio" name="item7" onchange="updateScores()" id="item7-7" value="7">
                     <label class="form-check-label" for="item7-7">7 – Complete Independence (timely, safely)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item7" id="item7-6" value="6">
+                    <input class="form-check-input" type="radio" name="item7" onchange="updateScores()" id="item7-6" value="6">
                     <label class="form-check-label" for="item7-6">6 – Modified Independence (device used)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item7" id="item7-5" value="5">
+                    <input class="form-check-input" type="radio" name="item7" onchange="updateScores()" id="item7-5" value="5">
                     <label class="form-check-label" for="item7-5">5 – Supervision required</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item7" id="item7-4" value="4">
+                    <input class="form-check-input" type="radio" name="item7" onchange="updateScores()" id="item7-4" value="4">
                     <label class="form-check-label" for="item7-4">4 – Minimal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item7" id="item7-3" value="3">
+                    <input class="form-check-input" type="radio" name="item7" onchange="updateScores()" id="item7-3" value="3">
                     <label class="form-check-label" for="item7-3">3 – Moderate assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item7" id="item7-2" value="2">
+                    <input class="form-check-input" type="radio" name="item7" onchange="updateScores()" id="item7-2" value="2">
                     <label class="form-check-label" for="item7-2">2 – Maximal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item7" id="item7-1" value="1">
+                    <input class="form-check-input" type="radio" name="item7" onchange="updateScores()" id="item7-1" value="1">
                     <label class="form-check-label" for="item7-1">1 – Total assistance, or not testable</label>
                 </div>
             </div>
             <div class="form-item">
                 <p class="form-label">8. Bowel</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item8" id="item8-7" value="7">
+                    <input class="form-check-input" type="radio" name="item8" onchange="updateScores()" id="item8-7" value="7">
                     <label class="form-check-label" for="item8-7">7 – Complete Independence (timely, safely)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item8" id="item8-6" value="6">
+                    <input class="form-check-input" type="radio" name="item8" onchange="updateScores()" id="item8-6" value="6">
                     <label class="form-check-label" for="item8-6">6 – Modified Independence (device used)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item8" id="item8-5" value="5">
+                    <input class="form-check-input" type="radio" name="item8" onchange="updateScores()" id="item8-5" value="5">
                     <label class="form-check-label" for="item8-5">5 – Supervision required</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item8" id="item8-4" value="4">
+                    <input class="form-check-input" type="radio" name="item8" onchange="updateScores()" id="item8-4" value="4">
                     <label class="form-check-label" for="item8-4">4 – Minimal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item8" id="item8-3" value="3">
+                    <input class="form-check-input" type="radio" name="item8" onchange="updateScores()" id="item8-3" value="3">
                     <label class="form-check-label" for="item8-3">3 – Moderate assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item8" id="item8-2" value="2">
+                    <input class="form-check-input" type="radio" name="item8" onchange="updateScores()" id="item8-2" value="2">
                     <label class="form-check-label" for="item8-2">2 – Maximal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item8" id="item8-1" value="1">
+                    <input class="form-check-input" type="radio" name="item8" onchange="updateScores()" id="item8-1" value="1">
                     <label class="form-check-label" for="item8-1">1 – Total assistance, or not testable</label>
                 </div>
             </div>
@@ -346,93 +346,93 @@
             <div class="form-item">
                 <p class="form-label">9. Bed, chair, wheelchair</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item9" id="item9-7" value="7">
+                    <input class="form-check-input" type="radio" name="item9" onchange="updateScores()" id="item9-7" value="7">
                     <label class="form-check-label" for="item9-7">7 – Complete Independence (timely, safely)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item9" id="item9-6" value="6">
+                    <input class="form-check-input" type="radio" name="item9" onchange="updateScores()" id="item9-6" value="6">
                     <label class="form-check-label" for="item9-6">6 – Modified Independence (device used)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item9" id="item9-5" value="5">
+                    <input class="form-check-input" type="radio" name="item9" onchange="updateScores()" id="item9-5" value="5">
                     <label class="form-check-label" for="item9-5">5 – Supervision required</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item9" id="item9-4" value="4">
+                    <input class="form-check-input" type="radio" name="item9" onchange="updateScores()" id="item9-4" value="4">
                     <label class="form-check-label" for="item9-4">4 – Minimal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item9" id="item9-3" value="3">
+                    <input class="form-check-input" type="radio" name="item9" onchange="updateScores()" id="item9-3" value="3">
                     <label class="form-check-label" for="item9-3">3 – Moderate assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item9" id="item9-2" value="2">
+                    <input class="form-check-input" type="radio" name="item9" onchange="updateScores()" id="item9-2" value="2">
                     <label class="form-check-label" for="item9-2">2 – Maximal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item9" id="item9-1" value="1">
+                    <input class="form-check-input" type="radio" name="item9" onchange="updateScores()" id="item9-1" value="1">
                     <label class="form-check-label" for="item9-1">1 – Total assistance, or not testable</label>
                 </div>
             </div>
             <div class="form-item">
                 <p class="form-label">10. Toilet</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item10" id="item10-7" value="7">
+                    <input class="form-check-input" type="radio" name="item10" onchange="updateScores()" id="item10-7" value="7">
                     <label class="form-check-label" for="item10-7">7 – Complete Independence (timely, safely)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item10" id="item10-6" value="6">
+                    <input class="form-check-input" type="radio" name="item10" onchange="updateScores()" id="item10-6" value="6">
                     <label class="form-check-label" for="item10-6">6 – Modified Independence (device used)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item10" id="item10-5" value="5">
+                    <input class="form-check-input" type="radio" name="item10" onchange="updateScores()" id="item10-5" value="5">
                     <label class="form-check-label" for="item10-5">5 – Supervision required</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item10" id="item10-4" value="4">
+                    <input class="form-check-input" type="radio" name="item10" onchange="updateScores()" id="item10-4" value="4">
                     <label class="form-check-label" for="item10-4">4 – Minimal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item10" id="item10-3" value="3">
+                    <input class="form-check-input" type="radio" name="item10" onchange="updateScores()" id="item10-3" value="3">
                     <label class="form-check-label" for="item10-3">3 – Moderate assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item10" id="item10-2" value="2">
+                    <input class="form-check-input" type="radio" name="item10" onchange="updateScores()" id="item10-2" value="2">
                     <label class="form-check-label" for="item10-2">2 – Maximal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item10" id="item10-1" value="1">
+                    <input class="form-check-input" type="radio" name="item10" onchange="updateScores()" id="item10-1" value="1">
                     <label class="form-check-label" for="item10-1">1 – Total assistance, or not testable</label>
                 </div>
             </div>
             <div class="form-item">
                 <p class="form-label">11. Tub, shower</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item11" id="item11-7" value="7">
+                    <input class="form-check-input" type="radio" name="item11" onchange="updateScores()" id="item11-7" value="7">
                     <label class="form-check-label" for="item11-7">7 – Complete Independence (timely, safely)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item11" id="item11-6" value="6">
+                    <input class="form-check-input" type="radio" name="item11" onchange="updateScores()" id="item11-6" value="6">
                     <label class="form-check-label" for="item11-6">6 – Modified Independence (device used)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item11" id="item11-5" value="5">
+                    <input class="form-check-input" type="radio" name="item11" onchange="updateScores()" id="item11-5" value="5">
                     <label class="form-check-label" for="item11-5">5 – Supervision required</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item11" id="item11-4" value="4">
+                    <input class="form-check-input" type="radio" name="item11" onchange="updateScores()" id="item11-4" value="4">
                     <label class="form-check-label" for="item11-4">4 – Minimal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item11" id="item11-3" value="3">
+                    <input class="form-check-input" type="radio" name="item11" onchange="updateScores()" id="item11-3" value="3">
                     <label class="form-check-label" for="item11-3">3 – Moderate assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item11" id="item11-2" value="2">
+                    <input class="form-check-input" type="radio" name="item11" onchange="updateScores()" id="item11-2" value="2">
                     <label class="form-check-label" for="item11-2">2 – Maximal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item11" id="item11-1" value="1">
+                    <input class="form-check-input" type="radio" name="item11" onchange="updateScores()" id="item11-1" value="1">
                     <label class="form-check-label" for="item11-1">1 – Total assistance, or not testable</label>
                 </div>
             </div>
@@ -443,68 +443,68 @@
             <div class="form-item">
                 <p class="form-label">12. Walk/ wheelchair</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item12" id="item12-7" value="7">
+                    <input class="form-check-input" type="radio" name="item12" onchange="updateScores()" id="item12-7" value="7">
                     <label class="form-check-label" for="item12-7">7 – Complete Independence (timely, safely)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item12" id="item12-6" value="6">
+                    <input class="form-check-input" type="radio" name="item12" onchange="updateScores()" id="item12-6" value="6">
                     <label class="form-check-label" for="item12-6">6 – Modified Independence (device used)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item12" id="item12-5" value="5">
+                    <input class="form-check-input" type="radio" name="item12" onchange="updateScores()" id="item12-5" value="5">
                     <label class="form-check-label" for="item12-5">5 – Supervision required</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item12" id="item12-4" value="4">
+                    <input class="form-check-input" type="radio" name="item12" onchange="updateScores()" id="item12-4" value="4">
                     <label class="form-check-label" for="item12-4">4 – Minimal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item12" id="item12-3" value="3">
+                    <input class="form-check-input" type="radio" name="item12" onchange="updateScores()" id="item12-3" value="3">
                     <label class="form-check-label" for="item12-3">3 – Moderate assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item12" id="item12-2" value="2">
+                    <input class="form-check-input" type="radio" name="item12" onchange="updateScores()" id="item12-2" value="2">
                     <label class="form-check-label" for="item12-2">2 – Maximal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item12" id="item12-1" value="1">
+                    <input class="form-check-input" type="radio" name="item12" onchange="updateScores()" id="item12-1" value="1">
                     <label class="form-check-label" for="item12-1">1 – Total assistance, or not testable</label>
                 </div>
             </div>
             <div class="form-item">
                 <p class="form-label">13. Stairs</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item13" id="item13-7" value="7">
+                    <input class="form-check-input" type="radio" name="item13" onchange="updateScores()" id="item13-7" value="7">
                     <label class="form-check-label" for="item13-7">7 – Complete Independence (timely, safely)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item13" id="item13-6" value="6">
+                    <input class="form-check-input" type="radio" name="item13" onchange="updateScores()" id="item13-6" value="6">
                     <label class="form-check-label" for="item13-6">6 – Modified Independence (device used)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item13" id="item13-5" value="5">
+                    <input class="form-check-input" type="radio" name="item13" onchange="updateScores()" id="item13-5" value="5">
                     <label class="form-check-label" for="item13-5">5 – Supervision required</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item13" id="item13-4" value="4">
+                    <input class="form-check-input" type="radio" name="item13" onchange="updateScores()" id="item13-4" value="4">
                     <label class="form-check-label" for="item13-4">4 – Minimal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item13" id="item13-3" value="3">
+                    <input class="form-check-input" type="radio" name="item13" onchange="updateScores()" id="item13-3" value="3">
                     <label class="form-check-label" for="item13-3">3 – Moderate assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item13" id="item13-2" value="2">
+                    <input class="form-check-input" type="radio" name="item13" onchange="updateScores()" id="item13-2" value="2">
                     <label class="form-check-label" for="item13-2">2 – Maximal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item13" id="item13-1" value="1">
+                    <input class="form-check-input" type="radio" name="item13" onchange="updateScores()" id="item13-1" value="1">
                     <label class="form-check-label" for="item13-1">1 – Total assistance, or not testable</label>
                 </div>
             </div>
             <div class="mt-4 text-center">
-                <button type="button" class="btn btn-primary" onclick="calculateMotorScore()">Calculate Motor Subscale Score (1-13)</button>
-                <div id="motor-score" class="result-box mt-2"></div>
+                <h5 class="fw-bold">Motor Subscale (items 1-13)</h5>
+                <div id="motor-score" class="result-box mt-2">Score: 0</div>
             </div>
         </div>
 
@@ -513,62 +513,62 @@
             <div class="form-item">
                 <p class="form-label">14. Comprehension</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item14" id="item14-7" value="7">
+                    <input class="form-check-input" type="radio" name="item14" onchange="updateScores()" id="item14-7" value="7">
                     <label class="form-check-label" for="item14-7">7 – Complete Independence (timely, safely)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item14" id="item14-6" value="6">
+                    <input class="form-check-input" type="radio" name="item14" onchange="updateScores()" id="item14-6" value="6">
                     <label class="form-check-label" for="item14-6">6 – Modified Independence (device used)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item14" id="item14-5" value="5">
+                    <input class="form-check-input" type="radio" name="item14" onchange="updateScores()" id="item14-5" value="5">
                     <label class="form-check-label" for="item14-5">5 – Supervision required</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item14" id="item14-4" value="4">
+                    <input class="form-check-input" type="radio" name="item14" onchange="updateScores()" id="item14-4" value="4">
                     <label class="form-check-label" for="item14-4">4 – Minimal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item14" id="item14-3" value="3">
+                    <input class="form-check-input" type="radio" name="item14" onchange="updateScores()" id="item14-3" value="3">
                     <label class="form-check-label" for="item14-3">3 – Moderate assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item14" id="item14-2" value="2">
+                    <input class="form-check-input" type="radio" name="item14" onchange="updateScores()" id="item14-2" value="2">
                     <label class="form-check-label" for="item14-2">2 – Maximal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item14" id="item14-1" value="1">
+                    <input class="form-check-input" type="radio" name="item14" onchange="updateScores()" id="item14-1" value="1">
                     <label class="form-check-label" for="item14-1">1 – Total assistance, or not testable</label>
                 </div>
             </div>
             <div class="form-item">
                 <p class="form-label">15. Expression</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item15" id="item15-7" value="7">
+                    <input class="form-check-input" type="radio" name="item15" onchange="updateScores()" id="item15-7" value="7">
                     <label class="form-check-label" for="item15-7">7 – Complete Independence (timely, safely)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item15" id="item15-6" value="6">
+                    <input class="form-check-input" type="radio" name="item15" onchange="updateScores()" id="item15-6" value="6">
                     <label class="form-check-label" for="item15-6">6 – Modified Independence (device used)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item15" id="item15-5" value="5">
+                    <input class="form-check-input" type="radio" name="item15" onchange="updateScores()" id="item15-5" value="5">
                     <label class="form-check-label" for="item15-5">5 – Supervision required</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item15" id="item15-4" value="4">
+                    <input class="form-check-input" type="radio" name="item15" onchange="updateScores()" id="item15-4" value="4">
                     <label class="form-check-label" for="item15-4">4 – Minimal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item15" id="item15-3" value="3">
+                    <input class="form-check-input" type="radio" name="item15" onchange="updateScores()" id="item15-3" value="3">
                     <label class="form-check-label" for="item15-3">3 – Moderate assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item15" id="item15-2" value="2">
+                    <input class="form-check-input" type="radio" name="item15" onchange="updateScores()" id="item15-2" value="2">
                     <label class="form-check-label" for="item15-2">2 – Maximal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item15" id="item15-1" value="1">
+                    <input class="form-check-input" type="radio" name="item15" onchange="updateScores()" id="item15-1" value="1">
                     <label class="form-check-label" for="item15-1">1 – Total assistance, or not testable</label>
                 </div>
             </div>
@@ -579,109 +579,105 @@
             <div class="form-item">
                 <p class="form-label">16. Social Interaction</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item16" id="item16-7" value="7">
+                    <input class="form-check-input" type="radio" name="item16" onchange="updateScores()" id="item16-7" value="7">
                     <label class="form-check-label" for="item16-7">7 – Complete Independence (timely, safely)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item16" id="item16-6" value="6">
+                    <input class="form-check-input" type="radio" name="item16" onchange="updateScores()" id="item16-6" value="6">
                     <label class="form-check-label" for="item16-6">6 – Modified Independence (device used)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item16" id="item16-5" value="5">
+                    <input class="form-check-input" type="radio" name="item16" onchange="updateScores()" id="item16-5" value="5">
                     <label class="form-check-label" for="item16-5">5 – Supervision required</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item16" id="item16-4" value="4">
+                    <input class="form-check-input" type="radio" name="item16" onchange="updateScores()" id="item16-4" value="4">
                     <label class="form-check-label" for="item16-4">4 – Minimal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item16" id="item16-3" value="3">
+                    <input class="form-check-input" type="radio" name="item16" onchange="updateScores()" id="item16-3" value="3">
                     <label class="form-check-label" for="item16-3">3 – Moderate assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item16" id="item16-2" value="2">
+                    <input class="form-check-input" type="radio" name="item16" onchange="updateScores()" id="item16-2" value="2">
                     <label class="form-check-label" for="item16-2">2 – Maximal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item16" id="item16-1" value="1">
+                    <input class="form-check-input" type="radio" name="item16" onchange="updateScores()" id="item16-1" value="1">
                     <label class="form-check-label" for="item16-1">1 – Total assistance, or not testable</label>
                 </div>
             </div>
             <div class="form-item">
                 <p class="form-label">17. Problem Solving</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item17" id="item17-7" value="7">
+                    <input class="form-check-input" type="radio" name="item17" onchange="updateScores()" id="item17-7" value="7">
                     <label class="form-check-label" for="item17-7">7 – Complete Independence (timely, safely)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item17" id="item17-6" value="6">
+                    <input class="form-check-input" type="radio" name="item17" onchange="updateScores()" id="item17-6" value="6">
                     <label class="form-check-label" for="item17-6">6 – Modified Independence (device used)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item17" id="item17-5" value="5">
+                    <input class="form-check-input" type="radio" name="item17" onchange="updateScores()" id="item17-5" value="5">
                     <label class="form-check-label" for="item17-5">5 – Supervision required</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item17" id="item17-4" value="4">
+                    <input class="form-check-input" type="radio" name="item17" onchange="updateScores()" id="item17-4" value="4">
                     <label class="form-check-label" for="item17-4">4 – Minimal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item17" id="item17-3" value="3">
+                    <input class="form-check-input" type="radio" name="item17" onchange="updateScores()" id="item17-3" value="3">
                     <label class="form-check-label" for="item17-3">3 – Moderate assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item17" id="item17-2" value="2">
+                    <input class="form-check-input" type="radio" name="item17" onchange="updateScores()" id="item17-2" value="2">
                     <label class="form-check-label" for="item17-2">2 – Maximal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item17" id="item17-1" value="1">
+                    <input class="form-check-input" type="radio" name="item17" onchange="updateScores()" id="item17-1" value="1">
                     <label class="form-check-label" for="item17-1">1 – Total assistance, or not testable</label>
                 </div>
             </div>
             <div class="form-item">
                 <p class="form-label">18. Memory</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item18" id="item18-7" value="7">
+                    <input class="form-check-input" type="radio" name="item18" onchange="updateScores()" id="item18-7" value="7">
                     <label class="form-check-label" for="item18-7">7 – Complete Independence (timely, safely)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item18" id="item18-6" value="6">
+                    <input class="form-check-input" type="radio" name="item18" onchange="updateScores()" id="item18-6" value="6">
                     <label class="form-check-label" for="item18-6">6 – Modified Independence (device used)</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item18" id="item18-5" value="5">
+                    <input class="form-check-input" type="radio" name="item18" onchange="updateScores()" id="item18-5" value="5">
                     <label class="form-check-label" for="item18-5">5 – Supervision required</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item18" id="item18-4" value="4">
+                    <input class="form-check-input" type="radio" name="item18" onchange="updateScores()" id="item18-4" value="4">
                     <label class="form-check-label" for="item18-4">4 – Minimal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item18" id="item18-3" value="3">
+                    <input class="form-check-input" type="radio" name="item18" onchange="updateScores()" id="item18-3" value="3">
                     <label class="form-check-label" for="item18-3">3 – Moderate assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item18" id="item18-2" value="2">
+                    <input class="form-check-input" type="radio" name="item18" onchange="updateScores()" id="item18-2" value="2">
                     <label class="form-check-label" for="item18-2">2 – Maximal assistance</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="item18" id="item18-1" value="1">
+                    <input class="form-check-input" type="radio" name="item18" onchange="updateScores()" id="item18-1" value="1">
                     <label class="form-check-label" for="item18-1">1 – Total assistance, or not testable</label>
                 </div>
             </div>
             <div class="mt-4 text-center">
-                <button type="button" class="btn btn-primary" onclick="calculateCognitionScore()">Calculate Cognition Subscale Score (14-18)</button>
-                <div id="cognition-score" class="result-box mt-2"></div>
+                <h5 class="fw-bold">Cognition Subscale (items 14-18)</h5>
+                <div id="cognition-score" class="result-box mt-2">Score: 0</div>
             </div>
         </div>
         
         <div class="text-center mt-5 mb-5">
-            <button type="button" class="btn btn-primary btn-lg" onclick="calculateTotalScore()">Calculate Total FIM Score</button>
+            <button type="button" class="btn btn-primary btn-lg" onclick="calculateTotalScore()">Calculate Total FIM Score and All Subscores</button>
             <div id="total-score" class="result-box mt-3"></div>
-        </div>
-
-        <div class="text-center mt-5 mb-5">
-            <button type="submit" class="btn btn-primary btn-lg">Submit and View Selected Scores</button>
         </div>
     </form>
 </div>
@@ -689,7 +685,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 <script>
-    function calculateScore(start, end, resultId) {
+    function calculateSubscore(start, end, resultId) {
         let total = 0;
         let countedItems = 0;
         for (let i = start; i <= end; i++) {
@@ -707,54 +703,25 @@
             }
         }
         document.getElementById(resultId).innerText = `Score: ${total} (from ${countedItems} item(s))`;
+        return { total, countedItems };
     }
 
-    function calculateMotorScore() {
-        calculateScore(1, 13, 'motor-score');
-    }
-
-    function calculateCognitionScore() {
-        calculateScore(14, 18, 'cognition-score');
+    function updateScores() {
+        calculateSubscore(1, 13, 'motor-score');
+        calculateSubscore(14, 18, 'cognition-score');
     }
 
     function calculateTotalScore() {
-        let total = 0;
-        let countedItems = 0;
-        for (let i = 1; i <= 18; i++) {
-            const radioButtons = document.getElementsByName('item' + i);
-            let itemScored = false;
-            for (const radio of radioButtons) {
-                if (radio.checked) {
-                    total += parseInt(radio.value);
-                    itemScored = true;
-                    break;
-                }
-            }
-            if (itemScored) {
-                countedItems++;
-            }
-        }
-        document.getElementById('total-score').innerText = `Total FIM Score: ${total} (from ${countedItems} item(s))`;
+        const motorResult = calculateSubscore(1, 13, 'motor-score');
+        const cognitionResult = calculateSubscore(14, 18, 'cognition-score');
+        const totalFIM = motorResult.total + cognitionResult.total;
+        const totalItems = motorResult.countedItems + cognitionResult.countedItems;
+        
+        document.getElementById('total-score').innerText = `Total FIM Score: ${totalFIM} (from ${totalItems} item(s))`;
     }
 
-    function showOnlySelected() {
-        const formItems = document.querySelectorAll('.form-item');
-        formItems.forEach(item => {
-            const radioButtons = item.querySelectorAll('input[type="radio"]');
-            let isChecked = false;
-            radioButtons.forEach(radio => {
-                if (radio.checked) {
-                    isChecked = true;
-                } else {
-                    radio.parentElement.style.display = 'none';
-                }
-            });
-            if (!isChecked) {
-                item.style.display = 'none';
-            }
-        });
-        document.getElementById('fim-form').classList.add('read-only-form');
-    }
+    // Initial score update on page load
+    window.onload = updateScores;
 </script>
 
 </body>
