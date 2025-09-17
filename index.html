@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <meta name="description" content="A curated collection of standardized outcome measure tools for Physical Therapists, Occupational Therapists, and other healthcare providers working in acute care and inpatient rehabilitation.">
+    <meta name="description" content="A curated collection of standardized outcome measure tools for Physical Therapists, Occupational Therapists, and other healthcare providers working in acute care and inpatient rehab.">
     <meta name="keywords" content="physical therapy, occupational therapy, standard outcome measures, acute care, inpatient rehabilitation, hospital, standardized tools, PT, OT, healthcare providers">
     <meta property="og:title" content="Hospital Physical Therapy Outcome Measures">
     <meta property="og:description" content="Curated outcome measure tools for PTs & OTs in acute care and inpatient rehab.">
@@ -49,9 +49,9 @@
             transition: transform 0.2s, box-shadow 0.2s;
             background-color: var(--card-bg);
             border: none;
-            height: 100%;
             display: flex;
             flex-direction: column;
+            height: 100%;
         }
         .card:hover {
             transform: translateY(-5px);
@@ -98,30 +98,38 @@
         a:hover {
             text-decoration: underline;
         }
-        /* Responsive card grid fix for more cards */
-        .card-grid {
+        /* Uniform card height for all sections */
+        .card-group-row {
             display: flex;
             flex-wrap: wrap;
             gap: 2rem;
-            justify-content: center;
         }
-        .card-grid .card-container {
-            flex: 1 1 320px;
-            max-width: 350px;
-            min-width: 250px;
+        .card-group-row > .col {
             display: flex;
         }
-        @media (max-width: 767px) {
-            .card-grid {
-                flex-direction: column;
-                gap: 1rem;
+        .card-body {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .btn {
+            margin-top: auto;
+        }
+        /* Responsive columns for 2-col layout */
+        @media (min-width: 768px) {
+            .card-group-row {
+                flex-direction: row;
             }
-            .card-grid .card-container {
-                max-width: 100%;
+            .card-group-row > .col {
+                width: 50%;
+                max-width: 50%;
             }
         }
-        .section {
-            margin-bottom: 3rem;
+        @media (max-width: 767.98px) {
+            .card-group-row > .col {
+                width: 100%;
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -139,128 +147,118 @@
             <hr class="my-4">
             <p>Select a tool from the list below, complete it item by item, and let the interactive form calculate and interpret the total score for you.</p>
         </div>
-    </div>
 
-    <!-- Outcome Measures Section -->
-    <div class="container section">
         <h2 class="text-center mb-4">Standard Outcome Measures</h2>
-        <div class="card-grid">
-            <div class="card-container">
+        <div class="card-group-row">
+            <div class="col mb-4">
                 <div class="card shadow">
-                    <div class="card-body d-flex flex-column">
+                    <div class="card-body">
                         <h5 class="card-title fw-bold">Berg Balance Scale</h5>
                         <p class="card-text text-muted">Measure balance and gauge fall risk for older adults.</p>
-                        <a href="forms/BergScale.html" class="btn btn-primary mt-auto">Open Utility</a>
+                        <a href="forms/BergScale.html" class="btn btn-primary">Open Utility</a>
                     </div>
                 </div>
             </div>
-            <div class="card-container">
+            <div class="col mb-4">
                 <div class="card shadow">
-                    <div class="card-body d-flex flex-column">
+                    <div class="card-body">
                         <h5 class="card-title fw-bold">Tinetti POMA</h5>
                         <p class="card-text text-muted">Predict fall risk in older adults.</p>
-                        <a href="forms/Tinetti.html" class="btn btn-primary mt-auto">Open Utility</a>
+                        <a href="forms/Tinetti.html" class="btn btn-primary">Open Utility</a>
                     </div>
                 </div>
             </div>
-            <div class="card-container">
+            <div class="col mb-4">
                 <div class="card shadow">
-                    <div class="card-body d-flex flex-column">
+                    <div class="card-body">
                         <h5 class="card-title fw-bold">Dynamic Gait Index</h5>
                         <p class="card-text text-muted">Test ability to maintain balance while walking and responding to additional task demands.</p>
-                        <a href="forms/DGI.html" class="btn btn-primary mt-auto">Open Utility</a>
+                        <a href="forms/DGI.html" class="btn btn-primary">Open Utility</a>
                     </div>
                 </div>
             </div>
-            <div class="card-container">
+            <div class="col mb-4">
                 <div class="card shadow">
-                    <div class="card-body d-flex flex-column">
+                    <div class="card-body">
                         <h5 class="card-title fw-bold">Functional Gait Assessment</h5>
                         <p class="card-text text-muted">Assess stability during walking tasks in adults with gait abnormalities.</p>
-                        <a href="forms/FGA.html" class="btn btn-primary mt-auto">Open Utility</a>
+                        <a href="forms/FGA.html" class="btn btn-primary">Open Utility</a>
                     </div>
                 </div>
             </div>
-            <div class="card-container">
+            <div class="col mb-4">
                 <div class="card shadow">
-                    <div class="card-body d-flex flex-column">
+                    <div class="card-body">
                         <h5 class="card-title fw-bold">FSS-ICU</h5>
                         <p class="card-text text-muted">Quantify functional capacity for adults in the ICU.</p>
-                        <a href="forms/FSS-ICU.html" class="btn btn-primary mt-auto">Open Utility</a>
+                        <a href="forms/FSS-ICU.html" class="btn btn-primary">Open Utility</a>
                     </div>
                 </div>
             </div>
-            <div class="card-container">
+            <div class="col mb-4">
                 <div class="card shadow">
-                    <div class="card-body d-flex flex-column">
+                    <div class="card-body">
                         <h5 class="card-title fw-bold">Barthel Index</h5>
                         <p class="card-text text-muted">Measure independence in ADLs and walking.</p>
-                        <a href="forms/Barthel Index.html" class="btn btn-primary mt-auto">Open Utility</a>
+                        <a href="forms/Barthel Index.html" class="btn btn-primary">Open Utility</a>
                     </div>
                 </div>
             </div>
-            <div class="card-container">
+            <div class="col mb-4">
                 <div class="card shadow">
-                    <div class="card-body d-flex flex-column">
+                    <div class="card-body">
                         <h5 class="card-title fw-bold">Functional Independence Measure</h5>
                         <p class="card-text text-muted">Track progress in Inpatient Rehab.</p>
-                        <a href="forms/FIM.html" class="btn btn-primary mt-auto">Open Utility</a>
+                        <a href="forms/FIM.html" class="btn btn-primary">Open Utility</a>
                     </div>
                 </div>
             </div>
-            <div class="card-container">
+            <div class="col mb-4">
                 <div class="card shadow">
-                    <div class="card-body d-flex flex-column">
+                    <div class="card-body">
                         <h5 class="card-title fw-bold">Mini BESTest</h5>
                         <p class="card-text text-muted">Score several parameters of dynamic balance.</p>
-                        <a href="forms/MiniBEST.html" class="btn btn-primary mt-auto">Open Utility</a>
+                        <a href="forms/MiniBEST.html" class="btn btn-primary">Open Utility</a>
                     </div>
                 </div>
             </div>
-            <!-- Add more cards here by duplicating the .card-container block -->
         </div>
     </div>
-
-    <!-- Reference Scales Section -->
-    <div class="container section">
+    <div class="container my-5">
         <h2 class="text-center mb-4">Reference Scales</h2>
-        <div class="card-grid">
-            <div class="card-container">
+        <div class="card-group-row">
+            <div class="col mb-4">
                 <div class="card shadow">
-                    <div class="card-body d-flex flex-column">
+                    <div class="card-body">
                         <h5 class="card-title fw-bold">RASS</h5>
                         <p class="card-text text-muted">Score agitation and sedation.</p>
-                        <a href="scales/RASS.html" class="btn btn-primary mt-auto">Open Resource</a>
+                        <a href="scales/RASS.html" class="btn btn-primary">Open Resource</a>
                     </div>
                 </div>
             </div>
-            <div class="card-container">
+            <div class="col mb-4">
                 <div class="card shadow">
-                    <div class="card-body d-flex flex-column">
+                    <div class="card-body">
                         <h5 class="card-title fw-bold">Peripheral Pulses and Edema</h5>
                         <p class="card-text text-muted">Objectively record your circulatory findings.</p>
-                        <a href="scales/Pulses and edema.html" class="btn btn-primary mt-auto">Open Resource</a>
+                        <a href="scales/Pulses and edema.html" class="btn btn-primary">Open Resource</a>
                     </div>
                 </div>
             </div>
-            <!-- Add more cards here by duplicating the .card-container block -->
         </div>
     </div>
-
-    <!-- One Pagers Section -->
-    <div class="container section">
+    <div class="container my-5">
         <h2 class="text-center mb-4">One Pagers</h2>
-        <div class="card-grid">
-            <div class="card-container">
+        <div class="card-group-row">
+            <div class="col mb-4">
                 <div class="card shadow">
-                    <div class="card-body d-flex flex-column">
+                    <div class="card-body">
                         <h5 class="card-title fw-bold">How to Evaluate Acutely Dizzy Patients</h5>
                         <p class="card-text text-muted">Systematic, evidence-based approach to maximize diagnostic accuracy.</p>
-                        <a href="OnePagers/Dizzy1pg.pdf" class="btn btn-primary mt-auto">Open Resource</a>
+                        <a href="OnePagers/Dizzypage.html" class="btn btn-primary">Open Resource</a>
                     </div>
                 </div>
             </div>
-            <!-- Add more cards here by duplicating the .card-container block -->
         </div>
     </div>
 
