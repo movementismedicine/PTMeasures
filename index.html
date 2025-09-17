@@ -1,313 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PTMeasures.com: Standard Outcome Measures for Hospital PTs</title>
-    <link rel="manifest" href="manifest.json">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <meta name="description" content="A curated collection of standardized outcome measure tools for Physical Therapists, Occupational Therapists, and other healthcare providers working in acute care and inpatient rehab.">
-    <meta name="keywords" content="physical therapy, occupational therapy, standard outcome measures, acute care, inpatient rehabilitation, hospital, standardized tools, PT, OT, healthcare providers">
-    <meta property="og:title" content="Hospital Physical Therapy Outcome Measures">
-    <meta property="og:description" content="Curated outcome measure tools for PTs & OTs in acute care and inpatient rehab.">
-    <link rel="canonical" href="https://yourusername.github.io/your-repo-name/">
-    <style>
-        :root {
-            --primary-color: #0096C8;
-            --secondary-color: #206375;
-            --background-color: #f4f7f9;
-            --text-color: #34495e;
-            --card-bg: #ffffff;
-        }
-        body {
-            background-color: var(--background-color);
-            color: var(--text-color);
-            font-family: 'Lato', sans-serif;
-        }
-        .jumbotron {
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 4rem 2rem;
-            margin-bottom: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-        }
-        .jumbotron .display-4, .jumbotron .lead {
-            color: white;
-        }
-        .jumbotron .lead {
-            font-size: 1.25rem;
-        }
-        .jumbotron hr {
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .card {
-            border-radius: 1rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-            background-color: var(--card-bg);
-            border: none;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15) !important;
-        }
-        .card-title {
-            font-family: 'Lato', sans-serif;
-            font-weight: 700;
-            color: var(--secondary-color);
-        }
-        .btn-primary {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-            border-radius: 0.5rem;
-            font-weight: bold;
-            transition: background-color 0.2s ease-in-out;
-        }
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
-        h1, h2 {
-            font-family: 'Lato', sans-serif;
-            font-weight: 700;
-            color: var(--secondary-color);
-        }
-        .footer {
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 2rem 0;
-            margin-top: 4rem;
-        }
-        .footer a {
-            color: white;
-            text-decoration: none;
-        }
-        .footer a:hover {
-            text-decoration: underline;
-        }
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        /* Uniform card height for all sections */
-        .card-group-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-        .card-group-row > .col {
-            display: flex;
-        }
-        .card-body {
-            flex: 1 1 auto;
-            display: flex;
-            flex-direction: column;
-        }
-        .btn {
-            margin-top: auto;
-        }
-        /* Responsive columns for 2-col layout */
-        @media (min-width: 768px) {
-            .card-group-row {
-                flex-direction: row;
-            }
-            .card-group-row > .col {
-                width: 50%;
-                max-width: 50%;
-            }
-        }
-        @media (max-width: 767.98px) {
-            .card-group-row > .col {
-                width: 100%;
-                max-width: 100%;
-            }
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PTMeasures.com: Standard Outcome Measures for Hospital PTs</title>
+    <link rel="manifest" href="manifest.json">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="description" content="A curated collection of standardized outcome measure tools for Physical Therapists, Occupational Therapists, and other healthcare providers working in acute care and inpatient rehab.">
+    <meta name="keywords" content="physical therapy, occupational therapy, standard outcome measures, acute care, inpatient rehabilitation, hospital, standardized tools, PT, OT, healthcare providers">
+    <meta property="og:title" content="Hospital Physical Therapy Outcome Measures">
+    <meta property="og:description" content="Curated outcome measure tools for PTs & OTs in acute care and inpatient rehab.">
+    <link rel="canonical" href="https://yourusername.github.io/your-repo-name/">
+    <style>
+        :root {
+            --primary-color: #0096C8;
+            --secondary-color: #206375;
+            --background-color: #f4f7f9;
+            --text-color: #34495e;
+            --card-bg: #ffffff;
+        }
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Lato', sans-serif;
+        }
+        .jumbotron {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 4rem 2rem;
+            margin-bottom: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+        .jumbotron .display-4, .jumbotron .lead {
+            color: white;
+        }
+        .jumbotron .lead {
+            font-size: 1.25rem;
+        }
+        .jumbotron hr {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .card {
+            border-radius: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            background-color: var(--card-bg);
+            border: none;
+            height: 100%;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15) !important;
+        }
+        .card-title {
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            border-radius: 0.5rem;
+            font-weight: bold;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        h1, h2 {
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+        .footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .card-body {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .btn {
+            margin-top: auto;
+        }
+    </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col text-center">
-                <h1 class="display-4 fw-bold mb-3">PTMeasures.com</h1>
-            </div>
-        </div>
-    </div>
-    <div class="container my-5">
-        <div class="jumbotron text-left">
-            <p class="lead">Forget pen and paper!</p>
-            <hr class="my-4">
-            <p>Select a tool from the list below, complete it item by item, and let the interactive form calculate and interpret the total score for you.</p>
-        </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col text-center">
+                <h1 class="display-4 fw-bold mb-3">PTMeasures.com</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container my-5">
+        <div class="jumbotron text-left">
+            <p class="lead">Forget pen and paper!</p>
+            <hr class="my-4">
+            <p>Select a tool from the list below, complete it item by item, and let the interactive form calculate and interpret the total score for you.</p>
+        </div>
 
-        <h2 class="text-center mb-4">Standard Outcome Measures</h2>
-        <div class="card-group-row">
-            <div class="col mb-4">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">Berg Balance Scale</h5>
-                        <p class="card-text text-muted">Measure balance and gauge fall risk for older adults.</p>
-                        <a href="forms/BergScale.html" class="btn btn-primary">Open Utility</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">Tinetti POMA</h5>
-                        <p class="card-text text-muted">Predict fall risk in older adults.</p>
-                        <a href="forms/Tinetti.html" class="btn btn-primary">Open Utility</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">Dynamic Gait Index</h5>
-                        <p class="card-text text-muted">Test ability to maintain balance while walking and responding to additional task demands.</p>
-                        <a href="forms/DGI.html" class="btn btn-primary">Open Utility</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">Functional Gait Assessment</h5>
-                        <p class="card-text text-muted">Assess stability during walking tasks in adults with gait abnormalities.</p>
-                        <a href="forms/FGA.html" class="btn btn-primary">Open Utility</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">FSS-ICU</h5>
-                        <p class="card-text text-muted">Quantify functional capacity for adults in the ICU.</p>
-                        <a href="forms/FSS-ICU.html" class="btn btn-primary">Open Utility</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">Barthel Index</h5>
-                        <p class="card-text text-muted">Measure independence in ADLs and walking.</p>
-                        <a href="forms/Barthel Index.html" class="btn btn-primary">Open Utility</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">Functional Independence Measure</h5>
-                        <p class="card-text text-muted">Track progress in Inpatient Rehab.</p>
-                        <a href="forms/FIM.html" class="btn btn-primary">Open Utility</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">Mini BESTest</h5>
-                        <p class="card-text text-muted">Score several parameters of dynamic balance.</p>
-                        <a href="forms/MiniBEST.html" class="btn btn-primary">Open Utility</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container my-5">
-        <h2 class="text-center mb-4">Reference Scales</h2>
-        <div class="card-group-row">
-            <div class="col mb-4">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">RASS</h5>
-                        <p class="card-text text-muted">Score agitation and sedation.</p>
-                        <a href="scales/RASS.html" class="btn btn-primary">Open Resource</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-4">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">Peripheral Pulses and Edema</h5>
-                        <p class="card-text text-muted">Objectively record your circulatory findings.</p>
-                        <a href="scales/Pulses and edema.html" class="btn btn-primary">Open Resource</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container my-5">
-        <h2 class="text-center mb-4">One Pagers</h2>
-        <div class="card-group-row">
-            <div class="col mb-4">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">How to Evaluate Acutely Dizzy Patients</h5>
-                        <p class="card-text text-muted">Systematic, evidence-based approach to maximize diagnostic accuracy.</p>
-                        <a href="OnePagers/Dizzypage.html" class="btn btn-primary">Open Resource</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+        <h2 class="text-center mb-4">Standard Outcome Measures</h2>
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Berg Balance Scale</h5>
+                        <p class="card-text text-muted">Measure balance and gauge fall risk for older adults.</p>
+                        <a href="forms/BergScale.html" class="btn btn-primary">Open Utility</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Tinetti POMA</h5>
+                        <p class="card-text text-muted">Predict fall risk in older adults.</p>
+                        <a href="forms/Tinetti.html" class="btn btn-primary">Open Utility</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Dynamic Gait Index</h5>
+                        <p class="card-text text-muted">Test ability to maintain balance while walking and responding to additional task demands.</p>
+                        <a href="forms/DGI.html" class="btn btn-primary">Open Utility</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Functional Gait Assessment</h5>
+                        <p class="card-text text-muted">Assess stability during walking tasks in adults with gait abnormalities.</p>
+                        <a href="forms/FGA.html" class="btn btn-primary">Open Utility</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">FSS-ICU</h5>
+                        <p class="card-text text-muted">Quantify functional capacity for adults in the ICU.</p>
+                        <a href="forms/FSS-ICU.html" class="btn btn-primary">Open Utility</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Barthel Index</h5>
+                        <p class="card-text text-muted">Measure independence in ADLs and walking.</p>
+                        <a href="forms/Barthel Index.html" class="btn btn-primary">Open Utility</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Functional Independence Measure</h5>
+                        <p class="card-text text-muted">Track progress in Inpatient Rehab.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Mini BESTest</h5>
+                        <p class="card-text text-muted">Score several parameters of dynamic balance.</p>
+                        <a href="forms/MiniBEST.html" class="btn btn-primary">Open Utility</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Reference Scales</h2>
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">RASS</h5>
+                        <p class="card-text text-muted">Score agitation and sedation.</p>
+                        <a href="scales/RASS.html" class="btn btn-primary">Open Resource</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Peripheral Pulses and Edema</h5>
+                        <p class="card-text text-muted">Objectively record your circulatory findings.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container my-5">
+        <h2 class="text-center mb-4">One Pagers</h2>
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">How to Evaluate Acutely Dizzy Patients</h5>
+                        <p class="card-text text-muted">Systematic, evidence-based approach to maximize diagnostic accuracy.</p>
+                        <a href="OnePagers/Dizzypage.html" class="btn btn-primary">Open Resource</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-md-4">
-                    <h5>About Us</h5>
-                    <p>PTMeasures.com is dedicated to providing easy-to-use tools for physical therapists. Created by PTs, for PTs.</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Where's the app?</h5>
-                    <ul class="list-unstyled">
-                        <li><Placeholder Text 4</li>
-                        <li>You can save this page to your phone's home screen as an iOS app:</li>
-                        <li>1. Open PTMeasures.com in Safari</li>
-                        <li>2. Tap the Share button</li>
-                        <li>3. Select "Add to Home Screen"</li>
-                        <li><a href="https://youtube.com/shorts/PSX9-nVK76E?feature=share" target="_blank">|This Video|</a> shows the process for saving the app to your home screen.</li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5>Contact</h5>
-                    <ul class="list-unstyled">
-                        <li>Email: PTOutcomeMeasures@gmail.com</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col text-center">
-                </div>
-            </div>
-        </div>
-    </footer>
+    <footer class="footer">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <h5>About Us</h5>
+                    <p>PTMeasures.com is dedicated to providing easy-to-use tools for physical therapists. Created by PTs, for PTs.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Where's the app?</h5>
+                    <ul class="list-unstyled">
+                        <li><Placeholder Text 4</li>
+                        <li>You can save this page to your phone's home screen as an iOS app:</li>
+                        <li>1. Open PTMeasures.com in Safari</li>
+                        <li>2. Tap the Share button</li>
+                        <li>3. Select "Add to Home Screen"</li>
+                        <li><a href="https://youtube.com/shorts/PSX9-nVK76E?feature=share" target="_blank">|This Video|</a> shows the process for saving the app to your home screen.</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact</h5>
+                    <ul class="list-unstyled">
+                        <li>Email: PTOutcomeMeasures@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col text-center">
+                </div>
+            </div>
+        </div>
+    </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script>
-    // Register the Service Worker
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('sw.js')
-                .then(registration => {
-                    console.log('Service Worker registered with scope:', registration.scope);
-                })
-                .catch(error => {
-                    console.error('Service Worker registration failed:', error);
-                });
-        });
-    }
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+    // Register the Service Worker
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('sw.js')
+                .then(registration => {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                })
+                .catch(error => {
+                    console.error('Service Worker registration failed:', error);
+                });
+        });
+    }
+    </script>
 </body>
 </html>
