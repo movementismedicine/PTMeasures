@@ -9,25 +9,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
-     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Hospital-Based Therapy Outcome Measures | PT & OT Tools</title>
-    <meta name="description" content="A curated collection of standardized outcome measure tools for Physical Therapists, Occupational Therapists, and other healthcare providers working in acute care and inpatient rehabilitation settings.">
-    
+    <meta name="description" content="A curated collection of standardized outcome measure tools for Physical Therapists, Occupational Therapists, and other healthcare providers working in acute care and inpatient rehabilitation.">
     <meta name="keywords" content="physical therapy, occupational therapy, standard outcome measures, acute care, inpatient rehabilitation, hospital, standardized tools, PT, OT, healthcare providers">
-
     <meta property="og:title" content="Hospital Physical Therapy Outcome Measures">
     <meta property="og:description" content="Curated outcome measure tools for PTs & OTs in acute care and inpatient rehab.">
-
     <link rel="canonical" href="https://yourusername.github.io/your-repo-name/">
     <style>
         :root {
-            --primary-color: #0096C8; /* Card link color */
-            --secondary-color: #206375; /* Top text and top box */
-            --background-color: #f4f7f9; /* A soft, light blue-grey */
-            --text-color: #34495e; /* A dark grey for readability */
-            --card-bg: #ffffff; /* White cards */
+            --primary-color: #0096C8;
+            --secondary-color: #206375;
+            --background-color: #f4f7f9;
+            --text-color: #34495e;
+            --card-bg: #ffffff;
         }
         body {
             background-color: var(--background-color);
@@ -55,7 +48,10 @@
             border-radius: 1rem;
             transition: transform 0.2s, box-shadow 0.2s;
             background-color: var(--card-bg);
-            border: none; /* Removes default card border */
+            border: none;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
         .card:hover {
             transform: translateY(-5px);
@@ -95,13 +91,37 @@
         .footer a:hover {
             text-decoration: underline;
         }
-
         a {
             color: #007bff;
             text-decoration: none;
         }
         a:hover {
             text-decoration: underline;
+        }
+        /* Responsive card grid fix for more cards */
+        .card-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        .card-grid .card-container {
+            flex: 1 1 320px;
+            max-width: 350px;
+            min-width: 250px;
+            display: flex;
+        }
+        @media (max-width: 767px) {
+            .card-grid {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .card-grid .card-container {
+                max-width: 100%;
+            }
+        }
+        .section {
+            margin-bottom: 3rem;
         }
     </style>
 </head>
@@ -119,11 +139,14 @@
             <hr class="my-4">
             <p>Select a tool from the list below, complete it item by item, and let the interactive form calculate and interpret the total score for you.</p>
         </div>
+    </div>
 
+    <!-- Outcome Measures Section -->
+    <div class="container section">
         <h2 class="text-center mb-4">Standard Outcome Measures</h2>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <div class="col">
-                <div class="card h-100 shadow">
+        <div class="card-grid">
+            <div class="card-container">
+                <div class="card shadow">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-bold">Berg Balance Scale</h5>
                         <p class="card-text text-muted">Measure balance and gauge fall risk for older adults.</p>
@@ -131,8 +154,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card h-100 shadow">
+            <div class="card-container">
+                <div class="card shadow">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-bold">Tinetti POMA</h5>
                         <p class="card-text text-muted">Predict fall risk in older adults.</p>
@@ -140,8 +163,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card h-100 shadow">
+            <div class="card-container">
+                <div class="card shadow">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-bold">Dynamic Gait Index</h5>
                         <p class="card-text text-muted">Test ability to maintain balance while walking and responding to additional task demands.</p>
@@ -149,8 +172,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card h-100 shadow">
+            <div class="card-container">
+                <div class="card shadow">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-bold">Functional Gait Assessment</h5>
                         <p class="card-text text-muted">Assess stability during walking tasks in adults with gait abnormalities.</p>
@@ -158,8 +181,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card h-100 shadow">
+            <div class="card-container">
+                <div class="card shadow">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-bold">FSS-ICU</h5>
                         <p class="card-text text-muted">Quantify functional capacity for adults in the ICU.</p>
@@ -167,8 +190,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card h-100 shadow">
+            <div class="card-container">
+                <div class="card shadow">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-bold">Barthel Index</h5>
                         <p class="card-text text-muted">Measure independence in ADLs and walking.</p>
@@ -176,8 +199,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card h-100 shadow">
+            <div class="card-container">
+                <div class="card shadow">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-bold">Functional Independence Measure</h5>
                         <p class="card-text text-muted">Track progress in Inpatient Rehab.</p>
@@ -185,8 +208,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card h-100 shadow">
+            <div class="card-container">
+                <div class="card shadow">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-bold">Mini BESTest</h5>
                         <p class="card-text text-muted">Score several parameters of dynamic balance.</p>
@@ -194,14 +217,16 @@
                     </div>
                 </div>
             </div>
+            <!-- Add more cards here by duplicating the .card-container block -->
         </div>
     </div>
-    ---
-    <div class="container my-5">
+
+    <!-- Reference Scales Section -->
+    <div class="container section">
         <h2 class="text-center mb-4">Reference Scales</h2>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <div class="col">
-                <div class="card h-100 shadow">
+        <div class="card-grid">
+            <div class="card-container">
+                <div class="card shadow">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-bold">RASS</h5>
                         <p class="card-text text-muted">Score agitation and sedation.</p>
@@ -209,21 +234,25 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card h-100 shadow">
+            <div class="card-container">
+                <div class="card shadow">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-bold">Peripheral Pulses and Edema</h5>
                         <p class="card-text text-muted">Objectively record your circulatory findings.</p>
                         <a href="scales/Pulses and edema.html" class="btn btn-primary mt-auto">Open Resource</a>
                     </div>
                 </div>
+            </div>
+            <!-- Add more cards here by duplicating the .card-container block -->
+        </div>
     </div>
-    ---
-    <div class="container my-5">
+
+    <!-- One Pagers Section -->
+    <div class="container section">
         <h2 class="text-center mb-4">One Pagers</h2>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <div class="col">
-                <div class="card h-100 shadow">
+        <div class="card-grid">
+            <div class="card-container">
+                <div class="card shadow">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-bold">How to Evaluate Acutely Dizzy Patients</h5>
                         <p class="card-text text-muted">Systematic, evidence-based approach to maximize diagnostic accuracy.</p>
@@ -231,6 +260,7 @@
                     </div>
                 </div>
             </div>
+            <!-- Add more cards here by duplicating the .card-container block -->
         </div>
     </div>
 
@@ -246,7 +276,7 @@
                     <ul class="list-unstyled">
                         <li><Placeholder Text 4</li>
                         <li>You can save this page to your phone's home screen as an iOS app:</li>
-                            <li></li>1. Open PTMeasures.com in Safari</li>
+                        <li>1. Open PTMeasures.com in Safari</li>
                         <li>2. Tap the Share button</li>
                         <li>3. Select "Add to Home Screen"</li>
                         <li><a href="https://youtube.com/shorts/PSX9-nVK76E?feature=share" target="_blank">|This Video|</a> shows the process for saving the app to your home screen.</li>
@@ -280,6 +310,6 @@
                 });
         });
     }
-</script>
+    </script>
 </body>
 </html>
