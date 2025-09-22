@@ -56,7 +56,7 @@
         <h1 class="my-4">Cervical Myelopathy</h1>
 
         <div class="pdf-viewer-container">
-            <iframe src="/OnePagers/myelo.pdf" title="Cervical Myelopathy One Pager"></iframe>
+            <iframe src="OnePagers/myelo1pg.pdf" title="Cervical Myelopathy One Pager"></iframe>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
