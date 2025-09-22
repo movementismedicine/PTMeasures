@@ -1,14 +1,47 @@
 :root {
-    --primary-color: #0096C8;
-    --secondary-color: #206375;
-    --background-color: #f4f7f9;
-    --text-color: #34495e;
-    --card-bg: #ffffff;
+    --primary-color: #0096C8; /* Card link color */
+    --secondary-color: #206375; /* Top text and top box */
+    --background-color: #f4f7f9; /* A soft, light blue-grey */
+    --text-color: #34495e; /* A dark grey for readability */
+    --card-bg: #ffffff; /* White cards */
 }
 body {
     background-color: var(--background-color);
     color: var(--text-color);
     font-family: 'Lato', sans-serif;
+    padding-top: 56px; /* Space for the fixed navbar */
+}
+.jumbotron {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 4rem 2rem;
+    margin-bottom: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+.jumbotron .display-4, .jumbotron .lead {
+    color: white;
+}
+.jumbotron .lead {
+    font-size: 1.25rem;
+}
+.jumbotron hr {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+.card {
+    border-radius: 1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background-color: var(--card-bg);
+    border: none; /* Removes default card border */
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15) !important;
+}
+.card-title {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    color: var(--secondary-color);
 }
 .btn-primary {
     background-color: var(--primary-color);
@@ -45,4 +78,21 @@ a {
 }
 a:hover {
     text-decoration: underline;
+}
+.navbar {
+    background-color: var(--secondary-color);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+.navbar-brand, .nav-link, .dropdown-item {
+    color: white !important;
+    font-weight: 700;
+}
+.dropdown-menu {
+    background-color: var(--secondary-color);
+    border: none;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+.dropdown-item:hover, .dropdown-item:focus {
+    background-color: var(--primary-color) !important;
+    color: white !important;
 }
