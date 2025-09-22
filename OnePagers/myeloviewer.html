@@ -42,10 +42,15 @@
             height: 100vh;
             box-sizing: border-box;
         }
-        .pdf-viewer-container iframe {
+        .pdf-viewer-container embed,
+        .pdf-viewer-container iframe,
+        .pdf-viewer-container object {
             width: 100%;
             height: 100%;
             border: none;
+        }
+        .fallback-link {
+            margin-top: 2rem;
         }
     </style>
 </head>
@@ -56,7 +61,15 @@
         <h1 class="my-4">Cervical Myelopathy</h1>
 
         <div class="pdf-viewer-container">
-            <iframe src="OnePagers/myelo1pg.pdf" title="Cervical Myelopathy One Pager"></iframe>
+            <!-- Try object first, fallback to embed, then fallback to direct link -->
+            <object data="myelo1pg.pdf" type="application/pdf">
+                <embed src="myelo1pg.pdf" type="application/pdf">
+                    <p>
+                        Your browser does not support embedded PDFs.<br>
+                        <a href="myelo1pg.pdf" class="btn btn-primary fallback-link" target="_blank">Open PDF</a>
+                    </p>
+                </embed>
+            </object>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
