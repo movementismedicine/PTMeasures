@@ -4,111 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modified Ashworth Scale</title>
-<style>
-:root {
-    --primary-color: #0096C8; /* Card link color */
-    --secondary-color: #206375; /* Top text and top box */
-    --background-color: #f4f7f9; /* A soft, light blue-grey */
-    --text-color: #34495e; /* A dark grey for readability */
-    --card-bg: #ffffff; /* White cards */
-}
-body {
-    background-color: var(--background-color);
-    color: var(--text-color);
-    font-family: 'Lato', sans-serif;
-    padding-top: 56px; /* Space for the fixed navbar */
-}
-.jumbotron {
-    background-color: var(--secondary-color);
-    color: white;
-    padding: 4rem 2rem;
-    margin-bottom: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-}
-.jumbotron .display-4, .jumbotron .lead {
-    color: white;
-}
-.jumbotron .lead {
-    font-size: 1.25rem;
-}
-.jumbotron hr {
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-}
-.card {
-    border-radius: 1rem;
-    transition: transform 0.2s, box-shadow 0.2s;
-    background-color: var(--card-bg);
-    border: none; /* Removes default card border */
-}
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15) !important;
-}
-.card-title {
-    font-family: 'Lato', sans-serif;
-    font-weight: 700;
-    color: var(--secondary-color);
-}
-.btn-primary {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-    border-radius: 0.5rem;
-    font-weight: bold;
-    transition: background-color 0.2s ease-in-out;
-}
-.btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
-}
-h1, h2 {
-    font-family: 'Lato', sans-serif;
-    font-weight: 700;
-    color: var(--secondary-color);
-}
-.footer {
-    background-color: var(--secondary-color);
-    color: white;
-    padding: 2rem 0;
-    margin-top: 4rem;
-}
-.footer a {
-    color: white;
-    text-decoration: none;
-}
-.footer a:hover {
-    text-decoration: underline;
-}
-a {
-    color: #007bff;
-    text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
-}
-.navbar {
-    background-color: var(--secondary-color);
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-}
-.navbar-brand, .nav-link, .dropdown-item {
-    color: white !important;
-    font-weight: 700;
-}
-.dropdown-menu {
-    background-color: var(--secondary-color);
-    border: none;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-}
-.dropdown-item:hover, .dropdown-item:focus {
-    background-color: var(--primary-color) !important;
-    color: white !important;
-}
-</style>
+    <!-- Lato font (Google Fonts) -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0096C8;
+            --secondary-color: #206375;
+            --background-color: #f4f7f9;
+            --text-color: #34495e;
+            --card-bg: #ffffff;
+            --table-header-bg: #206375;
+            --table-header-text: #fff;
+            --table-row-alt: #e9f2f6;
+        }
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+        }
+        .container {
+            max-width: 650px;
+            margin: 48px auto 0 auto;
+            padding: 0 20px 20px 20px;
+            background: var(--card-bg);
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.07);
+        }
+        h1 {
+            color: var(--secondary-color);
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto 2rem auto;
+        }
+        thead tr {
+            background: var(--table-header-bg);
+        }
+        th, td {
+            padding: 1rem 0.75rem;
+            text-align: left;
+        }
+        th {
+            color: var(--table-header-text);
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 0.25px;
+            border-bottom: 2px solid #0096C8;
+        }
+        td.score {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+        tbody tr:nth-child(even) {
+            background: var(--table-row-alt);
+        }
+        /* Button styling */
+        .btn-home {
+            display: inline-block;
+            margin: 0 auto 2rem auto;
+            padding: 0.7rem 1.8rem;
+            background-color: var(--primary-color);
+            color: #fff;
+            font-family: 'Lato', sans-serif;
+            font-weight: bold;
+            font-size: 1.08rem;
+            border: none;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.2rem 0.5rem rgba(0,0,0,0.07);
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .btn-home:hover, .btn-home:focus {
+            background-color: #0056b3;
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-
     <div class="container">
         <h1>Modified Ashworth Scale</h1>
+        <a href="/PTMeasures/" class="btn-home">&#8592; Return to Home</a>
         <table>
             <thead>
                 <tr>
@@ -144,6 +131,5 @@ a:hover {
             </tbody>
         </table>
     </div>
-
 </body>
 </html>
