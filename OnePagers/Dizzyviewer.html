@@ -14,7 +14,6 @@
             --secondary-color: #206375;
             --background-color: #f4f7f9;
             --text-color: #34495e;
-            --card-bg: #ffffff;
         }
         body {
             background-color: var(--background-color);
@@ -33,36 +32,20 @@
             background-color: #0056b3;
             border-color: #0056b3;
         }
-        h1, h2 {
+        h1 {
             font-family: 'Lato', sans-serif;
             font-weight: 700;
             color: var(--secondary-color);
         }
-        .navbar {
-            background-color: var(--secondary-color);
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-        }
-        .navbar-brand, .nav-link, .dropdown-item {
-            color: white !important;
-            font-weight: 700;
-        }
         .pdf-viewer-container {
             width: 100%;
-            height: 100vh; /* This makes it fill the full viewport height */
-            box-sizing: border-box; /* Ensures padding/border is included in height */
+            height: 100vh;
+            box-sizing: border-box;
         }
         .pdf-viewer-container iframe {
             width: 100%;
             height: 100%;
             border: none;
-        }
-        .jumbotron {
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 4rem 2rem;
-            margin-bottom: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
@@ -73,8 +56,9 @@
         <h1 class="my-4">How to Evaluate Acutely Dizzy Patients</h1>
 
         <div class="pdf-viewer-container">
-            <iframe src="<iframe src="https://cdn.jsdelivr.net/gh/movementismedicine/PTMeasures@main/OnePagers/Dizzy1pg.pdf" title="Dizziness One-Pager"></iframe>" title="Dizziness One-Pager"></iframe>
+            <iframe src="/OnePagers/Dizzy1pg.pdf" title="Dizziness One-Pager"></iframe>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
