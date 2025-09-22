@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modified Ashworth Scale</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 1.1em;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+            cursor: pointer;
+        }
+        .score {
+            font-weight: bold;
+            color: #4CAF50;
+            font-size: 1.2em;
+            text-align: center;
+            width: 80px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Modified Ashworth Scale</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th class="score">Score</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="score">0</td>
+                    <td>No increase in muscle tone.</td>
+                </tr>
+                <tr>
+                    <td class="score">1</td>
+                    <td>Slight increase in muscle tone, manifested by a catch and release or minimal resistance at the end of the range of motion.</td>
+                </tr>
+                <tr>
+                    <td class="score">1+</td>
+                    <td>Slight increase in muscle tone, manifested by a catch followed by minimal resistance through the remainder (less than half) of the range of motion.</td>
+                </tr>
+                <tr>
+                    <td class="score">2</td>
+                    <td>More marked increase in muscle tone through most of the range of motion, but the affected part is still easily moved.</td>
+                </tr>
+                <tr>
+                    <td class="score">3</td>
+                    <td>Considerable increase in muscle tone, passive movement is difficult.</td>
+                </tr>
+                <tr>
+                    <td class="score">4</td>
+                    <td>Affected part(s) are rigid in flexion or extension.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
