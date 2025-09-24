@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Five Times Sit-to-Stand Test - PTMeasures.com</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0096C8;
+            --secondary-color: #206375;
+            --background-color: #f4f7f9;
+            --text-color: #34495e;
+            --card-bg: #ffffff;
+        }
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Lato', sans-serif;
+            padding-top: 56px;
+        }
+        .jumbotron {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 4rem 2rem;
+            margin-bottom: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+        .jumbotron h1, .jumbotron p {
+            color: white;
+        }
+        .card {
+            border-radius: 1rem;
+            border: none;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 700;
+            border-top-left-radius: 1rem !important;
+            border-top-right-radius: 1rem !important;
+        }
+        .card-footer {
+            background-color: var(--background-color);
+            border-bottom-left-radius: 1rem !important;
+            border-bottom-right-radius: 1rem !important;
+            border: none;
+        }
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            border-radius: 0.5rem;
+            font-weight: bold;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        h1, h2, h3 {
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+        .navbar {
+            background-color: var(--secondary-color);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            color: white !important;
+            font-weight: 700;
+        }
+        .result-box {
+            background-color: #e9ecef;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">PTMeasures.com</a>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="jumbotron text-center text-md-start">
+            <h1 class="display-4 fw-bold">Five Times Sit-to-Stand Test</h1>
+            <p class="lead">A simple, fast, and useful test for the acute and post-acute care settings.</p>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                Overview & Equipment
+            </div>
+            <div class="card-body">
+                <p>The **Five Times Sit-to-Stand Test** is a simple, fast, and useful test for the acute and post-acute care settings. It can be used as a data point for progress during admission or change between admissions.</p>
+                <p><strong>Equipment:</strong> A chair with a straight back and a seat of 16″ height are recommended if performance will be scored against age-established norms. Clock or stopwatch are needed.</p>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                Performance & Instructions
+            </div>
+            <div class="card-body">
+                <p><strong>Performance:</strong> 5x sit<>stand should be performed without arm use if the goal is comparison to age-related norms or for charting an objective parameter of fall risk. It can still be useful if the patient is unable to perform without arm use, but this should be noted.</p>
+                <p><strong>Instruction to the patient:</strong> “I want you to stand up and sit down five times in a row, as quickly as you can, when I say ‘Go’. Be sure to stand up fully and try not to let your back touch the chair back between each repetition. Do not use the back of your legs against the chair.”</p>
+            </div>
+        </div>
+
+        <form id="ftss-form" class="mb-5">
+            <div class="card mb-4">
+                <div class="card-header">
+                    Parameters and Norms
+                </div>
+                <div class="card-body">
+                    <p><strong>MDC:</strong> 3.6 – 4.2 s</p>
+                    <p><strong>MCID:</strong> 2.3 s</p>
+                    <ul class="list-unstyled">
+                        <li><strong>Risk for recurrent falls in geriatrics:</strong> > 15 s</li>
+                        <li><strong>Need for further assessment of fall risk in geriatrics:</strong> ≥ 12 s</li>
+                        <li><strong>Fall risk in patients with vestibular disorders:</strong> 15 s</li>
+                        <li><strong>In patients with Parkinson’s:</strong> 16 s</li>
+                    </ul>
+                    <p><strong>Age-related norms:</strong></p>
+                    <ul class="list-unstyled">
+                        <li>60-69 y/o: 11.4 s</li>
+                        <li>70-79 y/o: 12.6 s</li>
+                        <li>80-89 y/o: 14.8 s</li>
+                    </ul>
+
+                    <hr>
+
+                    <h5 class="fw-bold mt-4">Calculate Fall Risk</h5>
+                    <div class="mb-3">
+                        <label for="timeInput" class="form-label">Time (in seconds) to complete the test:</label>
+                        <input type="number" step="0.1" class="form-control" id="timeInput" placeholder="e.g., 16.5" required>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-primary btn-lg" id="calculate-btn">Calculate Risk</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div id="results" class="card shadow rounded-3 my-4 d-none">
+            <div class="card-body text-center">
+                <h3 class="card-title mb-3">Result</h3>
+                <div class="result-box">
+                    <p class="fw-bold fs-5">Fall Risk Classification:</p>
+                    <p id="risk-level" class="lead"></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center my-4">
+            <a href="#" class="link-secondary">Reference Value meta analysis</a>
+        </div>
+        
+        <div class="d-grid gap-2 my-4">
+            <a href="index.html" class="btn btn-primary btn-lg">Return to Home</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        document.getElementById('calculate-btn').addEventListener('click', function() {
+            const timeInput = document.getElementById('timeInput');
+            const time = parseFloat(timeInput.value);
+            const resultsDiv = document.getElementById('results');
+            const riskLevelP = document.getElementById('risk-level');
+
+            if (isNaN(time) || time <= 0) {
+                alert("Please enter a valid time in seconds.");
+                return;
+            }
+
+            let riskText = '';
+            if (time >= 15) {
+                riskText = 'High risk for recurrent falls in geriatrics.';
+            } else if (time >= 12) {
+                riskText = 'Increased fall risk; consider further assessment.';
+            } else {
+                riskText = 'Lower risk of recurrent falls.';
+            }
+
+            riskLevelP.textContent = riskText;
+            resultsDiv.classList.remove('d-none');
+            resultsDiv.scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
