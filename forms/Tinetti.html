@@ -101,262 +101,276 @@
         </div>
 
         <p class="mb-4">
-            The Tinetti Performance-Oriented Mobility Assessment (POMA) helps quantify the evaluation of older adults’ gait and balance and facilitates comparison of status at different times. A hard, armless chair, a watch/timer, and a short walkway are required. The test is split into balance and gait subsections.
+            The Tinetti assessment tool is an easily administered task-oriented test that measures an older adult’s gait and balance abilities.
         </p>
 
+        <p class="mb-2"><strong>Equipment needed:</strong> Hard armless chair, Stopwatch or wristwatch, 15 ft walkway</p>
+        <p class="mb-2"><strong>Completion Time:</strong> 10-15 minutes</p>
+        <p class="mb-4"><strong>Scoring:</strong> A three-point ordinal scale, ranging from 0-2. “0” indicates the highest level of impairment and “2” the individuals independence. Total Balance Score = 16, Total Gait Score = 12, Total Test Score = 28</p>
+        
         <form id="tinetti-form" class="mb-5">
+            <!-- Balance Section -->
             <div class="card mb-4">
                 <div class="card-header">
                     Balance Sub-section (Max 16 points)
                 </div>
                 <div class="card-body">
+                    <p class="mb-3"><strong>Initial instructions:</strong> Subject is seated in hard, armless chair. The following maneuvers are tested.</p>
                     <div class="mb-3">
-                        <label class="form-label fw-bold">1. Sitting Balance (seated in hard, armless chair)</label>
+                        <label class="form-label fw-bold">1. Sitting Balance</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="sittingBalance" value="1" required>
-                            <label class="form-check-label">1 – steady, safe</label>
+                            <input class="form-check-input" type="radio" name="sittingBalance" value="0" required>
+                            <label class="form-check-label">0 – Leans or slides in chair</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="sittingBalance" value="0">
-                            <label class="form-check-label">0 – leans or slides in chair</label>
+                            <input class="form-check-input" type="radio" name="sittingBalance" value="1">
+                            <label class="form-check-label">1 – Steady, safe</label>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-bold">2. Rises from chair</label>
+                        <label class="form-label fw-bold">2. Arises</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="risesFromChair" value="2" required>
-                            <label class="form-check-label">2 – able, without using arms</label>
+                            <input class="form-check-input" type="radio" name="arises" value="0" required>
+                            <label class="form-check-label">0 – Unable without help</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="risesFromChair" value="1">
-                            <label class="form-check-label">1 – able, uses arms to help</label>
+                            <input class="form-check-input" type="radio" name="arises" value="1">
+                            <label class="form-check-label">1 – Able, uses arms to help</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="risesFromChair" value="0">
-                            <label class="form-check-label">0 – unable without help</label>
+                            <input class="form-check-input" type="radio" name="arises" value="2">
+                            <label class="form-check-label">2 – Able without using arms</label>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-bold">3. Attempts to arise from chair</label>
+                        <label class="form-label fw-bold">3. Attempts to Arise</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="attemptsToArise" value="2" required>
-                            <label class="form-check-label">2 – able to rise, in one attempt</label>
+                            <input class="form-check-input" type="radio" name="attemptsToArise" value="0" required>
+                            <label class="form-check-label">0 – Unable without help</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="attemptsToArise" value="1">
-                            <label class="form-check-label">1 – able, requires more than one attempt</label>
+                            <label class="form-check-label">1 – Able, requires > 1 attempt</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="attemptsToArise" value="0">
-                            <label class="form-check-label">0 – unable without help</label>
+                            <input class="form-check-input" type="radio" name="attemptsToArise" value="2">
+                            <label class="form-check-label">2 – Able to rise, 1 attempt</label>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-bold">4. Immediate standing balance (first 5 seconds)</label>
+                        <label class="form-label fw-bold">4. Immediate Standing Balance (first 5 seconds)</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="immediateStandingBalance" value="2" required>
-                            <label class="form-check-label">2 – steady, without walker or other support</label>
+                            <input class="form-check-input" type="radio" name="immediateStandingBalance" value="0" required>
+                            <label class="form-check-label">0 – Unsteady (swaggers, moves feet, trunk sway)</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="immediateStandingBalance" value="1">
-                            <label class="form-check-label">1 – steady, but uses walker or other support</label>
+                            <label class="form-check-label">1 – Steady but uses walker or other support</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="immediateStandingBalance" value="0">
-                            <label class="form-check-label">0 – unsteady (swaggers, moves feet, trunk sway)</label>
+                            <input class="form-check-input" type="radio" name="immediateStandingBalance" value="2">
+                            <label class="form-check-label">2 – Steady without walker or other support</label>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-bold">5. Standing balance</label>
+                        <label class="form-label fw-bold">5. Standing Balance</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="standingBalance" value="2" required>
-                            <label class="form-check-label">2 – narrow stance without support</label>
+                            <input class="form-check-input" type="radio" name="standingBalance" value="0" required>
+                            <label class="form-check-label">0 – Unsteady</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="standingBalance" value="1">
-                            <label class="form-check-label">1 – steady, but wide stance (medial heels > 4" apart, uses cane or other support)</label>
+                            <label class="form-check-label">1 – Steady but wide stance (medial heals > 4 inches apart) and uses cane or other support</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="standingBalance" value="0">
-                            <label class="form-check-label">0 – unsteady</label>
+                            <input class="form-check-input" type="radio" name="standingBalance" value="2">
+                            <label class="form-check-label">2 – Narrow stance without support</label>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-bold">6. Nudged (subject with feet as close together as possible – examiner pushes lightly on subject’s sternum with palm of hand 3 times)</label>
+                        <label class="form-label fw-bold">6. Nudged (subject at maximum position with feet as close together as possible, examiner pushes lightly on subject’s sternum with palm of hand 3 times)</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="nudged" value="2" required>
-                            <label class="form-check-label">2 – steady</label>
+                            <input class="form-check-input" type="radio" name="nudged" value="0" required>
+                            <label class="form-check-label">0 – Begins to fall</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="nudged" value="1">
-                            <label class="form-check-label">1 – staggers, grabs, catches self</label>
+                            <label class="form-check-label">1 – Staggers, grabs, catches self</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="nudged" value="0">
-                            <label class="form-check-label">0 – begins to fall</label>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">7. Eyes closed (subject with feet as close together as possible)</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="eyesClosed" value="1" required>
-                            <label class="form-check-label">1 – steady</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="eyesClosed" value="0">
-                            <label class="form-check-label">0 – unsteady</label>
+                            <input class="form-check-input" type="radio" name="nudged" value="2">
+                            <label class="form-check-label">2 – Steady</label>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-bold">8. Turning 360 degrees</label>
+                        <label class="form-label fw-bold">7. Eyes Closed (at maximum position of item 6)</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="turning360Steps" value="1" required>
-                            <label class="form-check-label">1 – continuous steps</label>
+                            <input class="form-check-input" type="radio" name="eyesClosed" value="0" required>
+                            <label class="form-check-label">0 – Unsteady</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="turning360Steps" value="0">
-                            <label class="form-check-label">0 – discontinuous steps</label>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">8*. Turning 360 degrees (steadiness)</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="turning360Steadiness" value="1" required>
-                            <label class="form-check-label">1 – steady</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="turning360Steadiness" value="0">
-                            <label class="form-check-label">0 – unsteady</label>
+                            <input class="form-check-input" type="radio" name="eyesClosed" value="1">
+                            <label class="form-check-label">1 – Steady</label>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-bold">9. Sitting down</label>
+                        <label class="form-label fw-bold">8. Turning 360 Degrees</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="sittingDown" value="2" required>
-                            <label class="form-check-label">2 – safe, smooth motion</label>
+                            <input class="form-check-input" type="radio" name="turning360Steps" value="0" required>
+                            <label class="form-check-label">0 – Discontinuous steps</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="turning360Steps" value="1">
+                            <label class="form-check-label">1 – Continuous steps</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">8. Turning 360 Degrees (Steadiness)</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="turning360Steadiness" value="0" required>
+                            <label class="form-check-label">0 – Unsteady (grabs, staggers)</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="turning360Steadiness" value="1">
+                            <label class="form-check-label">1 – Steady</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">9. Sitting Down</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sittingDown" value="0" required>
+                            <label class="form-check-label">0 – Unsafe (misjudged distance, falls into chair)</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="sittingDown" value="1">
-                            <label class="form-check-label">1 – uses arms or not a smooth motion</label>
+                            <label class="form-check-label">1 – Uses arms or not a smooth motion</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="sittingDown" value="0">
-                            <label class="form-check-label">0 – unsafe, misjudges distance, falls into chair</label>
+                            <input class="form-check-input" type="radio" name="sittingDown" value="2">
+                            <label class="form-check-label">2 – Safe, smooth motion</label>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Gait Section -->
             <div class="card mb-4">
                 <div class="card-header">
                     Gait Sub-section (Max 12 points)
                 </div>
                 <div class="card-body">
+                    <p class="mb-3"><strong>Initial Instructions:</strong> Subject stands with examiner, walks down hallway or across room, first at “usual” pace, then back at “rapid, but safe” pace (using usual walking aids)</p>
                     <div class="mb-3">
-                        <label class="form-label fw-bold">10. Initiation of gait</label>
+                        <label class="form-label fw-bold">10. Initiation of Gait (immediately after told to “go”)</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="initiationOfGait" value="1" required>
-                            <label class="form-check-label">1 – no hesitancy</label>
+                            <input class="form-check-input" type="radio" name="initiationOfGait" value="0" required>
+                            <label class="form-check-label">0 – Any hesitancy or multiple attempts to start</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="initiationOfGait" value="0">
-                            <label class="form-check-label">0 – any hesitancy after told to "go," or multiple attempts to start</label>
+                            <input class="form-check-input" type="radio" name="initiationOfGait" value="1">
+                            <label class="form-check-label">1 – No hesitancy</label>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-bold">11a. Step length (Right)</label>
+                        <label class="form-label fw-bold">11. Step Length and Height</label>
+                        <p class="mb-1 fw-bold">Right swing foot</p>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="rightStepLength" value="1" required>
-                            <label class="form-check-label">1 – Right swing foot does pass Left stance foot</label>
+                            <input class="form-check-input" type="radio" name="rightStepLength" value="0" required>
+                            <label class="form-check-label">0 – Does not pass left stance foot with step</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="rightStepLength" value="0">
-                            <label class="form-check-label">0 – Right swing foot does not pass Left stance foot</label>
+                            <input class="form-check-input" type="radio" name="rightStepLength" value="1">
+                            <label class="form-check-label">1 – Passes left stance foot</label>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">11b. Step height (Right)</label>
+                        <p class="mb-1 mt-2 fw-bold">Right foot clears floor</p>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="rightStepHeight" value="1" required>
-                            <label class="form-check-label">1 – Right foot does completely clear floor</label>
+                            <input class="form-check-input" type="radio" name="rightStepHeight" value="0" required>
+                            <label class="form-check-label">0 – Right foot does not clear floor completely with step</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="rightStepHeight" value="0">
-                            <label class="form-check-label">0 – Right swing foot does not clear floor completely with step</label>
+                            <input class="form-check-input" type="radio" name="rightStepHeight" value="1">
+                            <label class="form-check-label">1 – Right foot completely clears floor</label>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">12a. Step length (Left)</label>
+                        <p class="mb-1 mt-2 fw-bold">Left swing foot</p>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="leftStepLength" value="1" required>
-                            <label class="form-check-label">1 – Left swing foot does pass Right stance foot</label>
+                            <input class="form-check-input" type="radio" name="leftStepLength" value="0" required>
+                            <label class="form-check-label">0 – Does not pass right stance foot with step</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="leftStepLength" value="0">
-                            <label class="form-check-label">0 – Left swing foot does not pass Right stance foot</label>
+                            <input class="form-check-input" type="radio" name="leftStepLength" value="1">
+                            <label class="form-check-label">1 – Passes right stance foot</label>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">12b. Step height (Left)</label>
+                        <p class="mb-1 mt-2 fw-bold">Left foot clears floor</p>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="leftStepHeight" value="1" required>
-                            <label class="form-check-label">1 – Left foot does completely clear floor</label>
+                            <input class="form-check-input" type="radio" name="leftStepHeight" value="0" required>
+                            <label class="form-check-label">0 – Left foot does not clear floor completely with step</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="leftStepHeight" value="0">
-                            <label class="form-check-label">0 – Left swing foot does not clear floor completely with step</label>
+                            <input class="form-check-input" type="radio" name="leftStepHeight" value="1">
+                            <label class="form-check-label">1 – Left foot completely clears floor</label>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-bold">13. Step continuity</label>
+                        <label class="form-label fw-bold">12. Step Symmetry</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="stepContinuity" value="1" required>
+                            <input class="form-check-input" type="radio" name="stepSymmetry" value="0" required>
+                            <label class="form-check-label">0 – Right and left step length not equal (estimate)</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="stepSymmetry" value="1">
+                            <label class="form-check-label">1 – Right and left step length appear equal</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">13. Step Continuity</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="stepContinuity" value="0" required>
+                            <label class="form-check-label">0 – Stopping or discontinuity between steps</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="stepContinuity" value="1">
                             <label class="form-check-label">1 – Steps appear continuous</label>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="stepContinuity" value="0">
-                            <label class="form-check-label">0 – Stopping between steps</label>
-                        </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-bold">14. Path (observe for 1 foot excursion from straight line over 10 foot course)</label>
+                        <label class="form-label fw-bold">14. Path (estimated in relation to floor tiles, 12-inch diameter; observe excursion of 1 foot over about 10 ft. of the course)</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="path" value="2" required>
-                            <label class="form-check-label">2 – Straight walking without aid</label>
+                            <input class="form-check-input" type="radio" name="path" value="0" required>
+                            <label class="form-check-label">0 – Marked deviation</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="path" value="1">
                             <label class="form-check-label">1 – Mild/moderate deviation or uses walking aid</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="path" value="0">
-                            <label class="form-check-label">0 – Marked deviation</label>
+                            <input class="form-check-input" type="radio" name="path" value="2">
+                            <label class="form-check-label">2 – Straight without walking aid</label>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label fw-bold">15. Trunk</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="trunk" value="2" required>
-                            <label class="form-check-label">2 – No sway, no flexion, no use of arms, no walking aid</label>
+                            <input class="form-check-input" type="radio" name="trunk" value="0" required>
+                            <label class="form-check-label">0 – Marked sway or uses walking aid</label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="trunk" value="1">
-                            <label class="form-check-label">1 – No sway, but flexion of knees or back, or spreads arms out while walking</label>
+                            <label class="form-check-label">1 – No sway but flexion of knees or back or spreads arms out while walking</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="trunk" value="0">
-                            <label class="form-check-label">0 – Marked sway or uses walking aid</label>
+                            <input class="form-check-input" type="radio" name="trunk" value="2">
+                            <label class="form-check-label">2 – No sway, no flexion, no use of arms, and no use of walking aid</label>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label fw-bold">16. Walking stance</label>
+                        <label class="form-label fw-bold">16. Walking Stance</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="walkingStance" value="1" required>
-                            <label class="form-check-label">1 – Heels almost touching while walking</label>
+                            <input class="form-check-input" type="radio" name="walkingStance" value="0" required>
+                            <label class="form-check-label">0 – Heels apart</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="walkingStance" value="0">
-                            <label class="form-check-label">0 – Heels apart</label>
+                            <input class="form-check-input" type="radio" name="walkingStance" value="1">
+                            <label class="form-check-label">1 – Heels almost touching while walking</label>
                         </div>
                     </div>
                 </div>
@@ -388,12 +402,12 @@
                 </div>
             </div>
             <div class="card-footer text-center text-muted">
-                <p>Score Interpretation, per initial publication:</p>
-                <p>&lt;19 – High Fall Risk</p>
-                <p>20 – 24 – Medium Fall Risk</p>
-                <p>25 – 28 – Low Fall Risk</p>
+                <p>Score Interpretation:</p>
+                <p>&lt; 19 – High Fall Risk</p>
+                <p>19-24 – Medium Fall Risk</p>
+                <p>25-28 – Low Fall Risk</p>
                 <p class="mt-3">
-                    <small>Reference Paper: Tinetti, M. E. (1986). Performance-oriented assessment of mobility problems in elderly patients. Journal of the American Geriatrics Society, 34(2), 119-126.</small>
+                    <small>*Tinetti ME. Performance-oriented assessment of mobility problems in elderly patients. JAGS 1986; 34: 119-126.</small>
                 </p>
             </div>
         </div>
@@ -424,7 +438,7 @@
 
             // Calculate Balance Sub-score
             const balanceItems = [
-                'sittingBalance', 'risesFromChair', 'attemptsToArise', 'immediateStandingBalance',
+                'sittingBalance', 'arises', 'attemptsToArise', 'immediateStandingBalance',
                 'standingBalance', 'nudged', 'eyesClosed', 'turning360Steps',
                 'turning360Steadiness', 'sittingDown'
             ];
@@ -437,7 +451,7 @@
             // Calculate Gait Sub-score
             const gaitItems = [
                 'initiationOfGait', 'rightStepLength', 'rightStepHeight', 'leftStepLength',
-                'leftStepHeight', 'stepContinuity', 'path', 'trunk', 'walkingStance'
+                'leftStepHeight', 'stepSymmetry', 'stepContinuity', 'path', 'trunk', 'walkingStance'
             ];
             let gaitScore = 0;
             gaitItems.forEach(name => {
@@ -448,9 +462,9 @@
             const totalScore = balanceScore + gaitScore;
             
             let riskLevel = '';
-            if (totalScore <= 18) {
+            if (totalScore < 19) {
                 riskLevel = 'High Fall Risk';
-            } else if (totalScore >= 19 && totalScore <= 23) {
+            } else if (totalScore >= 19 && totalScore <= 24) {
                 riskLevel = 'Medium Fall Risk';
             } else {
                 riskLevel = 'Low Fall Risk';
