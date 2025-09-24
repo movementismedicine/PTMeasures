@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acute Care Index of Function (ACIF)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0096C8;
+            --secondary-color: #206375;
+            --background-color: #f4f7f9;
+            --text-color: #34495e;
+            --card-bg: #ffffff;
+        }
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Lato', sans-serif;
+            padding-top: 56px;
+        }
+        .jumbotron {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 4rem 2rem;
+            margin-bottom: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+        .jumbotron h1, .jumbotron p {
+            color: white;
+        }
+        .form-check-label {
+            font-size: 0.95rem;
+        }
+        .card-header {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 700;
+        }
+        .card {
+            border-radius: 1rem;
+            border: none;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            border-radius: 0.5rem;
+            font-weight: bold;
+        }
+        h1, h2, h3 {
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+        .navbar {
+            background-color: var(--secondary-color);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            color: white !important;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">PTMeasures.com</a>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <div class="jumbotron text-center text-md-start">
+            <h1 class="display-4 fw-bold">Acute Care Index of Function (ACIF)</h1>
+            <p class="lead">Assess and document a patient's functional status.</p>
+        </div>
+
+        <form id="acif-form" class="mb-5">
+            <div class="card mb-4">
+                <div class="card-header">
+                    Part I: Mental Status
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">1. Comprehension & Communication</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="comprehension" id="comp-3" value="3">
+                            <label class="form-check-label" for="comp-3">3: Follows all commands, asks and answers questions appropriately, communicates needs.</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="comprehension" id="comp-2" value="2">
+                            <label class="form-check-label" for="comp-2">2: Follows simple commands, may need cues, may communicate with gesture or limited verbalization.</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="comprehension" id="comp-1" value="1">
+                            <label class="form-check-label" for="comp-1">1: Follows occasional commands, non-verbal or incoherent communication.</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="comprehension" id="comp-0" value="0">
+                            <label class="form-check-label" for="comp-0">0: Does not follow commands, unable to communicate.</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    Part II: Bed Mobility
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">2. Rolling</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="rolling" id="roll-3" value="3">
+                            <label class="form-check-label" for="roll-3">3: Independent/Modified Independent.</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="rolling" id="roll-2" value="2">
+                            <label class="form-check-label" for="roll-2">2: Supervision/Standby Assist.</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="rolling" id="roll-1" value="1">
+                            <label class="form-check-label" for="roll-1">1: Contact Guard/Min/Mod Assist.</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="rolling" id="roll-0" value="0">
+                            <label class="form-check-label" for="roll-0">0: Maximal Assist/Dependent.</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">3. Supine to Sit</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="supineToSit" id="sts-3" value="3">
+                            <label class="form-check-label" for="sts-3">3: Independent/Modified Independent.</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="supineToSit" id="sts-2" value="2">
+                            <label class="form-check-label" for="sts-2">2: Supervision/Standby Assist.</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="supineToSit" id="sts-1" value="1">
+                            <label class="form-check-label" for="sts-1">1: Contact Guard/Min/Mod Assist.</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="supineToSit" id="sts-0" value="0">
+                            <label class="form-check-label" for="sts-0">0: Maximal Assist/Dependent.</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    Part III: Transfers
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">4. Sit to Stand</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sitToStand" id="sits-3" value="3">
+                            <label class="form-check-label" for="sits-3">3: Independent/Modified Independent.</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sitToStand" id="sits-2" value="2">
+                            <label class="form-check-label" for="sits-2">2: Supervision/Standby Assist.</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sitToStand" id="sits-1" value="1">
+                            <label class="form-check-label" for="sits-1">1: Contact Guard/Min/Mod Assist.</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sitToStand" id="sits-0" value="0">
+                            <label class="form-check-label" for="sits-0">0: Maximal Assist/Dependent.</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">5. Walking</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="walking" id="walk-3" value="3">
+                            <label class="form-check-label" for="walk-3">3: Independent/Modified Independent.</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="walking" id="walk-2" value="2">
+                            <label class="form-check-label" for="walk-2">2: Supervision/Standby Assist.</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="walking" id="walk-1" value="1">
+                            <label class="form-check-label" for="walk-1">1: Contact Guard/Min/Mod Assist.</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="walking" id="walk-0" value="0">
+                            <label class="form-check-label" for="walk-0">0: Maximal Assist/Dependent.</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-grid gap-2">
+                <button type="button" class="btn btn-primary btn-lg" id="calculate-btn">Calculate ACIF Score</button>
+            </div>
+        </form>
+
+        <div id="results" class="card shadow rounded-3 my-4 d-none">
+            <div class="card-body">
+                <h3 class="card-title text-center mb-3">Results</h3>
+                <p><strong>Mental Status Score:</strong> <span id="mental-score"></span></p>
+                <p><strong>Bed Mobility Score:</strong> <span id="bed-score"></span></p>
+                <p><strong>Transfers Score:</strong> <span id="transfers-score"></span></p>
+                <hr>
+                <h4 class="text-center"><strong>Total ACIF Score:</strong> <span id="total-score"></span></h4>
+                <p class="mt-3 text-center text-muted">A higher score indicates greater functional independence.</p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('calculate-btn').addEventListener('click', function() {
+            const form = document.getElementById('acif-form');
+            const mentalStatus = parseInt(form.querySelector('input[name="comprehension"]:checked')?.value || 0);
+            const rolling = parseInt(form.querySelector('input[name="rolling"]:checked')?.value || 0);
+            const supineToSit = parseInt(form.querySelector('input[name="supineToSit"]:checked')?.value || 0);
+            const sitToStand = parseInt(form.querySelector('input[name="sitToStand"]:checked')?.value || 0);
+            const walking = parseInt(form.querySelector('input[name="walking"]:checked')?.value || 0);
+
+            const mentalScore = mentalStatus;
+            const bedMobilityScore = rolling + supineToSit;
+            const transfersScore = sitToStand + walking;
+            const totalScore = mentalStatus + rolling + supineToSit + sitToStand + walking;
+
+            document.getElementById('mental-score').textContent = mentalScore;
+            document.getElementById('bed-score').textContent = bedMobilityScore;
+            document.getElementById('transfers-score').textContent = transfersScore;
+            document.getElementById('total-score').textContent = totalScore;
+            
+            document.getElementById('results').classList.remove('d-none');
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
