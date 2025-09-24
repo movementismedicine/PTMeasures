@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fried Frailty Assessment</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #0056b3;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        .warning {
+            color: #d9534f;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #d9534f;
+            border-radius: 5px;
+            display: none;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 1.2em;
+            text-align: center;
+            font-weight: bold;
+        }
+        .further-reading {
+            margin-top: 30px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Fried Frailty Assessment</h1>
+    <p>Select all that apply to your patient:</p>
+
+    <form id="frailtyForm">
+        <label>
+            <input type="checkbox" name="deficit" value="weight_loss">
+            Involuntary weight loss (≥ 10 pounds over past 6 mos.)
+        </label>
+        <label>
+            <input type="checkbox" name="deficit" value="grip_strength">
+            Reduced grip strength (relative to established normative age values)
+        </label>
+        <label>
+            <input type="checkbox" name="deficit" value="exhaustion">
+            Exhaustion (self-reported)
+        </label>
+        <label>
+            <input type="checkbox" name="deficit" value="walking_speed">
+            Reduced walking speed (15 ft walk test)
+        </label>
+        <label>
+            <input type="checkbox" name="deficit" value="low_activity">
+            Low activity relative to age norms (kcal/wk)
+        </label>
+
+        <p class="warning" id="warningMessage">Warning: Please select at least one option to submit.</p>
+
+        <button type="button" class="submit-btn" onclick="calculateFrailty()">Submit</button>
+    </form>
+
+    <div id="result">
+        Frailty rating:
+        <span id="rating"></span>
+    </div>
+
+    <div class="further-reading">
+        <h2>About Frailty</h2>
+        <p>A number of measures have been correlated to frailty. For example, a 5-meter walk test has a threshold value above which frailty is considered.</p>
+        <p>Further reading: <a href="https://www.nia.nih.gov/health/frailty-older-adults/frailty-older-adults" target="_blank">Frailty in older adults (NIH)</a></p>
+    </div>
+</div>
+
+<script>
+    function calculateFrailty() {
+        const checkboxes = document.querySelectorAll('input[name="deficit"]:checked');
+        const count = checkboxes.length;
+        const warning = document.getElementById('warningMessage');
+        const resultDiv = document.getElementById('result');
+        const ratingSpan = document.getElementById('rating');
+
+        warning.style.display = 'none'; // Hide warning by default
+
+        if (count === 0) {
+            ratingSpan.textContent = 'No deficits = nonfrail';
+        } else if (count <= 2) {
+            ratingSpan.textContent = `${count} deficits = prefrail`;
+        } else {
+            ratingSpan.textContent = `${count} deficits = frail`;
+        }
+    }
+</script>
+
+</body>
+</html>
