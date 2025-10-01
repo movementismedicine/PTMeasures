@@ -3,90 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peripheral Circulation Assessment</title>
-    <!-- Bootstrap CSS for modern styling -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .container {
-            max-width: 900px;
-        }
-        .card {
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
-        }
-        .assessment-list {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        .assessment-item {
-            padding: 0.5rem 1rem;
-            border: 1px solid #dee2e6;
-            border-radius: 0.5rem;
-            margin-bottom: 0.5rem;
-            background-color: #fff;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container my-5">
-        <div class="card p-4">
-            <h1 class="text-center mb-4">Peripheral Circulation Assessment</h1>
-
-            <!-- Text section for palpation -->
-            <div class="alert alert-info text-center" role="alert">
-                Review palpation of peripheral pulses here: <a href="https://www.ncbi.nlm.nih.gov/books/NBK350/" target="_blank" rel="noopener noreferrer">https://www.ncbi.nlm.nih.gov/books/NBK350/</a>
-            </div>
-
-            <!-- Section 1: Peripheral Pulses -->
-            <div class="mb-4">
-                <h5>Peripheral Pulse Grading by Palpation</h5>
-                <ul class="assessment-list">
-                    <li class="assessment-item"><strong>0:</strong> absent</li>
-                    <li class="assessment-item"><strong>1+:</strong> faint, but detectable</li>
-                    <li class="assessment-item"><strong>2+:</strong> slightly diminished</li>
-                    <li class="assessment-item"><strong>3+:</strong> normal pulse</li>
-                    <li class="assessment-item"><strong>4+:</strong> bounding</li>
-                </ul>
-            </div>
-
-            <!-- Text section for edema -->
-            <p class="mt-4 mb-2">Document peripheral edema in a way which facilitates future comparison. Note degree and level (i.e., 2+ pitting edema, approximately to mid-shin bilaterally). Limb girth can also be measured and recorded, particularly when asymmetric. <a href="https://onlinejcf.com/article/S1071-9164(13)00464-8/fulltext" target="_blank" rel="noopener noreferrer">https://onlinejcf.com/article/S1071-9164(13)00464-8/fulltext</a></p>
-
-            <!-- Section 2: Peripheral Edema -->
-            <div class="mb-4">
-                <h5>Peripheral Edema Grading</h5>
-                <ul class="assessment-list">
-                    <li class="assessment-item"><strong>0:</strong> No pitting edema</li>
-                    <li class="assessment-item"><strong>1+:</strong> Mild pitting edema; 2mm depression that disappears quickly</li>
-                    <li class="assessment-item"><strong>2+:</strong> Moderate pitting edema; 4mm depression that disappears in 10-15 sec</li>
-                    <li class="assessment-item"><strong>3+:</strong> Moderately severe pitting edema; 6mm depression which may last for more than 1 minute</li>
-                    <li class="assessment-item"><strong>4+:</strong> Severe pitting edema; 8mm depression which lasts more than 2 minutes</li>
-                </ul>
-            </div>
-
-            <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ankle-Brachial Index (ABI) Screening</title>
+    <title>Peripheral Circulation and ABI Guide</title>
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom styles for professional appearance */
+        /* Custom styles for professional appearance, using Inter font */
         :root {
             --primary: #1F2937; /* Dark Gray */
-            --secondary: #3B82F6; /* Blue */
-            --background: #F9FAFB; /* Light Gray Background */
+            --accent: #3B82F6; /* Blue */
+            --background: #F4F6F8; /* Very Light Gray Background */
         }
         body {
             font-family: 'Inter', sans-serif;
@@ -96,106 +21,176 @@
 </head>
 <body class="p-4 sm:p-8">
 
-    <div class="max-w-4xl mx-auto bg-white shadow-2xl rounded-xl p-6 md:p-10">
+    <div class="max-w-6xl mx-auto bg-white shadow-2xl rounded-2xl p-6 md:p-10 space-y-10">
 
-        <!-- Title -->
-        <header class="mb-8">
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 border-b-4 border-secondary pb-2">
-                Ankle-Brachial Index (ABI) Screening
+        <!-- Header -->
+        <header class="mb-6">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 border-b-4 border-accent pb-2">
+                Peripheral Vascular Assessment Toolkit
             </h1>
             <p class="mt-2 text-lg text-gray-500">
-                A fast and sensitive means to screen for Peripheral Arterial Disease (PAD).
+                Quick reference guide for pulse grading, edema assessment, and the Ankle-Brachial Index (ABI).
             </p>
         </header>
 
-        <!-- Rationale -->
-        <section class="mb-8 p-6 bg-blue-50 rounded-lg border border-blue-200">
-            <h2 class="text-2xl font-semibold text-primary mb-3">Screening Rationale</h2>
-            <p class="text-gray-700 leading-relaxed">
-                If a patient describes a symptom pattern consistent with vascular claudication (e.g., provoked by activity rather than position; relieved by rest) and/or presents with unexplained sensory, strength, or integumentary changes, and is at risk for PAD on the basis of age, comorbidities, and lifestyle factors, it's worth taking the time to screen.
-            </p>
+        <!-- General Assessment Resources and Edema Context -->
+        <section>
+            <div class="p-4 mb-6 bg-blue-50 rounded-lg border border-blue-200 text-gray-700">
+                <h2 class="text-xl font-semibold text-accent mb-2">Key Documentation Note</h2>
+                <p class="text-sm leading-relaxed mb-3">
+                    Document peripheral edema in a way which facilitates future comparison. Note degree and level (e.g., 2+ pitting edema, approximately to mid-shin bilaterally). Limb girth can also be measured and recorded, particularly when asymmetric.
+                </p>
+                <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0 text-sm">
+                    <a href="https://www.ncbi.nlm.nih.gov/books/NBK350/" target="_blank" rel="noopener noreferrer" class="font-medium text-blue-600 hover:text-blue-800 transition duration-150">
+                        → Review Peripheral Pulse Palpation
+                    </a>
+                    <a href="https://onlinejcf.com/article/S1071-9164(13)00464-8/fulltext" target="_blank" rel="noopener noreferrer" class="font-medium text-blue-600 hover:text-blue-800 transition duration-150">
+                        → Edema Assessment Guidelines
+                    </a>
+                </div>
+            </div>
         </section>
 
-        <!-- Procedure -->
-        <section class="mb-8">
-            <h2 class="text-2xl font-semibold text-primary mb-3">Procedure & Best Practice</h2>
-            <ol class="list-decimal list-inside space-y-3 pl-4 text-gray-700">
-                <li>Allow the patient to rest in a supine position prior to checking.</li>
-                <li>Check Systolic BP (SBP) at the brachial artery (both arms, if possible). Asymmetry in arm BPs can screen for subclavian stenosis.</li>
-                <li>Check SBP at the posterior tibial (PT) and dorsalis pedis (DP) arteries (via Doppler). Ensure appropriately sized cuffs are used.</li>
-                <li>Calculation: Divide the higher SBP at the ankle (max of PT or DP) by the higher SBP at the arm (max of both brachials) to obtain the ABI value.
-                    <div class="mt-2 text-center text-xl font-mono p-3 bg-gray-100 rounded-md">
-                        ABI = (Highest Ankle SBP (PT or DP)) / (Highest Brachial SBP (Right or Left))
+        <!-- Grading Systems (Pulses and Edema) -->
+        <section>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                <!-- Peripheral Pulse Grading -->
+                <div class="card p-6 bg-gray-50 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Peripheral Pulse Grading</h2>
+                    <dl class="space-y-3">
+                        <div class="flex justify-between p-2 bg-white rounded-md border border-gray-200">
+                            <dt class="font-bold text-gray-900 w-1/4">0:</dt>
+                            <dd class="text-gray-700 w-3/4">Absent</dd>
+                        </div>
+                        <div class="flex justify-between p-2 bg-white rounded-md border border-gray-200">
+                            <dt class="font-bold text-gray-900 w-1/4">1+:</dt>
+                            <dd class="text-gray-700 w-3/4">Faint, but detectable</dd>
+                        </div>
+                        <div class="flex justify-between p-2 bg-white rounded-md border border-gray-200">
+                            <dt class="font-bold text-gray-900 w-1/4">2+:</dt>
+                            <dd class="text-gray-700 w-3/4">Slightly diminished</dd>
+                        </div>
+                        <div class="flex justify-between p-2 bg-white rounded-md border border-gray-200">
+                            <dt class="font-bold text-gray-900 w-1/4">3+:</dt>
+                            <dd class="text-gray-700 w-3/4">Normal pulse</dd>
+                        </div>
+                        <div class="flex justify-between p-2 bg-white rounded-md border border-gray-200">
+                            <dt class="font-bold text-gray-900 w-1/4">4+:</dt>
+                            <dd class="text-gray-700 w-3/4">Bounding</dd>
+                        </div>
+                    </dl>
+                </div>
+
+                <!-- Peripheral Edema Grading -->
+                <div class="card p-6 bg-gray-50 rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Peripheral Edema Grading (Pitting)</h2>
+                    <dl class="space-y-3">
+                        <div class="p-2 bg-white rounded-md border border-gray-200">
+                            <dt class="font-bold text-gray-900">0:</dt>
+                            <dd class="text-gray-700 text-sm">No pitting edema</dd>
+                        </div>
+                        <div class="p-2 bg-white rounded-md border border-gray-200">
+                            <dt class="font-bold text-gray-900">1+ (Mild):</dt>
+                            <dd class="text-gray-700 text-sm">2mm depression that disappears quickly</dd>
+                        </div>
+                        <div class="p-2 bg-white rounded-md border border-gray-200">
+                            <dt class="font-bold text-gray-900">2+ (Moderate):</dt>
+                            <dd class="text-gray-700 text-sm">4mm depression that disappears in 10-15 seconds</dd>
+                        </div>
+                        <div class="p-2 bg-white rounded-md border border-gray-200">
+                            <dt class="font-bold text-gray-900">3+ (Mod. Severe):</dt>
+                            <dd class="text-gray-700 text-sm">6mm depression which may last for more than 1 minute</dd>
+                        </div>
+                        <div class="p-2 bg-white rounded-md border border-gray-200">
+                            <dt class="font-bold text-gray-900">4+ (Severe):</dt>
+                            <dd class="text-gray-700 text-sm">8mm depression which lasts more than 2 minutes</dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Ankle-Brachial Index (ABI) Screening Guide -->
+        <section class="mt-10 pt-6 border-t border-gray-200">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Ankle-Brachial Index (ABI) Screening</h2>
+
+            <!-- ABI Rationale -->
+            <div class="mb-8 p-6 bg-red-50 rounded-lg border border-red-200">
+                <h3 class="text-xl font-semibold text-red-700 mb-3">Screening Rationale for PAD</h3>
+                <p class="text-gray-800 leading-relaxed">
+                    ABI is a fast and sensitive means to screen for Peripheral Arterial Disease (PAD). If a patient describes a symptom pattern consistent with vascular claudication (e.g., provoked by activity rather than position; relieved by rest) and/or presents with unexplained sensory, strength, or integumentary changes, and is at risk for PAD, screening is warranted.
+                </p>
+            </div>
+
+            <!-- ABI Procedure -->
+            <div class="mb-8">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-3">Procedure & Best Practice</h3>
+                <ol class="list-decimal list-inside space-y-3 pl-4 text-gray-700">
+                    <li>Allow the patient to rest in a supine position prior to checking.</li>
+                    <li>Check Systolic BP (SBP) at the brachial artery (both arms, if possible). Check both arms as asymmetry can help screen for subclavian stenosis, with a delta of 15 mmHg or greater considered significant.</li>
+                    <li>Check SBP at the posterior tibial (PT) and dorsalis pedis (DP) arteries using a Doppler. Ensure appropriately sized cuffs are used.</li>
+                    <li>Calculation: Divide the higher SBP at the ankle (max of PT or DP) by the higher SBP at the arm (max of both brachials) to obtain the ABI value.
+                        <div class="mt-2 text-center text-xl font-mono p-3 bg-gray-100 rounded-md">
+                            ABI = (Highest Ankle SBP) / (Highest Brachial SBP)
+                        </div>
+                    </li>
+                    <li>Situationally, ABI may be assessed at rest and again following physical activity.</li>
+                </ol>
+            </div>
+
+            <!-- ABI Interpretation -->
+            <div class="mb-8">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-3">Interpretation</h3>
+                <div class="space-y-3">
+                    <div class="p-3 rounded-lg bg-green-100 border-l-4 border-green-500">
+                        <strong class="font-bold text-green-700">Normal Range:</strong> 1.0 to 1.4
                     </div>
-                </li>
-                <li>Situationally, ABI may be assessed at rest and again following physical activity.</li>
-            </ol>
-        </section>
+                    <div class="p-3 rounded-lg bg-red-100 border-l-4 border-red-500">
+                        <strong class="font-bold text-red-700">PAD Concern:</strong> ABI values &lt; 0.9 (Often a threshold for vascular referral)
+                    </div>
+                    <div class="p-3 rounded-lg bg-yellow-100 border-l-4 border-yellow-500">
+                        <strong class="font-bold text-yellow-700">Vascular Calcification:</strong> ABI values &gt; 1.4 (May indicate non-compressible arteries; threshold for vascular referral)
+                    </div>
+                </div>
+            </div>
 
-        <!-- Interpretation -->
-        <section class="mb-8">
-            <h2 class="text-2xl font-semibold text-primary mb-3">Interpretation</h2>
-            <div class="space-y-4">
-                <div class="p-4 rounded-lg bg-green-100 border-l-4 border-green-500">
-                    <strong class="font-bold text-green-700">Normal Range:</strong> ABI values between 1.0 and 1.4.
-                </div>
-                <div class="p-4 rounded-lg bg-red-100 border-l-4 border-red-500">
-                    <strong class="font-bold text-red-700">Concerning for PAD:</strong> ABI values < 0.9 are considered concerning for PAD.
-                </div>
-                <div class="p-4 rounded-lg bg-yellow-100 border-l-4 border-yellow-500">
-                    <strong class="font-bold text-yellow-700">Vascular Calcification:</strong> ABI values > 1.4 may indicate non-compressible, calcified arteries, which is also a threshold for referral to vascular surgery.
+            <!-- ABI Example -->
+            <div class="mb-8">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-3">Calculation Example</h3>
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <p class="mb-3 text-gray-700">
+                        Example: Patient's SBP at Right PT is 162 mmHg, Right DP is 158 mmHg. SBP at Right brachial is 125 mmHg and Left brachial is 118 mmHg.
+                    </p>
+                    <ul class="list-disc list-inside pl-4 text-gray-700">
+                        <li>Highest Ankle SBP: Max (162, 158) = 162 mmHg</li>
+                        <li>Highest Brachial SBP: Max (125, 118) = 125 mmHg</li>
+                    </ul>
+
+                    <div class="mt-4 text-center text-2xl font-bold text-accent p-3 bg-white border-2 border-accent rounded-lg">
+                        ABI = 162 / 125 = 1.296
+                    </div>
+
+                    <p class="mt-3 text-gray-700 italic text-sm">
+                        Interpretation: An ABI of 1.296 is at the higher end of the normal range. This is useful for future comparison or prompt communication to the care team if the patient is symptomatic.
+                    </p>
                 </div>
             </div>
         </section>
 
-        <!-- Example -->
-        <section class="mb-8">
-            <h2 class="text-2xl font-semibold text-primary mb-3">Calculation Example</h2>
-            <div class="bg-gray-50 p-6 rounded-lg border">
-                <p class="mb-3 text-gray-700">
-                    <strong class="font-semibold">Scenario:</strong> Patient's SBP at the Right posterior tibial (PT) is 162 mmHg, at the Right dorsalis pedis (DP) is 158 mmHg. SBP at the Right brachial is 125 mmHg and SBP at the Left brachial is 118 mmHg.
-                </p>
-                <ul class="list-disc list-inside pl-4 text-gray-700">
-                    <li>Highest Ankle SBP (PT vs DP): max(162, 158) = 162 mmHg</li>
-                    <li>Highest Brachial SBP: max(125, 118) = 125 mmHg</li>
-                </ul>
-
-                <div class="mt-4 text-center text-2xl font-bold text-secondary p-3 bg-white border-2 border-secondary rounded-lg">
-                    ABI = 162 / 125 = 1.296
-                </div>
-
-                <p class="mt-3 text-gray-700 italic">
-                    <strong class="font-semibold">Interpretation:</strong> An ABI of 1.296 is at the higher end of the normal range (1.0 - 1.4). This is helpful to note for future comparison or to communicate promptly to the care team if the patient is describing concerning symptoms.
-                </p>
-            </div>
-        </section>
-
-        <!-- Conclusion -->
-        <footer class="mt-10 pt-4 border-t border-gray-300">
-            <p class="text-gray-600 italic">
-                Professional societies’ screening recommendations for PAD are not fully met in clinical practice. This is an area where a short time spent on testing can produce actionable information to significantly improve patient outcomes and guide vascular referral decisions.
+        <!-- Footer / Action Button -->
+        <footer class="pt-6 border-t border-gray-200">
+             <p class="text-gray-600 italic text-sm mb-4">
+                Screening for PAD can produce actionable information to significantly improve patient outcomes and guide vascular referral decisions.
             </p>
+            <!-- Button retained from original request -->
+            <div class="flex justify-center">
+                <button onclick="window.location.href = '/';" class="bg-blue-800 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg shadow-xl transition duration-300 ease-in-out">
+                    Return to Home
+                </button>
+            </div>
         </footer>
 
     </div>
 </body>
 </html>
-
-
-            <!-- Additional text -->
-<div class="flex justify-center mt-6">
-    <button onclick="window.location.href = '/';" class="bg-blue-800 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
-        Return to Home
-    </button>
-</div>
-        </div>
-    </div>
-
-    <!-- Bootstrap JS for interactive components -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-</body>
-</html>
-
-
-
