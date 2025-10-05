@@ -72,34 +72,27 @@
             &lt; Return to Main Page
         </a>
         
-        <!-- Main Title -->
+        <!-- Main Title (Updated back to original intent) -->
         <h1 class="my-8 text-3xl md:text-4xl">Mechanical Ventilation Basics</h1>
 
         <!-- PDF Viewer Container -->
         <div class="pdf-viewer-container">
-            <!-- Using object tag for embedding PDFs, which is generally standard -->
-            <object 
-                data="vent1pg.pdf" 
-                type="application/pdf" 
-                class="w-full h-full">
+            <!-- Simplified to use only iframe for maximum compatibility -->
+            <iframe 
+                src="OnePagers/vent1pg.pdf" 
+                class="w-full h-full" 
+                title="Embedded Mechanical Ventilation Document"
+                loading="lazy">
                 
-                <!-- Fallback: Use iframe if object fails (often more reliable) -->
-                <iframe 
-                    src="vent1pg.pdf" 
-                    class="w-full h-full" 
-                    title="Embedded PDF Viewer">
-                    
-                    <!-- Final Fallback: Display link if neither object nor iframe works -->
-                    <div class="p-8 flex flex-col items-center justify-center h-full text-lg">
-                        <p class="mb-4">
-                            Your browser does not support embedded PDFs.<br>
-                            Please click the link below to view the document.
-                        </p>
-                        <!-- Apply the custom styled button class -->
-                        <a href="vent1pg.pdf" class="btn-primary" target="_blank">Open PDF</a>
-                    </div>
-                </iframe>
-            </object>
+                <!-- Fallback link in case the iframe itself cannot render the PDF -->
+                <div class="p-8 flex flex-col items-center justify-center h-full text-lg">
+                    <p class="text-gray-700 mb-4">
+                        We couldn't display the document here.<br>
+                        Please click the link below to view it directly.
+                    </p>
+                    <a href="OnePagers/vent1pg.pdf" class="btn-primary" target="_blank">Open PDF</a>
+                </div>
+            </iframe>
         </div>
     </div>
 </body>
