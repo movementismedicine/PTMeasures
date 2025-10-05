@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Custom styles based on user's original design */
         :root {
             --primary-color: #0096C8;
             --secondary-color: #206375;
@@ -21,22 +20,20 @@
             background-color: var(--background-color);
             color: var(--text-color);
             font-family: 'Lato', sans-serif;
-            /* Tailwind classes handle padding top */
         }
-        /* Custom button styling using CSS variables for color */
         .btn-primary {
             background-color: var(--primary-color);
             border-color: var(--primary-color);
             border-radius: 0.5rem;
             font-weight: bold;
             transition: background-color 0.2s ease-in-out;
-            color: white; /* Ensure text is visible */
+            color: white;
             padding: 0.75rem 1.5rem;
             display: inline-block;
             text-decoration: none;
         }
         .btn-primary:hover {
-            background-color: #007ba8; /* Slightly darker shade */
+            background-color: #007ba8;
             border-color: #007ba8;
             color: white;
         }
@@ -45,7 +42,6 @@
             font-weight: 700;
             color: var(--secondary-color);
         }
-        /* Aspect ratio container for PDF (portrait US Letter 8.5:11 ratio) */
         .pdf-viewer-container {
             width: 100%;
             max-width: 700px;
@@ -67,32 +63,33 @@
 </head>
 <body class="min-h-screen">
     <div class="max-w-4xl mx-auto p-4 pt-10 text-center">
-        <!-- Return Button -->
         <a href="javascript:history.back()" class="btn-primary inline-flex items-center text-lg">
             &lt; Return to Main Page
         </a>
-        
-        <!-- Main Title (Updated back to original intent) -->
         <h1 class="my-8 text-3xl md:text-4xl">Mechanical Ventilation Basics</h1>
-
         <!-- PDF Viewer Container -->
         <div class="pdf-viewer-container">
-            <!-- Simplified to use only iframe for maximum compatibility -->
-            <iframe 
-                src="OnePagers/vent1pg.pdf" 
-                class="w-full h-full" 
-                title="Embedded Mechanical Ventilation Document"
-                loading="lazy">
-                
-                <!-- Fallback link in case the iframe itself cannot render the PDF -->
+            <object 
+                data="vent1pg.pdf"
+                type="application/pdf"
+                width="100%"
+                height="100%"
+                aria-label="Embedded Mechanical Ventilation Document">
                 <div class="p-8 flex flex-col items-center justify-center h-full text-lg">
                     <p class="text-gray-700 mb-4">
                         We couldn't display the document here.<br>
                         Please click the link below to view it directly.
                     </p>
-                    <a href="OnePagers/vent1pg.pdf" class="btn-primary" target="_blank">Open PDF</a>
+                    <a href="vent1pg.pdf" class="btn-primary" target="_blank">Open PDF</a>
                 </div>
-            </iframe>
+            </object>
+        </div>
+        <!-- Fallback download link for browsers that don't display PDFs in objects -->
+        <div class="mt-6 text-lg">
+            <p class="text-gray-700 mb-2">
+                Can't see the embedded document above?
+            </p>
+            <a href="vent1pg.pdf" class="btn-primary" target="_blank" rel="noopener">Open PDF</a>
         </div>
     </div>
 </body>
