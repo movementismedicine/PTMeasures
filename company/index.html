@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Opus V Inc - Professional education for healthcare providers, CEU courses, and innovation tools">
+    <title>Opus V Inc | Healthcare Professional Education</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .mission {
+            background: white;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .mission h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .mission p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+        
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+        
+        .service-card h3 {
+            color: #3498db;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+        
+        .service-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+        
+        .about {
+            background: white;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .about h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .about p {
+            color: #555;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        footer p {
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .mission, .about {
+                padding: 1.5rem;
+            }
+            
+            .services {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Opus V Inc</h1>
+        <p>Professional Education for Healthcare Providers</p>
+    </header>
+
+    <div class="container">
+        <section class="mission">
+            <h2>Our Mission</h2>
+            <p>Opus V Inc is dedicated to advancing healthcare through comprehensive professional education. We empower healthcare providers with the knowledge and tools they need to deliver exceptional patient care and drive innovation in the medical field.</p>
+        </section>
+
+        <section class="services">
+            <div class="service-card">
+                <h3>CEU Courses</h3>
+                <p>We provide high-quality Continuing Education Unit courses designed specifically for healthcare professionals. Our courses help providers maintain certifications, stay current with best practices, and enhance their clinical expertise.</p>
+            </div>
+            
+            <div class="service-card">
+                <h3>Innovation Tools</h3>
+                <p>Our innovation tools support healthcare professionals in implementing cutting-edge practices and technologies. We develop resources that bridge the gap between emerging research and practical application in clinical settings.</p>
+            </div>
+            
+            <div class="service-card">
+                <h3>Professional Development</h3>
+                <p>Through our comprehensive educational programs, we support the continuous professional development of healthcare providers across various specialties and practice settings.</p>
+            </div>
+        </section>
+
+        <section class="about">
+            <h2>About Us</h2>
+            <p>Opus V Inc is a 501(c)(3) nonprofit organization based in Massachusetts. As a charitable educational organization, we are committed to improving healthcare outcomes through accessible, evidence-based professional education.</p>
+            <p>Our programs are designed by healthcare experts and educators who understand the challenges facing today's medical professionals. We believe that by investing in the education of healthcare providers, we contribute to better patient care and a stronger healthcare system.</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Opus V Inc | 501(c)(3) Nonprofit Organization | Massachusetts</p>
+    </footer>
+</body>
+</html>
