@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function in Sitting Test (FIST) - PTMeasures</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .setup-info {
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+        }
+
+        .setup-info h3 {
+            color: #1e40af;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .setup-info ul {
+            margin-left: 20px;
+            color: #475569;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .scoring-key {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+        }
+
+        .scoring-key h3 {
+            color: #92400e;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .scoring-key div {
+            font-size: 13px;
+            color: #78350f;
+            margin-bottom: 4px;
+        }
+
+        .test-item {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .test-item:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+        }
+
+        .item-header {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 15px;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .item-number {
+            background: #3b82f6;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .radio-option {
+            width: 100%;
+        }
+
+        .radio-option input[type="radio"] {
+            display: none;
+        }
+
+        .radio-option label {
+            display: block;
+            padding: 12px;
+            background: white;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .radio-option input[type="radio"]:checked + label {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .radio-option label:hover {
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+        }
+
+        .score-display {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+            box-shadow: 0 8px 16px rgba(16, 185, 129, 0.3);
+        }
+
+        .score-display h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .total-score {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .interpretation {
+            background: white;
+            color: #1e293b;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .interpretation h3 {
+            color: #1e40af;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .interpretation p {
+            color: #475569;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            flex: 1;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 150px;
+        }
+
+        .btn-reset {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-reset:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-home {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-home:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .reference {
+            margin-top: 30px;
+            padding: 15px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #64748b;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .buttons {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Function in Sitting Test (FIST)</h1>
+            <p>Interactive Assessment Form</p>
+        </div>
+
+        <div class="content">
+            <div class="setup-info">
+                <h3>Setup Requirements</h3>
+                <ul>
+                    <li>½ femur on surface; hips & knees flexed to 90°</li>
+                    <li>Use step/stool for positioning & foot support if needed</li>
+                </ul>
+            </div>
+
+            <div class="scoring-key">
+                <h3>Scoring Key (0-4 points per item)</h3>
+                <div><strong>4 = Independent:</strong> Completes task independently & successfully</div>
+                <div><strong>3 = Verbal cues/increased time:</strong> Needs more time or cues but completes independently</div>
+                <div><strong>2 = Upper extremity support:</strong> Must use UE for support or assistance</div>
+                <div><strong>1 = Needs assistance:</strong> Requires physical assist (min, mod, or max)</div>
+                <div><strong>0 = Dependent:</strong> Requires complete physical assist or unable to complete</div>
+            </div>
+
+            <div class="scoring-key" style="background: #dbeafe; border-left: 4px solid #3b82f6;">
+                <h3 style="color: #1e40af;">For Items 1-3 (Nudge Tests)</h3>
+                <div style="color: #1e3a8a;">Administer nudges in <strong>random order</strong>, once each direction (anterior, posterior, and lateral).</div>
+            </div>
+
+            <form id="fistForm">
+                <div class="test-item">
+                    <div class="item-header">
+                        <span class="item-number">1</span>
+                        <span>Anterior Nudge (superior sternum)</span>
+                    </div>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="item1" id="item1-4" value="4">
+                            <label for="item1-4">4 - Independent</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item1" id="item1-3" value="3">
+                            <label for="item1-3">3 - Verbal/Time</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item1" id="item1-2" value="2">
+                            <label for="item1-2">2 - UE Support</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item1" id="item1-1" value="1">
+                            <label for="item1-1">1 - Needs Assist</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item1" id="item1-0" value="0">
+                            <label for="item1-0">0 - Dependent</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="item-header">
+                        <span class="item-number">2</span>
+                        <span>Posterior Nudge (between scapular spines)</span>
+                    </div>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="item2" id="item2-4" value="4">
+                            <label for="item2-4">4 - Independent</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item2" id="item2-3" value="3">
+                            <label for="item2-3">3 - Verbal/Time</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item2" id="item2-2" value="2">
+                            <label for="item2-2">2 - UE Support</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item2" id="item2-1" value="1">
+                            <label for="item2-1">1 - Needs Assist</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item2" id="item2-0" value="0">
+                            <label for="item2-0">0 - Dependent</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="item-header">
+                        <span class="item-number">3</span>
+                        <span>Lateral Nudge (to dominant side at acromion)</span>
+                    </div>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="item3" id="item3-4" value="4">
+                            <label for="item3-4">4 - Independent</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item3" id="item3-3" value="3">
+                            <label for="item3-3">3 - Verbal/Time</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item3" id="item3-2" value="2">
+                            <label for="item3-2">2 - UE Support</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item3" id="item3-1" value="1">
+                            <label for="item3-1">1 - Needs Assist</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item3" id="item3-0" value="0">
+                            <label for="item3-0">0 - Dependent</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="item-header">
+                        <span class="item-number">4</span>
+                        <span>Static Sitting (30 seconds)</span>
+                    </div>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="item4" id="item4-4" value="4">
+                            <label for="item4-4">4 - Independent</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item4" id="item4-3" value="3">
+                            <label for="item4-3">3 - Verbal/Time</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item4" id="item4-2" value="2">
+                            <label for="item4-2">2 - UE Support</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item4" id="item4-1" value="1">
+                            <label for="item4-1">1 - Needs Assist</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item4" id="item4-0" value="0">
+                            <label for="item4-0">0 - Dependent</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="item-header">
+                        <span class="item-number">5</span>
+                        <span>Sitting, Shake 'No' (left and right)</span>
+                    </div>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="item5" id="item5-4" value="4">
+                            <label for="item5-4">4 - Independent</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item5" id="item5-3" value="3">
+                            <label for="item5-3">3 - Verbal/Time</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item5" id="item5-2" value="2">
+                            <label for="item5-2">2 - UE Support</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item5" id="item5-1" value="1">
+                            <label for="item5-1">1 - Needs Assist</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item5" id="item5-0" value="0">
+                            <label for="item5-0">0 - Dependent</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="item-header">
+                        <span class="item-number">6</span>
+                        <span>Sitting, Eyes Closed (30 seconds)</span>
+                    </div>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="item6" id="item6-4" value="4">
+                            <label for="item6-4">4 - Independent</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item6" id="item6-3" value="3">
+                            <label for="item6-3">3 - Verbal/Time</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item6" id="item6-2" value="2">
+                            <label for="item6-2">2 - UE Support</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item6" id="item6-1" value="1">
+                            <label for="item6-1">1 - Needs Assist</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item6" id="item6-0" value="0">
+                            <label for="item6-0">0 - Dependent</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="item-header">
+                        <span class="item-number">7</span>
+                        <span>Sitting, Lift Foot (dominant side, lift 1 inch twice)</span>
+                    </div>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="item7" id="item7-4" value="4">
+                            <label for="item7-4">4 - Independent</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item7" id="item7-3" value="3">
+                            <label for="item7-3">3 - Verbal/Time</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item7" id="item7-2" value="2">
+                            <label for="item7-2">2 - UE Support</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item7" id="item7-1" value="1">
+                            <label for="item7-1">1 - Needs Assist</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item7" id="item7-0" value="0">
+                            <label for="item7-0">0 - Dependent</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="item-header">
+                        <span class="item-number">8</span>
+                        <span>Pick Up Object from Behind (at midline, hands breadth posterior)</span>
+                    </div>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="item8" id="item8-4" value="4">
+                            <label for="item8-4">4 - Independent</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item8" id="item8-3" value="3">
+                            <label for="item8-3">3 - Verbal/Time</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item8" id="item8-2" value="2">
+                            <label for="item8-2">2 - UE Support</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item8" id="item8-1" value="1">
+                            <label for="item8-1">1 - Needs Assist</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item8" id="item8-0" value="0">
+                            <label for="item8-0">0 - Dependent</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="item-header">
+                        <span class="item-number">9</span>
+                        <span>Forward Reach (dominant arm, must complete full motion)</span>
+                    </div>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="item9" id="item9-4" value="4">
+                            <label for="item9-4">4 - Independent</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item9" id="item9-3" value="3">
+                            <label for="item9-3">3 - Verbal/Time</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item9" id="item9-2" value="2">
+                            <label for="item9-2">2 - UE Support</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item9" id="item9-1" value="1">
+                            <label for="item9-1">1 - Needs Assist</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item9" id="item9-0" value="0">
+                            <label for="item9-0">0 - Dependent</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="item-header">
+                        <span class="item-number">10</span>
+                        <span>Lateral Reach (dominant arm, clear opposite ischial tuberosity)</span>
+                    </div>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="item10" id="item10-4" value="4">
+                            <label for="item10-4">4 - Independent</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item10" id="item10-3" value="3">
+                            <label for="item10-3">3 - Verbal/Time</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item10" id="item10-2" value="2">
+                            <label for="item10-2">2 - UE Support</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item10" id="item10-1" value="1">
+                            <label for="item10-1">1 - Needs Assist</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item10" id="item10-0" value="0">
+                            <label for="item10-0">0 - Dependent</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="item-header">
+                        <span class="item-number">11</span>
+                        <span>Pick Up Object from Floor (from between feet)</span>
+                    </div>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="item11" id="item11-4" value="4">
+                            <label for="item11-4">4 - Independent</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item11" id="item11-3" value="3">
+                            <label for="item11-3">3 - Verbal/Time</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item11" id="item11-2" value="2">
+                            <label for="item11-2">2 - UE Support</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item11" id="item11-1" value="1">
+                            <label for="item11-1">1 - Needs Assist</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item11" id="item11-0" value="0">
+                            <label for="item11-0">0 - Dependent</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="item-header">
+                        <span class="item-number">12</span>
+                        <span>Posterior Scooting (move backwards 2 inches)</span>
+                    </div>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="item12" id="item12-4" value="4">
+                            <label for="item12-4">4 - Independent</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item12" id="item12-3" value="3">
+                            <label for="item12-3">3 - Verbal/Time</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item12" id="item12-2" value="2">
+                            <label for="item12-2">2 - UE Support</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item12" id="item12-1" value="1">
+                            <label for="item12-1">1 - Needs Assist</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item12" id="item12-0" value="0">
+                            <label for="item12-0">0 - Dependent</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="item-header">
+                        <span class="item-number">13</span>
+                        <span>Anterior Scooting (move forward 2 inches)</span>
+                    </div>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="item13" id="item13-4" value="4">
+                            <label for="item13-4">4 - Independent</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item13" id="item13-3" value="3">
+                            <label for="item13-3">3 - Verbal/Time</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item13" id="item13-2" value="2">
+                            <label for="item13-2">2 - UE Support</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item13" id="item13-1" value="1">
+                            <label for="item13-1">1 - Needs Assist</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item13" id="item13-0" value="0">
+                            <label for="item13-0">0 - Dependent</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-item">
+                    <div class="item-header">
+                        <span class="item-number">14</span>
+                        <span>Lateral Scooting (move to dominant side 2 inches)</span>
+                    </div>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="item14" id="item14-4" value="4">
+                            <label for="item14-4">4 - Independent</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item14" id="item14-3" value="3">
+                            <label for="item14-3">3 - Verbal/Time</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item14" id="item14-2" value="2">
+                            <label for="item14-2">2 - UE Support</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item14" id="item14-1" value="1">
+                            <label for="item14-1">1 - Needs Assist</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="item14" id="item14-0" value="0">
+                            <label for="item14-0">0 - Dependent</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="score-display">
+                <h2>Total Score</h2>
+                <div class="total-score" id="totalScore">0 / 56</div>
+            </div>
+
+            <div class="interpretation" id="interpretation">
+                <h3>Clinical Interpretation</h3>
+                <p>Complete all 14 items to see the interpretation.</p>
+            </div>
+
+            <div class="buttons">
+                <button type="button" class="btn-reset" onclick="resetForm()">Reset Form</button>
+            </div>
+
+            <div class="reference">
+                <strong>Reference:</strong> Gorman SL, Radtka S, Melnick ME, Abrams GM, Byl NN. Development and validation of the Function in Sitting Test in adults with acute stroke. J Neurol Phys Ther. 2010;34(3):150-160.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('fistForm');
+        const totalScoreElement = document.getElementById('totalScore');
+        const interpretationElement = document.getElementById('interpretation');
+
+        // Calculate score whenever a radio button is clicked
+        form.addEventListener('change', calculateScore);
+
+        function calculateScore() {
+            let total = 0;
+            let completedItems = 0;
+
+            // Calculate total score from all 14 items
+            for (let i = 1; i <= 14; i++) {
+                const selected = form.querySelector(`input[name="item${i}"]:checked`);
+                if (selected) {
+                    total += parseInt(selected.value);
+                    completedItems++;
+                }
+            }
+
+            // Update score display
+            totalScoreElement.textContent = `${total} / 56`;
+
+            // Update interpretation
+            updateInterpretation(total, completedItems);
+        }
+
+        function updateInterpretation(score, completedItems) {
+            const interpretationHTML = document.getElementById('interpretation');
+            
+            if (completedItems < 14) {
+                interpretationHTML.innerHTML = `
+                    <h3>Clinical Interpretation</h3>
+                    <p>Complete all 14 items to see the interpretation. (${completedItems}/14 items completed)</p>
+                `;
+                return;
+            }
+
+            let interpretation = '';
+            
+            if (score >= 52) {
+                interpretation = `
+                    <h3>Clinical Interpretation</h3>
+                    <p><strong>Excellent sitting function (${score}/56)</strong></p>
+                    <p>The patient demonstrates high-level independence in sitting with minimal to no limitations. Excellent dynamic sitting balance with ability to perform complex reaching and weight-shifting tasks independently.</p>
+                `;
+            } else if (score >= 42) {
+                interpretation = `
+                    <h3>Clinical Interpretation</h3>
+                    <p><strong>Good sitting function (${score}/56)</strong></p>
+                    <p>The patient demonstrates good sitting balance with mostly independent performance. May require occasional verbal cues or additional time for more challenging tasks. Generally functional for most ADLs requiring sitting balance.</p>
+                `;
+            } else if (score >= 28) {
+                interpretation = `
+                    <h3>Clinical Interpretation</h3>
+                    <p><strong>Moderate sitting function (${score}/56)</strong></p>
+                    <p>The patient demonstrates moderate sitting balance impairments. Frequently requires upper extremity support or physical assistance for dynamic tasks. May benefit from continued skilled physical therapy intervention focusing on trunk control and sitting balance.</p>
+                `;
+            } else if (score >= 14) {
+                interpretation = `
+                    <h3>Clinical Interpretation</h3>
+                    <p><strong>Fair to poor sitting function (${score}/56)</strong></p>
+                    <p>The patient demonstrates significant sitting balance deficits requiring substantial assistance. Limited independence in sitting activities. Recommend intensive physical therapy focusing on foundational sitting stability and trunk control.</p>
+                `;
+            } else {
+                interpretation = `
+                    <h3>Clinical Interpretation</h3>
+                    <p><strong>Poor sitting function (${score}/56)</strong></p>
+                    <p>The patient demonstrates severe sitting balance impairments with dependence for most or all sitting tasks. Requires maximum assistance and close supervision. Safety concerns present. Intensive therapeutic intervention and appropriate adaptive equipment recommended.</p>
+                `;
+            }
+
+            interpretationHTML.innerHTML = interpretation;
+        }
+
+        function resetForm() {
+            if (confirm('Are you sure you want to reset the form? All entered data will be cleared.')) {
+                form.reset();
+                totalScoreElement.textContent = '0 / 56';
+                interpretationElement.innerHTML = `
+                    <h3>Clinical Interpretation</h3>
+                    <p>Complete all 14 items to see the interpretation.</p>
+                `;
+            }
+        }
+
+        // Initial calculation on page load
+        calculateScore();
+    </script>
+</body>
+</html>
