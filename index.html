@@ -110,163 +110,170 @@
             background-color: var(--primary-color) !important;
             color: white !important;
         }
+
+        /* Carousel Container */
+        .carousel-container {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .carousel-wrapper {
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+            display: flex;
+            gap: 16px;
+            padding: 8px 4px 20px 4px;
+            scroll-behavior: smooth;
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .carousel-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Carousel Card Styling - Paper Ratio (8.5:11) */
+        .carousel-wrapper .carousel-card {
+            flex: 0 0 220px;
+            scroll-snap-align: start;
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: 284px;
+            border: none;
+        }
+
+        .carousel-wrapper .carousel-card:hover {
+            transform: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel-wrapper .carousel-card h5 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #2c3e50;
+            line-height: 1.3;
+        }
+
+        .carousel-wrapper .carousel-card p {
+            flex-grow: 1;
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .carousel-wrapper .carousel-card a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+
+        .carousel-wrapper .carousel-card a:hover {
+            background: #2980b9;
+        }
+
+        .carousel-wrapper .carousel-card a:active {
+            background: #2574a9;
+        }
+
+        /* Navigation Arrows */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.2s ease;
+        }
+
+        .nav-arrow:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            background: #f8f9fa;
+        }
+
+        .nav-arrow:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .nav-arrow.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .nav-arrow svg {
+            width: 24px;
+            height: 24px;
+            fill: #2c3e50;
+        }
+
+        .nav-arrow-left {
+            left: -20px;
+        }
+
+        .nav-arrow-right {
+            right: -20px;
+        }
+
+        /* Show arrows on desktop */
+        @media (min-width: 768px) {
+            .nav-arrow {
+                display: flex;
+            }
+
+            .carousel-container {
+                padding: 0 40px;
+            }
+        }
+
+        /* Scroll Indicators */
+        .scroll-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ddd;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .indicator:hover {
+            background: #bbb;
+        }
+
+        .indicator.active {
+            background: #3498db;
+            width: 24px;
+            border-radius: 4px;
+        }
     </style>
-    /* Carousel Container */
-.carousel-container {
-    position: relative;
-    margin-bottom: 40px;
-}
-
-.carousel-wrapper {
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Firefox */
-    display: flex;
-    gap: 16px;
-    padding: 8px 4px 20px 4px;
-    scroll-behavior: smooth;
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-.carousel-wrapper::-webkit-scrollbar {
-    display: none;
-}
-
-/* Card Styling - Paper Ratio (8.5:11) */
-.card {
-    flex: 0 0 220px;
-    scroll-snap-align: start;
-    background: white;
-    border-radius: 12px;
-    padding: 24px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    height: 284px; /* 220 * (11/8.5) = 284.7 */
-}
-
-.card h5 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 12px;
-    color: #2c3e50;
-    line-height: 1.3;
-}
-
-.card p {
-    flex-grow: 1;
-    font-size: 0.95rem;
-    color: #666;
-    margin-bottom: 16px;
-    line-height: 1.5;
-}
-
-.card a {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #3498db;
-    color: white;
-    text-decoration: none;
-    border-radius: 6px;
-    font-weight: 500;
-    text-align: center;
-    transition: background 0.3s ease;
-}
-
-.card a:hover {
-    background: #2980b9;
-}
-
-.card a:active {
-    background: #2574a9;
-}
-
-/* Navigation Arrows */
-.nav-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: white;
-    border: none;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    cursor: pointer;
-    display: none; /* Hidden on mobile by default */
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    transition: all 0.2s ease;
-}
-
-.nav-arrow:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    background: #f8f9fa;
-}
-
-.nav-arrow:active {
-    transform: translateY(-50%) scale(0.95);
-}
-
-.nav-arrow.disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-}
-
-.nav-arrow svg {
-    width: 24px;
-    height: 24px;
-    fill: #2c3e50;
-}
-
-.nav-arrow-left {
-    left: -20px;
-}
-
-.nav-arrow-right {
-    right: -20px;
-}
-
-/* Show arrows on desktop */
-@media (min-width: 768px) {
-    .nav-arrow {
-        display: flex;
-    }
-
-    .carousel-container {
-        padding: 0 40px;
-    }
-}
-
-/* Scroll Indicators */
-.scroll-indicators {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 12px;
-}
-
-.indicator {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #ddd;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.indicator:hover {
-    background: #bbb;
-}
-
-.indicator.active {
-    background: #3498db;
-    width: 24px;
-    border-radius: 4px;
-}
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -410,6 +417,7 @@
                 </div>
             </div>
         </div>
+    </div>
     <hr>
     <div class="container my-5">
         <h2 class="text-center mb-4" id="reference-scales">Reference Scales</h2>
@@ -462,77 +470,79 @@
         </div>
     </div>
     <hr>
-   <section class="carousel-container">
-    <h2 id="one-pagers">One Pagers</h2>
-    
-    <!-- Left Arrow -->
-    <button class="nav-arrow nav-arrow-left" id="prevBtn" aria-label="Previous">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-        </svg>
-    </button>
+    <div class="container my-5">
+        <section class="carousel-container">
+            <h2 class="text-center mb-4" id="one-pagers">One Pagers</h2>
+            
+            <!-- Left Arrow -->
+            <button class="nav-arrow nav-arrow-left" id="prevBtn" aria-label="Previous">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+            </button>
 
-    <!-- Right Arrow -->
-    <button class="nav-arrow nav-arrow-right" id="nextBtn" aria-label="Next">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
-        </svg>
-    </button>
+            <!-- Right Arrow -->
+            <button class="nav-arrow nav-arrow-right" id="nextBtn" aria-label="Next">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </button>
 
-    <div class="carousel-wrapper" id="carousel">
-        <!-- Card 1 -->
-        <div class="card">
-            <h5>How to Evaluate Acutely Dizzy Patients</h5>
-            <p>Systematic, evidence-based approach to maximize diagnostic accuracy.</p>
-            <a href="OnePagers/Dizzyviewer.html">Open Resource</a>
-        </div>
+            <div class="carousel-wrapper" id="carousel">
+                <!-- Card 1 -->
+                <div class="carousel-card">
+                    <h5>How to Evaluate Acutely Dizzy Patients</h5>
+                    <p>Systematic, evidence-based approach to maximize diagnostic accuracy.</p>
+                    <a href="OnePagers/Dizzyviewer.html">Open Resource</a>
+                </div>
 
-        <!-- Card 2 -->
-        <div class="card">
-            <h5>Cervical Myelopathy</h5>
-            <p>How to screen for cervical cord compression.</p>
-            <a href="OnePagers/myeloviewer.html">Open Resource</a>
-        </div>
+                <!-- Card 2 -->
+                <div class="carousel-card">
+                    <h5>Cervical Myelopathy</h5>
+                    <p>How to screen for cervical cord compression.</p>
+                    <a href="OnePagers/myeloviewer.html">Open Resource</a>
+                </div>
 
-        <!-- Card 3 -->
-        <div class="card">
-            <h5>Mechanical Ventilation</h5>
-            <p>Basics of ventilators, physiology, and PT considerations.</p>
-            <a href="OnePagers/ventviewer.html">Open Resource</a>
-        </div>
+                <!-- Card 3 -->
+                <div class="carousel-card">
+                    <h5>Mechanical Ventilation</h5>
+                    <p>Basics of ventilators, physiology, and PT considerations.</p>
+                    <a href="OnePagers/ventviewer.html">Open Resource</a>
+                </div>
 
-        <!-- Card 4 -->
-        <div class="card">
-            <h5>Parkinsonism</h5>
-            <p>Recognition, assessment, and rehab considerations for Parkinsonian syndromes.</p>
-            <a href="OnePagers/Parkinsonviewer.html">Open Resource</a>
-        </div>
+                <!-- Card 4 -->
+                <div class="carousel-card">
+                    <h5>Parkinsonism</h5>
+                    <p>Recognition, assessment, and rehab considerations for Parkinsonian syndromes.</p>
+                    <a href="OnePagers/Parkinsonviewer.html">Open Resource</a>
+                </div>
 
-        <!-- Card 5 -->
-        <div class="card">
-            <h5>Vascular Assessment</h5>
-            <p>Reference for bedside vascular assessment and interpretation.</p>
-            <a href="OnePagers/Vascularviewer.html">Open Resource</a>
-        </div>
+                <!-- Card 5 -->
+                <div class="carousel-card">
+                    <h5>Vascular Assessment</h5>
+                    <p>Reference for bedside vascular assessment and interpretation.</p>
+                    <a href="OnePagers/Vascularviewer.html">Open Resource</a>
+                </div>
 
-        <!-- Card 6 -->
-        <div class="card">
-            <h5>Myoclonus</h5>
-            <p>Myoclonus considerations for rehab providers.</p>
-            <a href="OnePagers/Myoclonusviewer.html">Open Resource</a>
-        </div>
+                <!-- Card 6 -->
+                <div class="carousel-card">
+                    <h5>Myoclonus</h5>
+                    <p>Myoclonus considerations for rehab providers.</p>
+                    <a href="OnePagers/Myoclonusviewer.html">Open Resource</a>
+                </div>
+            </div>
+
+            <!-- Scroll Indicators -->
+            <div class="scroll-indicators" id="indicators">
+                <div class="indicator active"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+            </div>
+        </section>
     </div>
-
-    <!-- Scroll Indicators -->
-    <div class="scroll-indicators" id="indicators">
-        <div class="indicator active"></div>
-        <div class="indicator"></div>
-        <div class="indicator"></div>
-        <div class="indicator"></div>
-        <div class="indicator"></div>
-        <div class="indicator"></div>
-    </div>
-</section>
     <hr>
     <div class="container my-5">
         <h2 class="text-center mb-4" id="reference-literature">Reference Literature</h2>
@@ -580,17 +590,17 @@
                 });
         });
     }
-</script>
-        <script>
+    </script>
+    <script>
     const carousel = document.getElementById('carousel');
     const indicators = document.querySelectorAll('.indicator');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
-    const cards = document.querySelectorAll('.card');
+    const carouselCards = document.querySelectorAll('.carousel-card');
     
     // Calculate card width including gap
     function getCardWidth() {
-        return cards[0].offsetWidth + 16; // card width + gap
+        return carouselCards[0].offsetWidth + 16; // card width + gap
     }
 
     // Update scroll indicators based on scroll position
@@ -610,7 +620,7 @@
     // Update arrow disabled states
     function updateArrowStates(activeIndex) {
         prevBtn.classList.toggle('disabled', activeIndex === 0);
-        nextBtn.classList.toggle('disabled', activeIndex === cards.length - 1);
+        nextBtn.classList.toggle('disabled', activeIndex === carouselCards.length - 1);
     }
 
     // Throttle scroll events for better performance
@@ -644,7 +654,7 @@
         const cardWidth = getCardWidth();
         const currentIndex = Math.round(scrollLeft / cardWidth);
         
-        if (currentIndex < cards.length - 1) {
+        if (currentIndex < carouselCards.length - 1) {
             carousel.scrollTo({
                 left: cardWidth * (currentIndex + 1),
                 behavior: 'smooth'
@@ -665,6 +675,6 @@
 
     // Initialize arrow states
     updateArrowStates(0);
-</script>
+    </script>
 </body>
 </html>
