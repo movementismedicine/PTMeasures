@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
-
     <style>
         :root {
             --primary-color: #0096C8;
@@ -42,17 +41,18 @@
             width: 100%;
             max-width: 700px;
             margin: 0 auto;
-            aspect-ratio: 8.5 / 11;
+            /* Changed to accommodate 2 pages vertically: 8.5 / (11*2) */
+            aspect-ratio: 8.5 / 22;
             background: #fff;
             box-shadow: 0 2px 12px rgba(0,0,0,0.08);
             border-radius: 0.5rem;
             overflow: hidden;
             position: relative;
         }
-        @supports not (aspect-ratio: 8.5 / 11) {
+        @supports not (aspect-ratio: 8.5 / 22) {
             .pdf-viewer-container {
-                height: calc(100vw * 11 / 8.5);
-                max-height: 900px;
+                height: calc(100vw * 22 / 8.5);
+                max-height: 1800px;
             }
         }
         .pdf-viewer-container object,
@@ -68,15 +68,15 @@
     </style>
 </head>
 <body>
+    <div class="container">
         <h1 class="my-4">How to treat BPPV</h1>
-
         <div class="pdf-viewer-container">
             <!-- Object fallback logic: attempt to display PDF, then embed, finally offer direct link -->
             <object data="/OnePagers/TreatBPPV2pg.pdf" type="application/pdf">
                 <embed src="/OnePagers/TreatBPPV2pg.pdf" type="application/pdf">
                     <p>
                         Your browser does not support embedded PDFs.<br>
-                        <a href="/OnePagers/TreatBPPV2g.pdf" class="btn btn-primary fallback-link" target="_blank">Open PDF</a>
+                        <a href="/OnePagers/TreatBPPV2pg.pdf" class="btn btn-primary fallback-link" target="_blank">Open PDF</a>
                     </p>
                 </embed>
             </object>
