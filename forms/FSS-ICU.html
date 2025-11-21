@@ -3,278 +3,810 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FSS-ICU Standard Measure</title>
-    <!-- Bootstrap CSS for modern styling -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>FSS-ICU Scoring Form</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            background-color: #f8f9fa;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 16px;
+            line-height: 1.5;
         }
+        
         .container {
-            max-width: 900px;
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 200px;
+            padding-bottom: 40px;
         }
-        .card {
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
+        
+        h1 {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 8px;
         }
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 20px;
         }
-        .score-label {
-            font-weight: bold;
-            color: #495057;
-            margin-bottom: 0.5rem;
+        
+        .guidelines {
+            background: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 16px;
+            margin-bottom: 24px;
+            font-size: 14px;
         }
-        .score-info {
-            font-size: 0.9em;
-            color: #6c757d;
+        
+        .guidelines h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #2c3e50;
         }
-        .form-check-input:checked ~ .form-check-label {
-            background-color: #0d6efd;
+        
+        .guidelines ul {
+            margin-left: 20px;
+        }
+        
+        .guidelines li {
+            margin-bottom: 8px;
+        }
+        
+        .task-section {
+            margin-bottom: 24px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .task-header {
+            background: #3498db;
             color: white;
-            border-radius: 0.5rem;
+            padding: 12px 16px;
+            font-weight: 600;
+            font-size: 16px;
         }
-        .form-check-label {
-            padding: 0.5rem 1rem;
+        
+        .task-body {
+            padding: 16px;
+        }
+        
+        .task-question {
+            color: #2c3e50;
+            font-size: 15px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .testing-note {
+            background: #fff9e6;
+            border-left: 3px solid #ffc107;
+            padding: 10px;
+            margin-bottom: 16px;
+            font-size: 13px;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .branch-label {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-top: 12px;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+        
+        .score-option {
+            display: block;
+            padding: 12px;
+            margin-bottom: 8px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
             cursor: pointer;
-            border: 1px solid #dee2e6;
-            border-radius: 0.5rem;
-            transition: background-color 0.2s, color 0.2s;
+            transition: all 0.2s;
+            background: white;
+        }
+        
+        .score-option:hover {
+            border-color: #3498db;
+            background: #f8f9fa;
+        }
+        
+        .score-option input[type="radio"] {
+            margin-right: 10px;
+        }
+        
+        .score-option.selected {
+            border-color: #3498db;
+            background: #e3f2fd;
+        }
+        
+        .score-description {
+            color: #555;
+            font-size: 14px;
+            margin-left: 28px;
+            margin-top: 4px;
+        }
+        
+        .not-performed {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 16px;
+        }
+        
+        .not-performed label {
+            display: flex;
+            align-items: flex-start;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .not-performed input[type="checkbox"] {
+            margin-right: 10px;
+            margin-top: 2px;
+        }
+        
+        .results {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #2c3e50;
+            color: white;
+            padding: 20px 16px;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+            max-height: 50vh;
+            overflow-y: auto;
+        }
+        
+        .results-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .score-display {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+        
+        .score-value {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .total-score {
+            font-size: 18px;
+            font-weight: 700;
+            padding-top: 12px;
+            border-top: 2px solid #34495e;
+            margin-top: 8px;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            color: #856404;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 12px;
+            font-size: 12px;
+        }
+        
+        .reset-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
             width: 100%;
+            margin-top: 12px;
+        }
+        
+        .reset-btn:hover {
+            background: #c0392b;
+        }
+        
+        .wheelchair-section {
+            background: #f8f9fa;
+            border: 2px solid #7f8c8d;
+            margin-bottom: 40px;
+        }
+        
+        .wheelchair-section .task-header {
+            background: #7f8c8d;
         }
     </style>
 </head>
 <body>
-
-    <div class="container my-5">
-        <div class="card p-4">
-            <h1 class="text-center mb-4">FSS-ICU Standard Measure</h1>
-            <p class="text-center lead">Use the radio buttons below to score each of the five items. The total score will be calculated automatically.</p>
-
-            <!-- Reminder section -->
-            <div class="alert alert-info text-center" role="alert">
-                If you are not familiar with FSS-ICU, please review the full instrument in detail at this link: <a href="https://www.improvelto.com/wp-content/uploads/2015/12/FSS-ICU-Creative-Commons-V2-08-12-15-2.pdf" target="_blank" rel="noopener noreferrer">FSS-ICU Full Instrument</a>
-            </div>
-
-            <form id="fss-icu-form">
+    <div class="container">
+        <h1>FSS-ICU Scoring Form</h1>
+        <p class="subtitle">Functional Status Score for the Intensive Care Unit (Version 8.11.15)</p>
+        
+        <div class="guidelines">
+            <h3>General Guidelines for Scoring:</h3>
+            <ul>
+                <li>The FSS-ICU score should be used to grade a patient's physical performance only. The evaluator may assist with managing medical devices and/or equipment, as well as supervising patient monitoring systems. Such assistance from the evaluator should not be considered when grading the patient's physical performance.</li>
+                <li>Unless otherwise stated (i.e. for ambulation and wheelchair mobility where scoring allows for 2 evaluators), scoring of the FSS-ICU should be based on only one evaluator physically assisting or supervising the patient with each given task. Scoring of the FSS-ICU must be performed without the use of a patient lift device to assist the patient.</li>
+                <li>Scoring should be based on what is performed in the session where testing occurs, not what the evaluator has witnessed the patient complete in the past or anticipates that the patient should be able to perform.</li>
+            </ul>
+            
+            <h3 style="margin-top: 16px;">Specific Instructions for Scoring:</h3>
+            <p>For each task, the minimum and maximum score is 0 and 7, respectively. The "Total Score" is the sum of items 1 through 5, and has a minimum and maximum of 0 and 35, respectively.</p>
+            <p style="margin-top: 8px;"><strong>If task(s) were not performed for any other reason other than weakness:</strong></p>
+            <ul>
+                <li>If &lt;2 tasks were not performed for such reasons, use the average score from the remaining completed items to score the 1 or 2 missing tasks.</li>
+                <li>If &gt;2 tasks were not performed for such reasons, only the completed tasks can be scored and a total FSS-ICU total score cannot be calculated.</li>
+            </ul>
+        </div>
+        
+        <!-- Task 1: Rolling -->
+        <div class="task-section">
+            <div class="task-header">1. Rolling</div>
+            <div class="task-body">
+                <p class="task-question">Does the patient need assistance to roll in the bed?</p>
+                <div class="testing-note">[Testing Note: Place the bed as flat as safely possible for the patient]</div>
                 
-                <!-- Section 1: Rolling -->
-                <div class="mb-4">
-                    <h5 class="score-label">1. Rolling</h5>
-                    <div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="rolling" id="rolling1" value="1">
-                            <label class="form-check-label" for="rolling1">1: Dependent</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="rolling" id="rolling2" value="2">
-                            <label class="form-check-label" for="rolling2">2: Max Assist</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="rolling" id="rolling3" value="3">
-                            <label class="form-check-label" for="rolling3">3: Mod Assist</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="rolling" id="rolling4" value="4">
-                            <label class="form-check-label" for="rolling4">4: Min Assist</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="rolling" id="rolling5" value="5">
-                            <label class="form-check-label" for="rolling5">5: Supervision or Cues</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="rolling" id="rolling6" value="6">
-                            <label class="form-check-label" for="rolling6">6: Modified Independent</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="rolling" id="rolling7" value="7">
-                            <label class="form-check-label" for="rolling7">7: Independent</label>
-                        </div>
-                    </div>
+                <div class="branch-label">No:</div>
+                
+                <label class="score-option" data-task="1" data-score="7">
+                    <input type="radio" name="task1" value="7">
+                    <div class="score-description">Does the patient perform rolling by themselves without the use of a bed rail or other object to pull on? If yes, score 7.</div>
+                </label>
+                
+                <label class="score-option" data-task="1" data-score="6">
+                    <input type="radio" name="task1" value="6">
+                    <div class="score-description">Does the patient require a use of a rail or object to pull on in order to roll themselves in bed? If yes, score 6.</div>
+                </label>
+                
+                <div class="branch-label">Yes:</div>
+                
+                <label class="score-option" data-task="1" data-score="5">
+                    <input type="radio" name="task1" value="5">
+                    <div class="score-description">Does the patient require cueing or coaxing in order to roll, but physically can perform rolling without assistance (the patient may use a bed rail or object to pull self if needed)? If yes, score 5.</div>
+                </label>
+                
+                <label class="score-option" data-task="1" data-score="4">
+                    <input type="radio" name="task1" value="4">
+                    <div class="score-description">Does the patient require minimal assistance to perform rolling (defined as the patient performing 75% or more of the amount of the work)? If yes, score 4.</div>
+                </label>
+                
+                <label class="score-option" data-task="1" data-score="3">
+                    <input type="radio" name="task1" value="3">
+                    <div class="score-description">Does the patient require moderate assistance to perform rolling (defined as the patient performing between 26%-74% of the amount of work)? If yes, score 3.</div>
+                </label>
+                
+                <label class="score-option" data-task="1" data-score="2">
+                    <input type="radio" name="task1" value="2">
+                    <div class="score-description">Does the patient require maximum assistance to perform rolling (defined as the patient performing 25% or less of the amount of work)? If yes, score 2.</div>
+                </label>
+                
+                <label class="score-option" data-task="1" data-score="1">
+                    <input type="radio" name="task1" value="1">
+                    <div class="score-description">Is the patient completely dependent or unable to assist with rolling (defined as rolling performed, but patient not being able to assist at all)? If yes, score 1.</div>
+                </label>
+                
+                <label class="score-option" data-task="1" data-score="0">
+                    <input type="radio" name="task1" value="0">
+                    <div class="score-description">Is the patient unable to attempt or complete the task of rolling due to weakness? If yes, score 0.</div>
+                </label>
+                
+                <div class="not-performed">
+                    <label>
+                        <input type="checkbox" name="task1_not_performed">
+                        <span>If task(s) were not performed for any other reason other than weakness (e.g., patient declines, or patient's medical equipment prevents performance of the task), then do not score.</span>
+                    </label>
                 </div>
-
-                <!-- Section 2: Supine to sit -->
-                <div class="mb-4">
-                    <h5 class="score-label">2. Supine to sit</h5>
-                    <div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="supineToSit" id="supineToSit1" value="1">
-                            <label class="form-check-label" for="supineToSit1">1: Dependent</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="supineToSit" id="supineToSit2" value="2">
-                            <label class="form-check-label" for="supineToSit2">2: Max Assist</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="supineToSit" id="supineToSit3" value="3">
-                            <label class="form-check-label" for="supineToSit3">3: Mod Assist</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="supineToSit" id="supineToSit4" value="4">
-                            <label class="form-check-label" for="supineToSit4">4: Min Assist</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="supineToSit" id="supineToSit5" value="5">
-                            <label class="form-check-label" for="supineToSit5">5: Supervision or Cues</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="supineToSit" id="supineToSit6" value="6">
-                            <label class="form-check-label" for="supineToSit6">6: Modified Independent</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="supineToSit" id="supineToSit7" value="7">
-                            <label class="form-check-label" for="supineToSit7">7: Independent</label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Section 3: Sitting unsupported -->
-                <div class="mb-4">
-                    <h5 class="score-label">3. Sitting unsupported</h5>
-                    <div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="sittingUnsupported" id="sittingUnsupported1" value="1">
-                            <label class="form-check-label" for="sittingUnsupported1">1: Dependent</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="sittingUnsupported" id="sittingUnsupported2" value="2">
-                            <label class="form-check-label" for="sittingUnsupported2">2: Max Assist</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="sittingUnsupported" id="sittingUnsupported3" value="3">
-                            <label class="form-check-label" for="sittingUnsupported3">3: Mod Assist</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="sittingUnsupported" id="sittingUnsupported4" value="4">
-                            <label class="form-check-label" for="sittingUnsupported4">4: Min Assist</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="sittingUnsupported" id="sittingUnsupported5" value="5">
-                            <label class="form-check-label" for="sittingUnsupported5">5: Supervision or Cues</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="sittingUnsupported" id="sittingUnsupported6" value="6">
-                            <label class="form-check-label" for="sittingUnsupported6">6: Modified Independent</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="sittingUnsupported" id="sittingUnsupported7" value="7">
-                            <label class="form-check-label" for="sittingUnsupported7">7: Independent</label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Section 4: Sit to stand -->
-                <div class="mb-4">
-                    <h5 class="score-label">4. Sit to stand</h5>
-                    <div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="sitToStand" id="sitToStand1" value="1">
-                            <label class="form-check-label" for="sitToStand1">1: Dependent</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="sitToStand" id="sitToStand2" value="2">
-                            <label class="form-check-label" for="sitToStand2">2: Max Assist</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="sitToStand" id="sitToStand3" value="3">
-                            <label class="form-check-label" for="sitToStand3">3: Mod Assist</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="sitToStand" id="sitToStand4" value="4">
-                            <label class="form-check-label" for="sitToStand4">4: Min Assist</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="sitToStand" id="sitToStand5" value="5">
-                            <label class="form-check-label" for="sitToStand5">5: Supervision or Cues</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="sitToStand" id="sitToStand6" value="6">
-                            <label class="form-check-label" for="sitToStand6">6: Modified Independent</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="sitToStand" id="sitToStand7" value="7">
-                            <label class="form-check-label" for="sitToStand7">7: Independent</label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Section 5: Score for ambulation -->
-                <div class="mb-4">
-                    <h5 class="score-label">5. Score for ambulation</h5>
-                    <div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="ambulation" id="ambulation1" value="1">
-                            <label class="form-check-label" for="ambulation1">1: &lt;50'</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="ambulation" id="ambulation2" value="2">
-                            <label class="form-check-label" for="ambulation2">2: 50-150'</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="ambulation" id="ambulation3" value="3">
-                            <label class="form-check-label" for="ambulation3">3: 150' with 50% assistance</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="ambulation" id="ambulation4" value="4">
-                            <label class="form-check-label" for="ambulation4">4: 150' with 25% assistance</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="ambulation" id="ambulation5" value="5">
-                            <label class="form-check-label" for="ambulation5">5: 150' with Supervision and Cues</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="ambulation" id="ambulation6" value="6">
-                            <label class="form-check-label" for="ambulation6">6: 150' with A.D.</label>
-                        </div>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="ambulation" id="ambulation7" value="7">
-                            <label class="form-check-label" for="ambulation7">7: 150' Independently</label>
-                        </div>
-                    </div>
-                </div>
-            </form>
-
-            <div class="mt-4 p-3 bg-light rounded-3 text-center">
-                <h4 class="mb-0">Total Score: <span id="total-score" class="fw-bold">0</span> / 35</h4>
             </div>
-
+        </div>
+        
+        <!-- Task 2: Supine to Sit -->
+        <div class="task-section">
+            <div class="task-header">2. Supine to Sit Transfers</div>
+            <div class="task-body">
+                <p class="task-question">Does the patient require assistance to come to sitting from supine position?</p>
+                <div class="testing-note">[Testing Note: Place the bed as flat as safely possible for the patient]</div>
+                
+                <div class="branch-label">No:</div>
+                
+                <label class="score-option" data-task="2" data-score="7">
+                    <input type="radio" name="task2" value="7">
+                    <div class="score-description">Does the patient come to sitting from a lying down position by themselves without the use of a bed rail or other object to pull on for support? If yes, score 7.</div>
+                </label>
+                
+                <label class="score-option" data-task="2" data-score="6">
+                    <input type="radio" name="task2" value="6">
+                    <div class="score-description">Does the patient come to sitting from a lying down position by themselves, but requires the use of a bed rail or other object to pull on for support? If yes, score 6.</div>
+                </label>
+                
+                <div class="branch-label">Yes:</div>
+                
+                <label class="score-option" data-task="2" data-score="5">
+                    <input type="radio" name="task2" value="5">
+                    <div class="score-description">Does the patient require cueing or coaxing in order to come to sitting from a lying down position, but physically can perform without assistance (the patient may use a bed rail or object to assist themselves if needed)? If yes, score 5.</div>
+                </label>
+                
+                <label class="score-option" data-task="2" data-score="4">
+                    <input type="radio" name="task2" value="4">
+                    <div class="score-description">Does the patient require minimal assistance to come to sitting from a lying down position (defined as the patient performing 75% or more of the amount of the work?) If yes, score 4.</div>
+                </label>
+                
+                <label class="score-option" data-task="2" data-score="3">
+                    <input type="radio" name="task2" value="3">
+                    <div class="score-description">Does the patient require moderate assistance to come to sitting from a lying down position (defined as the patient performing between 26%-74% of the amount of the work?) If yes, score 3.</div>
+                </label>
+                
+                <label class="score-option" data-task="2" data-score="2">
+                    <input type="radio" name="task2" value="2">
+                    <div class="score-description">Does the patient require maximum assistance to come to sitting from a lying down position (defined as the patient performing 25% or less of the amount of the work?) If yes, score 2.</div>
+                </label>
+                
+                <label class="score-option" data-task="2" data-score="1">
+                    <input type="radio" name="task2" value="1">
+                    <div class="score-description">Is the patient completely dependent or unable to assist with transferring to sitting from a lying down position (defined as supine to sit transfer performed, but patient not being able to assist at all)? If yes, score 1.</div>
+                </label>
+                
+                <label class="score-option" data-task="2" data-score="0">
+                    <input type="radio" name="task2" value="0">
+                    <div class="score-description">Is the patient unable to attempt or complete the task of transferring from supine to sit due to weakness? If yes, score 0.</div>
+                </label>
+                
+                <div class="not-performed">
+                    <label>
+                        <input type="checkbox" name="task2_not_performed">
+                        <span>If task(s) were not performed for any other reason other than weakness (e.g., patient declines, or patient's medical equipment prevents performance of the task), then do not score.</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Task 3: Sit to Stand -->
+        <div class="task-section">
+            <div class="task-header">3. Sit to Stand Transfers</div>
+            <div class="task-body">
+                <p class="task-question">Does the patient require assistance to stand up from a sitting position?</p>
+                <div class="testing-note">[Testing Note: Transfers can occur from any surface of a reasonable and customary height, including a bed, chair, etc.]</div>
+                
+                <div class="branch-label">No:</div>
+                
+                <label class="score-option" data-task="3" data-score="7">
+                    <input type="radio" name="task3" value="7">
+                    <div class="score-description">Does the patient stand up or pull up from a seated position by themselves without the use of bed rail/ armrests or other object to push on or pull from? If yes, score 7.</div>
+                </label>
+                
+                <label class="score-option" data-task="3" data-score="6">
+                    <input type="radio" name="task3" value="6">
+                    <div class="score-description">Does the patient require the use of bed rail/armrests or other object to push on or pull from in order to stand up? If yes- score 6.</div>
+                </label>
+                
+                <div class="branch-label">Yes:</div>
+                
+                <label class="score-option" data-task="3" data-score="5">
+                    <input type="radio" name="task3" value="5">
+                    <div class="score-description">Does the patient require cueing or coaxing in order to stand from a seated position, but physically can perform without assistance (the patient may use a bed rail/armrests or other objects to assist themselves if needed)? If yes, score 5.</div>
+                </label>
+                
+                <label class="score-option" data-task="3" data-score="4">
+                    <input type="radio" name="task3" value="4">
+                    <div class="score-description">Does the patient require minimal assistance to stand from a seated position (defined as the patient performing 75% or more of the amount of the work)? The patient may use armrests, if needed. If yes, score 4.</div>
+                </label>
+                
+                <label class="score-option" data-task="3" data-score="3">
+                    <input type="radio" name="task3" value="3">
+                    <div class="score-description">Does the patient require moderate assistance to stand from a seated position (defined as the patient performing between 26-74% of the amount of work)? If yes, score 3.</div>
+                </label>
+                
+                <label class="score-option" data-task="3" data-score="2">
+                    <input type="radio" name="task3" value="2">
+                    <div class="score-description">Does the patient require maximum assistance to stand from a seated position (defined as the patient performing 25% or less of the amount of work)? If yes, score 2.</div>
+                </label>
+                
+                <label class="score-option" data-task="3" data-score="1">
+                    <input type="radio" name="task3" value="1">
+                    <div class="score-description">Is the patient completely dependent or unable to assist with going from a seated to standing position (defined as sit to stand transfer performed, but patient not being able to assist at all)? If yes, score 1.</div>
+                </label>
+                
+                <label class="score-option" data-task="3" data-score="0">
+                    <input type="radio" name="task3" value="0">
+                    <div class="score-description">Is the patient unable to attempt or complete the task of transferring from sit to stand due to weakness? If yes, score 0.</div>
+                </label>
+                
+                <div class="not-performed">
+                    <label>
+                        <input type="checkbox" name="task3_not_performed">
+                        <span>If task(s) were not performed for any other reason other than weakness (e.g., patient declines, or patient's medical equipment prevents performance of the task), then do not score.</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Task 4: Sitting Edge of Bed -->
+        <div class="task-section">
+            <div class="task-header">4. Sitting Edge of Bed</div>
+            <div class="task-body">
+                <p class="task-question">Does the patient require assistance in order to sit up at the side of the bed?</p>
+                <div class="testing-note">[Testing Note: There is no time requirement for this task]</div>
+                
+                <div class="branch-label">No:</div>
+                
+                <label class="score-option" data-task="4" data-score="7">
+                    <input type="radio" name="task4" value="7">
+                    <div class="score-description">Does the patient sit at the side of the bed by themselves with hands free and not holding onto a bed rail or object for support? If yes, score 7.</div>
+                </label>
+                
+                <label class="score-option" data-task="4" data-score="6">
+                    <input type="radio" name="task4" value="6">
+                    <div class="score-description">Does the patient require their hand(s) or a bed rail to balance themselves while sitting up at the side of the bed by themselves? If yes, score 6.</div>
+                </label>
+                
+                <div class="branch-label">Yes:</div>
+                
+                <label class="score-option" data-task="4" data-score="5">
+                    <input type="radio" name="task4" value="5">
+                    <div class="score-description">Does the patient require cueing or coaxing in order to sit at the side of the bed, but physically can perform without assistance (may use hand to balance themselves if needed)? If yes, score 5.</div>
+                </label>
+                
+                <label class="score-option" data-task="4" data-score="4">
+                    <input type="radio" name="task4" value="4">
+                    <div class="score-description">Does the patient require minimal assistance to sit at the side of the bed (defined the patient performing 75% or more of the amount of the work)? If yes, score 4.</div>
+                </label>
+                
+                <label class="score-option" data-task="4" data-score="3">
+                    <input type="radio" name="task4" value="3">
+                    <div class="score-description">Does the patient require moderate assistance to sit at the side of the bed (defined as the patient performing between 26-74% of the amount of work)? If yes, score 3.</div>
+                </label>
+                
+                <label class="score-option" data-task="4" data-score="2">
+                    <input type="radio" name="task4" value="2">
+                    <div class="score-description">Does the patient require maximum assistance to sit at the side of the bed (defined as the patient helping 25% or less of the amount of work)? If yes, score 2.</div>
+                </label>
+                
+                <label class="score-option" data-task="4" data-score="1">
+                    <input type="radio" name="task4" value="1">
+                    <div class="score-description">Is the patient completely dependent or unable to assist with sitting at the side of the bed (defined as sitting at the edge of the bed performed, but patient not being able to assist at all)? If yes, score 1.</div>
+                </label>
+                
+                <label class="score-option" data-task="4" data-score="0">
+                    <input type="radio" name="task4" value="0">
+                    <div class="score-description">Is the patient unable to attempt or complete the task of sitting at the side of the bed due to weakness? If yes, score 0.</div>
+                </label>
+                
+                <div class="not-performed">
+                    <label>
+                        <input type="checkbox" name="task4_not_performed">
+                        <span>If task(s) were not performed for any other reason other than weakness (e.g., patient declines, or patient's medical equipment prevents performance of the task), then do not score.</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Task 5: Walking -->
+        <div class="task-section">
+            <div class="task-header">5. Walking</div>
+            <div class="task-body">
+                <p class="task-question">Does the patient need assistance to walk 150 feet (45 m)?</p>
+                <div class="testing-note">[Testing Note: Following the patient with a wheelchair or assisting with managing medical equipment while ambulating should not be considered as a second person assisting with the task]</div>
+                
+                <div class="branch-label">No:</div>
+                
+                <label class="score-option" data-task="5" data-score="7">
+                    <input type="radio" name="task5" value="7">
+                    <div class="score-description">Can the patient walk 150 feet (45 m) without using an assistive device such as a cane, walker, crutches, or use of a brace or prosthesis? If yes, score 7.</div>
+                </label>
+                
+                <label class="score-option" data-task="5" data-score="6">
+                    <input type="radio" name="task5" value="6">
+                    <div class="score-description">Can the patient walk 150 feet (45 m) but requires the use of an assistive device such as a cane, walker, crutches, or use of a brace or prosthesis? If yes, score 6.</div>
+                </label>
+                
+                <div class="branch-label">Yes:</div>
+                
+                <label class="score-option" data-task="5" data-score="5">
+                    <input type="radio" name="task5" value="5">
+                    <div class="score-description">Does the patient require only supervision or cueing in order to walk 150 feet (45 m) without physical help (the patient may use an assistive device as need)? If yes, score 5.</div>
+                </label>
+                
+                <label class="score-option" data-task="5" data-score="4">
+                    <input type="radio" name="task5" value="4">
+                    <div class="score-description">Can the patient walk a minimum of 150 feet (45 m) with minimum assistance of only one person (defined as the patient being able to perform 75% or more of the walking effort)? If yes, score 4.</div>
+                </label>
+                
+                <label class="score-option" data-task="5" data-score="3">
+                    <input type="radio" name="task5" value="3">
+                    <div class="score-description">Can the patient walk a minimum of 150 feet (45 m) with moderate assistance of only one person (defined as the patient being able to perform between 50 to 74% of the walking effort)? If yes, score 3.</div>
+                </label>
+                
+                <label class="score-option" data-task="5" data-score="2">
+                    <input type="radio" name="task5" value="2">
+                    <div class="score-description">Can the patient walk at least 50 feet (15 m) with the assistance of only one person? If yes, score 2.</div>
+                </label>
+                
+                <label class="score-option" data-task="5" data-score="1">
+                    <input type="radio" name="task5" value="1">
+                    <div class="score-description">Can the patient walk less than 50 feet (15 m) with the assistance of one person or requires the assistance of two people to physically assist with any ambulation distance? If yes, score 1.</div>
+                </label>
+                
+                <label class="score-option" data-task="5" data-score="0">
+                    <input type="radio" name="task5" value="0">
+                    <div class="score-description">Is the patient unable to attempt or complete the task of ambulation due to weakness? If yes, score 0.</div>
+                </label>
+                
+                <div class="not-performed">
+                    <label>
+                        <input type="checkbox" name="task5_not_performed">
+                        <span>If task(s) were not performed for any other reason other than weakness (e.g., patient declines, or patient's medical equipment prevents performance of the task), then do not score.</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Wheelchair Mobility Section -->
+        <div class="task-section wheelchair-section">
+            <div class="task-header">Wheelchair Mobility</div>
+            <div class="task-body">
+                <p class="task-question">Does the patient need assistance to propel a manual wheelchair on level surfaces for 150 feet (45 m)?</p>
+                <div class="testing-note">[Testing Note: Assisting with managing medical equipment (i.e. IV poles, cardiac monitoring, etc.) while the patient is performing wheelchair mobility should not be considered as a second person assisting with the task]</div>
+                
+                <div class="branch-label">No:</div>
+                
+                <label class="score-option" data-task="wheelchair">
+                    <input type="radio" name="wheelchair" value="6">
+                    <div class="score-description">Can the patient safely propel a manual wheelchair 150 feet (45 m) without any supervision or physical assist? If yes, score 6.</div>
+                </label>
+                
+                <div class="branch-label">Yes:</div>
+                
+                <label class="score-option" data-task="wheelchair">
+                    <input type="radio" name="wheelchair" value="5">
+                    <div class="score-description">Does the patient require only supervision or cueing in order to safely propel a manual wheelchair 150 feet (45 m) without physical help? If yes, score 5.</div>
+                </label>
+                
+                <label class="score-option" data-task="wheelchair">
+                    <input type="radio" name="wheelchair" value="4">
+                    <div class="score-description">Can the patient safely propel a wheelchair a minimum of 150 feet (45 m) with only occasional minimal assistance (defined as the patient being able to perform more than 75% of the task) of one person for help, such as with turning or negotiating thresholds? If yes, score 4.</div>
+                </label>
+                
+                <label class="score-option" data-task="wheelchair">
+                    <input type="radio" name="wheelchair" value="3">
+                    <div class="score-description">Can the patient safely propel a wheelchair for a minimum of 150 feet (45 m) with moderate assistance of only one person (defined as the patient being able to perform between 50 to 74% of the task)? If yes, score 3.</div>
+                </label>
+                
+                <label class="score-option" data-task="wheelchair">
+                    <input type="radio" name="wheelchair" value="2">
+                    <div class="score-description">Can the patient safely propel a manual wheelchair at least 50 feet (15 m) with the assistance of only one person? If yes, score 2.</div>
+                </label>
+                
+                <label class="score-option" data-task="wheelchair">
+                    <input type="radio" name="wheelchair" value="1">
+                    <div class="score-description">Can the patient safely propel a manual wheelchair less than 50 feet (15 m) with the assist of one person or requires the assistance of two people to physically assist with any wheelchair mobility distance? If yes, score 1.</div>
+                </label>
+                
+                <label class="score-option" data-task="wheelchair">
+                    <input type="radio" name="wheelchair" value="0">
+                    <div class="score-description">Is the patient unable to attempt or complete the task of wheelchair mobility due to weakness? If yes, score 0.</div>
+                </label>
+                
+                <div class="not-performed">
+                    <label>
+                        <input type="checkbox" name="wheelchair_not_performed">
+                        <span>If task(s) were not performed for any other reason other than weakness (e.g., patient declines, or patient's medical equipment prevents performance of the task), then do not score.</span>
+                    </label>
+                </div>
+            </div>
         </div>
     </div>
-
-    <!-- Bootstrap JS for interactive components -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-    <!-- JavaScript to calculate the total score dynamically -->
+    
+    <!-- Results -->
+    <div class="results">
+        <div class="results-inner">
+            <div class="score-display">
+                <span class="score-item">Task 1 (Rolling):</span>
+                <span class="score-value" id="score1">-</span>
+            </div>
+            <div class="score-display">
+                <span class="score-item">Task 2 (Supine to Sit):</span>
+                <span class="score-value" id="score2">-</span>
+            </div>
+            <div class="score-display">
+                <span class="score-item">Task 3 (Sit to Stand):</span>
+                <span class="score-value" id="score3">-</span>
+            </div>
+            <div class="score-display">
+                <span class="score-item">Task 4 (Sitting Edge):</span>
+                <span class="score-value" id="score4">-</span>
+            </div>
+            <div class="score-display">
+                <span class="score-item">Task 5 (Walking):</span>
+                <span class="score-value" id="score5">-</span>
+            </div>
+            <div class="score-display">
+                <span class="score-item">Wheelchair Mobility:</span>
+                <span class="score-value" id="scoreWheelchair">-</span>
+            </div>
+            <div class="score-display total-score">
+                <span class="score-item">TOTAL SCORE (Tasks 1-5):</span>
+                <span class="score-value" id="totalScore">-</span>
+            </div>
+            <div id="warningMessage"></div>
+            <button class="reset-btn" onclick="resetForm()">Reset Form</button>
+        </div>
+    </div>
+    
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('fss-icu-form');
-            const totalScoreElement = document.getElementById('total-score');
+        function updateScores() {
+            const taskScores = {};
+            const notPerformed = {};
             
-            const updateScore = () => {
-                let total = 0;
-                // Get all radio buttons with a name and a checked status
-                const radioButtons = form.querySelectorAll('input[type="radio"]:checked');
+            // Collect scores and not-performed flags for tasks 1-5
+            for (let i = 1; i <= 5; i++) {
+                const selected = document.querySelector(`input[name="task${i}"]:checked`);
+                const notPerformedCheck = document.querySelector(`input[name="task${i}_not_performed"]`);
                 
-                radioButtons.forEach(radio => {
-                    total += parseInt(radio.value, 10);
+                if (notPerformedCheck && notPerformedCheck.checked) {
+                    notPerformed[i] = true;
+                } else if (selected) {
+                    taskScores[i] = parseInt(selected.value);
+                }
+                
+                // Update individual score display
+                const scoreDisplay = document.getElementById(`score${i}`);
+                if (notPerformed[i]) {
+                    scoreDisplay.textContent = 'N/A';
+                } else if (taskScores[i] !== undefined) {
+                    scoreDisplay.textContent = taskScores[i];
+                } else {
+                    scoreDisplay.textContent = '-';
+                }
+            }
+            
+            // Handle wheelchair mobility (not part of total)
+            const wheelchairSelected = document.querySelector('input[name="wheelchair"]:checked');
+            const wheelchairNotPerformed = document.querySelector('input[name="wheelchair_not_performed"]');
+            const wheelchairDisplay = document.getElementById('scoreWheelchair');
+            
+            if (wheelchairNotPerformed && wheelchairNotPerformed.checked) {
+                wheelchairDisplay.textContent = 'N/A';
+            } else if (wheelchairSelected) {
+                wheelchairDisplay.textContent = wheelchairSelected.value;
+            } else {
+                wheelchairDisplay.textContent = '-';
+            }
+            
+            // Calculate total based on FSS-ICU rules
+            const notPerformedCount = Object.keys(notPerformed).length;
+            const completedTasks = Object.values(taskScores);
+            const warningDiv = document.getElementById('warningMessage');
+            const totalScoreDisplay = document.getElementById('totalScore');
+            
+            if (notPerformedCount >= 2) {
+                // Cannot calculate total if 2 or more tasks not performed
+                totalScoreDisplay.textContent = 'Cannot Calculate';
+                warningDiv.innerHTML = '<div class="warning">Total score cannot be calculated: ≥2 tasks not performed for non-weakness reasons.</div>';
+            } else if (notPerformedCount === 1) {
+                // Use average of completed tasks for the 1 missing task
+                if (completedTasks.length === 4) {
+                    const average = completedTasks.reduce((a, b) => a + b, 0) / completedTasks.length;
+                    const total = completedTasks.reduce((a, b) => a + b, 0) + average;
+                    totalScoreDisplay.textContent = total.toFixed(1);
+                    warningDiv.innerHTML = '<div class="warning">Note: 1 task not performed for non-weakness reason. Average of completed tasks (' + average.toFixed(1) + ') used for missing task.</div>';
+                } else {
+                    totalScoreDisplay.textContent = '-';
+                    warningDiv.innerHTML = '';
+                }
+            } else {
+                // Standard calculation - all tasks either scored or not applicable
+                if (completedTasks.length === 5) {
+                    const total = completedTasks.reduce((a, b) => a + b, 0);
+                    totalScoreDisplay.textContent = total;
+                    warningDiv.innerHTML = '';
+                } else {
+                    totalScoreDisplay.textContent = '-';
+                    warningDiv.innerHTML = '';
+                }
+            }
+        }
+        
+        function resetForm() {
+            if (confirm('Are you sure you want to reset the entire form?')) {
+                document.querySelectorAll('input[type="radio"]').forEach(input => input.checked = false);
+                document.querySelectorAll('input[type="checkbox"]').forEach(input => input.checked = false);
+                document.querySelectorAll('.score-option').forEach(option => option.classList.remove('selected'));
+                updateScores();
+            }
+        }
+        
+        // Add event listeners for tasks 1-5
+        for (let i = 1; i <= 5; i++) {
+            document.querySelectorAll(`input[name="task${i}"]`).forEach(input => {
+                input.addEventListener('change', function() {
+                    // Update visual selection
+                    document.querySelectorAll(`input[name="task${i}"]`).forEach(radio => {
+                        radio.closest('.score-option').classList.remove('selected');
+                    });
+                    this.closest('.score-option').classList.add('selected');
+                    
+                    // Uncheck not-performed if a score is selected
+                    const notPerformedCheck = document.querySelector(`input[name="task${i}_not_performed"]`);
+                    if (notPerformedCheck) {
+                        notPerformedCheck.checked = false;
+                    }
+                    
+                    updateScores();
                 });
-                
-                totalScoreElement.textContent = total;
-            };
-
-            // Add event listeners to all radio buttons
-            form.querySelectorAll('input[type="radio"]').forEach(radio => {
-                radio.addEventListener('change', updateScore);
             });
-
-            // Initial score calculation
-            updateScore();
+            
+            const notPerformedCheck = document.querySelector(`input[name="task${i}_not_performed"]`);
+            if (notPerformedCheck) {
+                notPerformedCheck.addEventListener('change', function() {
+                    // Uncheck radio buttons if not-performed is checked
+                    if (this.checked) {
+                        const radios = document.querySelectorAll(`input[name="task${i}"]`);
+                        radios.forEach(radio => {
+                            radio.checked = false;
+                            radio.closest('.score-option').classList.remove('selected');
+                        });
+                    }
+                    updateScores();
+                });
+            }
+        }
+        
+        // Add event listeners for wheelchair
+        document.querySelectorAll('input[name="wheelchair"]').forEach(input => {
+            input.addEventListener('change', function() {
+                // Update visual selection
+                document.querySelectorAll('input[name="wheelchair"]').forEach(radio => {
+                    radio.closest('.score-option').classList.remove('selected');
+                });
+                this.closest('.score-option').classList.add('selected');
+                
+                // Uncheck not-performed if a score is selected
+                const notPerformedCheck = document.querySelector('input[name="wheelchair_not_performed"]');
+                if (notPerformedCheck) {
+                    notPerformedCheck.checked = false;
+                }
+                
+                updateScores();
+            });
         });
+        
+        const wheelchairNotPerformed = document.querySelector('input[name="wheelchair_not_performed"]');
+        if (wheelchairNotPerformed) {
+            wheelchairNotPerformed.addEventListener('change', function() {
+                // Uncheck radio buttons if not-performed is checked
+                if (this.checked) {
+                    const radios = document.querySelectorAll('input[name="wheelchair"]');
+                    radios.forEach(radio => {
+                        radio.checked = false;
+                        radio.closest('.score-option').classList.remove('selected');
+                    });
+                }
+                updateScores();
+            });
+        }
+        
+        // Initialize
+        updateScores();
     </script>
-
 </body>
-
 </html>
-
