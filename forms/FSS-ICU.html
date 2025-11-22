@@ -248,7 +248,7 @@
             <p>For each task, the minimum and maximum score is 0 and 7, respectively. The "Total Score" is the sum of items 1 through 5, and has a minimum and maximum of 0 and 35, respectively.</p>
             <p style="margin-top: 8px;"><strong>If task(s) were not performed for any other reason other than weakness:</strong></p>
             <ul>
-                <li>If &lt;2 tasks were not performed for such reasons, use the average score from the remaining completed items to score the 1 or 2 missing tasks.</li>
+                <li>If ≤2 tasks were not performed for such reasons, use the average score from the remaining completed items to score the 1 or 2 missing tasks.</li>
                 <li>If &gt;2 tasks were not performed for such reasons, only the completed tasks can be scored and a total FSS-ICU total score cannot be calculated.</li>
             </ul>
         </div>
@@ -675,11 +675,13 @@
             const wheelchairSelected = document.querySelector('input[name="wheelchair"]:checked');
             const wheelchairNotPerformed = document.querySelector('input[name="wheelchair_not_performed"]');
             const wheelchairDisplay = document.getElementById('scoreWheelchair');
+            let wheelchairScore = null;
             
             if (wheelchairNotPerformed && wheelchairNotPerformed.checked) {
                 wheelchairDisplay.textContent = 'N/A';
             } else if (wheelchairSelected) {
-                wheelchairDisplay.textContent = wheelchairSelected.value;
+                wheelchairScore = parseInt(wheelchairSelected.value);
+                wheelchairDisplay.textContent = wheelchairScore;
             } else {
                 wheelchairDisplay.textContent = '-';
             }
@@ -690,27 +692,47 @@
             const warningDiv = document.getElementById('warningMessage');
             const totalScoreDisplay = document.getElementById('totalScore');
             
-            if (notPerformedCount >= 2) {
-                // Cannot calculate total if 2 or more tasks not performed
+            // Check if we should substitute wheelchair mobility for walking
+            let useWheelchairForWalking = false;
+            if (taskScores[5] === 0 && wheelchairScore !== null) {
+                useWheelchairForWalking = true;
+                // Replace walking score with wheelchair score
+                taskScores[5] = wheelchairScore;
+            }
+            
+            // Recalculate completed tasks after potential wheelchair substitution
+            const finalCompletedTasks = Object.values(taskScores);
+            
+            if (notPerformedCount > 2) {
+                // Cannot calculate total if more than 2 tasks not performed
                 totalScoreDisplay.textContent = 'Cannot Calculate';
-                warningDiv.innerHTML = '<div class="warning">Total score cannot be calculated: ≥2 tasks not performed for non-weakness reasons.</div>';
-            } else if (notPerformedCount === 1) {
-                // Use average of completed tasks for the 1 missing task
-                if (completedTasks.length === 4) {
-                    const average = completedTasks.reduce((a, b) => a + b, 0) / completedTasks.length;
-                    const total = completedTasks.reduce((a, b) => a + b, 0) + average;
+                warningDiv.innerHTML = '<div class="warning">Total score cannot be calculated: >2 tasks not performed for non-weakness reasons.</div>';
+            } else if (notPerformedCount === 1 || notPerformedCount === 2) {
+                // Use average of completed tasks for the 1 or 2 missing tasks
+                if (finalCompletedTasks.length >= 3) {
+                    const average = finalCompletedTasks.reduce((a, b) => a + b, 0) / finalCompletedTasks.length;
+                    const total = finalCompletedTasks.reduce((a, b) => a + b, 0) + (average * notPerformedCount);
                     totalScoreDisplay.textContent = total.toFixed(1);
-                    warningDiv.innerHTML = '<div class="warning">Note: 1 task not performed for non-weakness reason. Average of completed tasks (' + average.toFixed(1) + ') used for missing task.</div>';
+                    let warningText = '<div class="warning">Note: ' + notPerformedCount + ' task(s) not performed for non-weakness reason. Average of completed tasks (' + average.toFixed(1) + ') used for missing task(s).';
+                    if (useWheelchairForWalking) {
+                        warningText += '<br>Wheelchair mobility score substituted for walking (Task 5 scored 0).';
+                    }
+                    warningText += '</div>';
+                    warningDiv.innerHTML = warningText;
                 } else {
                     totalScoreDisplay.textContent = '-';
                     warningDiv.innerHTML = '';
                 }
             } else {
                 // Standard calculation - all tasks either scored or not applicable
-                if (completedTasks.length === 5) {
-                    const total = completedTasks.reduce((a, b) => a + b, 0);
+                if (finalCompletedTasks.length === 5) {
+                    const total = finalCompletedTasks.reduce((a, b) => a + b, 0);
                     totalScoreDisplay.textContent = total;
-                    warningDiv.innerHTML = '';
+                    if (useWheelchairForWalking) {
+                        warningDiv.innerHTML = '<div class="warning">Note: Wheelchair mobility score substituted for walking (Task 5 scored 0).</div>';
+                    } else {
+                        warningDiv.innerHTML = '';
+                    }
                 } else {
                     totalScoreDisplay.textContent = '-';
                     warningDiv.innerHTML = '';
