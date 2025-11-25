@@ -636,7 +636,7 @@
                 <span class="score-value" id="scoreWheelchair">-</span>
             </div>
             <div class="score-display total-score">
-                <span class="score-item">Total Score:</span>
+                <span class="score-item">TOTAL SCORE (Tasks 1-5):</span>
                 <span class="score-value" id="totalScore">-</span>
             </div>
             <div id="warningMessage"></div>
@@ -671,7 +671,7 @@
                 }
             }
             
-            // Handle wheelchair mobility (not part of total)
+            // Handle wheelchair mobility
             const wheelchairSelected = document.querySelector('input[name="wheelchair"]:checked');
             const wheelchairNotPerformed = document.querySelector('input[name="wheelchair_not_performed"]');
             const wheelchairDisplay = document.getElementById('scoreWheelchair');
@@ -687,17 +687,24 @@
             }
             
             // Calculate total based on FSS-ICU rules
-            const notPerformedCount = Object.keys(notPerformed).length;
-            const completedTasks = Object.values(taskScores);
+            let notPerformedCount = Object.keys(notPerformed).length;
             const warningDiv = document.getElementById('warningMessage');
             const totalScoreDisplay = document.getElementById('totalScore');
             
             // Check if we should substitute wheelchair mobility for walking
             let useWheelchairForWalking = false;
+            
+            // Case 1: Walking scored as 0 and wheelchair has a score - substitute wheelchair
             if (taskScores[5] === 0 && wheelchairScore !== null) {
                 useWheelchairForWalking = true;
-                // Replace walking score with wheelchair score
                 taskScores[5] = wheelchairScore;
+            }
+            // Case 2: Walking marked as "not performed" and wheelchair has a score - use wheelchair instead
+            else if (notPerformed[5] && wheelchairScore !== null) {
+                useWheelchairForWalking = true;
+                taskScores[5] = wheelchairScore;
+                delete notPerformed[5]; // Remove from not performed list
+                notPerformedCount = Object.keys(notPerformed).length; // Recalculate count
             }
             
             // Recalculate completed tasks after potential wheelchair substitution
@@ -715,7 +722,7 @@
                     totalScoreDisplay.textContent = total.toFixed(1);
                     let warningText = '<div class="warning">Note: ' + notPerformedCount + ' task(s) not performed for non-weakness reason. Average of completed tasks (' + average.toFixed(1) + ') used for missing task(s).';
                     if (useWheelchairForWalking) {
-                        warningText += '<br>Wheelchair mobility score substituted for walking (Task 5 scored 0).';
+                        warningText += '<br>Wheelchair mobility score used for Task 5 (Walking).';
                     }
                     warningText += '</div>';
                     warningDiv.innerHTML = warningText;
@@ -729,7 +736,7 @@
                     const total = finalCompletedTasks.reduce((a, b) => a + b, 0);
                     totalScoreDisplay.textContent = total;
                     if (useWheelchairForWalking) {
-                        warningDiv.innerHTML = '<div class="warning">Note: Wheelchair mobility score substituted for walking (Task 5 scored 0).</div>';
+                        warningDiv.innerHTML = '<div class="warning">Note: Wheelchair mobility score used for Task 5 (Walking).</div>';
                     } else {
                         warningDiv.innerHTML = '';
                     }
@@ -824,5 +831,3 @@
     </script>
 </body>
 </html>
-
-
