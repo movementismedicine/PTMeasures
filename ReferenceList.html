@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reference Literature - PTMeasures.com</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0096C8;
+            --secondary-color: #206375;
+            --background-color: #f4f7f9;
+            --text-color: #34495e;
+            --card-bg: #ffffff;
+        }
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Lato', sans-serif;
+            padding-top: 56px;
+        }
+        .jumbotron {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 4rem 2rem;
+            margin-bottom: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+        .jumbotron .display-4, .jumbotron .lead {
+            color: white;
+        }
+        .jumbotron .lead {
+            font-size: 1.25rem;
+        }
+        .jumbotron hr {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .card {
+            border-radius: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            background-color: var(--card-bg);
+            border: none;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15) !important;
+        }
+        .card-title {
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            border-radius: 0.5rem;
+            font-weight: bold;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        h1, h2 {
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+        .footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .navbar {
+            background-color: var(--secondary-color);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand, .nav-link, .dropdown-item {
+            color: white !important;
+            font-weight: 700;
+        }
+        .dropdown-menu {
+            background-color: var(--secondary-color);
+            border: none;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+        .dropdown-item:hover, .dropdown-item:focus {
+            background-color: var(--primary-color) !important;
+            color: white !important;
+        }
+
+        /* Carousel Styles */
+        .carousel-container {
+            position: relative;
+            margin-bottom: 60px;
+        }
+
+        .carousel-wrapper {
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            display: flex;
+            gap: 16px;
+            padding: 8px 4px 20px 4px;
+            scroll-behavior: smooth;
+        }
+
+        .carousel-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Card Styling - Paper Ratio (8.5:11) */
+        .carousel-card {
+            flex: 0 0 220px;
+            scroll-snap-align: start;
+            background: white;
+            border-radius: 1rem;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: 284px; /* 220 * (11/8.5) = 284.7 */
+            border: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .carousel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel-card h5 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .carousel-card p {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.4;
+            flex-grow: 1;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .carousel-card a {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            text-align: center;
+            transition: background 0.3s ease;
+            font-size: 0.85rem;
+            margin-top: auto;
+        }
+
+        .carousel-card a:hover {
+            background: #0056b3;
+        }
+
+        /* Navigation Arrows */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.2s ease;
+        }
+
+        .nav-arrow:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            background: #f8f9fa;
+        }
+
+        .nav-arrow:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .nav-arrow.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .nav-arrow svg {
+            width: 24px;
+            height: 24px;
+            fill: #2c3e50;
+        }
+
+        .nav-arrow-left {
+            left: -20px;
+        }
+
+        .nav-arrow-right {
+            right: -20px;
+        }
+
+        @media (min-width: 768px) {
+            .nav-arrow {
+                display: flex;
+            }
+
+            .carousel-container {
+                padding: 0 40px;
+            }
+        }
+
+        /* Scroll Indicators */
+        .scroll-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ddd;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .indicator:hover {
+            background: #bbb;
+        }
+
+        .indicator.active {
+            background: var(--primary-color);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* Placeholder card styling */
+        .carousel-card.placeholder {
+            background: #f8f9fa;
+            border: 2px dashed #ccc;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .carousel-card.placeholder h5 {
+            color: #999;
+            margin-bottom: 0;
+        }
+
+        .carousel-card.placeholder p {
+            display: none;
+        }
+
+        .carousel-card.placeholder a {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">PTMeasures.com</a>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col text-center">
+                <h1 class="display-4 fw-bold mb-3">Reference Literature</h1>
+            </div>
+        </div>
+    </div>
+
+        <h2 class="text-center mb-4">Acute Dizziness and Vertigo</h2>
+        <div class="carousel-container">
+            <button class="nav-arrow nav-arrow-left" data-carousel="dizzy-prev" aria-label="Previous">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+            </button>
+
+            <button class="nav-arrow nav-arrow-right" data-carousel="dizzy-next" aria-label="Next">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </button>
+
+            <div class="carousel-wrapper" data-carousel="dizzy">
+                <div class="carousel-card">
+                    <h5>Avoiding "HINTS Positive/Negative" to Minimize Diagnostic Confusion</h5>
+                    <p>Thomas, D. B., & Newman-Toker, D. E. (2016). <i>Journal of Acute Care Physical Therapy, 7</i>(4), 129-131.</p>
+                    <a href="https://journals.lww.com/jacpt/citation/2016/10000/avoiding__hints_positive_negative__to_minimize.2.aspx" target="_blank">Open Reference</a>
+                </div>
+
+                <div class="carousel-card">
+                    <h5>TiTrATE: A Novel, Evidence-Based Approach to Diagnosing Acute Dizziness and Vertigo</h5>
+                    <p>Newman-Toker, D. E., & Edlow, J. A. (2015). <i>Neurol Clin, 33</i>(3), 577-99.</p>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/26231273/" target="_blank">Open Reference</a>
+                </div>
+
+                <div class="carousel-card">
+                    <h5>HINTS to diagnose stroke in the acute vestibular syndrome</h5>
+                    <p>Kattah, J. C., et al. (2009). <i>Stroke, 40</i>(11), 3504-10.</p>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/19762709/" target="_blank">Open Reference</a>
+                </div>
+
+                <div class="carousel-card">
+                    <h5>Does my dizzy patient have a stroke? A systematic review of bedside diagnosis</h5>
+                    <p>Tarnutzer, A. A., et al. (2011). <i>CMAJ, 183</i>(9).</p>
+                    <a href="https://www.cmaj.ca/content/183/9/E571" target="_blank">Open Reference</a>
+                </div>
+
+                <div class="carousel-card">
+                    <h5>Update on HINTS Plus, With Discussion of Pitfalls and Pearls</h5>
+                    <p>Kattah, J. C. (2019). <i>Journal of Neurologic Physical Therapy, 43</i>, S42-S45.</p>
+                    <a href="https://journals.lww.com/jnpt/FullText/2019/04001/Update_on_HINTS_Plus,_With_Discussion_of_Pitfalls.9.aspx" target="_blank">Open Reference</a>
+                </div>
+
+                <div class="carousel-card">
+                    <h5>GRACE-3: Acute dizziness and vertigo in the emergency department</h5>
+                    <p>Edlow, J. A., et al. (2023). <i>Academic Emergency Medicine, 30</i>(5), 442-486.</p>
+                    <a href="https://onlinelibrary.wiley.com/doi/10.1111/acem.14728" target="_blank">Open Reference</a>
+                </div>
+
+                <div class="carousel-card">
+                    <h5>Diagnosis is a team sport</h5>
+                    <p>Thomas, D. B., & Newman-Toker, D. E. (2016). <i>Diagnosis (Berl), 3</i>(2), 49-59.</p>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/28758055/" target="_blank">Open Reference</a>
+                </div>
+
+                <div class="carousel-card">
+                    <h5>Differential Diagnosis of Vertigo in the ED: STANDING Algorithm</h5>
+                    <p>Vanni, S., et al. (2017). <i>Frontiers in Neurology, 8</i>, Article 607.</p>
+                    <a href="https://www.frontiersin.org/journals/neurology/articles/10.3389/fneur.2017.00590/full" target="_blank">Open Reference</a>
+                </div>
+
+                <div class="carousel-card">
+                    <h5>Imprecision in patient reports of dizziness symptom quality</h5>
+                    <p>Newman-Toker, D. E., et al. (2007). <i>Mayo Clin Proc, 82</i>(11), 1329-40.</p>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/17976352/" target="_blank">Open Reference</a>
+                </div>
+
+                <div class="carousel-card">
+                    <h5>Diagnosing Stroke in Acute Dizziness and Vertigo</h5>
+                    <p>Saber Tehrani, A. S., et al. (2018). <i>Stroke, 49</i>, 788-795.</p>
+                    <a href="https://www.ahajournals.org/doi/10.1161/STROKEAHA.117.016979#:~:text=Table%201.%20Cerebrovascular%20Causes%20Linked%20to%204%20Acute,%20Small%20to%20medium-sized%20cerebellar%20infarcts,%20Pontine%20infarcts,%20Lateral%20medullary%20infarcts,%20Other" target="_blank">Open Reference</a>
+                </div>
+
+                <div class="carousel-card">
+                    <h5>Maximizing Effectiveness of Examination of Patients with Acute Dizziness in the ED</h5>
+                    <p>Corsino, J. (2022). <i>Journal of Acute Care Physical Therapy, 13</i>(1).</p>
+                    <a href="https://journals.lww.com/jacpt/abstract/2022/01000/maximizing_effectiveness_of_examination_of.6.aspx" target="_blank">Open Reference</a>
+                </div>
+
+                <div class="carousel-card">
+                    <h5>Symptoms and Signs of Neuro-otologic Disorders</h5>
+                    <p>Newman-Toker, D. E. (2012). <i>Neurol Clin, 18</i>(5), 1016-1040.</p>
+                    <a href="https://continuum.aan.com/doi/abs/10.1212/01.CON.0000421618.33654.8a#:~:text=Patients%20with%20neuro%2Dotologic%20disorders,(Box%202%2D1)." target="_blank">Open Reference</a>
+                </div>
+
+                <div class="carousel-card">
+                    <h5>Central oculomotor disturbances and nystagmus</h5>
+                    <p>Strupp, M., et al. (2011). <i>Dtsch Arztebl Int, 108</i>(12), 197-204.</p>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/21505601/" target="_blank">Open Reference</a>
+                </div>
+
+                <div class="carousel-card">
+                    <h5>Semicircular canal plane head impulses</h5>
+                    <p>Cremer, P. D., et al. (1998). <i>Brain, 121</i>(Pt 4), 699-716.</p>
+                    <a href="https://pubmed.ncbi.nlm.nih.gov/9577395/" target="_blank">Open Reference</a>
+                </div>
+
+                <div class="carousel-card">
+                    <h5>Prevalence of Horizontal Canal BPPV</h5>
+                    <p>Bhandari, R., et al. (2023). <i>Neurology Clinical Practice, 13</i>(5).</p>
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10473829/" target="_blank">Open Reference</a>
+                </div>
+
+                <div class="carousel-card">
+                    <h5>ATTEST approach</h5>
+                    <p>Edlow, et al. A new diagnostic approach to the adult patient with acute dizziness. 2018.</p>
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6049818/" target="_blank">Open Reference</a>
+                </div>
+            </div>
+
+            <div class="scroll-indicators" data-indicators="dizzy"></div>
+        </div>
+
+        <h2 class="text-center mb-4">Cervical Myelopathy</h2>
+        <div class="carousel-container">
+            <button class="nav-arrow nav-arrow-left" data-carousel="myelo-prev" aria-label="Previous">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+            </button>
+
+            <button class="nav-arrow nav-arrow-right" data-carousel="myelo-next" aria-label="Next">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </button>
+
+            <div class="carousel-wrapper" data-carousel="myelo">
+                <div class="carousel-card">
+                    <h5>Evidence-based commentary on the diagnosis, management, and further research of degenerative cervical spinal cord compression in the absence of clinical myelopathy</h5>
+                    <p>Horak T, et al. Front Neurol. 2024 May</p>
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11116587/" target="_blank">Open Reference</a>
+                </div>
+
+                <div class="carousel-card">
+                    <h5>Clustered clinical findings for diagnosis of cervical spine myelopathy</h5>
+                    <p>Cook C, et al. J Man Manip Ther. 2010 Dec</p>
+                    <a href="https://www.jospt.org/doi/10.2519/jospt.2009.2938" target="_blank">Open Reference</a>
+                </div>
+
+                <div class="carousel-card">
+                    <h5>Cervical Myelopathy - NIH StatPearls</h5>
+                    <p>Margetis K, Donnally III CJ.</p>
+                    <a href="https://www.ncbi.nlm.nih.gov/books/NBK482312/" target="_blank">Open Reference</a>
+                </div>
+            </div>
+
+            <div class="scroll-indicators" data-indicators="myelo"></div>
+        </div>
+
+        <h2 class="text-center mb-4">Critical Care</h2>
+        <div class="carousel-container">
+            <button class="nav-arrow nav-arrow-left" data-carousel="critical-prev" aria-label="Previous">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+            </button>
+
+            <button class="nav-arrow nav-arrow-right" data-carousel="critical-next" aria-label="Next">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </button>
+
+            <div class="carousel-wrapper" data-carousel="critical">
+                <div class="carousel-card">
+                    <h5>Mechanical Ventilation: State of the Art</h5>
+                    <p>Pham, Tài et al. Mayo Clinic Proceedings, Volume 92, Issue 9, 1382 - 1400.</p>
+                    <a href="https://www.mayoclinicproceedings.org/article/S0025-6196(17)30324-5/fulltext/" target="_blank">Open Reference</a>
+                </div>
+
+                <div class="carousel-card">
+                    <h5>ICU Mobility efficacy review</h5>
+                    <p>Singam A. Mobilizing Progress: A Comprehensive Review of the Efficacy of Early Mobilization Therapy in the Intensive Care Unit.</p>
+                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11069628/" target="_blank">Open Reference</a>
+                </div>
+
+                <div class="carousel-card">
+                    <h5>VTE and Right Heart failure</h5>
+                    <p>Okumus, et al. 2024. Critical Care Management of Acute Venous Thromboembolism: Integrating Pharmacotherapy, Thrombectomy, and Temporary Mechanical Support</p>
+                    <a href="https://www.uscjournal.com/articles/critical-care-management-acute-venous-thromboembolism-integrating-pharmacotherapy?language_content_entity=en" target=_blank">Open Reference</a>
+                </div>
+            </div>
+
+            <div class="scroll-indicators" data-indicators="critical"></div>
+        </div>
+
+        <h2 class="text-center mb-4">General Acute Care</h2>
+        <div class="carousel-container">
+            <button class="nav-arrow nav-arrow-left" data-carousel="additional-prev" aria-label="Previous">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+            </button>
+
+            <button class="nav-arrow nav-arrow-right" data-carousel="additional-next" aria-label="Next">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </button>
+
+            <div class="carousel-wrapper" data-carousel="additional">
+                <div class="carousel-card">
+                    <h5>Walking Speed: The Sixth Vital Sign</h5>
+                    <p>Lusardi et al. Journal of Geriatric Physical Therapy 32(2):p 2-5.</p>
+                    <a href="https://journals.lww.com/jgpt/citation/2009/32020/white_paper___walking_speed__the_sixth_vital_sign_.2.aspx" target="_blank">Open Reference</a>
+                </div>
+
+                <div class="carousel-card placeholder">
+                    <h5>Coming Soon</h5>
+                </div>
+
+                <div class="carousel-card placeholder">
+                    <h5>Coming Soon</h5>
+                </div>
+            </div>
+
+            <div class="scroll-indicators" data-indicators="additional"></div>
+        </div>
+
+        <h2 class="text-center mb-4">Quality Improvement</h2>
+        <div class="carousel-container">
+            <button class="nav-arrow nav-arrow-left" data-carousel="quality-prev" aria-label="Previous">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+            </button>
+
+            <button class="nav-arrow nav-arrow-right" data-carousel="quality-next" aria-label="Next">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </button>
+
+            <div class="carousel-wrapper" data-carousel="quality">
+                <div class="carousel-card">
+                    <h5>The Tension Between Promoting Mobility and Preventing Falls in the Hospital</h5>
+                    <p>Inouye, et al. JAMA Internal Medicine, 2017.</p>
+                    <a href="https://jamanetwork.com/journals/jamainternalmedicine/article-abstract/2621835" target="_blank">Open Reference</a>
+                </div>
+
+                <div class="carousel-card">
+                    <h5>Crossing the Quality Chasm</h5>
+                    <p>Institute of Medicine (US) Committee on Quality of Health Care in America, 2001.</p>
+                    <a href="https://www.ncbi.nlm.nih.gov/books/NBK222274/" target="_blank">Open Reference</a>
+                </div>
+
+                <div class="carousel-card placeholder">
+                    <h5>Coming Soon</h5>
+                </div>
+
+                <div class="carousel-card placeholder">
+                    <h5>Coming Soon</h5>
+                </div>
+
+                <div class="carousel-card placeholder">
+                    <h5>Coming Soon</h5>
+                </div>
+            </div>
+
+            <div class="scroll-indicators" data-indicators="quality"></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2025 PTMeasures.com. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <script>
+        // Initialize all carousels
+        function initCarousel(carouselName) {
+            const carousel = document.querySelector(`[data-carousel="${carouselName}"]`);
+            const prevBtn = document.querySelector(`[data-carousel="${carouselName}-prev"]`);
+            const nextBtn = document.querySelector(`[data-carousel="${carouselName}-next"]`);
+            const indicatorsContainer = document.querySelector(`[data-indicators="${carouselName}"]`);
+            const cards = carousel.querySelectorAll('.carousel-card');
+
+            function getCardWidth() {
+                return cards[0].offsetWidth + 16;
+            }
+
+            function updateIndicators() {
+                const scrollLeft = carousel.scrollLeft;
+                const cardWidth = getCardWidth();
+                const activeIndex = Math.round(scrollLeft / cardWidth);
+                
+                const indicators = indicatorsContainer.querySelectorAll('.indicator');
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === activeIndex);
+                });
+
+                updateArrowStates(activeIndex);
+            }
+
+            function updateArrowStates(activeIndex) {
+                prevBtn.classList.toggle('disabled', activeIndex === 0);
+                nextBtn.classList.toggle('disabled', activeIndex === cards.length - 1);
+            }
+
+            // Create indicators
+            indicatorsContainer.innerHTML = '';
+            for (let i = 0; i < cards.length; i++) {
+                const dot = document.createElement('div');
+                dot.className = `indicator ${i === 0 ? 'active' : ''}`;
+                dot.addEventListener('click', () => {
+                    const cardWidth = getCardWidth();
+                    carousel.scrollTo({
+                        left: cardWidth * i,
+                        behavior: 'smooth'
+                    });
+                });
+                indicatorsContainer.appendChild(dot);
+            }
+
+            let scrollTimeout;
+            carousel.addEventListener('scroll', () => {
+                if (scrollTimeout) {
+                    window.cancelAnimationFrame(scrollTimeout);
+                }
+                scrollTimeout = window.requestAnimationFrame(() => {
+                    updateIndicators();
+                });
+            });
+
+            prevBtn.addEventListener('click', () => {
+                const scrollLeft = carousel.scrollLeft;
+                const cardWidth = getCardWidth();
+                const currentIndex = Math.round(scrollLeft / cardWidth);
+                
+                if (currentIndex > 0) {
+                    carousel.scrollTo({
+                        left: cardWidth * (currentIndex - 1),
+                        behavior: 'smooth'
+                    });
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                const scrollLeft = carousel.scrollLeft;
+                const cardWidth = getCardWidth();
+                const currentIndex = Math.round(scrollLeft / cardWidth);
+                
+                if (currentIndex < cards.length - 1) {
+                    carousel.scrollTo({
+                        left: cardWidth * (currentIndex + 1),
+                        behavior: 'smooth'
+                    });
+                }
+            });
+
+            updateArrowStates(0);
+        }
+
+        // Initialize all carousels on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            initCarousel('dizzy');
+            initCarousel('myelo');
+            initCarousel('critical');
+            initCarousel('additional');
+            initCarousel('quality');
+        });
+    </script>
+</body>
+</html>
