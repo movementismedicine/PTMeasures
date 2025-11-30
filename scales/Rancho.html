@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rancho Los Amigos Scale</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 16px;
+            line-height: 1.5;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .intro {
+            background: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 16px;
+            margin-bottom: 24px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .level-section {
+            margin-bottom: 24px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .level-header {
+            background: #3498db;
+            color: white;
+            padding: 12px 16px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .level-body {
+            padding: 16px;
+        }
+        
+        .level-body ul {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+        
+        .level-body li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+        
+        .assistance-badge {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        
+        .assistance-badge.total {
+            background: #e74c3c;
+        }
+        
+        .assistance-badge.maximal {
+            background: #e67e22;
+        }
+        
+        .assistance-badge.moderate {
+            background: #f39c12;
+        }
+        
+        .assistance-badge.minimal {
+            background: #27ae60;
+        }
+        
+        .assistance-badge.standby {
+            background: #16a085;
+        }
+        
+        .assistance-badge.modified {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rancho Los Amigos Levels of Cognitive Functioning Scale</h1>
+        <p class="subtitle">Revised Scale (LOCF-R)</p>
+        
+        <div class="intro">
+            <p>The Rancho Los Amigos Levels of Cognitive Functioning Scale (RLA LOCF, or "Rancho") is used to semi-subjectively categorize progression of brain injury recovery. </p>
+            <p style="margin-top: 12px;">Many excellent clinician training and family reference resources exist for this tool.</p>
+          <p class="subtitle"><a href="https://rancho.org/patient-family-resources/rancho-levels-of-cognitive-functioning/" target="_blank" style="color: #3498db; text-decoration: none;">Training Materials and Family Reference Resources, directly from Rancho Los Amigos National Rehabilitation Center</a></p>
+          <p class="subtitle"><a href="https://sunnybrook.ca/uploads/1/programs/trauma-emergency-care/rancho-los-amigos-scale-of-cognitive-recovery-acc.pdf" target="_blank" style="color: #3498db; text-decoration: none;">Family Guide from Sunnybrook (Toronto) Trauma and Critical Care</a></p>
+        </div>
+        
+        <!-- Level I -->
+        <div class="level-section">
+            <div class="level-header">
+                Level I: No Response
+                <span class="assistance-badge total">Total Assistance</span>
+            </div>
+            <div class="level-body">
+                <ul>
+                    <li>No response to external stimuli</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Level II -->
+        <div class="level-section">
+            <div class="level-header">
+                Level II: Generalized Response
+                <span class="assistance-badge total">Total Assistance</span>
+            </div>
+            <div class="level-body">
+                <ul>
+                    <li>Responds inconsistently and non-purposefully to external stimuli</li>
+                    <li>Responses are often the same regardless of the stimulus</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Level III -->
+        <div class="level-section">
+            <div class="level-header">
+                Level III: Localized Response
+                <span class="assistance-badge total">Total Assistance</span>
+            </div>
+            <div class="level-body">
+                <ul>
+                    <li>Responds inconsistently and specifically to external stimuli</li>
+                    <li>Responses are directly related to the stimulus, for example, patient withdraws or vocalizes to painful stimuli</li>
+                    <li>Responds more to familiar people (friends and family) versus strangers</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Level IV -->
+        <div class="level-section">
+            <div class="level-header">
+                Level IV: Confused/Agitated
+                <span class="assistance-badge maximal">Maximal Assistance</span>
+            </div>
+            <div class="level-body">
+                <ul>
+                    <li>The individual is in a hyperactive state with bizarre and non-purposeful behavior</li>
+                    <li>Demonstrates agitated behavior that originates more from internal confusion than the external environment</li>
+                    <li>Absent short-term memory</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Level V -->
+        <div class="level-section">
+            <div class="level-header">
+                Level V: Confused, Inappropriate Non-Agitated
+                <span class="assistance-badge maximal">Maximal Assistance</span>
+            </div>
+            <div class="level-body">
+                <ul>
+                    <li>Shows increase in consistency with following and responding to simple commands</li>
+                    <li>Responses are non-purposeful and random to more complex commands</li>
+                    <li>Behavior and verbalization is often inappropriate, and individual appears confused and often confabulates</li>
+                    <li>If action or tasks is demonstrated individual can perform but does not initiate tasks on own</li>
+                    <li>Memory is severely impaired and learning new information is difficult</li>
+                    <li>Different from level IV in that individual does not demonstrate agitation to internal stimuli. However, they can show agitation to unpleasant external stimuli.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Level VI -->
+        <div class="level-section">
+            <div class="level-header">
+                Level VI: Confused, Appropriate
+                <span class="assistance-badge moderate">Moderate Assistance</span>
+            </div>
+            <div class="level-body">
+                <ul>
+                    <li>Able to follow simple commands consistently</li>
+                    <li>Able to retain learning for familiar tasks they performed pre-injury (brushing teeth, washing face) however unable to retain learning for new tasks</li>
+                    <li>Demonstrates increased awareness of self, situation, and environment but unaware of specific impairments and safety concerns</li>
+                    <li>Responses may be incorrect secondary to memory impairments but appropriate to the situation</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Level VII -->
+        <div class="level-section">
+            <div class="level-header">
+                Level VII: Automatic, Appropriate
+                <span class="assistance-badge minimal">Minimal Assistance</span>
+            </div>
+            <div class="level-body">
+                <ul>
+                    <li>Oriented in familiar settings</li>
+                    <li>Able to perform daily routine automatically with minimal to absent confusion</li>
+                    <li>Demonstrates carry over for new tasks and learning in addition to familiar tasks</li>
+                    <li>Superficially aware of one's diagnosis but unaware of specific impairments</li>
+                    <li>Continues to demonstrate lack of insight, decreased judgment and safety awareness</li>
+                    <li>Beginning to show interest in social and recreational activities in structured settings</li>
+                    <li>Requires at least minimal supervision for learning and safety purposes</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Level VIII -->
+        <div class="level-section">
+            <div class="level-header">
+                Level VIII: Purposeful, Appropriate
+                <span class="assistance-badge standby">Stand By Assistance</span>
+            </div>
+            <div class="level-body">
+                <ul>
+                    <li>Consistently oriented to person, place and time</li>
+                    <li>Independently carries out familiar tasks in a non-distracting environment</li>
+                    <li>Beginning to show awareness of specific impairments and how they interfere with tasks, however, requires standing by assistance to compensate</li>
+                    <li>Able to use assistive memory devices to recall daily schedule</li>
+                    <li>Acknowledges other's emotional states and requires only minimal assistance to respond appropriately</li>
+                    <li>Demonstrates improvement of memory and ability to consolidate the past and future events</li>
+                    <li>Often depressed, irritable and with low frustration threshold</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Level IX -->
+        <div class="level-section">
+            <div class="level-header">
+                Level IX: Purposeful, Appropriate
+                <span class="assistance-badge standby">Stand By Assistance on Request</span>
+            </div>
+            <div class="level-body">
+                <ul>
+                    <li>Able to shift between different tasks and complete them independently</li>
+                    <li>Aware of and acknowledges impairments when they interfere with tasks and able to use compensatory strategies to cope</li>
+                    <li>Unable to independently anticipate obstacles that may arise secondary to impairment</li>
+                    <li>With assistance able to think about consequences of actions and decisions</li>
+                    <li>Acknowledges the emotional needs of others with stand by-assistance</li>
+                    <li>Continues to demonstrate depression and low frustration threshold</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Level X -->
+        <div class="level-section">
+            <div class="level-header">
+                Level X: Purposeful, Appropriate
+                <span class="assistance-badge modified">Modified Independent</span>
+            </div>
+            <div class="level-body">
+                <ul>
+                    <li>Able to multitask in many different environments with extra time or devices to assist</li>
+                    <li>Able to create own methods and tools for memory retention</li>
+                    <li>Independently anticipates obstacles that may occur as a result of impairments and take corrective actions</li>
+                    <li>Able to independently make decisions and act appropriately but may require more time or compensatory strategies</li>
+                    <li>Demonstrate intermittent periods of depression and low frustration threshold when under stress</li>
+                    <li>Able to appropriately interact with others in social situations</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
