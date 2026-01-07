@@ -31,7 +31,6 @@
         .header h1 { font-size: 22px; margin-bottom: 4px; font-weight: 600; }
         .header p { font-size: 12px; opacity: 0.9; }
         .content { padding: 20px; }
-        
         .collapsible-section {
             margin-bottom: 18px;
             border: 2px solid #dee2e6;
@@ -59,7 +58,6 @@
         .collapsible-inner { padding: 14px; font-size: 12px; line-height: 1.6; }
         .arrow { transition: transform 0.3s; font-size: 11px; }
         .arrow.open { transform: rotate(180deg); }
-        
         table {
             width: 100%;
             border-collapse: collapse;
@@ -73,7 +71,6 @@
             vertical-align: top;
         }
         th { background: #f8f9fa; font-weight: 600; }
-        
         .subscale {
             margin-bottom: 25px;
             border: 2px solid #dee2e6;
@@ -87,7 +84,6 @@
             font-size: 15px;
             font-weight: 600;
         }
-        
         .item-box {
             background: white;
             border: 2px solid #dee2e6;
@@ -153,7 +149,6 @@
             flex-shrink: 0;
         }
         .item-expand.open { transform: rotate(180deg); }
-        
         .item-instructions {
             max-height: 0;
             overflow: hidden;
@@ -172,7 +167,6 @@
             color: #495057;
         }
         .instructions-content strong { color: #2c3e50; }
-        
         .subscale-score-bar {
             background: #e9ecef;
             border-top: 2px solid #34495e;
@@ -208,7 +202,6 @@
             background: white;
             color: #495057;
         }
-        
         .reflex-item {
             margin-bottom: 18px;
             padding-bottom: 18px;
@@ -259,7 +252,6 @@
             font-weight: 600;
             color: #2c3e50;
         }
-        
         .summary-section {
             background: #f8f9fa;
             border: 2px solid #34495e;
@@ -300,7 +292,6 @@
             color: #34495e;
             font-size: 13px;
         }
-        
         .reset-btn {
             width: 100%;
             background: #6c757d;
@@ -323,13 +314,11 @@
             <h1>JFK Coma Recovery Scale - Revised (CRS-R)</h1>
             <p>©2004</p>
         </div>
-
         <div class="content">
-            
             <div style="background:#fff3cd; border:2px solid #ffc107; border-radius:6px; padding:15px; margin-bottom:20px;">
                 <p style="font-weight:600; color:#856404; margin-bottom:8px; font-size:14px;">⚠️ Registration Required</p>
                 <p style="color:#856404; font-size:13px; margin-bottom:10px;">You must register through REDCap to use this assessment tool.</p>
-                <a href="https://redcap.partners.org/redcap/" target="_blank" style="display:inline-block; background:#007bff; color:white; padding:8px 16px; border-radius:4px; text-decoration:none; font-weight:600; font-size:13px; margin-bottom:10px;">Register via REDCap</a>
+                <a href="REDCap" target="_blank" style="display:inline-block; background:#007bff; color:white; padding:8px 16px; border-radius:4px; text-decoration:none; font-weight:600; font-size:13px; margin-bottom:10px;">Register via REDCap</a>
                 <div style="margin-top:12px; padding-top:12px; border-top:1px solid #ffc107;">
                     <p style="color:#856404; font-size:12px; margin-bottom:8px;">Already registered? Enter your access code:</p>
                     <div style="display:flex; gap:8px; align-items:center;">
@@ -339,9 +328,7 @@
                     <p id="unlock-message" style="color:#dc3545; font-size:12px; margin-top:6px; display:none;"></p>
                 </div>
             </div>
-            
             <div id="assessment-content" style="opacity:0.5; pointer-events:none;">
-            
             <div class="collapsible-section">
                 <div class="collapsible-header" onclick="toggleCollapsible(this)">
                     <span>Brainstem Reflex Grid</span>
@@ -350,7 +337,6 @@
                 <div class="collapsible-content">
                     <div class="collapsible-inner">
                         <p style="margin-bottom:10px; font-style:italic;">Administer daily during the acute phase, then weekly</p>
-                        
                         <div class="reflex-item">
                             <div class="reflex-name">Pupils</div>
                             <div class="reflex-options">
@@ -360,7 +346,6 @@
                                 </label>
                             </div>
                         </div>
-
                         <div class="reflex-item">
                             <div class="reflex-name">Corneal Reflex</div>
                             <div class="reflex-options">
@@ -374,7 +359,6 @@
                                 </label>
                             </div>
                         </div>
-
                         <div class="reflex-item">
                             <div class="reflex-name">Eye Position and Movement</div>
                             <div class="reflex-options">
@@ -396,7 +380,6 @@
                                 </label>
                             </div>
                         </div>
-
                         <div class="reflex-item">
                             <div class="reflex-name">Oculocephalic Reflex</div>
                             <div class="reflex-options">
@@ -414,9 +397,8 @@
                                 </label>
                             </div>
                         </div>
-
                         <div class="reflex-item">
-                            <div class="reflex-name">Postural Responses</div>
+                            <div class="reflex-name">Postural Responses (Indicate limb)</div>
                             <div class="reflex-options">
                                 <label class="reflex-option">
                                     <input type="radio" name="postural" value="abnormal-extension">
@@ -428,7 +410,6 @@
                                 </label>
                             </div>
                             <div style="margin-top:10px; padding-left:10px;">
-                                <p style="font-size:12px; font-weight:600; color:#2c3e50; margin-bottom:8px;">Indicate limb:</p>
                                 <div style="display:flex; flex-direction:column; gap:6px;">
                                     <label style="display:flex; align-items:center; font-size:12px; color:#495057;">
                                         <input type="checkbox" name="postural-limb" value="RUE" style="margin-right:8px; width:16px; height:16px;">
@@ -452,7 +433,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="collapsible-section">
                 <div class="collapsible-header" onclick="toggleCollapsible(this)">
                     <span>Arousal Facilitation Protocol (AFP)</span>
@@ -468,7 +448,6 @@
                         <p style="margin-top:8px;">3) Readminister the arousal facilitation protocol when</p>
                         <p style="margin-left:20px;">- Sustained eye closure re-occurs OR</p>
                         <p style="margin-left:20px;">- Behavioral responsiveness ceases despite sustained eye opening</p>
-                        
                         <p style="margin-top:15px;"><strong>INTERVENTIONS</strong></p>
                         <p style="margin-top:8px;"><strong>Deep Pressure:</strong></p>
                         <p style="margin-top:8px;">1) Present deep pressure stimulation unilaterally to the face, neck, shoulder, and sternocleidomastoid muscles. The muscle should be firmly grasped at its base between the thumb and forefinger. While squeezing the muscle firmly, it should be "rolled" back and forth through the fingertips three to four times. This procedure should be repeated sequentially working from the facial musculature to the sternocleidomastoid. The examiner should assure that there are no intravenous lines, local injuries (e.g. fractures, contusions, decubiti) or systemic complications (e.g. heterotopic ossification) before administering deep pressure.</p>
@@ -476,7 +455,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="collapsible-section">
                 <div class="collapsible-header" onclick="toggleCollapsible(this)">
                     <span>Baseline Observation and Command Following Protocol</span>
@@ -499,7 +477,6 @@
                                 <tr><td>Resting Posture (LLE)</td><td><input type="text" style="width:100%; padding:4px;" /></td></tr>
                             </tbody>
                         </table>
-                        
                         <p style="margin-top:15px;"><strong>Commands</strong></p>
                         <table style="margin-top:10px;">
                             <thead>
@@ -538,10 +515,8 @@
                     </div>
                 </div>
             </div>
-
             <div class="subscale" id="auditory">
                 <div class="subscale-header">AUDITORY FUNCTION SCALE</div>
-
                 <div class="item-box" id="box-auditory-4">
                     <div class="item-header-new" onclick="toggleItemInstructions('auditory-4')">
                         <span class="item-score">4</span>
@@ -564,7 +539,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="item-box" id="box-auditory-3">
                     <div class="item-header-new" onclick="toggleItemInstructions('auditory-3')">
                         <span class="item-score">3</span>
@@ -583,7 +557,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="item-box" id="box-auditory-2">
                     <div class="item-header-new" onclick="toggleItemInstructions('auditory-2')">
                         <span class="item-score">2</span>
@@ -602,7 +575,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="item-box" id="box-auditory-1">
                     <div class="item-header-new" onclick="toggleItemInstructions('auditory-1')">
                         <span class="item-score">1</span>
@@ -621,7 +593,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="item-box" id="box-auditory-0">
                     <div class="item-header-new" onclick="toggleItemInstructions('auditory-0')">
                         <span class="item-score">0</span>
@@ -638,38 +609,42 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="subscale-score-bar">
                     Subscale Score: <span id="auditory-score">0</span>
                 </div>
                 <div class="code-bar">
                     <label class="code-bar-label">Test Completion Code:</label>
-                    <select id="code-auditory" onchange="updateSummary()">
+                    <select id="code-auditory" onchange="handleTCCChange('auditory')">
                         <option value="">--</option>
                         <option value="1">1 - test completed in full - results valid</option>
-                        <option value="2.1">2.1 - impaired sensory function (cortical or peripheral)</option>
-                        <option value="2.2">2.2 - aphasia</option>
-                        <option value="2.3">2.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
-                        <option value="2.4">2.4 - primary language barrier</option>
-                        <option value="2.5">2.5 - illness/medical instability</option>
-                        <option value="2.6">2.6 - examiner error</option>
-                        <option value="2.7">2.7 - logistical reasons</option>
-                        <option value="2.8">2.8 - other (specify):</option>
-                        <option value="3.1">3.1 - impaired sensory function (cortical or peripheral)</option>
-                        <option value="3.2">3.2 - aphasia</option>
-                        <option value="3.3">3.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
-                        <option value="3.4">3.4 - primary language barrier</option>
-                        <option value="3.5">3.5 - illness/medical instability</option>
-                        <option value="3.6">3.6 - examiner error</option>
-                        <option value="3.7">3.7 - logistical reasons</option>
-                        <option value="3.8">3.8 - other (specify):</option>
+                        <optgroup label="Test attempted, not completed due to:">
+                            <option value="2.1">2.1 - impaired sensory function (cortical or peripheral)</option>
+                            <option value="2.2">2.2 - aphasia</option>
+                            <option value="2.3">2.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
+                            <option value="2.4">2.4 - primary language barrier</option>
+                            <option value="2.5">2.5 - illness/medical instability</option>
+                            <option value="2.6">2.6 - examiner error</option>
+                            <option value="2.7">2.7 - logistical reasons</option>
+                            <option value="2.8">2.8 - other (specify)</option>
+                        </optgroup>
+                        <optgroup label="Test not attempted due to:">
+                            <option value="3.1">3.1 - impaired sensory function (cortical or peripheral)</option>
+                            <option value="3.2">3.2 - aphasia</option>
+                            <option value="3.3">3.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
+                            <option value="3.4">3.4 - primary language barrier</option>
+                            <option value="3.5">3.5 - illness/medical instability</option>
+                            <option value="3.6">3.6 - examiner error</option>
+                            <option value="3.7">3.7 - logistical reasons</option>
+                            <option value="3.8">3.8 - other (specify)</option>
+                        </optgroup>
                     </select>
+                    <div id="code-auditory-other" style="display:none; margin-top:8px;">
+                        <input type="text" id="code-auditory-other-text" placeholder="Please specify..." style="width:100%; padding:6px 10px; border:1px solid #ced4da; border-radius:4px; font-size:12px;" />
+                    </div>
                 </div>
             </div>
-
             <div class="subscale" id="visual">
                 <div class="subscale-header">VISUAL FUNCTION SCALE</div>
-
                 <div class="item-box" id="box-visual-5">
                     <div class="item-header-new" onclick="toggleItemInstructions('visual-5')">
                         <span class="item-score">5</span>
@@ -688,7 +663,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="item-box" id="box-visual-4">
                     <div class="item-header-new" onclick="toggleItemInstructions('visual-4')">
                         <span class="item-score">4</span>
@@ -711,7 +685,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="item-box" id="box-visual-3">
                     <div class="item-header-new" onclick="toggleItemInstructions('visual-3')">
                         <span class="item-score">3</span>
@@ -733,7 +706,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="item-box" id="box-visual-2">
                     <div class="item-header-new" onclick="toggleItemInstructions('visual-2')">
                         <span class="item-score">2</span>
@@ -752,7 +724,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="item-box" id="box-visual-1">
                     <div class="item-header-new" onclick="toggleItemInstructions('visual-1')">
                         <span class="item-score">1</span>
@@ -771,7 +742,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="item-box" id="box-visual-0">
                     <div class="item-header-new" onclick="toggleItemInstructions('visual-0')">
                         <span class="item-score">0</span>
@@ -788,38 +758,42 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="subscale-score-bar">
                     Subscale Score: <span id="visual-score">0</span>
                 </div>
                 <div class="code-bar">
                     <label class="code-bar-label">Test Completion Code:</label>
-                    <select id="code-visual" onchange="updateSummary()">
+                    <select id="code-visual" onchange="handleTCCChange('visual')">
                         <option value="">--</option>
                         <option value="1">1 - test completed in full - results valid</option>
-                        <option value="2.1">2.1 - impaired sensory function (cortical or peripheral)</option>
-                        <option value="2.2">2.2 - aphasia</option>
-                        <option value="2.3">2.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
-                        <option value="2.4">2.4 - primary language barrier</option>
-                        <option value="2.5">2.5 - illness/medical instability</option>
-                        <option value="2.6">2.6 - examiner error</option>
-                        <option value="2.7">2.7 - logistical reasons</option>
-                        <option value="2.8">2.8 - other (specify):</option>
-                        <option value="3.1">3.1 - impaired sensory function (cortical or peripheral)</option>
-                        <option value="3.2">3.2 - aphasia</option>
-                        <option value="3.3">3.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
-                        <option value="3.4">3.4 - primary language barrier</option>
-                        <option value="3.5">3.5 - illness/medical instability</option>
-                        <option value="3.6">3.6 - examiner error</option>
-                        <option value="3.7">3.7 - logistical reasons</option>
-                        <option value="3.8">3.8 - other (specify):</option>
+                        <optgroup label="Test attempted, not completed due to:">
+                            <option value="2.1">2.1 - impaired sensory function (cortical or peripheral)</option>
+                            <option value="2.2">2.2 - aphasia</option>
+                            <option value="2.3">2.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
+                            <option value="2.4">2.4 - primary language barrier</option>
+                            <option value="2.5">2.5 - illness/medical instability</option>
+                            <option value="2.6">2.6 - examiner error</option>
+                            <option value="2.7">2.7 - logistical reasons</option>
+                            <option value="2.8">2.8 - other (specify)</option>
+                        </optgroup>
+                        <optgroup label="Test not attempted due to:">
+                            <option value="3.1">3.1 - impaired sensory function (cortical or peripheral)</option>
+                            <option value="3.2">3.2 - aphasia</option>
+                            <option value="3.3">3.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
+                            <option value="3.4">3.4 - primary language barrier</option>
+                            <option value="3.5">3.5 - illness/medical instability</option>
+                            <option value="3.6">3.6 - examiner error</option>
+                            <option value="3.7">3.7 - logistical reasons</option>
+                            <option value="3.8">3.8 - other (specify)</option>
+                        </optgroup>
                     </select>
+                    <div id="code-visual-other" style="display:none; margin-top:8px;">
+                        <input type="text" id="code-visual-other-text" placeholder="Please specify..." style="width:100%; padding:6px 10px; border:1px solid #ced4da; border-radius:4px; font-size:12px;" />
+                    </div>
                 </div>
             </div>
-
             <div class="subscale" id="motor">
                 <div class="subscale-header">MOTOR FUNCTION SCALE</div>
-
                 <div class="item-box" id="box-motor-6">
                     <div class="item-header-new" onclick="toggleItemInstructions('motor-6')">
                         <span class="item-score">6</span>
@@ -840,7 +814,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="item-box" id="box-motor-5">
                     <div class="item-header-new" onclick="toggleItemInstructions('motor-5')">
                         <span class="item-score">5</span>
@@ -871,7 +844,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="item-box" id="box-motor-4">
                     <div class="item-header-new" onclick="toggleItemInstructions('motor-4')">
                         <span class="item-score">4</span>
@@ -894,7 +866,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="item-box" id="box-motor-3">
                     <div class="item-header-new" onclick="toggleItemInstructions('motor-3')">
                         <span class="item-score">3</span>
@@ -913,7 +884,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="item-box" id="box-motor-2">
                     <div class="item-header-new" onclick="toggleItemInstructions('motor-2')">
                         <span class="item-score">2</span>
@@ -932,7 +902,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="item-box" id="box-motor-1">
                     <div class="item-header-new" onclick="toggleItemInstructions('motor-1')">
                         <span class="item-score">1</span>
@@ -951,7 +920,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="item-box" id="box-motor-0">
                     <div class="item-header-new" onclick="toggleItemInstructions('motor-0')">
                         <span class="item-score">0</span>
@@ -970,38 +938,42 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="subscale-score-bar">
                     Subscale Score: <span id="motor-score">0</span>
                 </div>
                 <div class="code-bar">
                     <label class="code-bar-label">Test Completion Code:</label>
-                    <select id="code-motor" onchange="updateSummary()">
+                    <select id="code-motor" onchange="handleTCCChange('motor')">
                         <option value="">--</option>
                         <option value="1">1 - test completed in full - results valid</option>
-                        <option value="2.1">2.1 - impaired sensory function (cortical or peripheral)</option>
-                        <option value="2.2">2.2 - aphasia</option>
-                        <option value="2.3">2.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
-                        <option value="2.4">2.4 - primary language barrier</option>
-                        <option value="2.5">2.5 - illness/medical instability</option>
-                        <option value="2.6">2.6 - examiner error</option>
-                        <option value="2.7">2.7 - logistical reasons</option>
-                        <option value="2.8">2.8 - other (specify):</option>
-                        <option value="3.1">3.1 - impaired sensory function (cortical or peripheral)</option>
-                        <option value="3.2">3.2 - aphasia</option>
-                        <option value="3.3">3.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
-                        <option value="3.4">3.4 - primary language barrier</option>
-                        <option value="3.5">3.5 - illness/medical instability</option>
-                        <option value="3.6">3.6 - examiner error</option>
-                        <option value="3.7">3.7 - logistical reasons</option>
-                        <option value="3.8">3.8 - other (specify):</option>
+                        <optgroup label="Test attempted, not completed due to:">
+                            <option value="2.1">2.1 - impaired sensory function (cortical or peripheral)</option>
+                            <option value="2.2">2.2 - aphasia</option>
+                            <option value="2.3">2.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
+                            <option value="2.4">2.4 - primary language barrier</option>
+                            <option value="2.5">2.5 - illness/medical instability</option>
+                            <option value="2.6">2.6 - examiner error</option>
+                            <option value="2.7">2.7 - logistical reasons</option>
+                            <option value="2.8">2.8 - other (specify)</option>
+                        </optgroup>
+                        <optgroup label="Test not attempted due to:">
+                            <option value="3.1">3.1 - impaired sensory function (cortical or peripheral)</option>
+                            <option value="3.2">3.2 - aphasia</option>
+                            <option value="3.3">3.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
+                            <option value="3.4">3.4 - primary language barrier</option>
+                            <option value="3.5">3.5 - illness/medical instability</option>
+                            <option value="3.6">3.6 - examiner error</option>
+                            <option value="3.7">3.7 - logistical reasons</option>
+                            <option value="3.8">3.8 - other (specify)</option>
+                        </optgroup>
                     </select>
+                    <div id="code-motor-other" style="display:none; margin-top:8px;">
+                        <input type="text" id="code-motor-other-text" placeholder="Please specify..." style="width:100%; padding:6px 10px; border:1px solid #ced4da; border-radius:4px; font-size:12px;" />
+                    </div>
                 </div>
             </div>
-
             <div class="subscale" id="oromotor">
                 <div class="subscale-header">OROMOTOR/VERBAL FUNCTION SCALE</div>
-
                 <div class="item-box" id="box-oromotor-3">
                     <div class="item-header-new" onclick="toggleItemInstructions('oromotor-3')">
                         <span class="item-score">3</span>
@@ -1035,7 +1007,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="item-box" id="box-oromotor-2">
                     <div class="item-header-new" onclick="toggleItemInstructions('oromotor-2')">
                         <span class="item-score">2</span>
@@ -1055,7 +1026,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="item-box" id="box-oromotor-1">
                     <div class="item-header-new" onclick="toggleItemInstructions('oromotor-1')">
                         <span class="item-score">1</span>
@@ -1074,7 +1044,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="item-box" id="box-oromotor-0">
                     <div class="item-header-new" onclick="toggleItemInstructions('oromotor-0')">
                         <span class="item-score">0</span>
@@ -1091,41 +1060,45 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="subscale-score-bar">
                     Subscale Score: <span id="oromotor-score">0</span>
                 </div>
                 <div class="code-bar">
                     <label class="code-bar-label">Test Completion Code:</label>
-                    <select id="code-oromotor" onchange="updateSummary()">
+                    <select id="code-oromotor" onchange="handleTCCChange('oromotor')">
                         <option value="">--</option>
                         <option value="1">1 - test completed in full - results valid</option>
-                        <option value="2.1">2.1 - impaired sensory function (cortical or peripheral)</option>
-                        <option value="2.2">2.2 - aphasia</option>
-                        <option value="2.3">2.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
-                        <option value="2.4">2.4 - primary language barrier</option>
-                        <option value="2.5">2.5 - illness/medical instability</option>
-                        <option value="2.6">2.6 - examiner error</option>
-                        <option value="2.7">2.7 - logistical reasons</option>
-                        <option value="2.8">2.8 - other (specify):</option>
-                        <option value="3.1">3.1 - impaired sensory function (cortical or peripheral)</option>
-                        <option value="3.2">3.2 - aphasia</option>
-                        <option value="3.3">3.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
-                        <option value="3.4">3.4 - primary language barrier</option>
-                        <option value="3.5">3.5 - illness/medical instability</option>
-                        <option value="3.6">3.6 - examiner error</option>
-                        <option value="3.7">3.7 - logistical reasons</option>
-                        <option value="3.8">3.8 - other (specify):</option>
+                        <optgroup label="Test attempted, not completed due to:">
+                            <option value="2.1">2.1 - impaired sensory function (cortical or peripheral)</option>
+                            <option value="2.2">2.2 - aphasia</option>
+                            <option value="2.3">2.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
+                            <option value="2.4">2.4 - primary language barrier</option>
+                            <option value="2.5">2.5 - illness/medical instability</option>
+                            <option value="2.6">2.6 - examiner error</option>
+                            <option value="2.7">2.7 - logistical reasons</option>
+                            <option value="2.8">2.8 - other (specify)</option>
+                        </optgroup>
+                        <optgroup label="Test not attempted due to:">
+                            <option value="3.1">3.1 - impaired sensory function (cortical or peripheral)</option>
+                            <option value="3.2">3.2 - aphasia</option>
+                            <option value="3.3">3.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
+                            <option value="3.4">3.4 - primary language barrier</option>
+                            <option value="3.5">3.5 - illness/medical instability</option>
+                            <option value="3.6">3.6 - examiner error</option>
+                            <option value="3.7">3.7 - logistical reasons</option>
+                            <option value="3.8">3.8 - other (specify)</option>
+                        </optgroup>
                     </select>
+                    <div id="code-oromotor-other" style="display:none; margin-top:8px;">
+                        <input type="text" id="code-oromotor-other-text" placeholder="Please specify..." style="width:100%; padding:6px 10px; border:1px solid #ced4da; border-radius:4px; font-size:12px;" />
+                    </div>
                 </div>
             </div>
-
             <div class="subscale" id="communication">
                 <div class="subscale-header">COMMUNICATION SCALE</div>
                 <p style="padding:10px 14px; font-size:12px; color:#495057; background:#fff3cd; margin:10px; border-radius:4px;">
                     <strong>Note:</strong> Administer only if a score of 3 or 4 is achieved on the auditory subscale, a score of 3 is achieved on the Verbal/Oromotor Scale, or there is evidence of spontaneous communication (e.g., gestural or verbal yes/no responses during the exam).
                 </p>
-
                 <div class="item-box" id="box-communication-2">
                     <div class="item-header-new" onclick="toggleItemInstructions('communication-2')">
                         <span class="item-score">2</span>
@@ -1158,7 +1131,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="item-box" id="box-communication-1">
                     <div class="item-header-new" onclick="toggleItemInstructions('communication-1')">
                         <span class="item-score">1</span>
@@ -1177,7 +1149,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="item-box" id="box-communication-0">
                     <div class="item-header-new" onclick="toggleItemInstructions('communication-0')">
                         <span class="item-score">0</span>
@@ -1194,38 +1165,42 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="subscale-score-bar">
                     Subscale Score: <span id="communication-score">0</span>
                 </div>
                 <div class="code-bar">
                     <label class="code-bar-label">Test Completion Code:</label>
-                    <select id="code-communication" onchange="updateSummary()">
+                    <select id="code-communication" onchange="handleTCCChange('communication')">
                         <option value="">--</option>
                         <option value="1">1 - test completed in full - results valid</option>
-                        <option value="2.1">2.1 - impaired sensory function (cortical or peripheral)</option>
-                        <option value="2.2">2.2 - aphasia</option>
-                        <option value="2.3">2.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
-                        <option value="2.4">2.4 - primary language barrier</option>
-                        <option value="2.5">2.5 - illness/medical instability</option>
-                        <option value="2.6">2.6 - examiner error</option>
-                        <option value="2.7">2.7 - logistical reasons</option>
-                        <option value="2.8">2.8 - other (specify):</option>
-                        <option value="3.1">3.1 - impaired sensory function (cortical or peripheral)</option>
-                        <option value="3.2">3.2 - aphasia</option>
-                        <option value="3.3">3.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
-                        <option value="3.4">3.4 - primary language barrier</option>
-                        <option value="3.5">3.5 - illness/medical instability</option>
-                        <option value="3.6">3.6 - examiner error</option>
-                        <option value="3.7">3.7 - logistical reasons</option>
-                        <option value="3.8">3.8 - other (specify):</option>
+                        <optgroup label="Test attempted, not completed due to:">
+                            <option value="2.1">2.1 - impaired sensory function (cortical or peripheral)</option>
+                            <option value="2.2">2.2 - aphasia</option>
+                            <option value="2.3">2.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
+                            <option value="2.4">2.4 - primary language barrier</option>
+                            <option value="2.5">2.5 - illness/medical instability</option>
+                            <option value="2.6">2.6 - examiner error</option>
+                            <option value="2.7">2.7 - logistical reasons</option>
+                            <option value="2.8">2.8 - other (specify)</option>
+                        </optgroup>
+                        <optgroup label="Test not attempted due to:">
+                            <option value="3.1">3.1 - impaired sensory function (cortical or peripheral)</option>
+                            <option value="3.2">3.2 - aphasia</option>
+                            <option value="3.3">3.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
+                            <option value="3.4">3.4 - primary language barrier</option>
+                            <option value="3.5">3.5 - illness/medical instability</option>
+                            <option value="3.6">3.6 - examiner error</option>
+                            <option value="3.7">3.7 - logistical reasons</option>
+                            <option value="3.8">3.8 - other (specify)</option>
+                        </optgroup>
                     </select>
+                    <div id="code-communication-other" style="display:none; margin-top:8px;">
+                        <input type="text" id="code-communication-other-text" placeholder="Please specify..." style="width:100%; padding:6px 10px; border:1px solid #ced4da; border-radius:4px; font-size:12px;" />
+                    </div>
                 </div>
             </div>
-
             <div class="subscale" id="arousal">
                 <div class="subscale-header">AROUSAL SCALE</div>
-
                 <div class="item-box" id="box-arousal-3">
                     <div class="item-header-new" onclick="toggleItemInstructions('arousal-3')">
                         <span class="item-score">3</span>
@@ -1244,7 +1219,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="item-box" id="box-arousal-2">
                     <div class="item-header-new" onclick="toggleItemInstructions('arousal-2')">
                         <span class="item-score">2</span>
@@ -1263,7 +1237,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="item-box" id="box-arousal-1">
                     <div class="item-header-new" onclick="toggleItemInstructions('arousal-1')">
                         <span class="item-score">1</span>
@@ -1282,7 +1255,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="item-box" id="box-arousal-0">
                     <div class="item-header-new" onclick="toggleItemInstructions('arousal-0')">
                         <span class="item-score">0</span>
@@ -1299,41 +1271,45 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="subscale-score-bar">
                     Subscale Score: <span id="arousal-score">0</span>
                 </div>
                 <div class="code-bar">
                     <label class="code-bar-label">Test Completion Code:</label>
-                    <select id="code-arousal" onchange="updateSummary()">
+                    <select id="code-arousal" onchange="handleTCCChange('arousal')">
                         <option value="">--</option>
                         <option value="1">1 - test completed in full - results valid</option>
-                        <option value="2.1">2.1 - impaired sensory function (cortical or peripheral)</option>
-                        <option value="2.2">2.2 - aphasia</option>
-                        <option value="2.3">2.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
-                        <option value="2.4">2.4 - primary language barrier</option>
-                        <option value="2.5">2.5 - illness/medical instability</option>
-                        <option value="2.6">2.6 - examiner error</option>
-                        <option value="2.7">2.7 - logistical reasons</option>
-                        <option value="2.8">2.8 - other (specify):</option>
-                        <option value="3.1">3.1 - impaired sensory function (cortical or peripheral)</option>
-                        <option value="3.2">3.2 - aphasia</option>
-                        <option value="3.3">3.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
-                        <option value="3.4">3.4 - primary language barrier</option>
-                        <option value="3.5">3.5 - illness/medical instability</option>
-                        <option value="3.6">3.6 - examiner error</option>
-                        <option value="3.7">3.7 - logistical reasons</option>
-                        <option value="3.8">3.8 - other (specify):</option>
+                        <optgroup label="Test attempted, not completed due to:">
+                            <option value="2.1">2.1 - impaired sensory function (cortical or peripheral)</option>
+                            <option value="2.2">2.2 - aphasia</option>
+                            <option value="2.3">2.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
+                            <option value="2.4">2.4 - primary language barrier</option>
+                            <option value="2.5">2.5 - illness/medical instability</option>
+                            <option value="2.6">2.6 - examiner error</option>
+                            <option value="2.7">2.7 - logistical reasons</option>
+                            <option value="2.8">2.8 - other (specify)</option>
+                        </optgroup>
+                        <optgroup label="Test not attempted due to:">
+                            <option value="3.1">3.1 - impaired sensory function (cortical or peripheral)</option>
+                            <option value="3.2">3.2 - aphasia</option>
+                            <option value="3.3">3.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
+                            <option value="3.4">3.4 - primary language barrier</option>
+                            <option value="3.5">3.5 - illness/medical instability</option>
+                            <option value="3.6">3.6 - examiner error</option>
+                            <option value="3.7">3.7 - logistical reasons</option>
+                            <option value="3.8">3.8 - other (specify)</option>
+                        </optgroup>
                     </select>
+                    <div id="code-arousal-other" style="display:none; margin-top:8px;">
+                        <input type="text" id="code-arousal-other-text" placeholder="Please specify..." style="width:100%; padding:6px 10px; border:1px solid #ced4da; border-radius:4px; font-size:12px;" />
+                    </div>
                 </div>
             </div>
-
             <div class="subscale" id="contingent">
                 <div class="subscale-header">ASSESSMENT OF CONTINGENT BEHAVIOR</div>
                 <p style="padding:10px 14px; font-size:12px; color:#495057; background:#fff3cd; margin:10px; border-radius:4px;">
                     <strong>Note:</strong> This item is not scored.
                 </p>
-
                 <div class="item-box">
                     <div class="item-header-new" onclick="toggleItemInstructions('contingent-item')">
                         <span class="item-score" style="background:#6c757d;">—</span>
@@ -1360,7 +1336,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="summary-section">
                 <h2>Assessment Summary</h2>
                 <div class="summary-grid">
@@ -1390,13 +1365,10 @@
                     </div>
                 </div>
             </div>
-
             <button class="reset-btn" onclick="resetForm()">Reset Form</button>
-
             </div>
         </div>
     </div>
-
     <script>
         const scores = {
             auditory: 0,
@@ -1406,15 +1378,12 @@
             communication: 0,
             arousal: 0
         };
-
         // Track previously selected radio buttons for brainstem reflexes to enable deselection
         let lastSelectedRadio = {};
         let isFormUnlocked = false;
-
         function unlockForm() {
             const accessCode = document.getElementById('access-code-input').value.trim();
             const messageEl = document.getElementById('unlock-message');
-            
             // TODO: Replace with actual REDCap validation
             // For now, accept any non-empty code as valid
             if (accessCode.length > 0) {
@@ -1424,7 +1393,6 @@
                 messageEl.style.color = '#28a745';
                 messageEl.textContent = '✓ Access granted! You may now use the assessment.';
                 messageEl.style.display = 'block';
-                
                 // Optionally hide the registration notice after unlock
                 // document.querySelector('.content > div:first-child').style.display = 'none';
             } else {
@@ -1433,7 +1401,6 @@
                 messageEl.style.display = 'block';
             }
         }
-
         // Allow Enter key to unlock
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('access-code-input').addEventListener('keypress', function(e) {
@@ -1442,7 +1409,6 @@
                 }
             });
         });
-
         // Add click handlers to all radio buttons in brainstem reflexes for deselection
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.reflex-option input[type="radio"]').forEach(radio => {
@@ -1457,26 +1423,21 @@
                 });
             });
         });
-
         function toggleCollapsible(header) {
             const content = header.nextElementSibling;
             const arrow = header.querySelector('.arrow');
             content.classList.toggle('open');
             arrow.classList.toggle('open');
         }
-
         function toggleItemInstructions(itemId) {
             const instructionsSection = document.getElementById(itemId + '-instructions');
             const expandIcon = document.getElementById('expand-' + itemId);
-            
             instructionsSection.classList.toggle('open');
             expandIcon.classList.toggle('open');
         }
-
         function selectItem(subscale, score) {
             const boxId = 'box-' + subscale + '-' + score;
             const box = document.getElementById(boxId);
-            
             // Check if already scored with this value - if so, unselect
             if (scores[subscale] === score && box.classList.contains('scored')) {
                 scores[subscale] = 0;
@@ -1484,22 +1445,17 @@
             } else {
                 // Select this score
                 scores[subscale] = score;
-                
                 // Remove scored class from all boxes in this subscale
                 const allBoxes = document.querySelectorAll('#' + subscale + ' .item-box');
                 allBoxes.forEach(b => b.classList.remove('scored'));
-                
                 // Add scored class to selected box
                 box.classList.add('scored');
             }
-            
             // Update score display
             document.getElementById(subscale + '-score').textContent = scores[subscale];
-            
             // Update summary
             updateSummary();
         }
-
         function updateSummary() {
             // Update scores
             document.getElementById('summary-auditory').textContent = scores.auditory;
@@ -1508,7 +1464,6 @@
             document.getElementById('summary-oromotor').textContent = scores.oromotor;
             document.getElementById('summary-communication').textContent = scores.communication;
             document.getElementById('summary-arousal').textContent = scores.arousal;
-            
             // Update codes
             const subscales = ['auditory', 'visual', 'motor', 'oromotor', 'communication', 'arousal'];
             subscales.forEach(sub => {
@@ -1520,10 +1475,21 @@
             });
         }
 
+        function handleTCCChange(subscale) {
+            const selectElement = document.getElementById('code-' + subscale);
+            const otherDiv = document.getElementById('code-' + subscale + '-other');
+            const selectedValue = selectElement.value;
+            if (selectedValue === '2.8' || selectedValue === '3.8') {
+                otherDiv.style.display = 'block';
+            } else {
+                otherDiv.style.display = 'none';
+            }
+            updateSummary();
+        }
+
         function resetForm() {
             if (confirm('Reset form and clear all selections?')) {
                 Object.keys(scores).forEach(key => scores[key] = 0);
-                
                 document.querySelectorAll('.item-instructions').forEach(d => d.classList.remove('open'));
                 document.querySelectorAll('.item-expand').forEach(icon => icon.classList.remove('open'));
                 document.querySelectorAll('.item-box').forEach(box => box.classList.remove('scored'));
@@ -1538,13 +1504,13 @@
                 document.querySelectorAll('input[type="text"]').forEach(textInput => {
                     textInput.value = '';
                 });
-                
+                document.querySelectorAll('[id$="-other"]').forEach(div => {
+                    div.style.display = 'none';
+                });
                 // Reset radio button tracking
                 lastSelectedRadio = {};
-                
                 document.querySelectorAll('.collapsible-content').forEach(c => c.classList.remove('open'));
                 document.querySelectorAll('.collapsible-header .arrow').forEach(a => a.classList.remove('open'));
-                
                 updateSummary();
                 window.scrollTo(0, 0);
             }
