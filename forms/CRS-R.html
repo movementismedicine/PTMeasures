@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRS-R Assessment Form</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            padding: 15px;
+            line-height: 1.5;
+            font-size: 13px;
+        }
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #ddd;
+        }
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 18px 25px;
+            border-bottom: 3px solid #34495e;
+        }
+        .header h1 { font-size: 22px; margin-bottom: 4px; font-weight: 600; }
+        .header p { font-size: 12px; opacity: 0.9; }
+        .content { padding: 20px; }
+        
+        .collapsible-section {
+            margin-bottom: 18px;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            background: white;
+        }
+        .collapsible-header {
+            background: #e9ecef;
+            padding: 11px 14px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 13px;
+        }
+        .collapsible-header:hover { background: #dee2e6; }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .collapsible-content.open { max-height: 5000px; }
+        .collapsible-inner { padding: 14px; font-size: 12px; line-height: 1.6; }
+        .arrow { transition: transform 0.3s; font-size: 11px; }
+        .arrow.open { transform: rotate(180deg); }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 11px;
+        }
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 6px 8px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th { background: #f8f9fa; font-weight: 600; }
+        
+        .subscale {
+            margin-bottom: 25px;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            background: #fafafa;
+        }
+        .subscale-header {
+            background: #34495e;
+            color: white;
+            padding: 11px 14px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        
+        .item-box {
+            background: white;
+            border: 2px solid #dee2e6;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        .item-box.scored {
+            border-color: #28a745;
+            border-width: 3px;
+        }
+        .item-header-new {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            cursor: pointer;
+            background: white;
+            gap: 10px;
+        }
+        .item-header-new:hover { background: #f8f9fa; }
+        .item-score {
+            background: #34495e;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .item-title-flex {
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+        .item-name-new {
+            font-weight: 600;
+            font-size: 13px;
+            color: #2c3e50;
+        }
+        .score-quick-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .score-quick-btn:hover { background: #218838; }
+        .score-quick-btn:active { transform: scale(0.95); }
+        .item-expand {
+            color: #6c757d;
+            font-size: 10px;
+            margin-left: 8px;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+        .item-expand.open { transform: rotate(180deg); }
+        
+        .item-instructions {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+        }
+        .item-instructions.open { max-height: 3000px; }
+        .instructions-content {
+            padding: 15px;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+        .instructions-content p {
+            margin-bottom: 8px;
+            color: #495057;
+        }
+        .instructions-content strong { color: #2c3e50; }
+        
+        .subscale-score-bar {
+            background: #e9ecef;
+            border-top: 2px solid #34495e;
+            padding: 9px 14px;
+            text-align: right;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 13px;
+        }
+        .code-bar {
+            background: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .code-bar-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: #495057;
+        }
+        .code-bar select {
+            flex: 1;
+            min-width: 200px;
+        }
+        select {
+            padding: 5px 9px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 12px;
+            background: white;
+            color: #495057;
+        }
+        
+        .reflex-item {
+            margin-bottom: 18px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .reflex-item:last-child { border-bottom: none; }
+        .reflex-name {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+        .reflex-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .reflex-option {
+            display: flex;
+            align-items: center;
+            padding: 8px 10px;
+            background: white;
+            border: 2px solid #dee2e6;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .reflex-option:hover {
+            background: #f8f9fa;
+            border-color: #adb5bd;
+        }
+        .reflex-option input[type="radio"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .reflex-option span {
+            font-size: 12px;
+            color: #495057;
+        }
+        .reflex-option:has(input:checked) {
+            background: #e9ecef;
+            border-color: #34495e;
+            border-width: 2px;
+        }
+        .reflex-option:has(input:checked) span {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .summary-section {
+            background: #f8f9fa;
+            border: 2px solid #34495e;
+            padding: 18px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+        .summary-section h2 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            text-align: center;
+            border-bottom: 2px solid #34495e;
+            padding-bottom: 7px;
+        }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 9px 11px;
+            background: white;
+            border-radius: 4px;
+            border-left: 4px solid #34495e;
+        }
+        .summary-label {
+            font-weight: 500;
+            color: #2c3e50;
+            font-size: 13px;
+        }
+        .summary-value {
+            font-weight: 600;
+            color: #34495e;
+            font-size: 13px;
+        }
+        
+        .reset-btn {
+            width: 100%;
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 11px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 12px;
+        }
+        .reset-btn:hover { background: #5a6268; }
+        .reset-btn:active { transform: scale(0.98); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>JFK Coma Recovery Scale - Revised (CRS-R)</h1>
+            <p>©2004</p>
+        </div>
+
+        <div class="content">
+            
+            <!-- REGISTRATION NOTICE -->
+            <div style="background:#fff3cd; border:2px solid #ffc107; border-radius:6px; padding:15px; margin-bottom:20px;">
+                <p style="font-weight:600; color:#856404; margin-bottom:8px; font-size:14px;">⚠️ Registration Required</p>
+                <p style="color:#856404; font-size:13px; margin-bottom:10px;">You must register through REDCap to use this assessment tool.</p>
+                <a href="REDCap" target="_blank" style="display:inline-block; background:#007bff; color:white; padding:8px 16px; border-radius:4px; text-decoration:none; font-weight:600; font-size:13px; margin-bottom:10px;">Register via REDCap</a>
+                <div style="margin-top:12px; padding-top:12px; border-top:1px solid #ffc107;">
+                    <p style="color:#856404; font-size:12px; margin-bottom:8px;">Already registered? Enter your access code:</p>
+                    <div style="display:flex; gap:8px; align-items:center;">
+                        <input type="text" id="access-code-input" placeholder="Enter access code" style="flex:1; padding:6px 10px; border:1px solid #ced4da; border-radius:4px; font-size:13px;" />
+                        <button onclick="unlockForm()" style="background:#28a745; color:white; border:none; padding:6px 16px; border-radius:4px; font-weight:600; font-size:13px; cursor:pointer;">Unlock</button>
+                    </div>
+                    <p id="unlock-message" style="color:#dc3545; font-size:12px; margin-top:6px; display:none;"></p>
+                </div>
+            </div>
+            
+            <div id="assessment-content" style="opacity:0.5; pointer-events:none;">
+            
+            <!-- BRAINSTEM REFLEXES -->
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                    <span>Brainstem Reflex Grid</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <p style="margin-bottom:10px; font-style:italic;">Administer daily during the acute phase, then weekly</p>
+                        
+                        <div class="reflex-item">
+                            <div class="reflex-name">Pupils</div>
+                            <div class="reflex-options">
+                                <label class="reflex-option">
+                                    <input type="radio" name="pupils" value="nonreactive">
+                                    <span>Nonreactive: pupils do not constrict in response to light and do not dilate in the dark</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="reflex-item">
+                            <div class="reflex-name">Corneal Reflex</div>
+                            <div class="reflex-options">
+                                <label class="reflex-option">
+                                    <input type="radio" name="corneal" value="absent">
+                                    <span>Absent</span>
+                                </label>
+                                <label class="reflex-option">
+                                    <input type="radio" name="corneal" value="present">
+                                    <span>Present in one or both eyes</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="reflex-item">
+                            <div class="reflex-name">Eye Position and Movement</div>
+                            <div class="reflex-options">
+                                <label class="reflex-option">
+                                    <input type="radio" name="eye-position" value="no-movement">
+                                    <span>No spontaneous or elicited eye movement</span>
+                                </label>
+                                <label class="reflex-option">
+                                    <input type="radio" name="eye-position" value="skew-conjugate">
+                                    <span>Skew or Conjugate Gaze Deviation: At rest, one or both eyes are either positioned up or to the left/right, rather than midline</span>
+                                </label>
+                                <label class="reflex-option">
+                                    <input type="radio" name="eye-position" value="dysconjugate">
+                                    <span>Dysconjugate Gaze: eyes do not move together in the same direction</span>
+                                </label>
+                                <label class="reflex-option">
+                                    <input type="radio" name="eye-position" value="roving">
+                                    <span>Roving: slow, conjugate, lateral, back and forth eye movements</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="reflex-item">
+                            <div class="reflex-name">Oculocephalic Reflex</div>
+                            <div class="reflex-options">
+                                <label class="reflex-option">
+                                    <input type="radio" name="oculocephalic" value="none">
+                                    <span>None: eyes move in the same direction as head or stay fixed at midline</span>
+                                </label>
+                                <label class="reflex-option">
+                                    <input type="radio" name="oculocephalic" value="abnormal">
+                                    <span>Abnormal: response is present but sluggish or unilateral</span>
+                                </label>
+                                <label class="reflex-option">
+                                    <input type="radio" name="oculocephalic" value="normal">
+                                    <span>Normal: eyes move in the direction opposite the head</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="reflex-item">
+                            <div class="reflex-name">Postural Responses (Indicate limb)</div>
+                            <div class="reflex-options">
+                                <label class="reflex-option">
+                                    <input type="radio" name="postural" value="abnormal-extension">
+                                    <span>Abnormal Extension</span>
+                                </label>
+                                <label class="reflex-option">
+                                    <input type="radio" name="postural" value="abnormal-flexion">
+                                    <span>Abnormal Flexion</span>
+                                </label>
+                            </div>
+                            <div style="margin-top:10px; padding-left:10px;">
+                                <p style="font-size:12px; font-weight:600; color:#2c3e50; margin-bottom:8px;">Select affected limb(s):</p>
+                                <div style="display:flex; flex-direction:column; gap:6px;">
+                                    <label style="display:flex; align-items:center; font-size:12px; color:#495057;">
+                                        <input type="checkbox" name="postural-limb" value="RUE" style="margin-right:8px; width:16px; height:16px;">
+                                        <span>RUE (Right Upper Extremity)</span>
+                                    </label>
+                                    <label style="display:flex; align-items:center; font-size:12px; color:#495057;">
+                                        <input type="checkbox" name="postural-limb" value="LUE" style="margin-right:8px; width:16px; height:16px;">
+                                        <span>LUE (Left Upper Extremity)</span>
+                                    </label>
+                                    <label style="display:flex; align-items:center; font-size:12px; color:#495057;">
+                                        <input type="checkbox" name="postural-limb" value="RLE" style="margin-right:8px; width:16px; height:16px;">
+                                        <span>RLE (Right Lower Extremity)</span>
+                                    </label>
+                                    <label style="display:flex; align-items:center; font-size:12px; color:#495057;">
+                                        <input type="checkbox" name="postural-limb" value="LLE" style="margin-right:8px; width:16px; height:16px;">
+                                        <span>LLE (Left Lower Extremity)</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AROUSAL FACILITATION PROTOCOL -->
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                    <span>Arousal Facilitation Protocol (AFP)</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <p><strong>GUIDELINES</strong></p>
+                        <p style="margin-top:8px;">1) The goal of this intervention is to prolong the length of time the patient maintains arousal (i.e. eye opening)</p>
+                        <p style="margin-top:8px;">2) The protocol is administered any time the patient is observed to:</p>
+                        <p style="margin-left:20px;">- Exhibit sustained eyelid closure AND/OR</p>
+                        <p style="margin-left:20px;">- Stops following commands for a period of at least one minute</p>
+                        <p style="margin-top:8px;">3) Readminister the arousal facilitation protocol when</p>
+                        <p style="margin-left:20px;">- Sustained eye closure re-occurs OR</p>
+                        <p style="margin-left:20px;">- Behavioral responsiveness ceases despite sustained eye opening</p>
+                        
+                        <p style="margin-top:15px;"><strong>INTERVENTIONS</strong></p>
+                        <p style="margin-top:8px;"><strong>Deep Pressure:</strong></p>
+                        <p style="margin-top:8px;">1) Present deep pressure stimulation unilaterally to the face, neck, shoulder, and sternocleidomastoid muscles. The muscle should be firmly grasped at its base between the thumb and forefinger. While squeezing the muscle firmly, it should be "rolled" back and forth through the fingertips three to four times. This procedure should be repeated sequentially working from the facial musculature to the sternocleidomastoid. The examiner should assure that there are no intravenous lines, local injuries (e.g. fractures, contusions, decubiti) or systemic complications (e.g. heterotopic ossification) before administering deep pressure.</p>
+                        <p style="margin-top:8px;">2) Administer same on contralateral side.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BASELINE OBSERVATION PROTOCOL -->
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                    <span>Baseline Observation and Command Following Protocol</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <p><strong>Baseline Observations of Spontaneous Behaviours and Resting Posture</strong></p>
+                        <table style="margin-top:10px;">
+                            <tbody>
+                                <tr><td>Eye-Opening</td><td style="width:200px;"><input type="text" style="width:100%; padding:4px;" /></td></tr>
+                                <tr><td>Visual Tracking</td><td><input type="text" style="width:100%; padding:4px;" /></td></tr>
+                                <tr><td>Sticking out tongue</td><td><input type="text" style="width:100%; padding:4px;" /></td></tr>
+                                <tr><td>Opening mouth</td><td><input type="text" style="width:100%; padding:4px;" /></td></tr>
+                                <tr><td>Closing mouth</td><td><input type="text" style="width:100%; padding:4px;" /></td></tr>
+                                <tr><td>Vocalizations (eg. 'ah')</td><td><input type="text" style="width:100%; padding:4px;" /></td></tr>
+                                <tr><td>Resting Posture (RUE)</td><td><input type="text" style="width:100%; padding:4px;" /></td></tr>
+                                <tr><td>Resting Posture (LUE)</td><td><input type="text" style="width:100%; padding:4px;" /></td></tr>
+                                <tr><td>Resting Posture (RLE)</td><td><input type="text" style="width:100%; padding:4px;" /></td></tr>
+                                <tr><td>Resting Posture (LLE)</td><td><input type="text" style="width:100%; padding:4px;" /></td></tr>
+                            </tbody>
+                        </table>
+                        
+                        <p style="margin-top:15px;"><strong>Commands</strong></p>
+                        <table style="margin-top:10px;">
+                            <thead>
+                                <tr>
+                                    <th>Command Type</th>
+                                    <th style="width:60px;">Trial 1</th>
+                                    <th style="width:60px;">Trial 2</th>
+                                    <th style="width:60px;">Trial 3</th>
+                                    <th style="width:60px;">Trial 4</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td colspan="5"><strong>Object Related Commands: Eye Movement</strong></td></tr>
+                                <tr><td>Look at the (object #1, object #2)</td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td></tr>
+                                <tr><td colspan="5"><strong>Object Related Commands: Limb Movement</strong></td></tr>
+                                <tr><td>Take the (object #1, object #2)</td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td></tr>
+                                <tr><td>Kick the (object #1, object #2)</td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td></tr>
+                                <tr><td colspan="5"><strong>Non-Object Related Commands: Eye Movement</strong></td></tr>
+                                <tr><td>Look away from me</td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td></tr>
+                                <tr><td>Look up (at ceiling)</td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td></tr>
+                                <tr><td>Look down (at floor)</td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td></tr>
+                                <tr><td colspan="5"><strong>Non-Object Related Commands: Limb Movement</strong></td></tr>
+                                <tr><td>Touch my hand</td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td></tr>
+                                <tr><td>Touch your nose</td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td></tr>
+                                <tr><td>Move your (body part)</td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td></tr>
+                                <tr><td colspan="5"><strong>Non-Object Related Commands: Oral Movement/Vocalization</strong></td></tr>
+                                <tr><td>Stick out your tongue</td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td></tr>
+                                <tr><td>Open your mouth</td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td></tr>
+                                <tr><td>Close your mouth</td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td></tr>
+                                <tr><td>Say 'ah'</td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td></tr>
+                                <tr><td colspan="5"><strong>Related Commands: Oral Movement/Vocalization</strong></td></tr>
+                                <tr><td>Other Command 1:</td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td></tr>
+                                <tr><td>Other Command 2:</td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td><td style="text-align:center;"><input type="checkbox" /></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AUDITORY FUNCTION SCALE -->
+            <div class="subscale" id="auditory">
+                <div class="subscale-header">AUDITORY FUNCTION SCALE</div>
+
+                <!-- Item 4 -->
+                <div class="item-box" id="box-auditory-4">
+                    <div class="item-header-new" onclick="toggleItemInstructions('auditory-4')">
+                        <span class="item-score">4</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">Consistent Movement to Command</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('auditory', 4)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-auditory-4">▼</span>
+                    </div>
+                    <div class="item-instructions" id="auditory-4-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Method</strong></p>
+                            <p>1. Observe frequency of spontaneous movement for a one minute interval (See Baseline Observation and Command Following Protocol)</p>
+                            <p style="margin-top:10px;">2. Choose at least 1 object-related and 1 non object related command from the Command Following Protocol. The type of command chosen (eye, limb, oral) should be based on patient's physical capacity and should be of low spontaneous frequency. If at least 2 out of four commands are passed, and time permits, an additional command may be attempted. The command should be repeated once during the 10 second response interval.</p>
+                            <p style="margin-top:10px;"><strong>a. Object-Related Eye Movement Commands:</strong> Present 2 common objects simultaneously and approximately 16 inches apart within the patient's field of view. Ask the patient to look at the object named (i.e. 'Look at the [name object]'). Next, reverse the positions of the 2 objects and ask the patient to look at the same object again (i.e. 'Look at the [name object]'). Administer two additional trials using the same 2 objects and repeat the above procedure with instruction to look at the other object on both trials. Two trials per object should be administered for a total of 4 trials.</p>
+                            <p style="margin-top:10px;"><strong>b. Object-Related Limb Movement Command:</strong> Present 2 common objects simultaneously and approximately 16 inches apart within the patient's field of view and within arm's (or leg's) length and ask the patient to touch the object named with their hand (or foot). Next, reverse the positions of the 2 objects and ask the patient to touch the same object again. Administer two additional trials using the same two objects and repeat the above procedure with instruction to touch the other object on both trials. Two trials per object should be administered for a total of four trials. This command may also be attempted using head movement.</p>
+                            <p style="margin-top:10px;"><strong>c. Non-Object Related Commands:</strong> Select at least 1 eye movement, limb movement or oral movement/vocalization command and present it over 4 trials at 15 second intervals. The same command should be used for all 4 trials. Movements that occur between commands (i.e. after the response interval has elapsed) should be noted but not scored.</p>
+                            <p style="margin-top:10px;"><strong>Response</strong></p>
+                            <p>Clearly discernible and accurate responses occur within 10 seconds on all 4 trials administered. This item is credited only when all 4 trials of 2 different commands are passed. When more than one type of command from each category is attempted, scoring is based on successfully completing all 4 trials of any two different commands (e.g., 2 object-related, 2 non object related or one of each).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="item-box" id="box-auditory-3">
+                    <div class="item-header-new" onclick="toggleItemInstructions('auditory-3')">
+                        <span class="item-score">3</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">Reproducible Movement to Command</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('auditory', 3)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-auditory-3">▼</span>
+                    </div>
+                    <div class="item-instructions" id="auditory-3-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Method</strong></p>
+                            <p>Same as the Consistent Movement to Command item</p>
+                            <p style="margin-top:10px;"><strong>Response</strong></p>
+                            <p>3 clearly discernible and accurate responses occur over the 4 trials on any one of the object or non-object related commands.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="item-box" id="box-auditory-2">
+                    <div class="item-header-new" onclick="toggleItemInstructions('auditory-2')">
+                        <span class="item-score">2</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">Localisation to Sound</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('auditory', 2)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-auditory-2">▼</span>
+                    </div>
+                    <div class="item-instructions" id="auditory-2-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Method</strong></p>
+                            <p>Standing behind the patient and out of view, present an auditory stimulus (e.g. patient's name, voice, noise) from the right side for 5 seconds. Perform a second trial presenting the auditory stimulus from the left side. Repeat above procedure for a total of 4 trials, 2 on each side. If needed, reorient the head to midline between trials.</p>
+                            <p style="margin-top:10px;"><strong>Response</strong></p>
+                            <p>Head and/or eyes orient toward the location of the stimulus on both trials in at least one direction (ie, twice to the right or twice to the left) within 10 seconds of stimulus presentation. This item is scored when there is clear evidence of head and/or eye movement. It is not dependent on the degree or duration of movement.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 1 -->
+                <div class="item-box" id="box-auditory-1">
+                    <div class="item-header-new" onclick="toggleItemInstructions('auditory-1')">
+                        <span class="item-score">1</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">Auditory Startle</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('auditory', 1)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-auditory-1">▼</span>
+                    </div>
+                    <div class="item-instructions" id="auditory-1-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Method</strong></p>
+                            <p>Present a loud noise (eg, whistle, clap) directly above the patient's head and out of view. Administer 4 trials.</p>
+                            <p style="margin-top:10px;"><strong>Response</strong></p>
+                            <p>Eyelid flutter or blink occurs immediately following the stimulus on at least 2 trials. If the eyes are closed, a shoulder shrug or other body startle response can be scored.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 0 -->
+                <div class="item-box" id="box-auditory-0">
+                    <div class="item-header-new" onclick="toggleItemInstructions('auditory-0')">
+                        <span class="item-score">0</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">None</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('auditory', 0)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-auditory-0">▼</span>
+                    </div>
+                    <div class="item-instructions" id="auditory-0-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Response</strong></p>
+                            <p>No response to any of the above.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subscale-score-bar">
+                    Subscale Score: <span id="auditory-score">0</span>
+                </div>
+                <div class="code-bar">
+                    <label class="code-bar-label">Test Completion Code:</label>
+                    <select id="code-auditory" onchange="updateSummary()">
+                        <option value="">--</option>
+                        <option value="1">1 - test completed in full - results valid</option>
+                        <option value="2.1">2.1 - impaired sensory function (cortical or peripheral)</option>
+                        <option value="2.2">2.2 - aphasia</option>
+                        <option value="2.3">2.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
+                        <option value="2.4">2.4 - primary language barrier</option>
+                        <option value="2.5">2.5 - illness/medical instability</option>
+                        <option value="2.6">2.6 - examiner error</option>
+                        <option value="2.7">2.7 - logistical reasons</option>
+                        <option value="2.8">2.8 - other (specify):</option>
+                        <option value="3.1">3.1 - impaired sensory function (cortical or peripheral)</option>
+                        <option value="3.2">3.2 - aphasia</option>
+                        <option value="3.3">3.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
+                        <option value="3.4">3.4 - primary language barrier</option>
+                        <option value="3.5">3.5 - illness/medical instability</option>
+                        <option value="3.6">3.6 - examiner error</option>
+                        <option value="3.7">3.7 - logistical reasons</option>
+                        <option value="3.8">3.8 - other (specify):</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- VISUAL FUNCTION SCALE -->
+            <div class="subscale" id="visual">
+                <div class="subscale-header">VISUAL FUNCTION SCALE</div>
+
+                <!-- Item 5 -->
+                <div class="item-box" id="box-visual-5">
+                    <div class="item-header-new" onclick="toggleItemInstructions('visual-5')">
+                        <span class="item-score">5</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">Object Recognition</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('visual', 5)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-visual-5">▼</span>
+                    </div>
+                    <div class="item-instructions" id="visual-5-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Method</strong></p>
+                            <p>Same as Consistent Movement to Command on Auditory Function Scale, Section 2a and b (see page 5.)</p>
+                            <p style="margin-top:10px;"><strong>Response</strong></p>
+                            <p>If the Auditory Function score was >2 AND the command used was object-related, score 5 for the Visual Function Scale. If an object-related command was not administered, administer the Object Recognition item. If the Auditory Function score was < 2 AND the command used was object-related, continue with the Object Localization item below</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="item-box" id="box-visual-4">
+                    <div class="item-header-new" onclick="toggleItemInstructions('visual-4')">
+                        <span class="item-score">4</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">Object Localization: Reaching</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('visual', 4)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-visual-4">▼</span>
+                    </div>
+                    <div class="item-instructions" id="visual-4-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Method</strong></p>
+                            <p>1. Identify the arm or leg with the greatest range of movement.</p>
+                            <p style="margin-top:8px;">2. For upper extremity reaching, select common objects (e.g. comb, toothbrush, etc.) For lower extremity assessment, select a ball suitable for kicking.</p>
+                            <p style="margin-top:8px;">3. Present the object approximately 8 inches to the left or right of the limb's resting position. The object should be placed in a position that is not obstructed from view. The patient should be instructed to 'Touch the [name object]' with the appropriate arm or leg.</p>
+                            <p style="margin-top:8px;">4. The command may be repeated once within the assessment interval. Do not provide any tactile cues, as these may stimulate random limb movement.</p>
+                            <p style="margin-top:8px;">5. Present an object twice to the left of the limb and twice to the right of the limb in random order for a total of 4 trials</p>
+                            <p style="margin-top:10px;"><strong>Response</strong></p>
+                            <p>Score the direction in which the limb first moves within a 10 second observation period, or score as no movement. The limb does not need to make contact with the object, only to move toward it; and Movement must occur in the correct direction in 3 of the 4 trials administered.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="item-box" id="box-visual-3">
+                    <div class="item-header-new" onclick="toggleItemInstructions('visual-3')">
+                        <span class="item-score">3</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">Visual Pursuit</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('visual', 3)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-visual-3">▼</span>
+                    </div>
+                    <div class="item-instructions" id="visual-3-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Method</strong></p>
+                            <p>Hold a mirror 4-6 inches directly in front of the patient's face and verbally encourage the patient to fixate on the mirror.</p>
+                            <p style="margin-top:8px;">Tilt the mirror slowly 45 degrees to the right and left of the vertical midline and 45 degrees above and below the horizontal midline.</p>
+                            <p style="margin-top:8px;">Repeat the above procedure so that a total of 2 trials are administered in each hemispace (ie twice up, twice down, twice left and twice right).</p>
+                            <p style="margin-top:10px;"><strong>Response</strong></p>
+                            <p>Eyes must follow the mirror for 45 degrees without loss of fixation on 2 occasions in any direction.</p>
+                            <p style="margin-top:8px;">If visual pursuit is not scored, the procedure may be repeated assessing one eye at a time (using an eye patch).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="item-box" id="box-visual-2">
+                    <div class="item-header-new" onclick="toggleItemInstructions('visual-2')">
+                        <span class="item-score">2</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">Fixation</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('visual', 2)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-visual-2">▼</span>
+                    </div>
+                    <div class="item-instructions" id="visual-2-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Method</strong></p>
+                            <p>Present a brightly colored or illuminated object 6 to 8 inches in front of the patient's face and then rapidly move to upper, lower, right and left visual fields, respectively for a total of 4 trials.</p>
+                            <p style="margin-top:10px;"><strong>Response</strong></p>
+                            <p>Eyes change from initial fixation point and refixate on the new target location for more than 2 seconds. At least 2 episodes of fixation are required.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 1 -->
+                <div class="item-box" id="box-visual-1">
+                    <div class="item-header-new" onclick="toggleItemInstructions('visual-1')">
+                        <span class="item-score">1</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">Visual Startle</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('visual', 1)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-visual-1">▼</span>
+                    </div>
+                    <div class="item-instructions" id="visual-1-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Method</strong></p>
+                            <p>Present visual threat by passing finger 1 inch in front of patient's eye. Be careful not to touch eyelashes or create a breeze (manually open eyes if necessary). Conduct 4 trials per eye.</p>
+                            <p style="margin-top:10px;"><strong>Response</strong></p>
+                            <p>Eyelid flutter or blink following presentation of visual threat on at least 2 trials with either eye.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 0 -->
+                <div class="item-box" id="box-visual-0">
+                    <div class="item-header-new" onclick="toggleItemInstructions('visual-0')">
+                        <span class="item-score">0</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">None</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('visual', 0)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-visual-0">▼</span>
+                    </div>
+                    <div class="item-instructions" id="visual-0-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Response</strong></p>
+                            <p>No response to any of the above</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subscale-score-bar">
+                    Subscale Score: <span id="visual-score">0</span>
+                </div>
+                <div class="code-bar">
+                    <label class="code-bar-label">Test Completion Code:</label>
+                    <select id="code-visual" onchange="updateSummary()">
+                        <option value="">--</option>
+                        <option value="1">1 - test completed in full - results valid</option>
+                        <option value="2.1">2.1 - impaired sensory function (cortical or peripheral)</option>
+                        <option value="2.2">2.2 - aphasia</option>
+                        <option value="2.3">2.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
+                        <option value="2.4">2.4 - primary language barrier</option>
+                        <option value="2.5">2.5 - illness/medical instability</option>
+                        <option value="2.6">2.6 - examiner error</option>
+                        <option value="2.7">2.7 - logistical reasons</option>
+                        <option value="2.8">2.8 - other (specify):</option>
+                        <option value="3.1">3.1 - impaired sensory function (cortical or peripheral)</option>
+                        <option value="3.2">3.2 - aphasia</option>
+                        <option value="3.3">3.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
+                        <option value="3.4">3.4 - primary language barrier</option>
+                        <option value="3.5">3.5 - illness/medical instability</option>
+                        <option value="3.6">3.6 - examiner error</option>
+                        <option value="3.7">3.7 - logistical reasons</option>
+                        <option value="3.8">3.8 - other (specify):</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- MOTOR FUNCTION SCALE -->
+            <div class="subscale" id="motor">
+                <div class="subscale-header">MOTOR FUNCTION SCALE</div>
+
+                <!-- Item 6 -->
+                <div class="item-box" id="box-motor-6">
+                    <div class="item-header-new" onclick="toggleItemInstructions('motor-6')">
+                        <span class="item-score">6</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">Functional Object Use</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('motor', 6)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-motor-6">▼</span>
+                    </div>
+                    <div class="item-instructions" id="motor-6-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Method</strong></p>
+                            <p>Select 2 common objects (e.g. comb, cup). Place one of the objects in the patient's hand and instruct the patient to 'Show me how to use a [name object]'. Next, place the second object in the patient's hand and restate the same instruction.</p>
+                            <p style="margin-top:8px;">Repeat the above procedure using the same objects so that a total of 2 trials are administered with each object.</p>
+                            <p style="margin-top:10px;"><strong>Response</strong></p>
+                            <p>Movements executed are generally compatible with both objects' specific function (e.g. comb is placed on or near the head) on all 4 trials administered.</p>
+                            <p style="margin-top:8px;">If the patient is unable to hold the object because of neuromuscular involvement, this should be noted on the record form and the item should not be scored.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="item-box" id="box-motor-5">
+                    <div class="item-header-new" onclick="toggleItemInstructions('motor-5')">
+                        <span class="item-score">5</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">Automatic Motor Response</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('motor', 5)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-motor-5">▼</span>
+                    </div>
+                    <div class="item-instructions" id="motor-5-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Method</strong></p>
+                            <p>Observe for automatic motor behaviors patterns such as nose scratching, grasping bedrail, crossing legs, grabbing tubes, that occur spontaneously during the examination.</p>
+                            <p style="margin-top:8px;">If spontaneous automatic motor behaviors are not observed, present a familiar gesture (e.g. wave) in association with the following series of alternating commands:</p>
+                            <p style="margin-top:8px;">1) 'Show me how to wave' (demonstrate gesture)</p>
+                            <p>2) 'I'm going to wave again. Do not move at all. Just hold still' (demonstrate gesture)</p>
+                            <p>3) 'Show me how to wave' (demonstrate gesture)</p>
+                            <p>4) 'I'm going to wave again. Do not move at all. Just hold still' (demonstrate gesture)</p>
+                            <p style="margin-top:8px;">For patients with limited ability to move their limbs, objects associated with oromotor activity may be used (e.g. spoon). Place the object in front of the patient's mouth without making contact. Administer the following series of commands:</p>
+                            <p style="margin-top:8px;">1) 'Show me how to use [name object]'</p>
+                            <p>2) 'I am going to show you [name object] again. Do not move at all. Just hold still'.</p>
+                            <p>3) 'Show me how to use [name object]'</p>
+                            <p>4) 'I am going to show you [name object] again. Do not move at all. Just hold still'.</p>
+                            <p style="margin-top:10px;"><strong>Response</strong></p>
+                            <p>At least 2 episodes of automatic motor behavior are observed within the session and each episode can be clearly differentiated from a reflexive response.</p>
+                            <p style="margin-top:8px;">OR</p>
+                            <p style="margin-top:8px;">Patient performs the gesture (e.g. waves) or oromotor pattern on Trials 2 and 4 (regardless of performance on trials 1 and 3).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="item-box" id="box-motor-4">
+                    <div class="item-header-new" onclick="toggleItemInstructions('motor-4')">
+                        <span class="item-score">4</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">Object Manipulation</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('motor', 4)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-motor-4">▼</span>
+                    </div>
+                    <div class="item-instructions" id="motor-4-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Method</strong></p>
+                            <p>Place a baseball size ball on the dorsal surface of one of the patient's hands. Roll the ball across the index finger and thumb without touching the undersurface of the hand or fingers. While moving the ball, instruct the patient to "Take the ball".</p>
+                            <p style="margin-top:8px;">Repeat the above for a total of 4 trials.</p>
+                            <p style="margin-top:10px;"><strong>Response</strong></p>
+                            <p>The following criteria must be met on 3 of the 4 trials administered:</p>
+                            <p style="margin-top:8px;">1. The wrist must rotate and the fingers should extend as the object is moved along the dorsal surface of the hand;</p>
+                            <p style="margin-top:8px;">and</p>
+                            <p style="margin-top:8px;">2. The object must be grasped and held for a minimum of 5 seconds. The object cannot be held by means of a grasp reflex or increased finger flexor tone.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="item-box" id="box-motor-3">
+                    <div class="item-header-new" onclick="toggleItemInstructions('motor-3')">
+                        <span class="item-score">3</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">Localisation to Noxious Stimulation</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('motor', 3)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-motor-3">▼</span>
+                    </div>
+                    <div class="item-instructions" id="motor-3-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Method</strong></p>
+                            <p>Extend all four extremities. Apply pressure to the finger or toe of an extremity (use best extremity on each side of the body) for a minimum of 5 seconds (i.e. squeeze the finger or toe between your thumb and index finger). Administer 2 trials on each side for a total of 4 trials.</p>
+                            <p style="margin-top:10px;"><strong>Response</strong></p>
+                            <p>The non-stimulated limb must locate and make contact with the stimulated body part at the point of stimulation or with the examiner's hand on at least 2 of the 4 trials.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="item-box" id="box-motor-2">
+                    <div class="item-header-new" onclick="toggleItemInstructions('motor-2')">
+                        <span class="item-score">2</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">Flexion withdrawal</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('motor', 2)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-motor-2">▼</span>
+                    </div>
+                    <div class="item-instructions" id="motor-2-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Method</strong></p>
+                            <p>Extend all 4 extremities. Apply deep pressure to nailbeds of each extremity (i.e. press the ridge of a pencil into the cuticle). Administer 1 trial per extremity.</p>
+                            <p style="margin-top:10px;"><strong>Response</strong></p>
+                            <p>There is isolated flexion withdrawal of at least one limb. The limb must move away from the point of stimulation. If quality of response is uncertain, the trial may be repeated.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 1 -->
+                <div class="item-box" id="box-motor-1">
+                    <div class="item-header-new" onclick="toggleItemInstructions('motor-1')">
+                        <span class="item-score">1</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">Abnormal Posturing</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('motor', 1)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-motor-1">▼</span>
+                    </div>
+                    <div class="item-instructions" id="motor-1-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Method</strong></p>
+                            <p>Observe response to above method</p>
+                            <p style="margin-top:10px;"><strong>Response</strong></p>
+                            <p>Slow, stereotyped flexion or extension of the upper and/or lower extremities occurs immediately after the stimulus is applied.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 0 -->
+                <div class="item-box" id="box-motor-0">
+                    <div class="item-header-new" onclick="toggleItemInstructions('motor-0')">
+                        <span class="item-score">0</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">None</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('motor', 0)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-motor-0">▼</span>
+                    </div>
+                    <div class="item-instructions" id="motor-0-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Method</strong></p>
+                            <p>Observe response to method above</p>
+                            <p style="margin-top:10px;"><strong>Response</strong></p>
+                            <p>There is no discernible movement following application of noxious stimulation, secondary to hypertonic or flaccid muscle tone.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subscale-score-bar">
+                    Subscale Score: <span id="motor-score">0</span>
+                </div>
+                <div class="code-bar">
+                    <label class="code-bar-label">Test Completion Code:</label>
+                    <select id="code-motor" onchange="updateSummary()">
+                        <option value="">--</option>
+                        <option value="1">1 - test completed in full - results valid</option>
+                        <option value="2.1">2.1 - impaired sensory function (cortical or peripheral)</option>
+                        <option value="2.2">2.2 - aphasia</option>
+                        <option value="2.3">2.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
+                        <option value="2.4">2.4 - primary language barrier</option>
+                        <option value="2.5">2.5 - illness/medical instability</option>
+                        <option value="2.6">2.6 - examiner error</option>
+                        <option value="2.7">2.7 - logistical reasons</option>
+                        <option value="2.8">2.8 - other (specify):</option>
+                        <option value="3.1">3.1 - impaired sensory function (cortical or peripheral)</option>
+                        <option value="3.2">3.2 - aphasia</option>
+                        <option value="3.3">3.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
+                        <option value="3.4">3.4 - primary language barrier</option>
+                        <option value="3.5">3.5 - illness/medical instability</option>
+                        <option value="3.6">3.6 - examiner error</option>
+                        <option value="3.7">3.7 - logistical reasons</option>
+                        <option value="3.8">3.8 - other (specify):</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- OROMOTOR/VERBAL FUNCTION SCALE -->
+            <div class="subscale" id="oromotor">
+                <div class="subscale-header">OROMOTOR/VERBAL FUNCTION SCALE</div>
+
+                <!-- Item 3 -->
+                <div class="item-box" id="box-oromotor-3">
+                    <div class="item-header-new" onclick="toggleItemInstructions('oromotor-3')">
+                        <span class="item-score">3</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">Intelligible verbalization</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('oromotor', 3)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-oromotor-3">▼</span>
+                    </div>
+                    <div class="item-instructions" id="oromotor-3-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Method</strong></p>
+                            <p>1. Tell patient: 'I would like to hear your voice'. This should be followed by an attempt to directly elicit speech using the verbal prompts shown below. At least one prompt should be selected from the Aural Set and at least one from the Visual Set. A maximum of 4 prompts can be administered.</p>
+                            <p style="margin-top:8px;">2. A maximum of 3 trials should be administered for each prompt chosen from the Aural and Visual Sets. Prompts should be administered at 10 second intervals.</p>
+                            <p style="margin-top:10px;"><strong>Aural Set:</strong></p>
+                            <p>a) 'Your name is ___'</p>
+                            <p>b) 'You live in ___'</p>
+                            <p>c) 'One, two, three, ___'</p>
+                            <p style="margin-top:10px;"><strong>Visual Set:</strong></p>
+                            <p>a) 'This is a ___' (Hold up a common object in front of the patient's right and then left visual field for 10 seconds).</p>
+                            <p>b) 'I holding___ fingers' (Hold up 4 or 5 fingers in front of the right and then left visual field for 10 seconds).</p>
+                            <p>c) 'This is a ___' (Point to your nose while positioned at the patient's visual midline).</p>
+                            <p style="margin-top:10px;"><strong>Response</strong></p>
+                            <p>Each of the following criteria must be met:</p>
+                            <p style="margin-top:8px;">1. Each verbalization must consist of at least one consonant-vowel-consonant (C-V-C) triad. For example, 'ma' would not be acceptable, but 'mom' would. Make sure objects chosen have a C-V-C sequence;</p>
+                            <p style="margin-top:8px;">and</p>
+                            <p style="margin-top:8px;">2. Two different words must be documented by the examiner to ensure that a repetitive word-like sound is not mistaken for a word. Words need not be appropriate or accurate for the context, but must be fully intelligible;</p>
+                            <p style="margin-top:8px;">and</p>
+                            <p style="margin-top:8px;">3. Words produced by writing or alphabet board are acceptable.</p>
+                            <p style="margin-top:10px;">Verbalisations that occur spontaneously or at other times during the assessment and meet the above criteria should also receive a score of 3.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="item-box" id="box-oromotor-2">
+                    <div class="item-header-new" onclick="toggleItemInstructions('oromotor-2')">
+                        <span class="item-score">2</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">Vocalization/Oral movement</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('oromotor', 2)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-oromotor-2">▼</span>
+                    </div>
+                    <div class="item-instructions" id="oromotor-2-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Method</strong></p>
+                            <p>Observe for non-reflexive oral movements, spontaneous vocalizations or vocalizations that occur during administration of vocalization commands (see page 5)</p>
+                            <p style="margin-top:10px;"><strong>Response</strong></p>
+                            <p>At least 1 episode of non-reflexive oral movement (i.e., suggesting an attempt to speak, mouth opening other than yawning, lip licking, or any other oral movement that cannot be accounted for by reflexes) and/or vocalization occurs spontaneously or in response to application of sensory stimulation</p>
+                            <p style="margin-top:8px;">Yawning is scored as reflexive oral movement.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 1 -->
+                <div class="item-box" id="box-oromotor-1">
+                    <div class="item-header-new" onclick="toggleItemInstructions('oromotor-1')">
+                        <span class="item-score">1</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">Oral reflexive movement</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('oromotor', 1)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-oromotor-1">▼</span>
+                    </div>
+                    <div class="item-instructions" id="oromotor-1-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Method</strong></p>
+                            <p>Present tongue blade between patient's lips and/or teeth</p>
+                            <p style="margin-top:10px;"><strong>Response</strong></p>
+                            <p>There is clamping of jaws, tongue pumping or chewing movement spontaneously or following introduction of tongue blade into mouth.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 0 -->
+                <div class="item-box" id="box-oromotor-0">
+                    <div class="item-header-new" onclick="toggleItemInstructions('oromotor-0')">
+                        <span class="item-score">0</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">None</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('oromotor', 0)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-oromotor-0">▼</span>
+                    </div>
+                    <div class="item-instructions" id="oromotor-0-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Response</strong></p>
+                            <p>No response to any of the above.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subscale-score-bar">
+                    Subscale Score: <span id="oromotor-score">0</span>
+                </div>
+                <div class="code-bar">
+                    <label class="code-bar-label">Test Completion Code:</label>
+                    <select id="code-oromotor" onchange="updateSummary()">
+                        <option value="">--</option>
+                        <option value="1">1 - test completed in full - results valid</option>
+                        <option value="2.1">2.1 - impaired sensory function (cortical or peripheral)</option>
+                        <option value="2.2">2.2 - aphasia</option>
+                        <option value="2.3">2.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
+                        <option value="2.4">2.4 - primary language barrier</option>
+                        <option value="2.5">2.5 - illness/medical instability</option>
+                        <option value="2.6">2.6 - examiner error</option>
+                        <option value="2.7">2.7 - logistical reasons</option>
+                        <option value="2.8">2.8 - other (specify):</option>
+                        <option value="3.1">3.1 - impaired sensory function (cortical or peripheral)</option>
+                        <option value="3.2">3.2 - aphasia</option>
+                        <option value="3.3">3.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
+                        <option value="3.4">3.4 - primary language barrier</option>
+                        <option value="3.5">3.5 - illness/medical instability</option>
+                        <option value="3.6">3.6 - examiner error</option>
+                        <option value="3.7">3.7 - logistical reasons</option>
+                        <option value="3.8">3.8 - other (specify):</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- COMMUNICATION SCALE -->
+            <div class="subscale" id="communication">
+                <div class="subscale-header">COMMUNICATION SCALE</div>
+                <p style="padding:10px 14px; font-size:12px; color:#495057; background:#fff3cd; margin:10px; border-radius:4px;">
+                    <strong>Note:</strong> Administer only if a score of 3 or 4 is achieved on the auditory subscale, a score of 3 is achieved on the Verbal/Oromotor Scale, or there is evidence of spontaneous communication (e.g., gestural or verbal yes/no responses during the exam).
+                </p>
+
+                <!-- Item 2 -->
+                <div class="item-box" id="box-communication-2">
+                    <div class="item-header-new" onclick="toggleItemInstructions('communication-2')">
+                        <span class="item-score">2</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">Functional: Accurate</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('communication', 2)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-communication-2">▼</span>
+                    </div>
+                    <div class="item-instructions" id="communication-2-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Method</strong></p>
+                            <p>Administer the 6 Situational Orientation questions from the Communication Assessment Protocol (page 12). The examiner may use the Visual Set, Auditory set or both sets, if appropriate. Repeat the question once within 10 seconds.</p>
+                            <p style="margin-top:10px;"><strong>Situational Orientation - Visually Based</strong></p>
+                            <p>Am I touching my ear right now? (touch nose)</p>
+                            <p>Am I touching my nose right now? (touch nose)</p>
+                            <p>Am I touching my ear right now? (touch ear)</p>
+                            <p>Am I touching my ear right now? (touch nose)</p>
+                            <p>Am I touching my nose right now? (touch ear)</p>
+                            <p>Am I touching my ear right now? (touch ear)</p>
+                            <p style="margin-top:10px;"><strong>Situational Orientation - Aurally Based</strong></p>
+                            <p>Am I clapping my hands right now? (do not clap)</p>
+                            <p>Am I clapping my hands right now? (clap)</p>
+                            <p>Am I clapping my hands right now? (clap)</p>
+                            <p>Am I clapping my hands right now? (do not clap)</p>
+                            <p>Am I clapping my hands right now? (clap)</p>
+                            <p>Am I clapping my hands right now? (do not clap)</p>
+                            <p style="margin-top:10px;"><strong>Response</strong></p>
+                            <p>Clearly discernible and accurate responses (e.g head nods/shakes, thumbs up) occur within 10 seconds on all 6 of the Visual or Auditory Situational Orientation questions from the Communication Assessment Protocol (see page 14)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 1 -->
+                <div class="item-box" id="box-communication-1">
+                    <div class="item-header-new" onclick="toggleItemInstructions('communication-1')">
+                        <span class="item-score">1</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">Non-functional: Intentional</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('communication', 1)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-communication-1">▼</span>
+                    </div>
+                    <div class="item-instructions" id="communication-1-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Method</strong></p>
+                            <p>Same as above</p>
+                            <p style="margin-top:10px;"><strong>Response</strong></p>
+                            <p>A clearly discernible communicative response (e.g head nods/shakes, thumbs up) must occur within 10 seconds on at least 2 of the 6 Situational Orientation questions of either set (irrespective of accuracy).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 0 -->
+                <div class="item-box" id="box-communication-0">
+                    <div class="item-header-new" onclick="toggleItemInstructions('communication-0')">
+                        <span class="item-score">0</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">None</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('communication', 0)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-communication-0">▼</span>
+                    </div>
+                    <div class="item-instructions" id="communication-0-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Response</strong></p>
+                            <p>No discernible verbal or non-verbal communication responses occur at any time.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subscale-score-bar">
+                    Subscale Score: <span id="communication-score">0</span>
+                </div>
+                <div class="code-bar">
+                    <label class="code-bar-label">Test Completion Code:</label>
+                    <select id="code-communication" onchange="updateSummary()">
+                        <option value="">--</option>
+                        <option value="1">1 - test completed in full - results valid</option>
+                        <option value="2.1">2.1 - impaired sensory function (cortical or peripheral)</option>
+                        <option value="2.2">2.2 - aphasia</option>
+                        <option value="2.3">2.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
+                        <option value="2.4">2.4 - primary language barrier</option>
+                        <option value="2.5">2.5 - illness/medical instability</option>
+                        <option value="2.6">2.6 - examiner error</option>
+                        <option value="2.7">2.7 - logistical reasons</option>
+                        <option value="2.8">2.8 - other (specify):</option>
+                        <option value="3.1">3.1 - impaired sensory function (cortical or peripheral)</option>
+                        <option value="3.2">3.2 - aphasia</option>
+                        <option value="3.3">3.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
+                        <option value="3.4">3.4 - primary language barrier</option>
+                        <option value="3.5">3.5 - illness/medical instability</option>
+                        <option value="3.6">3.6 - examiner error</option>
+                        <option value="3.7">3.7 - logistical reasons</option>
+                        <option value="3.8">3.8 - other (specify):</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- AROUSAL SCALE -->
+            <div class="subscale" id="arousal">
+                <div class="subscale-header">AROUSAL SCALE</div>
+
+                <!-- Item 3 -->
+                <div class="item-box" id="box-arousal-3">
+                    <div class="item-header-new" onclick="toggleItemInstructions('arousal-3')">
+                        <span class="item-score">3</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">Attention</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('arousal', 3)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-arousal-3">▼</span>
+                    </div>
+                    <div class="item-instructions" id="arousal-3-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Method</strong></p>
+                            <p>Observe consistency of behavioral responses following verbal or gestural prompts</p>
+                            <p style="margin-top:10px;"><strong>Response</strong></p>
+                            <p>There are no more than 3 occasions across the duration of the evaluation in which the patient fails to respond to a verbal or gestural prompt.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="item-box" id="box-arousal-2">
+                    <div class="item-header-new" onclick="toggleItemInstructions('arousal-2')">
+                        <span class="item-score">2</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">Eye Opening w/o Stimulation</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('arousal', 2)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-arousal-2">▼</span>
+                    </div>
+                    <div class="item-instructions" id="arousal-2-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Method</strong></p>
+                            <p>Observe status of the eyelids across length of assessment</p>
+                            <p style="margin-top:10px;"><strong>Response</strong></p>
+                            <p>Eyes remain open across the length of the examination without the need for tactile, pressure or noxious stimulation</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 1 -->
+                <div class="item-box" id="box-arousal-1">
+                    <div class="item-header-new" onclick="toggleItemInstructions('arousal-1')">
+                        <span class="item-score">1</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">Eye Opening with Stimulation</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('arousal', 1)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-arousal-1">▼</span>
+                    </div>
+                    <div class="item-instructions" id="arousal-1-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Method</strong></p>
+                            <p>Same as above</p>
+                            <p style="margin-top:10px;"><strong>Response</strong></p>
+                            <p>Tactile, pressure or noxious stimulation must be applied at least once during the examination in order for the patient to sustain eye opening (the length of time the eyes remain open may vary and is not considered in the scoring)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 0 -->
+                <div class="item-box" id="box-arousal-0">
+                    <div class="item-header-new" onclick="toggleItemInstructions('arousal-0')">
+                        <span class="item-score">0</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">Unarousable</span>
+                            <button class="score-quick-btn" onclick="event.stopPropagation(); selectItem('arousal', 0)">Score</button>
+                        </div>
+                        <span class="item-expand" id="expand-arousal-0">▼</span>
+                    </div>
+                    <div class="item-instructions" id="arousal-0-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Response</strong></p>
+                            <p>No eye opening noted. Note, if the eyes do not open but MCS behaviors are scored, the Arousal subscale is scored as "not testable"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subscale-score-bar">
+                    Subscale Score: <span id="arousal-score">0</span>
+                </div>
+                <div class="code-bar">
+                    <label class="code-bar-label">Test Completion Code:</label>
+                    <select id="code-arousal" onchange="updateSummary()">
+                        <option value="">--</option>
+                        <option value="1">1 - test completed in full - results valid</option>
+                        <option value="2.1">2.1 - impaired sensory function (cortical or peripheral)</option>
+                        <option value="2.2">2.2 - aphasia</option>
+                        <option value="2.3">2.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
+                        <option value="2.4">2.4 - primary language barrier</option>
+                        <option value="2.5">2.5 - illness/medical instability</option>
+                        <option value="2.6">2.6 - examiner error</option>
+                        <option value="2.7">2.7 - logistical reasons</option>
+                        <option value="2.8">2.8 - other (specify):</option>
+                        <option value="3.1">3.1 - impaired sensory function (cortical or peripheral)</option>
+                        <option value="3.2">3.2 - aphasia</option>
+                        <option value="3.3">3.3 - physical injury (e.g., fracture, brachial plexus, hemiparesis)</option>
+                        <option value="3.4">3.4 - primary language barrier</option>
+                        <option value="3.5">3.5 - illness/medical instability</option>
+                        <option value="3.6">3.6 - examiner error</option>
+                        <option value="3.7">3.7 - logistical reasons</option>
+                        <option value="3.8">3.8 - other (specify):</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- ASSESSMENT OF CONTINGENT BEHAVIOR -->
+            <div class="subscale" id="contingent">
+                <div class="subscale-header">ASSESSMENT OF CONTINGENT BEHAVIOR</div>
+                <p style="padding:10px 14px; font-size:12px; color:#495057; background:#fff3cd; margin:10px; border-radius:4px;">
+                    <strong>Note:</strong> This item is not scored.
+                </p>
+
+                <!-- Contingent Vocalization/Gesture/Affective Response -->
+                <div class="item-box">
+                    <div class="item-header-new" onclick="toggleItemInstructions('contingent-item')">
+                        <span class="item-score" style="background:#6c757d;">—</span>
+                        <div class="item-title-flex">
+                            <span class="item-name-new">Contingent Vocalization/Gesture/Affective Response</span>
+                        </div>
+                        <span class="item-expand" id="expand-contingent-item">▼</span>
+                    </div>
+                    <div class="item-instructions" id="contingent-item-instructions">
+                        <div class="instructions-content">
+                            <p><strong>Method</strong></p>
+                            <p>1. Vocalizations, gestures and affective responses are assessed through a combination of reports from family and clinicians, and direct observations from treating staff. Family and clinical staff should be questioned about any vocalizations, gestures or affective responses (i.e., (smiling, laughing, frowning, crying) that are observed to occur spontaneously or in response to a specific stimulus.</p>
+                            <p style="margin-top:8px;">2. If above response is based on report, staff should attempt to directly elicit the behavior again with the assistance of the individual who reported it.</p>
+                            <p style="margin-top:8px;">3. If affective responses are observed during direct examination, the examiner should attempt to re-elicit the behavior using the same eliciting stimulus previously noted to produce the behavior. Examples of appropriate eliciting stimuli include verbal requests ('What's your name?'), limb gestures (waves), facial gestures (sticking out tongue) and pictures (family photos).</p>
+                            <p style="margin-top:8px;">4. The examiner should document:</p>
+                            <p style="margin-left:20px;">a. The nature of the eliciting stimulus (e.g. Verbal: 'Are you feeling sad?', Limb gesture: handshake);</p>
+                            <p style="margin-left:20px;">b. Specific characteristics of the behavioral response (e.g. facial grimace with tearing of the eyes, smiling, moaning);</p>
+                            <p style="margin-left:20px;">c. Number of times the behavior has been observed to occur within 10 seconds of the eliciting stimulus;</p>
+                            <p style="margin-left:20px;">d. Number of times the behavior has been observed to occur spontaneously;</p>
+                            <p style="margin-left:20px;">e. The time frame allowed for 'c' and 'd' should be specified and approximately the same.</p>
+                            <p style="margin-top:10px;"><strong>Response</strong></p>
+                            <p>A vocalization, gesture or affective response occurs significantly more often in response to a specific eliciting stimulus, than when the stimulus is absent. Contingent responses do not include those that occur following administration of noxious stimuli.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ASSESSMENT SUMMARY -->
+            <div class="summary-section">
+                <h2>Assessment Summary</h2>
+                <div class="summary-grid">
+                    <div class="summary-row">
+                        <span class="summary-label">Auditory Function</span>
+                        <span class="summary-value">Score: <span id="summary-auditory">0</span> / 4 | TCC: <span id="summary-code-auditory">--</span></span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Visual Function</span>
+                        <span class="summary-value">Score: <span id="summary-visual">0</span> / 5 | TCC: <span id="summary-code-visual">--</span></span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Motor Function</span>
+                        <span class="summary-value">Score: <span id="summary-motor">0</span> / 6 | TCC: <span id="summary-code-motor">--</span></span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Oromotor/Verbal Function</span>
+                        <span class="summary-value">Score: <span id="summary-oromotor">0</span> / 3 | TCC: <span id="summary-code-oromotor">--</span></span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Communication</span>
+                        <span class="summary-value">Score: <span id="summary-communication">0</span> / 2 | TCC: <span id="summary-code-communication">--</span></span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Arousal</span>
+                        <span class="summary-value">Score: <span id="summary-arousal">0</span> / 3 | TCC: <span id="summary-code-arousal">--</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="reset-btn" onclick="resetForm()">Reset Form</button>
+
+            </div><!-- End assessment-content -->
+        </div>
+    </div>
+
+    <script>
+        const scores = {
+            auditory: 0,
+            visual: 0,
+            motor: 0,
+            oromotor: 0,
+            communication: 0,
+            arousal: 0
+        };
+
+        // Track previously selected radio buttons for brainstem reflexes to enable deselection
+        let lastSelectedRadio = {};
+        let isFormUnlocked = false;
+
+        function unlockForm() {
+            const accessCode = document.getElementById('access-code-input').value.trim();
+            const messageEl = document.getElementById('unlock-message');
+            
+            // TODO: Replace with actual REDCap validation
+            // For now, accept any non-empty code as valid
+            if (accessCode.length > 0) {
+                isFormUnlocked = true;
+                document.getElementById('assessment-content').style.opacity = '1';
+                document.getElementById('assessment-content').style.pointerEvents = 'auto';
+                messageEl.style.color = '#28a745';
+                messageEl.textContent = '✓ Access granted! You may now use the assessment.';
+                messageEl.style.display = 'block';
+                
+                // Optionally hide the registration notice after unlock
+                // document.querySelector('.content > div:first-child').style.display = 'none';
+            } else {
+                messageEl.style.color = '#dc3545';
+                messageEl.textContent = '✗ Please enter a valid access code.';
+                messageEl.style.display = 'block';
+            }
+        }
+
+        // Allow Enter key to unlock
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('access-code-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    unlockForm();
+                }
+            });
+        });
+
+        // Add click handlers to all radio buttons in brainstem reflexes for deselection
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.reflex-option input[type="radio"]').forEach(radio => {
+                radio.addEventListener('click', function() {
+                    const radioName = this.name;
+                    if (lastSelectedRadio[radioName] === this) {
+                        this.checked = false;
+                        lastSelectedRadio[radioName] = null;
+                    } else {
+                        lastSelectedRadio[radioName] = this;
+                    }
+                });
+            });
+        });
+
+        function toggleCollapsible(header) {
+            const content = header.nextElementSibling;
+            const arrow = header.querySelector('.arrow');
+            content.classList.toggle('open');
+            arrow.classList.toggle('open');
+        }
+
+        function toggleItemInstructions(itemId) {
+            const instructionsSection = document.getElementById(itemId + '-instructions');
+            const expandIcon = document.getElementById('expand-' + itemId);
+            
+            instructionsSection.classList.toggle('open');
+            expandIcon.classList.toggle('open');
+        }
+
+        function selectItem(subscale, score) {
+            const boxId = 'box-' + subscale + '-' + score;
+            const box = document.getElementById(boxId);
+            
+            // Check if already scored with this value - if so, unselect
+            if (scores[subscale] === score && box.classList.contains('scored')) {
+                scores[subscale] = 0;
+                box.classList.remove('scored');
+            } else {
+                // Select this score
+                scores[subscale] = score;
+                
+                // Remove scored class from all boxes in this subscale
+                const allBoxes = document.querySelectorAll('#' + subscale + ' .item-box');
+                allBoxes.forEach(b => b.classList.remove('scored'));
+                
+                // Add scored class to selected box
+                box.classList.add('scored');
+            }
+            
+            // Update score display
+            document.getElementById(subscale + '-score').textContent = scores[subscale];
+            
+            // Update summary
+            updateSummary();
+        }
+
+        function updateSummary() {
+            // Update scores
+            document.getElementById('summary-auditory').textContent = scores.auditory;
+            document.getElementById('summary-visual').textContent = scores.visual;
+            document.getElementById('summary-motor').textContent = scores.motor;
+            document.getElementById('summary-oromotor').textContent = scores.oromotor;
+            document.getElementById('summary-communication').textContent = scores.communication;
+            document.getElementById('summary-arousal').textContent = scores.arousal;
+            
+            // Update codes
+            const subscales = ['auditory', 'visual', 'motor', 'oromotor', 'communication', 'arousal'];
+            subscales.forEach(sub => {
+                const codeSelect = document.getElementById('code-' + sub);
+                if (codeSelect) {
+                    const codeValue = codeSelect.value || '--';
+                    document.getElementById('summary-code-' + sub).textContent = codeValue;
+                }
+            });
+        }
+
+        function resetForm() {
+            if (confirm('Reset form and clear all selections?')) {
+                Object.keys(scores).forEach(key => scores[key] = 0);
+                
+                document.querySelectorAll('.item-instructions').forEach(d => d.classList.remove('open'));
+                document.querySelectorAll('.item-expand').forEach(icon => icon.classList.remove('open'));
+                document.querySelectorAll('.item-box').forEach(box => box.classList.remove('scored'));
+                document.querySelectorAll('[id$="-score"]').forEach(el => el.textContent = '0');
+                document.querySelectorAll('select').forEach(sel => sel.value = '');
+                document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                    radio.checked = false;
+                });
+                document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                document.querySelectorAll('input[type="text"]').forEach(textInput => {
+                    textInput.value = '';
+                });
+                
+                // Reset radio button tracking
+                lastSelectedRadio = {};
+                
+                document.querySelectorAll('.collapsible-content').forEach(c => c.classList.remove('open'));
+                document.querySelectorAll('.collapsible-header .arrow').forEach(a => a.classList.remove('open'));
+                
+                updateSummary();
+                window.scrollTo(0, 0);
+            }
+        }
+    </script>
+</body>
+</html>
