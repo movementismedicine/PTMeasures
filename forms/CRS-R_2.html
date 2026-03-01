@@ -315,18 +315,6 @@
             <p>Yelena G. Bodien. Ph. D, Camille Chatelle, Ph.D and Joseph T. Giacino, Ph.D. ©2004</p>
         </div>
         <div class="content">
-            <div style="background:#fff3cd; border:2px solid #ffc107; border-radius:6px; padding:15px; margin-bottom:20px;">
-                <p style="font-weight:600; color:#856404; margin-bottom:8px; font-size:14px;">⚠️ Registration Required</p>
-                <p style="color:#856404; font-size:13px; margin-bottom:10px;">You must register through REDCap to use this assessment tool.</p>
-                <a href="https://redcap.partners.org/redcap/" target="_blank" style="display:inline-block; background:#007bff; color:white; padding:8px 16px; border-radius:4px; text-decoration:none; font-weight:600; font-size:13px; margin-bottom:10px;">Register via REDCap</a>
-                <div style="margin-top:12px; padding-top:12px; border-top:1px solid #ffc107;">
-                    <p style="color:#856404; font-size:12px; margin-bottom:8px;">Already registered? Enter your access code:</p>
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <input type="text" id="access-code-input" placeholder="Enter access code" style="flex:1; padding:6px 10px; border:1px solid #ced4da; border-radius:4px; font-size:13px;" />
-                        <button onclick="unlockForm()" style="background:#28a745; color:white; border:none; padding:6px 16px; border-radius:4px; font-weight:600; font-size:13px; cursor:pointer;">Unlock</button>
-                    </div>
-                    <p id="unlock-message" style="color:#dc3545; font-size:12px; margin-top:6px; display:none;"></p>
-                </div>
             </div>
 <div class="collapsible-section">
     <div class="collapsible-header" onclick="toggleCollapsible(this)">
@@ -1419,34 +1407,6 @@
         };
         // Track previously selected radio buttons for brainstem reflexes to enable deselection
         let lastSelectedRadio = {};
-        let isFormUnlocked = false;
-        function unlockForm() {
-            const accessCode = document.getElementById('access-code-input').value.trim();
-            const messageEl = document.getElementById('unlock-message');
-            // TODO: Replace with actual REDCap validation
-            // For now, accept any non-empty code as valid
-            if (accessCode.length > 0) {
-                isFormUnlocked = true;
-                document.getElementById('assessment-content').style.opacity = '1';
-                document.getElementById('assessment-content').style.pointerEvents = 'auto';
-                messageEl.style.color = '#28a745';
-                messageEl.textContent = '✓ Access granted! You may now use the assessment.';
-                messageEl.style.display = 'block';
-                // Optionally hide the registration notice after unlock
-                // document.querySelector('.content > div:first-child').style.display = 'none';
-            } else {
-                messageEl.style.color = '#dc3545';
-                messageEl.textContent = '✗ Please enter a valid access code.';
-                messageEl.style.display = 'block';
-            }
-        }
-        // Allow Enter key to unlock
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('access-code-input').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    unlockForm();
-                }
-            });
         });
         // Add click handlers to all radio buttons in brainstem reflexes for deselection
         document.addEventListener('DOMContentLoaded', function() {
