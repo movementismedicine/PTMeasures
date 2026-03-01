@@ -315,7 +315,48 @@
             <p>Yelena G. Bodien. Ph. D, Camille Chatelle, Ph.D and Joseph T. Giacino, Ph.D. ©2004</p>
         </div>
         <div class="content">
+                </div>
+            </div>
+<div class="collapsible-section">
+    <div class="collapsible-header" onclick="toggleCollapsible(this)">
+        <span>Guiding Principles for Administration and Scoring</span>
+        <span class="arrow">▼</span>
+    </div>
+    <div class="collapsible-content">
+        <div class="collapsible-inner">
+            <h3 style="margin-top: 0;">Ten Guiding Principles for CRS-R Administration and Scoring</h3>
             
+            <ol style="padding-left: 20px;">
+                <li style="margin-bottom: 12px;">The CRS-R must be administered directly to the patient based on the instructions in the administration and scoring manual. The CRS-R scores should not be based on information in the medical chart or caregiver interview.</li>
+                
+                <li style="margin-bottom: 12px;">To ensure standardized administration and scoring across and within examiners, the instructions in the CRS-R manual should be closely followed. During CRS-R assessment, there may be instances in which examiner judgement is required (e.g., type of commands to administer on the auditory subscale), however, decision-making should always be informed by the instructions in the manual. Additional standardization may be required when the CRS-R is employed for research purposes (e.g., number of commands to administer, whether to administer the Arousal Facilitation Protocol prior to conducting the exam).</li>
+                
+                <li style="margin-bottom: 12px;">Always start by administering the highest-scoring item on each subscale before progressing to lower items. Once a scorable response is obtained, the examiner should advance to the next subscale.</li>
+                
+                <li style="margin-bottom: 12px;">Guidelines are provided for the number of trials to administer for each item. All trials should be administered regardless of performance on the first trials (i.e., if a patient does not look up to command on the first two trials, the remaining trials should still be administered).</li>
+                
+                <li style="margin-bottom: 12px;">The response window is 10 seconds, unless otherwise specified. Behaviors that occur outside the 10-second window can be documented but should not be scored. If the examiner suspects that response latencies are significantly delayed, an additional 10-second window can be added to enable both standard and modified scoring.</li>
+                
+                <li style="margin-bottom: 12px;">Score only clearly-discernible responses. A general rule-of-thumb: If 10 people observed the same response, 9 of 10 would agree that the response criteria were met.</li>
+                
+                <li style="margin-bottom: 12px;">For items requiring motor responses, choose the best limb (e.g., least paretic), unless specified otherwise. This can be accomplished during the 1-minute behavioral observation period or by consulting caregivers and family members, if available.</li>
+                
+                <li style="margin-bottom: 12px;">If a patient is unable to lift a limb against gravity, physical assistance can be provided by supporting the limb at the elbow. Care should be taken to avoid provision of any other assistance with movement.</li>
+                
+                <li style="margin-bottom: 12px;">When sensory, perceptual, or motor impairments are suspected, some accommodations may be made. For example, if hearing impairment is suspected, commands may be presented in written form. Similarly, if there is limited range of motion, commands should be avoided that require reaching.</li>
+                
+                <li style="margin-bottom: 12px;">Use the CRS-R Test Completion Codes (TCC) to establish the validity of the examination and to document reasons for invalid or incomplete scores. For example, if injury to both hands prevents the patient from being able to hold an object, the motor subscale should not be scored and the remainder of the motor subscale should not be attempted. In this case, the motor subscale should be assigned a TCC of 3.3 (physical injury [e.g., fracture, brachial plexus, hemiparesis]). Other examples include, premorbid blindness or eyes sutured shut. In these cases, the visual subscale should not be scored and a TCC of 3.1 (impaired sensory function [cortical or peripheral]) should be assigned. When one or more subscales cannot be validly administered, a total score should not be calculated, although the valid subscores may still be useful for establishing a diagnosis. All deviations from standard administration guidelines and notes describing the circumstances around invalid or incomplete scores should be recorded.</li>
+            </ol>
+            
+            <p style="margin-top: 20px;">
+               Refer to <a href="http://www.tbims.org/combi/crs" target="_blank" rel="noopener noreferrer" style="color: #2563eb; text-decoration: none;">
+                    The Center for Outcome Measurement in Brain Injury - Introduction to the JFK Coma Recovery Scale-Revised (CRS-R)
+                </a> for training modules, references, and further instruction. 
+            </p>
+        </div>
+    </div>
+</div>
+            <div id="assessment-content" style="opacity:0.5; pointer-events:none;">
             <div class="collapsible-section">
                 <div class="collapsible-header" onclick="toggleCollapsible(this)">
                     <span>Brainstem Reflex Grid</span>
@@ -1048,7 +1089,7 @@
                     </div>
                 </div>
                 <div class="subscale-score-bar">
-                    Subscale Score (max 3▪): <span id="oromotor-score">0</span>
+                    Subscale Score: Subscale Score (max 3▪): <span id="oromotor-score">0</span>
                 </div>
                 <div class="code-bar">
                     <label class="code-bar-label">Test Completion Code:</label>
@@ -1153,7 +1194,7 @@
                     </div>
                 </div>
                 <div class="subscale-score-bar">
-                    Subscale Score (max 2†): <span id="communication-score">0</span>
+                    Subscale Score: Subscale Score (max 2†): <span id="communication-score">0</span>
                 </div>
                 <div class="code-bar">
                     <label class="code-bar-label">Test Completion Code:</label>
@@ -1322,13 +1363,16 @@
                         </div>
                     </div>
                 </div>
-            </div>
             <div class="summary-section">
                 <h2>Assessment Summary</h2>
                 <div style="background:#fff3cd; padding:10px; margin-bottom:12px; border-radius:4px; font-size:11px;">
-                    <div style="margin-top:6px;">* Denotes Minimally Conscious State Minus (MCS-)</div>
-                    <div>▪ Denotes Minimally Conscious State Plus (MCS+)</div>
-                    <div>† Denotes Emergence from Minimally Conscious State (eMCS)</div>
+                    <strong>Legend:</strong> 
+                    <span style="margin-left:10px;">* Denotes Minimally Conscious State Minus (MCS-)</span>
+                    <span style="margin-left:10px;">▪ Denotes Minimally Conscious State Plus (MCS+)</span>
+                    <span style="margin-left:10px;">† Denotes Emergence from Minimally Conscious State (eMCS)</span>
+                </div>
+                <div style="background:#d4edda; border:2px solid #28a745; padding:12px; margin-bottom:12px; border-radius:6px; text-align:center;">
+                    <span style="font-size:14px; font-weight:600; color:#155724;">TOTAL SCORE: <span id="total-score" style="font-size:18px;">0</span> / 23</span>
                 </div>
                 <div class="summary-grid">
                     <div class="summary-row">
@@ -1356,9 +1400,6 @@
                         <span class="summary-value">Score: <span id="summary-arousal">0</span> / 3 | TCC: <span id="summary-code-arousal">--</span></span>
                     </div>
                 </div>
-                <div style="background:#d4edda; border:2px solid #28a745; padding:12px; margin-top:12px; border-radius:6px; text-align:center;">
-                    <span style="font-size:14px; font-weight:600; color:#155724;">TOTAL SCORE: <span id="total-score" style="font-size:18px;">0</span> / 23</span>
-                </div>
             </div>
             <button class="reset-btn" onclick="resetForm()">Reset Form</button>
             </div>
@@ -1375,8 +1416,6 @@
         };
         // Track previously selected radio buttons for brainstem reflexes to enable deselection
         let lastSelectedRadio = {};
-        
-        });
         // Add click handlers to all radio buttons in brainstem reflexes for deselection
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.reflex-option input[type="radio"]').forEach(radio => {
@@ -1441,7 +1480,6 @@
                     document.getElementById('summary-code-' + sub).textContent = codeValue;
                 }
             });
-            // Calculate and display total score
             const totalScore = scores.auditory + scores.visual + scores.motor + scores.oromotor + scores.communication + scores.arousal;
             document.getElementById('total-score').textContent = totalScore;
         }
