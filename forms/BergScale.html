@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berg Balance Scale Calculator</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            padding: 15px;
+            padding-bottom: 100px;
+            line-height: 1.5;
+            font-size: 13px;
+            color: #1f2937;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #ddd;
+        }
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 18px 25px;
+            border-bottom: 3px solid #34495e;
+        }
+        .header h1 { font-size: 22px; margin-bottom: 4px; font-weight: 600; }
+        .header p { font-size: 12px; opacity: 0.9; }
+        .content { padding: 20px; }
+
+        .question-item {
+            background: #fafafa;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            padding: 16px;
+        }
+        .question-item h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 6px;
+        }
+        .question-item .instructions {
+            font-size: 12px;
+            color: #495057;
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+        .option-list { display: flex; flex-direction: column; gap: 6px; }
+        .option-list input[type="radio"] { display: none; }
+        .option-list label {
+            display: block;
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 4px;
+            border: 2px solid #dee2e6;
+            cursor: pointer;
+            font-size: 12px;
+            color: #495057;
+            background: white;
+            transition: background 0.15s, border-color 0.15s;
+        }
+        .option-list label:hover { background: #f8f9fa; border-color: #adb5bd; }
+        .option-list input[type="radio"]:checked + label {
+            background: #e9ecef;
+            border-color: #34495e;
+            border-width: 2px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        /* Results */
+        #results-container {
+            background: #f8f9fa;
+            border: 2px solid #34495e;
+            padding: 18px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+        #results-container h2 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            text-align: center;
+            border-bottom: 2px solid #34495e;
+            padding-bottom: 7px;
+        }
+        .result-score-box {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        .result-score-box p { font-size: 14px; font-weight: 600; color: #155724; }
+        .result-score-box span { font-size: 18px; }
+        .result-interp {
+            background: white;
+            border-left: 4px solid #34495e;
+            padding: 9px 11px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        .result-interp-detail {
+            background: #fff3cd;
+            border-radius: 4px;
+            padding: 10px 12px;
+            font-size: 11px;
+            color: #495057;
+            margin-top: 8px;
+            line-height: 1.7;
+        }
+
+        /* Buttons */
+        .calculate-btn {
+            width: 100%;
+            background: #34495e;
+            color: white;
+            border: none;
+            padding: 11px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+        .calculate-btn:hover { background: #2c3e50; }
+        .calculate-btn:active { transform: scale(0.98); }
+
+        #message-box {
+            margin-top: 10px;
+            padding: 10px 14px;
+            border-radius: 6px;
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        /* Export panel */
+        .ptm-export-panel {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: #fff;
+            border-top: 1px solid #dee2e6;
+            padding: 10px 16px 22px;
+            box-shadow: 0 -4px 16px rgba(0,0,0,.10);
+            z-index: 100;
+        }
+        .ptm-export-inner { max-width: 900px; margin: 0 auto; }
+        .ptm-export-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: #6c757d;
+            margin-bottom: 7px;
+        }
+        .ptm-export-buttons { display: flex; gap: 10px; }
+        .ptm-btn {
+            flex: 1;
+            padding: 11px 10px;
+            border-radius: 6px;
+            border: none;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            -webkit-tap-highlight-color: transparent;
+            transition: transform .12s;
+        }
+        .ptm-btn:active { transform: scale(.97); }
+        .ptm-btn-primary { background: #34495e; color: #fff; }
+        .ptm-btn-primary:hover { background: #2c3e50; }
+        .ptm-btn-secondary {
+            background: #f8f9fa;
+            color: #2c3e50;
+            border: 1.5px solid #dee2e6;
+        }
+        .ptm-btn-secondary:hover { background: #e9ecef; }
+        .ptm-toast {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(.85);
+            background: rgba(44,62,80,.97);
+            color: #fff;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity .25s, transform .25s;
+            z-index: 999;
+            box-shadow: 0 8px 32px rgba(0,0,0,.25);
+            white-space: pre-line;
+            max-width: 280px;
+        }
+        .ptm-toast.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Berg Balance Scale</h1>
+            <p>Assess balance and predict fall risk. Please select one option for each item.</p>
+        </div>
+        <div class="content">
+            <form id="berg-form" class="space-y-6">
+
+                <!-- Item 1 -->
+                <div class="question-item">
+                    <h3>Item 1. SITTING TO STANDING</h3>
+                    <p class="instructions">INSTRUCTIONS: Please stand up. Try not to use your hand for support.</p>
+                    <div class="option-list">
+                        <input type="radio" id="q1-4" name="item1" value="4"><label for="q1-4"><span style="font-weight:700">4:</span> able to stand without using hands and stabilize independently</label>
+                        <input type="radio" id="q1-3" name="item1" value="3"><label for="q1-3"><span style="font-weight:700">3:</span> able to stand independently using hands</label>
+                        <input type="radio" id="q1-2" name="item1" value="2"><label for="q1-2"><span style="font-weight:700">2:</span> able to stand using hands after several tries</label>
+                        <input type="radio" id="q1-1" name="item1" value="1"><label for="q1-1"><span style="font-weight:700">1:</span> needs minimal aid to stand or stabilize</label>
+                        <input type="radio" id="q1-0" name="item1" value="0"><label for="q1-0"><span style="font-weight:700">0:</span> needs moderate or maximal assist to stand</label>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="question-item">
+                    <h3>Item 2. STANDING UNSUPPORTED</h3>
+                    <p class="instructions">INSTRUCTIONS: Please stand for two minutes without holding on.</p>
+                    <div class="option-list">
+                        <input type="radio" id="q2-4" name="item2" value="4"><label for="q2-4"><span style="font-weight:700">4:</span> able to stand safely for 2 minutes</label>
+                        <input type="radio" id="q2-3" name="item2" value="3"><label for="q2-3"><span style="font-weight:700">3:</span> able to stand 2 minutes with supervision</label>
+                        <input type="radio" id="q2-2" name="item2" value="2"><label for="q2-2"><span style="font-weight:700">2:</span> able to stand 30 seconds unsupported</label>
+                        <input type="radio" id="q2-1" name="item2" value="1"><label for="q2-1"><span style="font-weight:700">1:</span> needs several tries to stand 30 seconds unsupported</label>
+                        <input type="radio" id="q2-0" name="item2" value="0"><label for="q2-0"><span style="font-weight:700">0:</span> unable to stand 30 seconds unsupported</label>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="question-item">
+                    <h3>Item 3. SITTING WITH BACK UNSUPPORTED BUT FEET SUPPORTED ON FLOOR OR ON A STOOL</h3>
+                    <p class="instructions">INSTRUCTIONS: Please sit with arms folded for 2 minutes.</p>
+                    <div class="option-list">
+                        <input type="radio" id="q3-4" name="item3" value="4"><label for="q3-4"><span style="font-weight:700">4:</span> able to sit safely and securely for 2 minutes</label>
+                        <input type="radio" id="q3-3" name="item3" value="3"><label for="q3-3"><span style="font-weight:700">3:</span> able to sit 2 minutes under supervision</label>
+                        <input type="radio" id="q3-2" name="item3" value="2"><label for="q3-2"><span style="font-weight:700">2:</span> able to able to sit 30 seconds</label>
+                        <input type="radio" id="q3-1" name="item3" value="1"><label for="q3-1"><span style="font-weight:700">1:</span> able to sit 10 seconds</label>
+                        <input type="radio" id="q3-0" name="item3" value="0"><label for="q3-0"><span style="font-weight:700">0:</span> unable to sit without support 10 seconds</label>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="question-item">
+                    <h3>Item 4. STANDING TO SITTING</h3>
+                    <p class="instructions">INSTRUCTIONS: Please sit down.</p>
+                    <div class="option-list">
+                        <input type="radio" id="q4-4" name="item4" value="4"><label for="q4-4"><span style="font-weight:700">4:</span> sits safely with minimal use of hands</label>
+                        <input type="radio" id="q4-3" name="item4" value="3"><label for="q4-3"><span style="font-weight:700">3:</span> controls descent by using hands</label>
+                        <input type="radio" id="q4-2" name="item4" value="2"><label for="q4-2"><span style="font-weight:700">2:</span> uses back of legs against chair to control descent</label>
+                        <input type="radio" id="q4-1" name="item4" value="1"><label for="q4-1"><span style="font-weight:700">1:</span> sits independently but has uncontrolled descent</label>
+                        <input type="radio" id="q4-0" name="item4" value="0"><label for="q4-0"><span style="font-weight:700">0:</span> needs assist to sit</label>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="question-item">
+                    <h3>Item 5. TRANSFERS</h3>
+                    <p class="instructions">INSTRUCTIONS: Arrange chair(s) for pivot transfer. Ask subject to transfer one way toward a seat with armrests and one way toward a seat without armrests. You may use two chairs (one with and one without armrests) or a bed and a chair.</p>
+                    <div class="option-list">
+                        <input type="radio" id="q5-4" name="item5" value="4"><label for="q5-4"><span style="font-weight:700">4:</span> able to transfer safely with minor use of hands</label>
+                        <input type="radio" id="q5-3" name="item5" value="3"><label for="q5-3"><span style="font-weight:700">3:</span> able to transfer safely definite need of hands</label>
+                        <input type="radio" id="q5-2" name="item5" value="2"><label for="q5-2"><span style="font-weight:700">2:</span> able to transfer with verbal cuing and/or supervision</label>
+                        <input type="radio" id="q5-1" name="item5" value="1"><label for="q5-1"><span style="font-weight:700">1:</span> needs one person to assist</label>
+                        <input type="radio" id="q5-0" name="item5" value="0"><label for="q5-0"><span style="font-weight:700">0:</span> needs two people to assist or supervise to be safe</label>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="question-item">
+                    <h3>Item 6. STANDING UNSUPPORTED WITH EYES CLOSED</h3>
+                    <p class="instructions">INSTRUCTIONS: Please close your eyes and stand still for 10 seconds.</p>
+                    <div class="option-list">
+                        <input type="radio" id="q6-4" name="item6" value="4"><label for="q6-4"><span style="font-weight:700">4:</span> able to stand 10 seconds safely</label>
+                        <input type="radio" id="q6-3" name="item6" value="3"><label for="q6-3"><span style="font-weight:700">3:</span> able to stand 10 seconds with supervision</label>
+                        <input type="radio" id="q6-2" name="item6" value="2"><label for="q6-2"><span style="font-weight:700">2:</span> able to stand 3 seconds</label>
+                        <input type="radio" id="q6-1" name="item6" value="1"><label for="q6-1"><span style="font-weight:700">1:</span> unable to keep eyes closed 3 seconds but stays safely</label>
+                        <input type="radio" id="q6-0" name="item6" value="0"><label for="q6-0"><span style="font-weight:700">0:</span> needs help to keep from falling</label>
+                    </div>
+                </div>
+
+                <!-- Item 7 -->
+                <div class="question-item">
+                    <h3>Item 7. STANDING UNSUPPORTED WITH FEET TOGETHER</h3>
+                    <p class="instructions">INSTRUCTIONS: Place your feet together and stand without holding on.</p>
+                    <div class="option-list">
+                        <input type="radio" id="q7-4" name="item7" value="4"><label for="q7-4"><span style="font-weight:700">4:</span> able to place feet together independently and stand 1 minute safely</label>
+                        <input type="radio" id="q7-3" name="item7" value="3"><label for="q7-3"><span style="font-weight:700">3:</span> able to place feet together independently and stand 1 minute with supervision</label>
+                        <input type="radio" id="q7-2" name="item7" value="2"><label for="q7-2"><span style="font-weight:700">2:</span> able to place feet together independently but unable to hold for 30 seconds</label>
+                        <input type="radio" id="q7-1" name="item7" value="1"><label for="q7-1"><span style="font-weight:700">1:</span> needs help to attain position but able to stand 15 seconds feet together</label>
+                        <input type="radio" id="q7-0" name="item7" value="0"><label for="q7-0"><span style="font-weight:700">0:</span> needs help to attain position and unable to hold for 15 seconds</label>
+                    </div>
+                </div>
+
+                <!-- Item 8 -->
+                <div class="question-item">
+                    <h3>Item 8. REACHING FORWARD WITH OUTSTRETCHED ARM WHILE STANDING</h3>
+                    <p class="instructions">INSTRUCTIONS: Lift arm to 90 degrees. Stretch out your fingers and reach forward as far as you can. (Examiner places a ruler at the end of fingertips when arm is at 90 degrees. Fingers should not touch the ruler while reaching forward. The recorded measure is the distance forward that the fingers reach while the subject is in the most forward lean position. When possible, ask subject to use both arms when reaching to avoid rotation of the trunk.)</p>
+                    <div class="option-list">
+                        <input type="radio" id="q8-4" name="item8" value="4"><label for="q8-4"><span style="font-weight:700">4:</span> can reach forward confidently 25 cm (10 inches)</label>
+                        <input type="radio" id="q8-3" name="item8" value="3"><label for="q8-3"><span style="font-weight:700">3:</span> can reach forward 12 cm (5 inches)</label>
+                        <input type="radio" id="q8-2" name="item8" value="2"><label for="q8-2"><span style="font-weight:700">2:</span> can reach forward 5 cm (2 inches)</label>
+                        <input type="radio" id="q8-1" name="item8" value="1"><label for="q8-1"><span style="font-weight:700">1:</span> reaches forward but needs supervision</label>
+                        <input type="radio" id="q8-0" name="item8" value="0"><label for="q8-0"><span style="font-weight:700">0:</span> loses balance while trying/requires external support</label>
+                    </div>
+                </div>
+
+                <!-- Item 9 -->
+                <div class="question-item">
+                    <h3>Item 9. PICK UP OBJECT FROM THE FLOOR FROM A STANDING POSITION</h3>
+                    <p class="instructions">INSTRUCTIONS: Pick up the shoe/slipper, which is place in front of your feet.</p>
+                    <div class="option-list">
+                        <input type="radio" id="q9-4" name="item9" value="4"><label for="q9-4"><span style="font-weight:700">4:</span> able to pick up slipper safely and easily</label>
+                        <input type="radio" id="q9-3" name="item9" value="3"><label for="q9-3"><span style="font-weight:700">3:</span> able to pick up slipper but needs supervision</label>
+                        <input type="radio" id="q9-2" name="item9" value="2"><label for="q9-2"><span style="font-weight:700">2:</span> unable to pick up but reaches 2-5 cm(1-2 inches) from slipper and keeps balance independently</label>
+                        <input type="radio" id="q9-1" name="item9" value="1"><label for="q9-1"><span style="font-weight:700">1:</span> unable to pick up and needs supervision while trying</label>
+                        <input type="radio" id="q9-0" name="item9" value="0"><label for="q9-0"><span style="font-weight:700">0:</span> unable to try/needs assist to keep from losing balance or falling</label>
+                    </div>
+                </div>
+
+                <!-- Item 10 -->
+                <div class="question-item">
+                    <h3>Item 10. TURNING TO LOOK BEHIND OVER LEFT AND RIGHT SHOULDERS WHILE STANDING</h3>
+                    <p class="instructions">INSTRUCTIONS: Turn to look directly behind you over toward the left shoulder. Repeat to the right. Examiner may pick an object to look at directly behind the subject to encourage a better twist turn.</p>
+                    <div class="option-list">
+                        <input type="radio" id="q10-4" name="item10" value="4"><label for="q10-4"><span style="font-weight:700">4:</span> looks behind from both sides and weight shifts well</label>
+                        <input type="radio" id="q10-3" name="item10" value="3"><label for="q10-3"><span style="font-weight:700">3:</span> looks behind one side only other side shows less weight shift</label>
+                        <input type="radio" id="q10-2" name="item10" value="2"><label for="q10-2"><span style="font-weight:700">2:</span> turns sideways only but maintains balance</label>
+                        <input type="radio" id="q10-1" name="item10" value="1"><label for="q10-1"><span style="font-weight:700">1:</span> needs supervision when turning</label>
+                        <input type="radio" id="q10-0" name="item10" value="0"><label for="q10-0"><span style="font-weight:700">0:</span> needs assist to keep from losing balance or falling</label>
+                    </div>
+                </div>
+
+                <!-- Item 11 -->
+                <div class="question-item">
+                    <h3>Item 11. TURN 360 DEGREES</h3>
+                    <p class="instructions">INSTRUCTIONS: Turn completely around in a full circle. Pause. Then turn a full circle in the other direction.</p>
+                    <div class="option-list">
+                        <input type="radio" id="q11-4" name="item11" value="4"><label for="q11-4"><span style="font-weight:700">4:</span> able to turn 360 degrees safely in 4 seconds or less</label>
+                        <input type="radio" id="q11-3" name="item11" value="3"><label for="q11-3"><span style="font-weight:700">3:</span> able to turn 360 degrees safely one side only 4 seconds or less</label>
+                        <input type="radio" id="q11-2" name="item11" value="2"><label for="q11-2"><span style="font-weight:700">2:</span> able to turn 360 degrees safely but slowly</label>
+                        <input type="radio" id="q11-1" name="item11" value="1"><label for="q11-1"><span style="font-weight:700">1:</span> needs close supervision or verbal cuing</label>
+                        <input type="radio" id="q11-0" name="item11" value="0"><label for="q11-0"><span style="font-weight:700">0:</span> needs assistance while turning</label>
+                    </div>
+                </div>
+
+                <!-- Item 12 -->
+                <div class="question-item">
+                    <h3>Item 12. PLACE ALTERNATE FOOT ON STEP OR STOOL WHILE STANDING UNSUPPORTED</h3>
+                    <p class="instructions">INSTRUCTIONS: Place each foot alternately on the step/stool. Continue until each foot has touch the step/stool four times.</p>
+                    <div class="option-list">
+                        <input type="radio" id="q12-4" name="item12" value="4"><label for="q12-4"><span style="font-weight:700">4:</span> able to stand independently and safely and complete 8 steps in 20 seconds</label>
+                        <input type="radio" id="q12-3" name="item12" value="3"><label for="q12-3"><span style="font-weight:700">3:</span> able to stand independently and complete 8 steps in > 20 seconds</label>
+                        <input type="radio" id="q12-2" name="item12" value="2"><label for="q12-2"><span style="font-weight:700">2:</span> able to complete 4 steps without aid with supervision</label>
+                        <input type="radio" id="q12-1" name="item12" value="1"><label for="q12-1"><span style="font-weight:700">1:</span> able to complete > 2 steps needs minimal assist</label>
+                        <input type="radio" id="q12-0" name="item12" value="0"><label for="q12-0"><span style="font-weight:700">0:</span> needs assistance to keep from falling/unable to try</label>
+                    </div>
+                </div>
+
+                <!-- Item 13 -->
+                <div class="question-item">
+                    <h3>Item 13. STANDING UNSUPPORTED ONE FOOT IN FRONT</h3>
+                    <p class="instructions">INSTRUCTIONS: (DEMONSTRATE TO SUBJECT) Place one foot directly in front of the other. If you feel that you cannot place your foot directly in front, try to step far enough ahead that the heel of your forward foot is ahead of the toes of the other foot. (To score 3 points, the length of the step should exceed the length of the other foot and the width of the stance should approximate the subject's normal stride width.)</p>
+                    <div class="option-list">
+                        <input type="radio" id="q13-4" name="item13" value="4"><label for="q13-4"><span style="font-weight:700">4:</span> able to place foot tandem independently and hold 30 seconds</label>
+                        <input type="radio" id="q13-3" name="item13" value="3"><label for="q13-3"><span style="font-weight:700">3:</span> able to place foot ahead independently and hold 30 seconds</label>
+                        <input type="radio" id="q13-2" name="item13" value="2"><label for="q13-2"><span style="font-weight:700">2:</span> able to take small step independently and hold 30 seconds</label>
+                        <input type="radio" id="q13-1" name="item13" value="1"><label for="q13-1"><span style="font-weight:700">1:</span> needs help to step but can hold 15 seconds</label>
+                        <input type="radio" id="q13-0" name="item13" value="0"><label for="q13-0"><span style="font-weight:700">0:</span> loses balance while stepping or standing</label>
+                    </div>
+                </div>
+
+                <!-- Item 14 -->
+                <div class="question-item">
+                    <h3>Item 14. STANDING ON ONE LEG</h3>
+                    <p class="instructions">INSTRUCTIONS: Stand on one leg as long as you can without holding on.</p>
+                    <div class="option-list">
+                        <input type="radio" id="q14-4" name="item14" value="4"><label for="q14-4"><span style="font-weight:700">4:</span> able to lift leg independently and hold > 10 seconds</label>
+                        <input type="radio" id="q14-3" name="item14" value="3"><label for="q14-3"><span style="font-weight:700">3:</span> able to lift leg independently and hold 5-10 seconds</label>
+                        <input type="radio" id="q14-2" name="item14" value="2"><label for="q14-2"><span style="font-weight:700">2:</span> able to lift leg independently and hold &ge; 3 seconds</label>
+                        <input type="radio" id="q14-1" name="item14" value="1"><label for="q14-1"><span style="font-weight:700">1:</span> tries to lift leg unable to hold 3 seconds but remains standing independently.</label>
+                        <input type="radio" id="q14-0" name="item14" value="0"><label for="q14-0"><span style="font-weight:700">0:</span> unable to try of needs assist to prevent fall</label>
+                    </div>
+                </div>
+
+
+            </form>
+
+            <div id="results-container">
+                <h2>Assessment Summary</h2>
+                <div class="result-score-box">
+                    <p>TOTAL SCORE: <span id="total-score" style="font-size:18px;">0</span> / 56 &nbsp;<span id="items-answered" style="font-size:11px; font-weight:400; opacity:0.7;">(0 of 14 items)</span></p>
+                    <p id="classification" style="margin-top:4px; font-size:13px;"></p>
+                </div>
+                <div class="result-interp-detail">
+                    <strong>Score Interpretation:</strong><br>
+                    41–56 = Independent<br>
+                    21–40 = Walking with assistance<br>
+                    0–20 = Wheelchair bound<br><br>
+                    A score less than 45 may indicate a greater risk of falling.<br>
+                    BBS less than 51 with a history of falls and BBS less than 42 without a history of falls have been used as a sensitive predictor of fall risk.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export Panel -->
+    <div class="ptm-export-panel">
+        <div class="ptm-export-inner">
+            <div class="ptm-export-label">📋 Copy to Clipboard</div>
+            <div class="ptm-export-buttons">
+                <button class="ptm-btn ptm-btn-primary" onclick="ptmExport('summary')">Score Summary</button>
+                <button class="ptm-btn ptm-btn-secondary" onclick="ptmExport('full')">Full Breakdown</button>
+            </div>
+        </div>
+    </div>
+    <div class="ptm-toast" id="ptmToast"></div>
+
+    <script>
+        const itemNames = [
+            'Sitting to Standing',
+            'Standing Unsupported',
+            'Sitting Unsupported',
+            'Standing to Sitting',
+            'Transfers',
+            'Standing Unsupported with Eyes Closed',
+            'Standing Unsupported with Feet Together',
+            'Reaching Forward with Outstretched Arm',
+            'Pick Up Object from Floor',
+            'Turning to Look Behind',
+            'Turn 360 Degrees',
+            'Alternate Foot on Step/Stool',
+            'Standing One Foot in Front',
+            'Standing on One Leg'
+        ];
+
+        const itemLabels = [
+            ['able to stand without using hands and stabilize independently','able to stand independently using hands','able to stand using hands after several tries','needs minimal aid to stand or stabilize','needs moderate or maximal assist to stand'],
+            ['able to stand safely for 2 minutes','able to stand 2 minutes with supervision','able to stand 30 seconds unsupported','needs several tries to stand 30 seconds unsupported','unable to stand 30 seconds unsupported'],
+            ['able to sit safely and securely for 2 minutes','able to sit 2 minutes under supervision','able to able to sit 30 seconds','able to sit 10 seconds','unable to sit without support 10 seconds'],
+            ['sits safely with minimal use of hands','controls descent by using hands','uses back of legs against chair to control descent','sits independently but has uncontrolled descent','needs assist to sit'],
+            ['able to transfer safely with minor use of hands','able to transfer safely definite need of hands','able to transfer with verbal cuing and/or supervision','needs one person to assist','needs two people to assist or supervise to be safe'],
+            ['able to stand 10 seconds safely','able to stand 10 seconds with supervision','able to stand 3 seconds','unable to keep eyes closed 3 seconds but stays safely','needs help to keep from falling'],
+            ['able to place feet together independently and stand 1 minute safely','able to place feet together independently and stand 1 minute with supervision','able to place feet together independently but unable to hold for 30 seconds','needs help to attain position but able to stand 15 seconds feet together','needs help to attain position and unable to hold for 15 seconds'],
+            ['can reach forward confidently 25 cm (10 inches)','can reach forward 12 cm (5 inches)','can reach forward 5 cm (2 inches)','reaches forward but needs supervision','loses balance while trying/requires external support'],
+            ['able to pick up slipper safely and easily','able to pick up slipper but needs supervision','unable to pick up but reaches 2-5 cm from slipper and keeps balance independently','unable to pick up and needs supervision while trying','unable to try/needs assist to keep from losing balance or falling'],
+            ['looks behind from both sides and weight shifts well','looks behind one side only other side shows less weight shift','turns sideways only but maintains balance','needs supervision when turning','needs assist to keep from losing balance or falling'],
+            ['able to turn 360 degrees safely in 4 seconds or less','able to turn 360 degrees safely one side only 4 seconds or less','able to turn 360 degrees safely but slowly','needs close supervision or verbal cuing','needs assistance while turning'],
+            ['able to stand independently and safely and complete 8 steps in 20 seconds','able to stand independently and complete 8 steps in > 20 seconds','able to complete 4 steps without aid with supervision','able to complete > 2 steps needs minimal assist','needs assistance to keep from falling/unable to try'],
+            ['able to place foot tandem independently and hold 30 seconds','able to place foot ahead independently and hold 30 seconds','able to take small step independently and hold 30 seconds','needs help to step but can hold 15 seconds','loses balance while stepping or standing'],
+            ['able to lift leg independently and hold > 10 seconds','able to lift leg independently and hold 5-10 seconds','able to lift leg independently and hold >= 3 seconds','tries to lift leg unable to hold 3 seconds but remains standing independently','unable to try or needs assist to prevent fall']
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const bergForm = document.getElementById('berg-form');
+            const totalScoreSpan = document.getElementById('total-score');
+            const classificationSpan = document.getElementById('classification');
+            const resultsContainer = document.getElementById('results-container');
+
+            function recalculate() {
+                let totalScore = 0;
+                let answeredQuestions = 0;
+                for (let i = 1; i <= 14; i++) {
+                    const sel = bergForm.querySelector(`input[name="item${i}"]:checked`);
+                    if (sel) { totalScore += parseInt(sel.value, 10); answeredQuestions++; }
+                }
+                totalScoreSpan.textContent = totalScore;
+                document.getElementById('items-answered').textContent = `(${answeredQuestions} of 14 items)`;
+                if (answeredQuestions === 14) {
+                    if (totalScore >= 41) classificationSpan.textContent = 'Independent';
+                    else if (totalScore >= 21) classificationSpan.textContent = 'Walking with assistance';
+                    else classificationSpan.textContent = 'Wheelchair bound';
+                } else {
+                    classificationSpan.textContent = '';
+                }
+            }
+
+            bergForm.addEventListener('change', recalculate);
+        });
+
+        // ── Export ──────────────────────────────────────────────────────
+        function getScores() {
+            const result = [];
+            for (let i = 1; i <= 14; i++) {
+                const sel = document.querySelector(`input[name="item${i}"]:checked`);
+                result.push(sel ? parseInt(sel.value, 10) : null);
+            }
+            return result;
+        }
+
+        function getClassification(total) {
+            if (total >= 41) return 'Independent';
+            if (total >= 21) return 'Walking with assistance';
+            return 'Wheelchair bound';
+        }
+
+        function buildExportText(mode) {
+            const scores = getScores();
+            const answered = scores.filter(s => s !== null);
+            const total = answered.reduce((sum, s) => sum + s, 0);
+            const interp = answered.length === 14 ? getClassification(total) : 'Incomplete';
+
+            if (mode === 'summary') {
+                return [
+                    'Berg Balance Scale',
+                    'Total Score: ' + (answered.length === 14 ? total : answered.reduce((a,b)=>a+b,0)) + ' / 56',
+                    'Classification: ' + interp
+                ].join('\n');
+            }
+
+            if (mode === 'full') {
+                const lines = ['Berg Balance Scale — Full Scoring', ''];
+                scores.forEach((score, idx) => {
+                    const scoreVal = score !== null ? score : 'not scored';
+                    const labelIdx = score !== null ? (4 - score) : null;
+                    const labelText = labelIdx !== null ? itemLabels[idx][labelIdx] : '';
+                    lines.push((idx + 1) + '. ' + itemNames[idx] + ': ' + scoreVal + '/4');
+                    if (labelText) lines.push('   ' + labelText);
+                });
+                lines.push('');
+                lines.push('Total: ' + total + ' / 56');
+                lines.push('Classification: ' + interp);
+                return lines.join('\n');
+            }
+
+            return '';
+        }
+
+        function ptmExport(mode) {
+            const text = buildExportText(mode);
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text)
+                    .then(() => ptmShowToast(mode === 'summary' ? '✓ Score summary copied' : '✓ Full breakdown of score copied', true))
+                    .catch(() => ptmFallbackCopy(text, mode));
+            } else {
+                ptmFallbackCopy(text, mode);
+            }
+        }
+
+        function ptmFallbackCopy(text, mode) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
+            document.body.appendChild(ta);
+            ta.focus(); ta.select();
+            try {
+                document.execCommand('copy');
+                ptmShowToast(mode === 'summary' ? '✓ Score summary copied' : '✓ Full breakdown of score copied', true);
+            } catch(e) {
+                ptmShowToast('Copy failed.\nPlease try again.', false);
+            }
+            document.body.removeChild(ta);
+        }
+
+        function ptmShowToast(msg, success) {
+            const toast = document.getElementById('ptmToast');
+            toast.textContent = msg;
+            toast.style.background = success ? 'rgba(44,62,80,.97)' : 'rgba(153,27,27,.95)';
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2400);
+        }
+    </script>
+</body>
+</html>
