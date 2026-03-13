@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tinetti POMA - PTMeasures.com</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            padding: 15px;
+            padding-bottom: 100px;
+            line-height: 1.5;
+            font-size: 13px;
+            color: #1f2937;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #ddd;
+        }
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 18px 25px;
+            border-bottom: 3px solid #34495e;
+        }
+        .header h1 { font-size: 22px; margin-bottom: 4px; font-weight: 600; }
+        .header p { font-size: 12px; opacity: 0.9; }
+        .content { padding: 20px; }
+
+        .meta-info {
+            font-size: 12px;
+            color: #495057;
+            margin-bottom: 18px;
+            line-height: 1.8;
+        }
+        .meta-info strong { color: #2c3e50; }
+
+        .section-card {
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            background: white;
+        }
+        .section-header {
+            background: #34495e;
+            color: white;
+            padding: 10px 14px;
+            font-weight: 700;
+            font-size: 13px;
+            border-radius: 4px 4px 0 0;
+        }
+        .section-body { padding: 16px; }
+        .section-instructions {
+            font-size: 12px;
+            color: #495057;
+            font-style: italic;
+            margin-bottom: 14px;
+            padding: 8px 10px;
+            background: #f8f9fa;
+            border-left: 3px solid #34495e;
+            border-radius: 3px;
+        }
+
+        .question-item {
+            background: #fafafa;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            margin-bottom: 14px;
+            padding: 14px;
+        }
+        .question-item h3 {
+            font-size: 13px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        .question-item .sub-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #34495e;
+            margin: 10px 0 6px;
+        }
+        .option-list { display: flex; flex-direction: column; gap: 5px; }
+        .option-list input[type="radio"] { display: none; }
+        .option-list label {
+            display: block;
+            width: 100%;
+            padding: 7px 10px;
+            border-radius: 4px;
+            border: 2px solid #dee2e6;
+            cursor: pointer;
+            font-size: 12px;
+            color: #495057;
+            background: white;
+            transition: background 0.15s, border-color 0.15s;
+        }
+        .option-list label:hover { background: #f8f9fa; border-color: #adb5bd; }
+        .option-list input[type="radio"]:checked + label {
+            background: #e9ecef;
+            border-color: #34495e;
+            border-width: 2px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        /* Results */
+        #results-container {
+            background: #f8f9fa;
+            border: 2px solid #34495e;
+            padding: 18px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+        #results-container h2 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            text-align: center;
+            border-bottom: 2px solid #34495e;
+            padding-bottom: 7px;
+        }
+        .result-subscores {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .result-subscore-box {
+            flex: 1;
+            background: white;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+        }
+        .result-subscore-box p { font-size: 11px; font-weight: 700; color: #495057; margin-bottom: 4px; }
+        .result-subscore-box span { font-size: 22px; font-weight: 700; color: #2c3e50; }
+        .result-score-box {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        .result-score-box p { font-size: 14px; font-weight: 700; color: #155724; }
+        .result-score-box span { font-size: 18px; }
+        .result-interp-detail {
+            background: #fff3cd;
+            border-radius: 4px;
+            padding: 10px 12px;
+            font-size: 11px;
+            color: #495057;
+            line-height: 1.7;
+        }
+
+        /* Export panel */
+        .ptm-export-panel {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: #fff;
+            border-top: 1px solid #dee2e6;
+            padding: 10px 16px 22px;
+            box-shadow: 0 -4px 16px rgba(0,0,0,.10);
+            z-index: 100;
+        }
+        .ptm-export-inner { max-width: 900px; margin: 0 auto; }
+        .ptm-export-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: #6c757d;
+            margin-bottom: 7px;
+        }
+        .ptm-export-buttons { display: flex; gap: 10px; }
+        .ptm-btn {
+            flex: 1;
+            padding: 11px 10px;
+            border-radius: 6px;
+            border: none;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            -webkit-tap-highlight-color: transparent;
+            transition: transform .12s;
+        }
+        .ptm-btn:active { transform: scale(.97); }
+        .ptm-btn-primary { background: #34495e; color: #fff; }
+        .ptm-btn-primary:hover { background: #2c3e50; }
+        .ptm-btn-secondary {
+            background: #f8f9fa;
+            color: #2c3e50;
+            border: 1.5px solid #dee2e6;
+        }
+        .ptm-btn-secondary:hover { background: #e9ecef; }
+        .ptm-toast {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(.85);
+            background: rgba(44,62,80,.97);
+            color: #fff;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity .25s, transform .25s;
+            z-index: 999;
+            box-shadow: 0 8px 32px rgba(0,0,0,.25);
+            white-space: pre-line;
+            max-width: 280px;
+        }
+        .ptm-toast.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Tinetti Performance-Oriented Mobility Assessment (POMA)</h1>
+            <p>Quantify gait and balance in older adults to track changes over time.</p>
+        </div>
+        <div class="content">
+
+            <div class="meta-info">
+                <strong>Equipment needed:</strong> Hard armless chair, Stopwatch or wristwatch, 15 ft walkway<br>
+                <strong>Completion Time:</strong> 10–15 minutes<br>
+                <strong>Scoring:</strong> Balance and gait subscales: Balance max = 16, Gait max = 12, Total max = 28.
+            </div>
+
+            <form id="tinetti-form">
+
+                <!-- Balance Section -->
+                <div class="section-card">
+                    <div class="section-header">Balance Sub-section (Max 16 points)</div>
+                    <div class="section-body">
+                        <p class="section-instructions">Subject is seated in hard, armless chair. The following maneuvers are tested.</p>
+
+                        <div class="question-item">
+                            <h3>1. Sitting Balance</h3>
+                            <div class="option-list">
+                                <input type="radio" id="sittingBalance-0" name="sittingBalance" value="0"><label for="sittingBalance-0"><strong>0</strong> – Leans or slides in chair</label>
+                                <input type="radio" id="sittingBalance-1" name="sittingBalance" value="1"><label for="sittingBalance-1"><strong>1</strong> – Steady, safe</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <h3>2. Arises</h3>
+                            <div class="option-list">
+                                <input type="radio" id="arises-0" name="arises" value="0"><label for="arises-0"><strong>0</strong> – Unable without help</label>
+                                <input type="radio" id="arises-1" name="arises" value="1"><label for="arises-1"><strong>1</strong> – Able, uses arms to help</label>
+                                <input type="radio" id="arises-2" name="arises" value="2"><label for="arises-2"><strong>2</strong> – Able without using arms</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <h3>3. Attempts to Arise</h3>
+                            <div class="option-list">
+                                <input type="radio" id="attemptsToArise-0" name="attemptsToArise" value="0"><label for="attemptsToArise-0"><strong>0</strong> – Unable without help</label>
+                                <input type="radio" id="attemptsToArise-1" name="attemptsToArise" value="1"><label for="attemptsToArise-1"><strong>1</strong> – Able, requires > 1 attempt</label>
+                                <input type="radio" id="attemptsToArise-2" name="attemptsToArise" value="2"><label for="attemptsToArise-2"><strong>2</strong> – Able to rise, 1 attempt</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <h3>4. Immediate Standing Balance (first 5 seconds)</h3>
+                            <div class="option-list">
+                                <input type="radio" id="immediateStandingBalance-0" name="immediateStandingBalance" value="0"><label for="immediateStandingBalance-0"><strong>0</strong> – Unsteady (swaggers, moves feet, trunk sway)</label>
+                                <input type="radio" id="immediateStandingBalance-1" name="immediateStandingBalance" value="1"><label for="immediateStandingBalance-1"><strong>1</strong> – Steady but uses walker or other support</label>
+                                <input type="radio" id="immediateStandingBalance-2" name="immediateStandingBalance" value="2"><label for="immediateStandingBalance-2"><strong>2</strong> – Steady without walker or other support</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <h3>5. Standing Balance</h3>
+                            <div class="option-list">
+                                <input type="radio" id="standingBalance-0" name="standingBalance" value="0"><label for="standingBalance-0"><strong>0</strong> – Unsteady</label>
+                                <input type="radio" id="standingBalance-1" name="standingBalance" value="1"><label for="standingBalance-1"><strong>1</strong> – Steady but wide stance (medial heels > 4 inches apart) and uses cane or other support</label>
+                                <input type="radio" id="standingBalance-2" name="standingBalance" value="2"><label for="standingBalance-2"><strong>2</strong> – Narrow stance without support</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <h3>6. Nudged (subject at maximum position with feet as close together as possible, examiner pushes lightly on subject's sternum with palm of hand 3 times)</h3>
+                            <div class="option-list">
+                                <input type="radio" id="nudged-0" name="nudged" value="0"><label for="nudged-0"><strong>0</strong> – Begins to fall</label>
+                                <input type="radio" id="nudged-1" name="nudged" value="1"><label for="nudged-1"><strong>1</strong> – Staggers, grabs, catches self</label>
+                                <input type="radio" id="nudged-2" name="nudged" value="2"><label for="nudged-2"><strong>2</strong> – Steady</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <h3>7. Eyes Closed (at maximum position of item 6)</h3>
+                            <div class="option-list">
+                                <input type="radio" id="eyesClosed-0" name="eyesClosed" value="0"><label for="eyesClosed-0"><strong>0</strong> – Unsteady</label>
+                                <input type="radio" id="eyesClosed-1" name="eyesClosed" value="1"><label for="eyesClosed-1"><strong>1</strong> – Steady</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <h3>8. Turning 360 Degrees</h3>
+                            <p class="sub-label">Steps</p>
+                            <div class="option-list">
+                                <input type="radio" id="turning360Steps-0" name="turning360Steps" value="0"><label for="turning360Steps-0"><strong>0</strong> – Discontinuous steps</label>
+                                <input type="radio" id="turning360Steps-1" name="turning360Steps" value="1"><label for="turning360Steps-1"><strong>1</strong> – Continuous steps</label>
+                            </div>
+                            <p class="sub-label">Steadiness</p>
+                            <div class="option-list">
+                                <input type="radio" id="turning360Steadiness-0" name="turning360Steadiness" value="0"><label for="turning360Steadiness-0"><strong>0</strong> – Unsteady (grabs, staggers)</label>
+                                <input type="radio" id="turning360Steadiness-1" name="turning360Steadiness" value="1"><label for="turning360Steadiness-1"><strong>1</strong> – Steady</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <h3>9. Sitting Down</h3>
+                            <div class="option-list">
+                                <input type="radio" id="sittingDown-0" name="sittingDown" value="0"><label for="sittingDown-0"><strong>0</strong> – Unsafe (misjudged distance, falls into chair)</label>
+                                <input type="radio" id="sittingDown-1" name="sittingDown" value="1"><label for="sittingDown-1"><strong>1</strong> – Uses arms or not a smooth motion</label>
+                                <input type="radio" id="sittingDown-2" name="sittingDown" value="2"><label for="sittingDown-2"><strong>2</strong> – Safe, smooth motion</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Gait Section -->
+                <div class="section-card">
+                    <div class="section-header">Gait Sub-section (Max 12 points)</div>
+                    <div class="section-body">
+                        <p class="section-instructions">Subject stands with examiner, walks down hallway or across room, first at "usual" pace, then back at "rapid, but safe" pace (using usual walking aids).</p>
+
+                        <div class="question-item">
+                            <h3>10. Initiation of Gait (immediately after told to "go")</h3>
+                            <div class="option-list">
+                                <input type="radio" id="initiationOfGait-0" name="initiationOfGait" value="0"><label for="initiationOfGait-0"><strong>0</strong> – Any hesitancy or multiple attempts to start</label>
+                                <input type="radio" id="initiationOfGait-1" name="initiationOfGait" value="1"><label for="initiationOfGait-1"><strong>1</strong> – No hesitancy</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <h3>11. Step Length and Height</h3>
+                            <p class="sub-label">Right swing foot</p>
+                            <div class="option-list">
+                                <input type="radio" id="rightStepLength-0" name="rightStepLength" value="0"><label for="rightStepLength-0"><strong>0</strong> – Does not pass left stance foot with step</label>
+                                <input type="radio" id="rightStepLength-1" name="rightStepLength" value="1"><label for="rightStepLength-1"><strong>1</strong> – Passes left stance foot</label>
+                            </div>
+                            <p class="sub-label">Right foot clears floor</p>
+                            <div class="option-list">
+                                <input type="radio" id="rightStepHeight-0" name="rightStepHeight" value="0"><label for="rightStepHeight-0"><strong>0</strong> – Right foot does not clear floor completely with step</label>
+                                <input type="radio" id="rightStepHeight-1" name="rightStepHeight" value="1"><label for="rightStepHeight-1"><strong>1</strong> – Right foot completely clears floor</label>
+                            </div>
+                            <p class="sub-label">Left swing foot</p>
+                            <div class="option-list">
+                                <input type="radio" id="leftStepLength-0" name="leftStepLength" value="0"><label for="leftStepLength-0"><strong>0</strong> – Does not pass right stance foot with step</label>
+                                <input type="radio" id="leftStepLength-1" name="leftStepLength" value="1"><label for="leftStepLength-1"><strong>1</strong> – Passes right stance foot</label>
+                            </div>
+                            <p class="sub-label">Left foot clears floor</p>
+                            <div class="option-list">
+                                <input type="radio" id="leftStepHeight-0" name="leftStepHeight" value="0"><label for="leftStepHeight-0"><strong>0</strong> – Left foot does not clear floor completely with step</label>
+                                <input type="radio" id="leftStepHeight-1" name="leftStepHeight" value="1"><label for="leftStepHeight-1"><strong>1</strong> – Left foot completely clears floor</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <h3>12. Step Symmetry</h3>
+                            <div class="option-list">
+                                <input type="radio" id="stepSymmetry-0" name="stepSymmetry" value="0"><label for="stepSymmetry-0"><strong>0</strong> – Right and left step length not equal (estimate)</label>
+                                <input type="radio" id="stepSymmetry-1" name="stepSymmetry" value="1"><label for="stepSymmetry-1"><strong>1</strong> – Right and left step length appear equal</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <h3>13. Step Continuity</h3>
+                            <div class="option-list">
+                                <input type="radio" id="stepContinuity-0" name="stepContinuity" value="0"><label for="stepContinuity-0"><strong>0</strong> – Stopping or discontinuity between steps</label>
+                                <input type="radio" id="stepContinuity-1" name="stepContinuity" value="1"><label for="stepContinuity-1"><strong>1</strong> – Steps appear continuous</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <h3>14. Path (estimated in relation to floor tiles, 12-inch diameter; observe excursion of 1 foot over about 10 ft. of the course)</h3>
+                            <div class="option-list">
+                                <input type="radio" id="path-0" name="path" value="0"><label for="path-0"><strong>0</strong> – Marked deviation</label>
+                                <input type="radio" id="path-1" name="path" value="1"><label for="path-1"><strong>1</strong> – Mild/moderate deviation or uses walking aid</label>
+                                <input type="radio" id="path-2" name="path" value="2"><label for="path-2"><strong>2</strong> – Straight without walking aid</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <h3>15. Trunk</h3>
+                            <div class="option-list">
+                                <input type="radio" id="trunk-0" name="trunk" value="0"><label for="trunk-0"><strong>0</strong> – Marked sway or uses walking aid</label>
+                                <input type="radio" id="trunk-1" name="trunk" value="1"><label for="trunk-1"><strong>1</strong> – No sway but flexion of knees or back or spreads arms out while walking</label>
+                                <input type="radio" id="trunk-2" name="trunk" value="2"><label for="trunk-2"><strong>2</strong> – No sway, no flexion, no use of arms, and no use of walking aid</label>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <h3>16. Walking Stance</h3>
+                            <div class="option-list">
+                                <input type="radio" id="walkingStance-0" name="walkingStance" value="0"><label for="walkingStance-0"><strong>0</strong> – Heels apart</label>
+                                <input type="radio" id="walkingStance-1" name="walkingStance" value="1"><label for="walkingStance-1"><strong>1</strong> – Heels almost touching while walking</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+
+            <!-- Results -->
+            <div id="results-container">
+                <h2>Assessment Summary</h2>
+                <div class="result-subscores">
+                    <div class="result-subscore-box">
+                        <p>BALANCE (max 16)</p>
+                        <span id="balance-score">0</span>
+                    </div>
+                    <div class="result-subscore-box">
+                        <p>GAIT (max 12)</p>
+                        <span id="gait-score">0</span>
+                    </div>
+                </div>
+                <div class="result-score-box">
+                    <p>TOTAL SCORE: <span id="total-score" style="font-size:18px;">0</span> / 28 &nbsp;<span id="items-answered" style="font-size:11px; font-weight:400; opacity:0.7;">(0 of 16 items)</span></p>
+                    <p id="risk-level" style="margin-top:4px; font-size:13px;"></p>
+                </div>
+                <div class="result-interp-detail">
+                    <strong>Score Interpretation:</strong><br>
+                    25–28 = Low Fall Risk<br>
+                    19–24 = Medium Fall Risk<br>
+                    &lt; 19 = High Fall Risk<br><br>
+                    <em>*Tinetti ME. Performance-oriented assessment of mobility problems in elderly patients. JAGS 1986; 34: 119–126.</em>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Export Panel -->
+    <div class="ptm-export-panel">
+        <div class="ptm-export-inner">
+            <div class="ptm-export-label">📋 Copy to Clipboard</div>
+            <div class="ptm-export-buttons">
+                <button class="ptm-btn ptm-btn-primary" onclick="ptmExport('summary')">Score Summary</button>
+                <button class="ptm-btn ptm-btn-secondary" onclick="ptmExport('full')">Full Breakdown</button>
+            </div>
+        </div>
+    </div>
+    <div class="ptm-toast" id="ptmToast"></div>
+
+    <script>
+        const balanceFields = [
+            'sittingBalance', 'arises', 'attemptsToArise', 'immediateStandingBalance',
+            'standingBalance', 'nudged', 'eyesClosed', 'turning360Steps',
+            'turning360Steadiness', 'sittingDown'
+        ];
+        const gaitFields = [
+            'initiationOfGait', 'rightStepLength', 'rightStepHeight', 'leftStepLength',
+            'leftStepHeight', 'stepSymmetry', 'stepContinuity', 'path', 'trunk', 'walkingStance'
+        ];
+        const allFields = [...balanceFields, ...gaitFields];
+
+        const itemLabels = {
+            sittingBalance:            ['Leans or slides in chair', 'Steady, safe'],
+            arises:                    ['Unable without help', 'Able, uses arms to help', 'Able without using arms'],
+            attemptsToArise:           ['Unable without help', 'Able, requires > 1 attempt', 'Able to rise, 1 attempt'],
+            immediateStandingBalance:  ['Unsteady (swaggers, moves feet, trunk sway)', 'Steady but uses walker or other support', 'Steady without walker or other support'],
+            standingBalance:           ['Unsteady', 'Steady but wide stance and uses cane or other support', 'Narrow stance without support'],
+            nudged:                    ['Begins to fall', 'Staggers, grabs, catches self', 'Steady'],
+            eyesClosed:                ['Unsteady', 'Steady'],
+            turning360Steps:           ['Discontinuous steps', 'Continuous steps'],
+            turning360Steadiness:      ['Unsteady (grabs, staggers)', 'Steady'],
+            sittingDown:               ['Unsafe (misjudged distance, falls into chair)', 'Uses arms or not a smooth motion', 'Safe, smooth motion'],
+            initiationOfGait:          ['Any hesitancy or multiple attempts to start', 'No hesitancy'],
+            rightStepLength:           ['Does not pass left stance foot', 'Passes left stance foot'],
+            rightStepHeight:           ['Right foot does not clear floor completely', 'Right foot completely clears floor'],
+            leftStepLength:            ['Does not pass right stance foot', 'Passes right stance foot'],
+            leftStepHeight:            ['Left foot does not clear floor completely', 'Left foot completely clears floor'],
+            stepSymmetry:              ['Step length not equal', 'Step length appears equal'],
+            stepContinuity:            ['Stopping or discontinuity between steps', 'Steps appear continuous'],
+            path:                      ['Marked deviation', 'Mild/moderate deviation or uses walking aid', 'Straight without walking aid'],
+            trunk:                     ['Marked sway or uses walking aid', 'No sway but uses flexion/arms', 'No sway, no flexion, no use of arms or aid'],
+            walkingStance:             ['Heels apart', 'Heels almost touching while walking']
+        };
+
+        const itemDisplayNames = {
+            sittingBalance: 'Sitting Balance',
+            arises: 'Arises',
+            attemptsToArise: 'Attempts to Arise',
+            immediateStandingBalance: 'Immediate Standing Balance',
+            standingBalance: 'Standing Balance',
+            nudged: 'Nudged',
+            eyesClosed: 'Eyes Closed',
+            turning360Steps: 'Turning 360° (Steps)',
+            turning360Steadiness: 'Turning 360° (Steadiness)',
+            sittingDown: 'Sitting Down',
+            initiationOfGait: 'Initiation of Gait',
+            rightStepLength: 'Right Step Length',
+            rightStepHeight: 'Right Step Height',
+            leftStepLength: 'Left Step Length',
+            leftStepHeight: 'Left Step Height',
+            stepSymmetry: 'Step Symmetry',
+            stepContinuity: 'Step Continuity',
+            path: 'Path',
+            trunk: 'Trunk',
+            walkingStance: 'Walking Stance'
+        };
+
+        function getVal(name) {
+            const sel = document.querySelector(`input[name="${name}"]:checked`);
+            return sel ? parseInt(sel.value, 10) : null;
+        }
+
+        function getRiskLevel(total) {
+            if (total >= 25) return 'Low Fall Risk';
+            if (total >= 19) return 'Medium Fall Risk';
+            return 'High Fall Risk';
+        }
+
+        function recalculate() {
+            let balanceScore = 0, balanceAnswered = 0;
+            balanceFields.forEach(name => {
+                const v = getVal(name);
+                if (v !== null) { balanceScore += v; balanceAnswered++; }
+            });
+            let gaitScore = 0, gaitAnswered = 0;
+            gaitFields.forEach(name => {
+                const v = getVal(name);
+                if (v !== null) { gaitScore += v; gaitAnswered++; }
+            });
+            const totalAnswered = balanceAnswered + gaitAnswered;
+            const totalScore = balanceScore + gaitScore;
+
+            document.getElementById('balance-score').textContent = balanceScore;
+            document.getElementById('gait-score').textContent = gaitScore;
+            document.getElementById('total-score').textContent = totalScore;
+            document.getElementById('items-answered').textContent = `(${totalAnswered} of 16 items)`;
+
+            if (totalAnswered === 16) {
+                document.getElementById('risk-level').textContent = getRiskLevel(totalScore);
+            } else {
+                document.getElementById('risk-level').textContent = '';
+            }
+        }
+
+        document.getElementById('tinetti-form').addEventListener('change', recalculate);
+
+        // ── Export ──────────────────────────────────────────────────────
+        function buildExportText(mode) {
+            let balanceScore = 0, gaitScore = 0;
+            allFields.forEach(name => {
+                const v = getVal(name);
+                if (v !== null) {
+                    if (balanceFields.includes(name)) balanceScore += v;
+                    else gaitScore += v;
+                }
+            });
+            const totalScore = balanceScore + gaitScore;
+            const totalAnswered = allFields.filter(n => getVal(n) !== null).length;
+            const risk = totalAnswered === 16 ? getRiskLevel(totalScore) : 'Incomplete';
+
+            if (mode === 'summary') {
+                return [
+                    'Tinetti POMA',
+                    'Balance Score: ' + balanceScore + ' / 16',
+                    'Gait Score: ' + gaitScore + ' / 12',
+                    'Total Score: ' + totalScore + ' / 28',
+                    'Fall Risk: ' + risk
+                ].join('\n');
+            }
+
+            if (mode === 'full') {
+                const lines = ['Tinetti POMA — Full Scoring', ''];
+                lines.push('— Balance —');
+                balanceFields.forEach(name => {
+                    const v = getVal(name);
+                    const label = v !== null ? itemLabels[name][v] : 'not scored';
+                    lines.push(itemDisplayNames[name] + ': ' + (v !== null ? v : '–') + (label ? '  (' + label + ')' : ''));
+                });
+                lines.push('Balance Subtotal: ' + balanceScore + ' / 16');
+                lines.push('');
+                lines.push('— Gait —');
+                gaitFields.forEach(name => {
+                    const v = getVal(name);
+                    const label = v !== null ? itemLabels[name][v] : 'not scored';
+                    lines.push(itemDisplayNames[name] + ': ' + (v !== null ? v : '–') + (label ? '  (' + label + ')' : ''));
+                });
+                lines.push('Gait Subtotal: ' + gaitScore + ' / 12');
+                lines.push('');
+                lines.push('Total: ' + totalScore + ' / 28');
+                lines.push('Fall Risk: ' + risk);
+                return lines.join('\n');
+            }
+
+            return '';
+        }
+
+        function ptmExport(mode) {
+            const text = buildExportText(mode);
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text)
+                    .then(() => ptmShowToast(mode === 'summary' ? '✓ Score summary copied' : '✓ Full breakdown of score copied', true))
+                    .catch(() => ptmFallbackCopy(text, mode));
+            } else {
+                ptmFallbackCopy(text, mode);
+            }
+        }
+
+        function ptmFallbackCopy(text, mode) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
+            document.body.appendChild(ta);
+            ta.focus(); ta.select();
+            try {
+                document.execCommand('copy');
+                ptmShowToast(mode === 'summary' ? '✓ Score summary copied' : '✓ Full breakdown of score copied', true);
+            } catch(e) {
+                ptmShowToast('Copy failed.\nPlease try again.', false);
+            }
+            document.body.removeChild(ta);
+        }
+
+        function ptmShowToast(msg, success) {
+            const toast = document.getElementById('ptmToast');
+            toast.textContent = msg;
+            toast.style.background = success ? 'rgba(44,62,80,.97)' : 'rgba(153,27,27,.95)';
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2400);
+        }
+    </script>
+</body>
+</html>
