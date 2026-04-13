@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coma Recovery Scale - Revised (CRS-R) | PT Measures</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f0f0f0;
+    min-height: 100vh;
+    padding: 0;
+    line-height: 1.5;
+    font-size: 14px;
+    color: #2c3e50;
+}
+a { color: #27ae60; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Screen */
+.screen { max-width: 480px; margin: 0 auto; padding-bottom: 60px; }
+
+/* Header */
+.header { background: #206375; padding: 16px 20px 18px; text-align: center; }
+.header-title { color: #fff; font-size: 19px; font-weight: 700; line-height: 1.2; margin-bottom: 6px; }
+.header-authors { color: rgba(255,255,255,0.7); font-size: 12px; margin-bottom: 4px; }
+.header-link { margin-bottom: 12px; }
+.header-link a { color: rgba(255,255,255,0.6); font-size: 12px; text-decoration: underline; }
+.header-link a:hover { color: #fff; }
+.score-display { display: flex; align-items: baseline; justify-content: center; gap: 2px; }
+.score-num { color: #fff; font-size: 48px; font-weight: 700; line-height: 1; }
+.score-denom { color: rgba(255,255,255,0.55); font-size: 26px; font-weight: 400; }
+.designation-badge { display: inline-block; background: rgba(255,255,255,0.15); border-radius: 12px; padding: 4px 14px; margin-top: 8px; font-size: 13px; color: #fff; font-weight: 500; }
+.header-progress { color: rgba(255,255,255,0.55); font-size: 12px; margin-top: 6px; }
+.header-incomplete-note { color: rgba(255,220,100,0.9); font-size: 11px; margin-top: 4px; font-style: italic; }
+
+/* Scroll area */
+.scroll { padding: 12px 12px 0; }
+
+/* Collapsible — matches option card style */
+.collapsible { background: #fff; border-radius: 8px; margin-bottom: 8px; overflow: hidden; border: 1.5px solid #dde0e4; }
+.coll-btn {
+    width: 100%; display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 14px; background: none; border: none; cursor: pointer;
+    font-size: 13px; font-weight: 600; color: #2c3e50; text-align: left;
+    gap: 8px; font-family: inherit;
+}
+.coll-btn:hover { background: #f8f8f8; }
+.coll-chev { font-size: 11px; color: #888; flex-shrink: 0; transition: transform 0.2s; }
+.coll-btn.open { color: #2c3e50; }
+.coll-btn.open .coll-chev { transform: rotate(180deg); color: #888; }
+.coll-body { padding: 4px 14px 14px; font-size: 13px; color: #444; line-height: 19px; white-space: pre-wrap; border-top: 1px solid #dde0e4; display: none; background: #fafafa; }
+.coll-body.open { display: block; }
+.coll-link { color: #27ae60; text-decoration: underline; font-size: 13px; cursor: pointer; margin-top: 10px; display: block; }
+
+/* Section header */
+.section-hdr { display: flex; justify-content: space-between; align-items: center; margin: 16px 2px 6px; }
+.section-title { font-size: 11px; font-weight: 700; color: #666; text-transform: uppercase; letter-spacing: 0.8px; flex: 1; }
+.section-score-badge { font-size: 13px; font-weight: 700; color: #2c3e50; }
+
+/* Card */
+.card { background: #fff; border-radius: 8px; padding: 14px; margin-bottom: 8px; border: 1.5px solid #dde0e4; }
+.card:hover { transform: none; box-shadow: none; }
+.item-label { font-size: 15px; font-weight: 600; color: #2c3e50; margin-bottom: 8px; }
+.item-desc { font-size: 12px; color: #7f8c8d; margin-bottom: 10px; line-height: 17px; font-style: italic; border-left: 3px solid #dde0e4; padding-left: 8px; }
+
+/* Option rows */
+.opts { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+.opt-wrap { border: 1.5px solid #dde0e4; border-radius: 8px; overflow: hidden; background: #fff; }
+.opt-wrap.active { border-color: #27ae60; background: #f2fbf5; }
+.opt-row { display: flex; align-items: center; padding: 10px 12px; cursor: pointer; user-select: none; gap: 10px; }
+.opt-row:hover { background: #f8f8f8; }
+.opt-wrap.active .opt-row:hover { background: #edf8f1; }
+.chip { width: 34px; height: 34px; border-radius: 17px; background: #2c3e50; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; color: #fff; flex-shrink: 0; }
+.opt-wrap.active .chip { background: #27ae60; }
+.opt-lbl { flex: 1; font-size: 14px; color: #2c3e50; line-height: 18px; font-weight: 500; }
+.opt-wrap.active .opt-lbl { color: #1a7a42; font-weight: 600; }
+.sel-btn { background: #27ae60; border: none; border-radius: 6px; padding: 7px 16px; color: #fff; font-size: 13px; font-weight: 700; cursor: pointer; flex-shrink: 0; white-space: nowrap; font-family: inherit; }
+.sel-btn:hover { background: #219a52; }
+.desel-btn { background: #eee; border: none; border-radius: 6px; padding: 7px 16px; color: #555; font-size: 13px; font-weight: 700; cursor: pointer; flex-shrink: 0; font-family: inherit; }
+.desel-btn:hover { background: #e0e0e0; }
+.check-badge { width: 28px; height: 28px; border-radius: 14px; background: #27ae60; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 15px; font-weight: 700; flex-shrink: 0; margin-left: 8px; }
+
+/* Detail box — shown when option is expanded */
+.detail-box { padding: 12px 14px 14px; background: #f7fbf8; border-top: 1px solid #c8e6d0; }
+.detail-head { font-size: 13px; font-weight: 700; color: #2c3e50; margin-bottom: 4px; margin-top: 10px; }
+.detail-head:first-child { margin-top: 0; }
+.detail-text { font-size: 13px; color: #444; line-height: 19px; white-space: pre-wrap; }
+.detail-btns { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* Subscale score row */
+.sub-score-row { display: flex; justify-content: flex-end; align-items: center; margin-top: 12px; padding-top: 10px; border-top: 1px solid #e0e0e0; gap: 6px; }
+.sub-score-lbl { font-size: 13px; color: #555; font-weight: 600; }
+.sub-score-val { font-size: 13px; font-weight: 700; color: #2c3e50; }
+
+/* TCC */
+.tcc-container { margin-top: 12px; border-top: 1px solid #eee; padding-top: 10px; }
+.tcc-lbl { font-size: 11px; color: #888; margin-bottom: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
+.tcc-btn { display: flex; align-items: center; border: 1px solid #d0d7e0; border-radius: 8px; padding: 10px 12px; background: #f9fafb; cursor: pointer; gap: 6px; width: 100%; font-family: inherit; font-size: 13px; }
+.tcc-btn:hover { border-color: #aaa; background: #f4f4f4; }
+.tcc-btn.open { border-color: #aaa; background: #f4f4f4; }
+.tcc-btn-text { flex: 1; font-size: 13px; color: #444; text-align: left; line-height: 18px; }
+.tcc-chev { font-size: 11px; color: #888; flex-shrink: 0; }
+.tcc-list { border: 1px solid #d0d7e0; border-radius: 8px; margin-top: 4px; background: #fff; overflow: hidden; display: none; }
+.tcc-list.open { display: block; }
+.tcc-group-label { padding: 8px 12px 4px; font-size: 10px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 0.5px; background: #f9fafb; border-bottom: 1px solid #f0f0f0; }
+.tcc-item { padding: 10px 12px; border-bottom: 1px solid #f0f0f0; cursor: pointer; font-size: 13px; color: #444; line-height: 18px; }
+.tcc-item:last-child { border-bottom: none; }
+.tcc-item:hover { background: #f5f9fa; }
+.tcc-item.selected { background: #f2fbf5; color: #27ae60; font-weight: 600; }
+
+/* Note box */
+.note-box { background: #fff8e1; border-radius: 8px; padding: 12px; margin-bottom: 8px; border-left: 4px solid #f9a825; font-size: 12px; color: #5d4037; line-height: 17px; }
+
+/* Brainstem / Baseline grids */
+.grid-note { font-size: 12px; color: #7f8c8d; margin-bottom: 10px; font-style: italic; line-height: 17px; }
+.grid-section { font-size: 11px; font-weight: 700; color: #555; margin-top: 12px; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+.grid-section:first-of-type { margin-top: 0; }
+.grid-sub { font-size: 12px; font-weight: 600; color: #555; margin-top: 8px; margin-bottom: 4px; }
+.check-row { display: flex; align-items: flex-start; padding: 5px 0; cursor: pointer; gap: 10px; user-select: none; }
+.check-row:hover .checkbox { border-color: #27ae60; }
+.checkbox { width: 22px; height: 22px; border-radius: 4px; border: 1.5px solid #ccc; background: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; font-size: 13px; font-weight: 700; color: #fff; }
+.checkbox.checked { background: #27ae60; border-color: #27ae60; }
+.check-lbl { flex: 1; font-size: 13px; color: #444; line-height: 17px; }
+
+/* Trial grid */
+.trial-hdr { display: flex; align-items: center; padding: 5px 0; border-bottom: 1px solid #dde0e4; margin-bottom: 2px; }
+.trial-hdr-lbl { flex: 1; font-size: 11px; font-weight: 700; color: #888; }
+.trial-hdr-boxes { display: flex; gap: 6px; margin-left: 8px; }
+.trial-hdr-cell { width: 28px; font-size: 11px; font-weight: 700; color: #888; text-align: center; }
+.trial-row { display: flex; align-items: center; padding: 5px 0; border-bottom: 1px solid #f0f0f0; }
+.trial-row:last-child { border-bottom: none; }
+.trial-lbl { flex: 1; font-size: 12px; color: #444; line-height: 16px; padding-right: 6px; }
+.trial-boxes { display: flex; gap: 6px; margin-left: 8px; }
+.trial-box { width: 28px; height: 28px; border-radius: 4px; border: 1.5px solid #ccc; background: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 13px; font-weight: 700; color: #fff; flex-shrink: 0; }
+.trial-box:hover { border-color: #27ae60; }
+.trial-box.checked { background: #27ae60; border-color: #27ae60; }
+
+/* Posture inputs */
+.posture-row { display: flex; align-items: center; padding: 5px 0; border-bottom: 1px solid #f0f0f0; gap: 10px; }
+.posture-lbl { font-size: 12px; color: #444; width: 160px; flex-shrink: 0; }
+.posture-input { flex: 1; font-size: 12px; padding: 5px 8px; border: 1px solid #ccc; border-radius: 6px; color: #2c3e50; background: #fff; font-family: inherit; }
+.posture-input:focus { outline: none; border-color: #27ae60; }
+.posture-input::placeholder { color: #bbb; }
+
+/* Summary box */
+.summary-box { background: #fff; border-radius: 8px; padding: 16px; margin-top: 16px; margin-bottom: 8px; border: 1.5px solid #2c3e50; }
+.summary-title { font-size: 14px; font-weight: 700; color: #2c3e50; margin-bottom: 12px; }
+.summary-legend { margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid #e8edf2; }
+.summary-legend-item { font-size: 12px; color: #555; margin-bottom: 4px; line-height: 17px; }
+.summary-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 6px 0; border-bottom: 1px solid #f0f0f0; }
+.summary-row:last-of-type { border-bottom: none; }
+.summary-lbl { font-size: 13px; color: #2c3e50; flex: 1; }
+.summary-val { font-size: 13px; color: #2c3e50; font-weight: 600; text-align: right; margin-left: 8px; }
+.summary-total { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; padding-top: 10px; border-top: 2px solid #2c3e50; }
+.summary-total-lbl { font-size: 14px; font-weight: 700; color: #2c3e50; }
+.summary-total-val { font-size: 20px; font-weight: 700; color: #2c3e50; }
+.summary-incomplete { font-size: 12px; color: #e67e22; font-style: italic; margin-top: 6px; text-align: center; }
+
+/* Citation */
+.citation { font-size: 11px; color: #aaa; text-align: center; margin-top: 20px; margin-bottom: 12px; line-height: 16px; padding: 0 4px; }
+.citation a { color: #27ae60; }
+
+/* Buttons */
+.btn-row { display: flex; gap: 12px; margin-top: 8px; margin-bottom: 16px; }
+.btn-primary { flex: 1; background: #206375; border: none; border-radius: 8px; padding: 14px; color: #fff; font-size: 15px; font-weight: 600; cursor: pointer; text-align: center; font-family: inherit; }
+.btn-primary:hover { background: #174f5e; }
+.btn-primary:disabled { opacity: 0.35; cursor: default; }
+.btn-secondary { flex: 1; background: #fff; border: 1.5px solid #dde0e4; border-radius: 8px; padding: 14px; color: #2c3e50; font-size: 15px; font-weight: 600; cursor: pointer; text-align: center; font-family: inherit; }
+.btn-secondary:hover { background: #f4f4f4; }
+.copy-feedback { text-align: center; font-size: 12px; color: #27ae60; font-weight: 600; margin-top: 6px; height: 16px; }
+
+/* Unscored collapsible — yellow tint */
+.collapsible-unscored { background: #fffde7; border-color: #f0e08a; }
+.collapsible-unscored .coll-btn { background: none; }
+.collapsible-unscored .coll-body { background: #fffde7; border-top-color: #e8d84a; }
+.resource-group {
+    background: #e8eff2;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 12px;
+}
+.resource-group-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+    padding: 0 2px;
+}
+.resource-group .collapsible {
+    margin-bottom: 6px;
+}
+.resource-group .collapsible:last-child {
+    margin-bottom: 0;
+}
+.coll-nested { background: #f4f4f4; border-radius: 6px; margin-top: 12px; overflow: hidden; border: 1px solid #dde0e4; }
+.coll-nested-btn { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; background: none; border: none; cursor: pointer; font-size: 12.5px; font-weight: 600; color: #444; text-align: left; gap: 8px; font-family: inherit; }
+.coll-nested-btn:hover { background: #ececec; }
+.coll-nested-chev { font-size: 10px; color: #888; flex-shrink: 0; transition: transform 0.2s; }
+.coll-nested-btn.open .coll-nested-chev { transform: rotate(180deg); }
+.coll-nested-body { padding: 4px 12px 12px; font-size: 12px; color: #555; line-height: 18px; border-top: 1px solid #dde0e4; display: none; white-space: pre-wrap; }
+.coll-nested-body.open { display: block; }
+
+/* PDF link button */
+.pdf-link-btn { display: inline-block; background: #206375; color: #fff; font-size: 13px; font-weight: 600; padding: 10px 18px; border-radius: 6px; text-decoration: none; margin-top: 10px; }
+.pdf-link-btn:hover { background: #174f5e; text-decoration: none; color: #fff; }
+</style>
+</head>
+<body>
+
+<!-- EULA GATE -->
+<div id="eula-screen" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:24px;background:#f0f0f0">
+  <div style="max-width:480px;width:100%;background:#fff;border-radius:16px;border:1.5px solid #dde0e4;box-shadow:0 4px 20px rgba(0,0,0,0.10);overflow:hidden">
+    <div style="background:#206375;padding:20px 24px">
+      <div style="color:rgba(255,255,255,0.75);font-size:12px;margin-bottom:4px">Coma Recovery Scale - Revised 2.0</div>
+      <div style="color:#fff;font-size:17px;font-weight:700">End User License Agreement</div>
+    </div>
+    <div style="padding:20px 24px 24px">
+      <div style="font-size:12px;color:#444;line-height:19px;max-height:420px;overflow-y:auto;background:#fafafa;border:1px solid #dde0e4;border-radius:8px;padding:16px;margin-bottom:18px">
+
+<p style="font-weight:700;margin-bottom:10px">NON-EXCLUSIVE END USER LICENSE AGREEMENT</p>
+
+<p style="margin-bottom:10px">This Non-Exclusive End User License Agreement ("EULA") is made as of the date End User first accesses the Original Instruments through the PT Measures mobile application ("Effective Date") by and between Opus V, Inc. ("Company") and End User (as identified below).</p>
+
+<p style="margin-bottom:10px">WHEREAS, Company is the licensee of certain rights from the Institutions (defined below) pursuant to a non-exclusive license agreement March 16, 2026 ("License Agreement").</p>
+
+<p style="margin-bottom:10px">NOW, THEREFORE, for good and valuable consideration, the sufficiency of which is hereby acknowledged, the parties hereto agree as follows:</p>
+
+<p style="font-weight:700;margin-bottom:6px">I. DEFINITIONS</p>
+
+<p style="margin-bottom:8px"><strong>A. "Derivatives"</strong> means any derivative work of an Original Instrument as determined under the United States Copyright Act, as amended, 17 U.S.C.A. §§ 101 et seq., including without limitation translations, abridgments, condensations, recastings, transformations or adaptations of an Original Instrument, or works consisting of editorial revisions, annotations, elaborations or other modifications of the Original Instrument.</p>
+
+<p style="margin-bottom:8px"><strong>B. "End User"</strong> means the individual receiving a license to use the Original Instruments under this EULA, the name and address of which appears on the signature page, below.</p>
+
+<p style="margin-bottom:8px"><strong>C. "Institutions"</strong> means Spaulding Rehabilitation Hospital Corporation, doing business as Spaulding Rehabilitation Hospital ("SRH") and Hackensack Meridian Health, on behalf of HMH Hospitals Corporation, Inc. d/b/a/ JFK Johnson Rehabilitation Institute.</p>
+
+<p style="margin-bottom:8px"><strong>D. "Original Instruments"</strong> means the following: Coma Recovery Scale - Revised, Updated Administration and Scoring Guidelines, Frequently Asked Questions, Ten Guiding Principles for Administration and Scoring, and Recommended Training Program, as provided through the PT Measures mobile application.</p>
+
+<p style="margin-bottom:8px"><strong>E. "Permitted Purpose"</strong> means the use of the Original Instruments for research, education, and clinical care. Notwithstanding the foregoing, Permitted Purpose shall not include any of the following: direct commercial use, commercial use by the End User's organization or employer, revenue generating activities, commercial or for-profit sponsored clinical trials, or research studies sponsored by for-profit entities, or adaptation of the Original Instruments for use or incorporation into an electronic health record system. This EULA shall be null and void if any use is not in accordance with the foregoing restrictions.</p>
+
+<p style="margin-bottom:10px"><strong>F. "Term"</strong> means the term of this EULA as set forth in Section IV.</p>
+
+<p style="font-weight:700;margin-bottom:6px">II. OWNERSHIP AND GRANT OF RIGHTS</p>
+
+<p style="margin-bottom:8px">A. End User acknowledges and agrees that Institutions own all right, title and interest in and to the Original Instruments and any Derivatives thereof.</p>
+
+<p style="margin-bottom:8px">B. Subject to the terms and conditions of this EULA, Company hereby grants to End User a non-exclusive, non-transferrable, non-sublicensable sublicense under Institutions' copyrights to use the Original Instruments during the term of this EULA in performance of the Permitted Purpose.</p>
+
+<p style="margin-bottom:10px">C. The sublicense granted herein specifically excludes the right of End User to modify or otherwise create any Derivative of an Original Instrument.</p>
+
+<p style="font-weight:700;margin-bottom:6px">III. TERMS OF USE</p>
+
+<p style="margin-bottom:8px">A. End User agrees that the licensed Original Instruments will only be used for the Permitted Purpose. End User shall not sell, license, sublicense, distribute, rent or lease, grant a security interest in, or otherwise transfer or permit any third party to access or use all or any portion of the Original Instruments in any form. End User shall notify SRH promptly if it becomes aware of any unauthorized access to or use or transfer of the Original Instruments, and if applicable, any Derivatives.</p>
+
+<p style="margin-bottom:8px">B. End User shall have the unrestricted right to use all data and results End User generates using the licensed Original Instruments in performance of the Permitted Purpose.</p>
+
+<p style="margin-bottom:10px">C. In the event that End User wishes to use the Original Instruments for any additional purpose beyond that allowed in the Permitted Purpose, then End User shall contact SRH and negotiate any required additional licenses.</p>
+
+<p style="font-weight:700;margin-bottom:6px">IV. TERM AND TERMINATION</p>
+
+<p style="margin-bottom:10px">A. The term of this EULA shall begin on the Effective Date and continue until terminated by End User or Company. End User's rights under this EULA will terminate automatically if End User fails to comply with any of its terms.</p>
+
+<p style="font-weight:700;margin-bottom:6px">V. NO WARRANTIES; DISCLAIMERS</p>
+
+<p style="margin-bottom:8px">A. THE ORIGINAL INSTRUMENTS PROVIDED UNDER THIS EULA ARE PROVIDED "AS IS" AND COMPANY AND INSTITUTIONS ARE NOT RESPONSIBLE FOR ENSURING THAT END USER'S USE OF THE ORIGINAL INSTRUMENTS WILL BE CLINICALLY SOUND, WITHOUT ERROR OR OTHERWISE SUCCESSFUL. INSTITUTIONS SPECIFICALLY DISCLAIM ALL WARRANTIES, EXPRESS, IMPLIED OR STATUTORY, INCLUDING IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. INSTITUTIONS AND THEIR RESPECTIVE AFFILIATES CANNOT AND DO NOT ASSUME ANY RESPONSIBILITY FOR END USER'S USE OF ANY OF IDEAS, INFORMATION, INSTRUCTIONS OR GUIDELINES ACCESSED THROUGH THE ORIGINAL INSTRUMENTS LICENSED UNDER THIS EULA.</p>
+
+<p style="margin-bottom:10px">B. THE ORIGINAL INSTRUMENTS WERE CREATED FOR INSTITUTIONS' USE AS RESEARCH AND EDUCATIONAL TOOLS AND HAVE NOT BEEN REVIEWED OR APPROVED BY THE FOOD AND DRUG ADMINISTRATION OR BY ANY OTHER AGENCY FOR USE IN THE DIAGNOSIS OR TREATMENT OF ANY DISEASE OR OTHER CONDITION. THE ORIGINAL INSTRUMENTS SHOULD NOT BE USED AS A SUBSTITUTE FOR, OR TO OVERRULE, THE PROFESSIONAL JUDGMENT OF A QUALIFIED HEALTHCARE PROFESSIONAL.</p>
+
+<p style="font-weight:700;margin-bottom:6px">VI. LIMITATION OF LIABILITY</p>
+
+<p style="margin-bottom:10px">IN NO EVENT SHALL INSTITUTIONS OR ANY OF THEIR RESPECTIVE AFFILIATES OR ANY OF THEIR RESPECTIVE TRUSTEES, DIRECTORS, OFFICERS, MEDICAL OR PROFESSIONAL STAFF, EMPLOYEES AND AGENTS BE LIABLE TO THE END USER OR ANY OF END USER'S REPRESENTATIVES FOR INDIRECT, SPECIAL, INCIDENTAL, PUNITIVE OR CONSEQUENTIAL DAMAGES OF ANY KIND ARISING IN ANY WAY OUT OF THIS EULA OR THE LICENSE OR RIGHTS GRANTED UNDER THIS EULA, HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, INCLUDING WITHOUT LIMITATION ECONOMIC DAMAGES OR INJURY TO PROPERTY OR LOST PROFITS, REGARDLESS OF WHETHER INSTITUTIONS SHALL BE ADVISED, SHALL HAVE OTHER REASON TO KNOW, OR IN FACT SHALL KNOW OF THE POSSIBILITY OF THE FOREGOING. IN NO EVENT SHALL INSTITUTIONS' AGGREGATE LIABILITY ARISING OUT OF OR RELATED TO THIS EULA, WHETHER ARISING OUT OF OR RELATED TO BREACH OF CONTRACT, TORT (INCLUDING NEGLIGENCE) OR OTHERWISE, EXCEED $0 TO END USER PURSUANT TO THIS EULA.</p>
+
+<p style="font-weight:700;margin-bottom:6px">VII. INDEMNIFICATION</p>
+
+<p style="margin-bottom:10px">End User shall indemnify, defend and hold harmless Company and Institutions and their respective affiliates and their respective trustees, directors, officers, medical and professional staff, employees, and agents and their respective successors, heirs and assigns (the "Indemnitees"), against any third party claims, suits, investigations, inquiries, losses, damages, costs, fees, expenses (including reasonable attorneys' fees and expenses of litigation), and other liabilities (collectively, "Losses") to the extent relating to or arising from, in whole or in part, (a) any use by End User, or any other third party acting on behalf of or with the consent of End User, of the Original Instruments, or (b) End User's breach of its obligations under this EULA. Neither Company nor Institutions nor End User shall settle any Loss without the prior written consent of the other, which consent shall not be unreasonably withheld.</p>
+
+<p style="font-weight:700;margin-bottom:6px">VIII. GENERAL PROVISIONS</p>
+
+<p style="margin-bottom:8px"><strong>A. Notices.</strong> With respect to SRH, any notices, reports, waivers, correspondences or other communications required under or pertaining to this EULA shall (i) be in writing, and (ii) be provided to the other party via (a) hand delivery, (b) reputable overnight mail service (e.g., Federal Express), (c) first class mail (certified or registered), or (d) email by way of a PDF attachment thereto. Notices will be deemed effective the same day if delivered by hand, the next day if sent by overnight mail, or three (3) working days after postage-prepaid deposit if sent by first class mail. Notices sent by email will be deemed effective only when the recipient, by return email or notice delivered by other method provided for in this Section VIII(A), acknowledges having received that email (with an automatic "read receipt" or similar notice not constituting an acknowledgement of an email receipt for purposes of this Section VIII(A)).</p>
+
+<p style="margin-bottom:4px">SRH Contacts — Contact for notices:</p>
+<p style="margin-bottom:8px;padding-left:12px">Chief Innovation Officer, Innovation<br>Spaulding Rehabilitation Hospital Corporation<br>MGB Innovation STE 999<br>399 Revolution Drive<br>Somerville, MA 02145</p>
+<p style="margin-bottom:10px">Contact for intellectual property matters: PHSpatents@partners.org with copy to SRNOutcomesCenter@PARTNERS.ORG or licensing@PARTNERS.ORG</p>
+
+<p style="margin-bottom:8px"><strong>B. Use of Name.</strong> End User shall not use the name, trademark, service mark, logo or other identifying characteristic ("Name") of the Institutions or their respective affiliates, directors, trustees, officers, appointees, employees, staff, representatives or agents, in any advertising, promotional or sales literature, publicity or in any document employed to obtain funds or financing without the prior written approval of the party or individual whose Name is to be used.</p>
+
+<p style="margin-bottom:8px"><strong>C. Assignment.</strong> Neither party may assign, transfer or sublicense in whole or in part any of its rights or obligations under this EULA.</p>
+
+<p style="margin-bottom:8px"><strong>D. Governing Law.</strong> This EULA shall be governed by and construed and interpreted in accordance with the laws of the Commonwealth of Massachusetts, without giving effect to any choice or conflict of law provision.</p>
+
+<p style="margin-bottom:10px"><strong>E. Third Party Beneficiary Status.</strong> Institutions are not parties to this EULA and have no liability to any sublicensee or user of anything covered by this EULA, but Institutions are intended third-party beneficiaries of this EULA and certain of its provisions are for the benefit of SRH and/or Institutions and are enforceable by SRH and/or Institutions in their own respective names.</p>
+
+<p style="margin-bottom:0">IN WITNESS WHEREOF, the parties have caused this EULA to be executed by their duly authorized representatives as of the date upon which the Original Instruments are accessed.</p>
+
+      </div>
+      <div style="display:flex;gap:12px">
+        <button onclick="declineEULA()" style="flex:1;background:#fff;border:1.5px solid #dde0e4;border-radius:10px;padding:14px;color:#555;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit">I Decline</button>
+        <button onclick="acceptEULA()" style="flex:1;background:#206375;border:none;border-radius:10px;padding:14px;color:#fff;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit">I Agree</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN SCREEN (hidden until EULA accepted) -->
+<div id="main-screen" style="display:none">
+<div class="screen">
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-title">Coma Recovery Scale - Revised 2.0</div>
+  <div class="header-authors">Yelena G. Bodien, Camille Chatelle, Alyssa Taubert, Srivatsan Uchani, Joseph T. Giacino, Linda Ehrlich-Jones</div>
+  <div class="header-link"><a href="https://spauldingrehab.org/research/programs-labs/rehabilitation-outcomes-center/crs-r" target="_blank">Spaulding Rehab Hospital Rehabilitation Outcomes Center</a></div>
+  <div id="designation-badge" style="display:none"></div>
+  <div id="progress" style="display:none"></div>
+  <div id="incomplete-note" style="display:none"></div>
+</div>
+
+<div class="scroll">
+
+<!-- BRAINSTEM REFLEX GRID -->
+<div class="collapsible collapsible-unscored">
+  <button class="coll-btn" onclick="toggleColl(this)">
+    Brainstem Reflex Grid
+    <span class="coll-chev">▼</span>
+  </button>
+  <div class="coll-body" style="white-space:normal">
+    <div class="grid-note">Administer daily during the acute phase, then weekly.</div>
+
+    <div class="grid-section">Pupils</div>
+    <div class="check-row" onclick="toggleChk(this,'pupils_nr')"><div class="checkbox" id="chk_pupils_nr"></div><div class="check-lbl">Nonreactive: pupils do not constrict in response to light and do not dilate in the dark</div></div>
+
+    <div class="grid-section">Corneal Reflex</div>
+    <div class="check-row" onclick="toggleChk(this,'corneal_absent')"><div class="checkbox" id="chk_corneal_absent"></div><div class="check-lbl">Absent</div></div>
+    <div class="check-row" onclick="toggleChk(this,'corneal_present')"><div class="checkbox" id="chk_corneal_present"></div><div class="check-lbl">Present in one or both eyes</div></div>
+
+    <div class="grid-section">Eye Position and Movement</div>
+    <div class="check-row" onclick="toggleChk(this,'eye_none')"><div class="checkbox" id="chk_eye_none"></div><div class="check-lbl">No spontaneous or elicited eye movement</div></div>
+    <div class="check-row" onclick="toggleChk(this,'eye_skew')"><div class="checkbox" id="chk_eye_skew"></div><div class="check-lbl">Skew or Conjugate Gaze Deviation: At rest, one or both eyes are either positioned up or to the left/right, rather than midline</div></div>
+    <div class="check-row" onclick="toggleChk(this,'eye_dysconj')"><div class="checkbox" id="chk_eye_dysconj"></div><div class="check-lbl">Dysconjugate Gaze: eyes do not move together in the same direction</div></div>
+    <div class="check-row" onclick="toggleChk(this,'eye_roving')"><div class="checkbox" id="chk_eye_roving"></div><div class="check-lbl">Roving: slow, conjugate, lateral, back and forth eye movements</div></div>
+
+    <div class="grid-section">Oculocephalic Reflex</div>
+    <div class="check-row" onclick="toggleChk(this,'oculo_none')"><div class="checkbox" id="chk_oculo_none"></div><div class="check-lbl">None: eyes move in the same direction as head or stay fixed at midline</div></div>
+    <div class="check-row" onclick="toggleChk(this,'oculo_abnormal')"><div class="checkbox" id="chk_oculo_abnormal"></div><div class="check-lbl">Abnormal: response is present but sluggish or unilateral</div></div>
+    <div class="check-row" onclick="toggleChk(this,'oculo_normal')"><div class="checkbox" id="chk_oculo_normal"></div><div class="check-lbl">Normal: eyes move in the direction opposite the head</div></div>
+
+    <div class="grid-section">Postural Responses (Indicate limb)</div>
+    <div class="grid-sub">Abnormal Extension</div>
+    <div class="check-row" onclick="toggleChk(this,'ext_rue')"><div class="checkbox" id="chk_ext_rue"></div><div class="check-lbl">Right Upper Extremity</div></div>
+    <div class="check-row" onclick="toggleChk(this,'ext_lue')"><div class="checkbox" id="chk_ext_lue"></div><div class="check-lbl">Left Upper Extremity</div></div>
+    <div class="check-row" onclick="toggleChk(this,'ext_rle')"><div class="checkbox" id="chk_ext_rle"></div><div class="check-lbl">Right Lower Extremity</div></div>
+    <div class="check-row" onclick="toggleChk(this,'ext_lle')"><div class="checkbox" id="chk_ext_lle"></div><div class="check-lbl">Left Lower Extremity</div></div>
+    <div class="grid-sub">Abnormal Flexion</div>
+    <div class="check-row" onclick="toggleChk(this,'flex_rue')"><div class="checkbox" id="chk_flex_rue"></div><div class="check-lbl">Right Upper Extremity</div></div>
+    <div class="check-row" onclick="toggleChk(this,'flex_lue')"><div class="checkbox" id="chk_flex_lue"></div><div class="check-lbl">Left Upper Extremity</div></div>
+    <div class="check-row" onclick="toggleChk(this,'flex_rle')"><div class="checkbox" id="chk_flex_rle"></div><div class="check-lbl">Right Lower Extremity</div></div>
+    <div class="check-row" onclick="toggleChk(this,'flex_lle')"><div class="checkbox" id="chk_flex_lle"></div><div class="check-lbl">Left Lower Extremity</div></div>
+  </div>
+</div>
+
+<!-- AFP -->
+<div class="collapsible collapsible-unscored">
+  <button class="coll-btn" onclick="toggleColl(this)">
+    Arousal Facilitation Protocol (AFP)
+    <span class="coll-chev">▼</span>
+  </button>
+  <div class="coll-body">GUIDELINES
+
+1) The goal of this intervention is to prolong the length of time the patient maintains arousal (i.e. eye opening)
+
+2) The protocol is administered any time the patient is observed to:
+- Exhibit sustained eyelid closure AND/OR
+- Stops following commands for a period of at least one minute
+
+3) Readminister the arousal facilitation protocol when
+- Sustained eye closure re-occurs OR
+- Behavioral responsiveness ceases despite sustained eye opening
+
+INTERVENTIONS
+
+Deep Pressure:
+
+1) Present deep pressure stimulation unilaterally to the face, neck, shoulder, and sternocleidomastoid muscles. The muscle should be firmly grasped at its base between the thumb and forefinger. While squeezing the muscle firmly, it should be "rolled" back and forth through the fingertips three to four times. This procedure should be repeated sequentially working from the facial musculature to the sternocleidomastoid. The examiner should assure that there are no intravenous lines, local injuries (e.g. fractures, contusions, decubiti) or systemic complications (e.g. heterotopic ossification) before administering deep pressure.
+
+2) Administer same on contralateral side.</div>
+</div>
+
+<!-- BASELINE OBSERVATION PROTOCOL -->
+<div class="collapsible collapsible-unscored">
+  <button class="coll-btn" onclick="toggleColl(this)">
+    Baseline Observation and Command Following Protocol
+    <span class="coll-chev">▼</span>
+  </button>
+  <div class="coll-body" style="white-space:normal">
+    <div class="grid-note">Prior to administering the CRS-R, observe the patient for 1 minute in a quiet, distraction-free setting. Document spontaneous behaviors as well as the resting posture below.</div>
+
+    <div class="grid-section">Baseline Observations of Spontaneous Behaviors and Resting Posture</div>
+    <div class="check-row" onclick="toggleChk(this,'b_eye')"><div class="checkbox" id="chk_b_eye"></div><div class="check-lbl">Eye-Opening</div></div>
+    <div class="check-row" onclick="toggleChk(this,'b_track')"><div class="checkbox" id="chk_b_track"></div><div class="check-lbl">Visual Tracking</div></div>
+    <div class="check-row" onclick="toggleChk(this,'b_tongue')"><div class="checkbox" id="chk_b_tongue"></div><div class="check-lbl">Sticking out tongue</div></div>
+    <div class="check-row" onclick="toggleChk(this,'b_mopen')"><div class="checkbox" id="chk_b_mopen"></div><div class="check-lbl">Opening mouth</div></div>
+    <div class="check-row" onclick="toggleChk(this,'b_mclose')"><div class="checkbox" id="chk_b_mclose"></div><div class="check-lbl">Closing mouth</div></div>
+    <div class="check-row" onclick="toggleChk(this,'b_voc')"><div class="checkbox" id="chk_b_voc"></div><div class="check-lbl">Vocalizations (eg. 'ah')</div></div>
+    <div class="posture-row"><label class="posture-lbl">Resting Posture — RUE</label><input type="text" class="posture-input" placeholder="Describe…"></div>
+    <div class="posture-row"><label class="posture-lbl">Resting Posture — LUE</label><input type="text" class="posture-input" placeholder="Describe…"></div>
+    <div class="posture-row"><label class="posture-lbl">Resting Posture — RLE</label><input type="text" class="posture-input" placeholder="Describe…"></div>
+    <div class="posture-row"><label class="posture-lbl">Resting Posture — LLE</label><input type="text" class="posture-input" placeholder="Describe…"></div>
+
+    <div class="grid-section" style="margin-top:14px">Commands</div>
+    <div class="trial-hdr">
+      <div class="trial-hdr-lbl">Command</div>
+      <div class="trial-hdr-boxes">
+        <div class="trial-hdr-cell">T1</div>
+        <div class="trial-hdr-cell">T2</div>
+        <div class="trial-hdr-cell">T3</div>
+        <div class="trial-hdr-cell">T4</div>
+      </div>
+    </div>
+
+    <div class="grid-sub">Object Related Commands: Eye Movement</div>
+    <div class="trial-row"><div class="trial-lbl">Look at the (object #1, object #2)</div><div class="trial-boxes"><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div></div></div>
+
+    <div class="grid-sub">Object Related Commands: Limb Movement</div>
+    <div class="trial-row"><div class="trial-lbl">Take the (object #1, object #2)</div><div class="trial-boxes"><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div></div></div>
+    <div class="trial-row"><div class="trial-lbl">Kick the (object #1, object #2)</div><div class="trial-boxes"><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div></div></div>
+
+    <div class="grid-sub">Non-Object Related Commands: Eye Movement</div>
+    <div class="trial-row"><div class="trial-lbl">Look away from me</div><div class="trial-boxes"><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div></div></div>
+    <div class="trial-row"><div class="trial-lbl">Look up (at ceiling)</div><div class="trial-boxes"><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div></div></div>
+    <div class="trial-row"><div class="trial-lbl">Look down (at floor)</div><div class="trial-boxes"><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div></div></div>
+
+    <div class="grid-sub">Non-Object Related Commands: Limb Movement</div>
+    <div class="trial-row"><div class="trial-lbl">Touch my hand</div><div class="trial-boxes"><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div></div></div>
+    <div class="trial-row"><div class="trial-lbl">Touch your nose</div><div class="trial-boxes"><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div></div></div>
+    <div class="trial-row"><div class="trial-lbl">Move your (body part)</div><div class="trial-boxes"><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div></div></div>
+
+    <div class="grid-sub">Non-Object Related Commands: Oral Movement/Vocalization</div>
+    <div class="trial-row"><div class="trial-lbl">Stick out your tongue</div><div class="trial-boxes"><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div></div></div>
+    <div class="trial-row"><div class="trial-lbl">Open your mouth</div><div class="trial-boxes"><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div></div></div>
+    <div class="trial-row"><div class="trial-lbl">Close your mouth</div><div class="trial-boxes"><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div></div></div>
+    <div class="trial-row"><div class="trial-lbl">Say 'ah'</div><div class="trial-boxes"><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div></div></div>
+
+    <div class="grid-sub">Related Commands: Oral Movement/Vocalization</div>
+    <div class="trial-row"><div class="trial-lbl">Other Command 1:</div><div class="trial-boxes"><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div></div></div>
+    <div class="trial-row"><div class="trial-lbl">Other Command 2:</div><div class="trial-boxes"><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div><div class="trial-box" onclick="toggleTrial(this)"></div></div></div>
+  </div>
+</div>
+
+<!-- SUBSCALES rendered by JS -->
+<div id="subscales"></div>
+
+<!-- CONTINGENT BEHAVIOR -->
+<div class="section-hdr">
+  <div class="section-title">Assessment of Contingent Behavior</div>
+  <div style="font-size:11px;color:#888;font-weight:400;font-style:italic;margin-left:8px;white-space:nowrap">not scored</div>
+</div>
+<div class="collapsible collapsible-unscored">
+  <button class="coll-btn" onclick="toggleColl(this)">
+    Contingent Vocalization/Gesture/Affective Response
+    <span class="coll-chev">▼</span>
+  </button>
+  <div class="coll-body">1. Vocalizations, gestures and affective responses are assessed through a combination of reports from family and clinicians, and direct observations from treating staff. Family and clinical staff should be questioned about any vocalizations, gestures or affective responses (i.e., (smiling, laughing, frowning, crying) that are observed to occur spontaneously or in response to a specific stimulus.
+
+2. If above response is based on report, staff should attempt to directly elicit the behavior again with the assistance of the individual who reported it.
+
+3. If affective responses are observed during direct examination, the examiner should attempt to re-elicit the behavior using the same eliciting stimulus previously noted to produce the behavior. Examples of appropriate eliciting stimuli include verbal requests ('What's your name?'), limb gestures (waves), facial gestures (sticking out tongue) and pictures (family photos).
+
+4. The examiner should document:
+   a. The nature of the eliciting stimulus (e.g. Verbal: 'Are you feeling sad?', Limb gesture: handshake);
+   b. Specific characteristics of the behavioral response (e.g. facial grimace with tearing of the eyes, smiling, moaning);
+   c. Number of times the behavior has been observed to occur within 10 seconds of the eliciting stimulus;
+   d. Number of times the behavior has been observed to occur spontaneously;
+   e. The time frame allowed for 'c' and 'd' should be specified and approximately the same.
+
+Response: A vocalization, gesture or affective response occurs significantly more often in response to a specific eliciting stimulus, than when the stimulus is absent. Contingent responses do not include those that occur following administration of noxious stimuli.</div>
+</div>
+
+<!-- SUMMARY -->
+<div id="summary-box"></div>
+
+<!-- RESOURCES -->
+
+<div class="citation">Bodien YG, Chatelle C, Taubert A, Uchani S, Giacino JT, Ehrlich-Jones L. <a href="https://www.archives-pmr.org/article/S0003-9993(20)30937-0/fulltext" target="_blank" style="color:#0096C8">Updated Measurement Characteristics and Clinical Utility of the Coma Recovery Scale-Revised Among Individuals With Acquired Brain Injury</a>. Archives of Physical Medicine and Rehabilitation, Volume 102, Issue 1, 2021, Pages 169-171, ISSN 0003-9993.</div>
+<div class="citation" style="margin-top:6px">Copyright 2004 &copy; JFK Johnson Rehabilitation Institute. Used with permission. All Rights Reserved.</div>
+
+<div class="btn-row">
+  <button class="btn-secondary" onclick="resetAll()">Reset</button>
+  <button class="btn-primary" id="copy-btn" onclick="copyReport()" disabled>Copy Report</button>
+</div>
+<div class="copy-feedback" id="copy-feedback"></div>
+
+<!-- ADDITIONAL MATERIALS AND RESOURCES GROUP -->
+<div class="resource-group" style="margin-top:16px">
+  <div class="resource-group-label">Additional materials and resources</div>
+
+  <div class="collapsible">
+    <button class="coll-btn" onclick="toggleColl(this)">
+      CRS-R Frequently Asked Questions
+      <span class="coll-chev">▼</span>
+    </button>
+    <div class="coll-body" style="white-space:normal">
+      <p style="font-size:12px;color:#777;margin-bottom:12px;font-style:italic">Source: Giacino et al., updated 08/2020</p>
+
+      <p style="font-weight:700;margin-bottom:4px;font-size:13px">1. What is the CRS-R and how does it differ from routine bedside examination?</p>
+      <p style="font-size:13px;color:#444;line-height:19px;margin-bottom:12px">The CRS-R (Giacino, 2004) is a standardized neurobehavioral assessment measure designed for use in patients with disorders of consciousness (DoC). It consists of six subscales comprised of hierarchically-arranged items reflecting brainstem, subcortical and cortically-mediated behaviors. The lowest item on each subscale represents reflexive activity while the highest item represents cognitively-mediated behavior. The scale is intended to be used to establish diagnosis, monitor behavioral recovery, predict outcome, and assess treatment effectiveness. The CRS-R has high sensitivity for detection of signs of consciousness, as it includes the criteria defined in 2002 for minimally conscious state (MCS) and emergence from MCS (eMCS).</p>
+
+      <p style="font-weight:700;margin-bottom:4px;font-size:13px">2. What is the item composition of the CRS-R?</p>
+      <p style="font-size:13px;color:#444;line-height:19px;margin-bottom:12px">The CRS-R consists of 6 subscales designed to assess auditory function, receptive and expressive language, visuoperception, communication ability, motor functions, and arousal level, and yields a total score ranging from 0–23.</p>
+
+      <p style="font-weight:700;margin-bottom:4px;font-size:13px">3. What is the target population for CRS-R assessment?</p>
+      <p style="font-size:13px;color:#444;line-height:19px;margin-bottom:12px">The CRS-R is intended for use in patients with traumatic and non-traumatic DoC who are not communicating reliably and are functioning between Ranchos Los Amigos Levels of Cognitive Function I–IV. The scale was normed on subjects between the ages of 17 to 79. The pediatric version (CRS-P) should be used when assessing children between the ages of one and five who have not yet completed language and motor development.</p>
+
+      <p style="font-weight:700;margin-bottom:4px;font-size:13px">4. Is the CRS-R valid and reliable?</p>
+      <p style="font-size:13px;color:#444;line-height:19px;margin-bottom:12px">The CRS-R is well-represented in the scientific literature and its psychometric properties have been extensively studied. There is strong evidence supporting internal construct validity, inter-rater and test-retest reliability. The CRS-R satisfies all the criteria required for interval measurement. Prior investigations have shown that the hierarchical structure of the six subscales remains stable across different settings and raters with variable levels of experience. Scores remain invariant regardless of length of time post-injury, setting, age, or sex of the patients. The American Congress of Rehabilitation Medicine ranked the CRS-R as the top-rated neurobehavioral rating scale for clinical assessment of patients with DoC. The National Institute for Neurological Disorders and Stroke selected the CRS-R as a "common data element" for TBI research involving patients with DoC.</p>
+
+      <p style="font-weight:700;margin-bottom:4px;font-size:13px">5. Are there contraindications for use of the CRS-R?</p>
+      <p style="font-size:13px;color:#444;line-height:19px;margin-bottom:12px">The examiner should communicate with medical or nursing staff to identify any contraindications or precautionary measures before initiating CRS-R assessment. Central complications (e.g., elevated ICP), peripheral injuries (e.g., fractures, decubiti) and implanted lines and devices may necessitate modification or discontinuation of specific items or deferring the entire examination. When one or more items cannot be administered, the corresponding subscale and total scores cannot be obtained. These items should be left blank (not scored "0") and a Test Completion Code entered indicating the reason for the missing score.</p>
+
+      <p style="font-weight:700;margin-bottom:4px;font-size:13px">6. Is special training required to be certified to administer the CRS-R?</p>
+      <p style="font-size:13px;color:#444;line-height:19px;margin-bottom:12px">There is no required training or certification; however, it is essential that examiners adhere to the administration and scoring guidelines. Preliminary evidence suggests that raters' level of experience with the CRS-R influences both inter-rater and test-retest reliability. A recommended training program is available at the Rehabilitation Measure Database and the Spaulding Neurorehabilitation Lab Website.</p>
+
+      <p style="font-weight:700;margin-bottom:4px;font-size:13px">7. How often should the CRS-R be administered?</p>
+      <p style="font-size:13px;color:#444;line-height:19px;margin-bottom:12px">There are no specific guidelines governing the frequency of CRS-R administration. Best practice suggests that up to five assessments may be required to capture the optimal level of function. The frequency of assessment is also dependent upon the rate of change in performance, which is usually associated with the length of time post-injury. Rate of change tends to be more rapid during the acute stage of recovery (first 28 days post-injury), suggesting the need for more frequent assessment (e.g., daily) than during the post-acute period (e.g., 1–2 times a week).</p>
+
+      <p style="font-weight:700;margin-bottom:4px;font-size:13px">8. When should the CRS-R be discontinued?</p>
+      <p style="font-size:13px;color:#444;line-height:19px;margin-bottom:4px">We recommend discontinuing use of the CRS-R when all three of the following behaviors have been elicited, concurrently, on three consecutive examinations conducted over two weeks:</p>
+      <ul style="font-size:13px;color:#444;line-height:19px;margin-bottom:12px;padding-left:20px">
+        <li>Consistent movement to command (Auditory Subscale = 4)</li>
+        <li>Reliable yes-no responses (Communication Subscale = 2)</li>
+        <li>Focused attention (Arousal Subscale = 3)</li>
+      </ul>
+
+      <p style="font-weight:700;margin-bottom:4px;font-size:13px">9. How long does it take to administer the CRS-R?</p>
+      <p style="font-size:13px;color:#444;line-height:19px;margin-bottom:12px">The CRS-R typically takes 15 to 30 minutes to administer, depending on the patient's level of consciousness and factors that may complicate administration (e.g., severe contractures, immobilization devices).</p>
+
+      <p style="font-weight:700;margin-bottom:4px;font-size:13px">10. How is the CRS-R scored?</p>
+      <p style="font-size:13px;color:#444;line-height:19px;margin-bottom:12px">Scoring is standardized based on the presence or absence of operationally-defined behavioral criteria. Most items must be administered to obtain a score, although some behaviors (e.g., speech) can be scored when they occur spontaneously.</p>
+
+      <p style="font-weight:700;margin-bottom:4px;font-size:13px">11. Should CRS-R items be scored when there is uncertainty as to whether the observed behavior meets the required response criteria?</p>
+      <p style="font-size:13px;color:#444;line-height:19px;margin-bottom:12px">Behavioral responses must be clearly-discernible before they are scored present. If there is doubt as to whether the behavior meets the required criteria, the item should not be scored as being present and the next item down should be administered. A rule-of-thumb: the examiner should believe that at least nine out of ten observers would agree the response criteria were met.</p>
+
+      <p style="font-weight:700;margin-bottom:4px;font-size:13px">12. Can the CRS-R be used to establish a diagnosis?</p>
+      <p style="font-size:13px;color:#444;line-height:19px;margin-bottom:12px">Yes. The clinical diagnosis of VS, MCS and eMCS can be derived directly from the CRS-R subscale scores. The CRS-R profile can also be used to differentiate patients into "MCS plus" and "MCS minus" subgroups, based on the presence or absence of receptive or expressive language function.</p>
+
+      <p style="font-weight:700;margin-bottom:4px;font-size:13px">13. What is the purpose of the CRS-R total score?</p>
+      <p style="font-size:13px;color:#444;line-height:19px;margin-bottom:12px">The primary purpose of the CRS-R total score is to monitor course of recovery. While the CRS-R total score should not be relied upon to establish a diagnosis, a total score of 10 or greater indicates a diagnosis of MCS or eMCS.</p>
+
+      <p style="font-weight:700;margin-bottom:4px;font-size:13px">14. Can the CRS-R be used to establish a prognosis?</p>
+      <p style="font-size:13px;color:#444;line-height:19px;margin-bottom:12px">The rate of change in the CRS-R total score and CRS-R diagnosis may assist with prediction of subsequent functional outcome.</p>
+
+      <p style="font-weight:700;margin-bottom:4px;font-size:13px">15. Is it permissible to deviate from the standard protocol for administration and scoring?</p>
+      <p style="font-size:13px;color:#444;line-height:19px;margin-bottom:12px">The CRS-R should be administered and scored as described in the manual. However, certain items or subscales may have to be omitted due to patient-specific factors (e.g., premorbid blindness, quadriplegia, eyes swollen shut). If one or more subscales are omitted, the total score cannot be obtained. When CRS-R items cannot be administered or scored in a valid manner, a Test Completion Code should be used. Some combinations of subscale scores are clinically improbable and may indicate an error in administration and scoring or signal the presence of an underlying impairment that should be investigated further.</p>
+
+      <p style="font-weight:700;margin-bottom:4px;font-size:13px">16. In which languages is the CRS-R available?</p>
+      <p style="font-size:13px;color:#444;line-height:19px;margin-bottom:12px">The CRS-R has been translated and re-validated in Spanish, Italian, French, Portuguese, Norwegian, Russian, German, Polish, Korean, and Chinese. It is also available in Dutch, Swedish, Danish, and Greek, but has not been re-validated in these languages.</p>
+
+      <p style="font-weight:700;margin-bottom:4px;font-size:13px">17. What are the limitations of the CRS-R and how can they be reconciled?</p>
+      <p style="font-size:13px;color:#444;line-height:19px;margin-bottom:12px">Because the CRS-R is a standardized measure, it may not be able to address questions that require a "personalized" approach to assessment. Under such circumstances, Individualized Quantitative Behavioral Assessment (IQBA) should be considered. The clinical utility of the CRS-R also diminishes when patients emerge from MCS — at this stage, the Confusion Assessment Protocol (CAP) is more appropriate. Under conditions of ongoing diagnostic uncertainty, neuroimaging and neurophysiological approaches may be used to complement neurobehavioral assessment.</p>
+
+      <p style="font-weight:700;margin-bottom:4px;font-size:13px">18. Where can I find more information on the CRS-R?</p>
+      <ul style="font-size:13px;color:#444;line-height:19px;margin-bottom:16px;padding-left:20px">
+        <li><a href="https://www.sralab.org/rehabilitation-measures/coma-recovery-scale-revised" target="_blank" class="coll-link" style="display:inline">Rehabilitation Measure Database — sralab.org</a></li>
+        <li><a href="https://www.commondataelements.ninds.nih.gov/Traumatic%20Brain%20Injury" target="_blank" class="coll-link" style="display:inline">Traumatic Brain Injury Common Data Elements — NINDS</a></li>
+        <li><a href="https://www.tbims.org/combi/crs/" target="_blank" class="coll-link" style="display:inline">Center for Outcome Measurement in Brain Injury (COMBI)</a></li>
+        <li><a href="https://srhneurorehabilitationlab.org/resources/" target="_blank" class="coll-link" style="display:inline">Spaulding Neurorehabilitation Lab</a></li>
+      </ul>
+
+      <div class="coll-nested">
+        <button class="coll-nested-btn" onclick="toggleNestedColl(this)">
+          Works Cited
+          <span class="coll-nested-chev">▼</span>
+        </button>
+        <div class="coll-nested-body">Bodien YG, Carlowicz CA, Chatelle C, Giacino JT. Sensitivity and Specificity of the Coma Recovery Scale–Revised Total Score in Detection of Conscious Awareness. Arch Phys Med Rehabil. 2016;97(3):490-492.
+
+Bruno MA, Majerus S, Boly M, et al. Functional neuroanatomy underlying the clinical subcategorization of minimally conscious state patients. J Neurol. 2012;259:1087-1098.
+
+Casali AG, Gosseries O, Rosanova M, et al. A theoretically based index of consciousness independent of sensory processing and behavior. Sci Transl Med. 2013;5(198):198ra105.
+
+Casarotto S, Comanducci A, Rosanova M, et al. Stratification of unresponsive patients by an independently validated index of brain complexity. Ann Neurol. 2016;80(5):718-729.
+
+Chatelle C, Bodien YG, Carlowicz C, et al. Detection and Interpretation of Impossible and Improbable Coma Recovery Scale-Revised Scores. Arch Phys Med Rehabil. 2016;97(8):1295-1300.
+
+Coleman MR, Rodd JM, Davis MH, et al. Do vegetative patients retain aspects of language comprehension? Evidence from fMRI. Brain. 2007;130:2494-2507.
+
+Comolatti R, Pigorini A, Casarotto S, et al. A fast and general method to empirically estimate the complexity of brain responses to transcranial and intracranial stimulations. Brain Stimul. 2019;12(5):1280-1289.
+
+Cortese MD, Riganello F, Arcuri F, et al. Coma recovery scale-r: variability in the disorder of consciousness. BMC Neurol. 2015;15:186.
+
+Di Perri C, Bahri MA, Amico E, et al. Neural correlates of consciousness in patients who have emerged from a minimally conscious state. Lancet Neurol. 2016;15(8):830-842.
+
+Edlow BL, Chatelle C, Spencer CA, et al. Early detection of consciousness in patients with acute severe traumatic brain injury. Brain. 2017;140(9):2399-2414.
+
+Estraneo A, Moretta P, De Tanti A, et al. An Italian multicentre validation study of the coma recovery scale-revised. Eur J Phys Rehabil Med. 2015;51(5):627-34.
+
+Faugeras F, Rohaut B, Valente M, et al. Survival and consciousness recovery are better in the minimally conscious state than in the vegetative state. Brain Inj. 2018;32(1):72-77.
+
+Gerrard P, Zafonte R, Giacino JT. Coma Recovery Scale-Revised: evidentiary support for hierarchical grading of level of consciousness. Arch Phys Med Rehabil. 2014;95(12):2335-41.
+
+Giacino JT, Kalmar K. The vegetative and minimally conscious states: A comparison of clinical features and functional outcome. J Head Trauma Rehabil. 1997;12(4):36-51.
+
+Giacino JT, Ashwal S, Childs N, et al. The minimally conscious state: Definition and diagnostic criteria. Neurology. 2002;58(3):349-353.
+
+Giacino J, Kalmar K, Whyte J. The JFK Coma Recovery Scale-Revised: Measurement characteristics and diagnostic utility. Arch Phys Med Rehabil. 2004;85(12):2020-2029.
+
+Giacino JT, Whyte J, Bagiella E, et al. Placebo-controlled trial of amantadine for severe traumatic brain injury. N Engl J Med. 2012;366:819-826.
+
+Giacino JT, Katz DI, Schiff ND, et al. Practice guideline update recommendations summary: Disorders of consciousness. Neurology. 2018;91(10):450-460.
+
+Giacino JT, Sherer M, Christoforou A, et al. Behavioral Recovery and Early Decision Making in Patients with Prolonged Disturbance in Consciousness after Traumatic Brain Injury. J Neurotrauma. 2019.
+
+Hamilton JA, Perrin PB, Campbell TA, et al. Predicting emergence from a disorder of consciousness using the Coma Recovery Scale-Revised. Neuropsychol Rehabil. 2018.
+
+Han HJ, Kim EJ, Lee HJ, et al. Validation of Korean Version of Coma Recovery Scale-Revised (K-CRSR). Ann Rehabil Med. 2018;42(4):536-541.
+
+Iazeva EG, Legostaeva LA, Zimin AA, et al. A Russian validation study of the Coma Recovery Scale-Revised (CRS-R). Brain Inj. 2018.
+
+La Porta F, Caselli S, Ianes AB, et al. Can we scientifically and reliably measure the level of consciousness in vegetative and minimally conscious states? Arch Phys Med Rehabil. 2013;94:527-535.
+
+Lovstad M, Froslie K, Giacino J, et al. Reliability and Diagnostic Characteristics of the JFK Coma Recovery Scale–Revised. J Head Trauma Rehabil. 2010:349-356.
+
+Lucca LF, Lofaro D, Pignolo L, et al. Outcome prediction in disorders of consciousness: the role of coma recovery scale revised. BMC Neurol. 2019;19(1):68.
+
+Martens G, Bodien Y, Sheau K, et al. Which behaviours are first to emerge during recovery of consciousness after severe brain injury? Ann Phys Rehabil Med. 2019.
+
+Maurer-Karattup P, Giacino J, Luther M, Eifert B. Diagnosis of disorders of consciousness with the German version of Coma Recovery Scale-Revised. Neurologie und Rehabilitation. 2010;16:232-246.
+
+Monti MM, Vanhaudenhuyse A, Coleman MR, et al. Willful modulation of brain activity in disorders of consciousness. N Engl J Med. 2010;362(7):579-89.
+
+Newcombe VF, Williams GB, Scoffings D, et al. Aetiological differences in neuroanatomy of the vegetative state. J Neurol Neurosurg Psychiatry. 2010;81:552-561.
+
+Portaccio E, Morrocchesi A, Romoli AM, et al. Improvement on the Coma Recovery Scale-Revised During the First Four Weeks of Hospital Stay Predicts Outcome at Discharge. Arch Phys Med Rehabil. 2018a;99(5):914-919.
+
+Portaccio E, Morrocchesi A, Romoli AM, et al. Score on Coma Recovery Scale-Revised at admission predicts outcome at discharge. Brain Inj. 2018b;32(6):730-734.
+
+Rodriguez-Moreno D, Schiff ND, Giacino J, et al. A network approach to assessing cognition in disorders of consciousness. Neurology. 2010;75:1871-1878.
+
+Rosanova M, Gosseries O, Casarotto S, et al. Recovery of cortical effective connectivity and recovery of consciousness in vegetative patients. Brain. 2012;135:1308-1320.
+
+Sacco S, Altobelli E, Pistarini C, et al. Validation of the Italian version of the Coma Recovery Scale-Revised. Brain Inj. 2011;25:488-95.
+
+Schiff ND, Giacino JT, Kalmar K, et al. Behavioral improvements with thalamic stimulation after severe traumatic brain injury. Nature. 2007;448:600-604.
+
+Schnakers C, Giacino J, Kalmar K, et al. Does the FOUR score correctly diagnose the vegetative and minimally conscious states? Ann Neurol. 2006;60(6):744-5.
+
+Schnakers C, Hustinx R, Vandewalle G, et al. Measuring the effect of amantadine in chronic anoxic minimally conscious state. J Neurol Neurosurg Psychiatry. 2008a;79:225-227.
+
+Schnakers C, Majerus S, Giacino J, et al. A French validation study of the Coma Recovery Scale-Revised. Brain Injury. 2008b;22(10):786-792.
+
+Schnakers C, Vanhaudenhuyse A, Giacino J, et al. Diagnostic accuracy of the vegetative and minimally conscious state. BMC Neurol. 2009;9:35.
+
+Seel RT, Sherer M, Whyte J, et al. Assessment scales for disorders of consciousness: evidence-based recommendations for clinical practice and research. Arch Phys Med Rehabil. 2010;91(12):1795-813.
+
+Sherer M, Nakase-Thompson R, Yablon S, Gontkovsky S. Multidimensional Assessment of Acute Confusion After Traumatic Brain Injury. Arch Phys Med Rehabil. 2005:896-904.
+
+Simões JF, Jesus LM, Voegeli D, et al. Assessment of comatose patients: a Portuguese instrument based on the Coma Recovery Scale-Revised. J Adv Nurs. 2011;67(5):1129-41.
+
+Slomine BS, Suskauer SJ, Nicholson R, Giacino JT. Preliminary validation of the coma recovery scale for pediatrics in typically developing young children. Brain Inj. 2019.
+
+Stender J, Gosseries O, Bruno MA, et al. Diagnostic precision of PET imaging and functional MRI in disorders of consciousness. Lancet. 2014;384(9942):514-22.
+
+Tamashiro M, Rivas ME, Ron M, et al. A Spanish validation of the Coma Recovery Scale-Revised. Brain Inj. 2014;28(13-14):1744-7.
+
+Tan X, Zhou Z, Gao J, et al. Structural connectome alterations in patients with disorders of consciousness revealed by 7-tesla MRI. Neuroimage Clin. 2019;22:101702.
+
+Thibaut A, Bodien YG, Laureys S, Giacino JT. Minimally conscious state "plus": diagnostic criteria and relation to functional recovery. J Neurol. 2019.
+
+Vanhaudenhuyse A, Giacino J, Schnakers C, et al. Blink to visual threat does not herald consciousness in the vegetative state. Neurology. 2008a;71:1-2.
+
+Vanhaudenhuyse A, Schnakers C, Bredart S, Laureys S. Assessment of visual pursuit in post-comatose states: Use a mirror. J Neurol Neurosurg Psychiatry. 2008b;79(2):223.
+
+Wannez S, Heine L, Thonnard M, et al. The repetition of behavioral assessments in diagnosis of disorders of consciousness. Ann Neurol. 2017;81(6):883-889.
+
+Wannez S, Gosseries O, Azzolini D, et al. Prevalence of coma-recovery scale-revised signs of consciousness in patients in minimally conscious state. Neuropsychol Rehabil. 2018;28(8):1350-1359.
+
+Whyte J, Dipasquale M, Vaccaro M. Assessment of command-following in minimally conscious brain injured patients. Arch Phys Med Rehabil. 1999:653-660.
+
+Wilde EA, Whiteneck GG, Bogner J, et al. Recommendations for the use of common outcome measures in traumatic brain injury research. Arch Phys Med Rehabil. 2010;91(11):1650-1660.
+
+Zhang Y, Wang J, Schnakers C, et al. Validation of the Chinese version of the Coma Recovery Scale-Revised (CRS-R). Brain Inj. 2019;33(4):529-533.</div>
+      </div>
+      <p style="font-size:11px;color:#aaa;margin-top:14px;line-height:16px">Copyright 2020. &copy; Spaulding Rehabilitation Hospital Corporation. Used with permission. All Rights Reserved.</p>
+    </div>
+  </div>
+
+  <div class="collapsible">
+    <button class="coll-btn" onclick="toggleColl(this)">
+      CRS-R Recommended Training Program
+      <span class="coll-chev">▼</span>
+    </button>
+    <div class="coll-body" style="white-space:normal">
+      <p style="font-size:13px;color:#444;line-height:19px;margin-bottom:14px">The CRS-R Training Program provides a suggested structure for orienting new examiners to the CRS-R Administration and Scoring Guidelines. There is no formal overarching CRS-R certification process. It is recommended that this training be completed within 6 months. The CRS-R Administration and Scoring Guidelines can and should accompany the trainee throughout the training process and during the final exam.</p>
+      <a class="pdf-link-btn" href="https://raw.githubusercontent.com/movementismedicine/PTMeasures/main/CRS-R%20Recommended%20Training%20program.pdf" target="_blank">Open Training Program PDF</a>
+      <p style="font-size:11px;color:#aaa;margin-top:14px;line-height:16px">Copyright 2020. &copy; Spaulding Rehabilitation Hospital Corporation. Used with permission. All Rights Reserved.</p>
+    </div>
+  </div>
+
+  <div class="collapsible">
+    <button class="coll-btn" onclick="toggleColl(this)">
+      Ten guiding principles for administration and scoring
+      <span class="coll-chev">▼</span>
+    </button>
+    <div class="coll-body">1. The CRS-R must be administered directly to the patient based on the instructions in the administration and scoring manual. The CRS-R scores should not be based on information in the medical chart or caregiver interview.
+
+2. To ensure standardized administration and scoring across and within examiners, the instructions in the CRS-R manual should be closely followed. During CRS-R assessment, there may be instances in which examiner judgement is required (e.g., type of commands to administer on the auditory subscale), however, decision-making should always be informed by the instructions in the manual. Additional standardization may be required when the CRS-R is employed for research purposes (e.g., number of commands to administer, whether to administer the Arousal Facilitation Protocol prior to conducting the exam).
+
+3. Always start by administering the highest-scoring item on each subscale before progressing to lower items. Once a scorable response is obtained, the examiner should advance to the next subscale.
+
+4. Guidelines are provided for the number of trials to administer for each item. All trials should be administered regardless of performance on the first trials (i.e., if a patient does not look up to command on the first two trials, the remaining trials should still be administered).
+
+5. The response window is 10 seconds, unless otherwise specified. Behaviors that occur outside the 10-second window can be documented but should not be scored. If the examiner suspects that response latencies are significantly delayed, an additional 10-second window can be added to enable both standard and modified scoring.
+
+6. Score only clearly-discernible responses. A general rule-of-thumb: If 10 people observed the same response, 9 of 10 would agree that the response criteria were met.
+
+7. For items requiring motor responses, choose the best limb (e.g., least paretic), unless specified otherwise. This can be accomplished during the 1-minute behavioral observation period or by consulting caregivers and family members, if available.
+
+8. If a patient is unable to lift a limb against gravity, physical assistance can be provided by supporting the limb at the elbow. Care should be taken to avoid provision of any other assistance with movement.
+
+9. When sensory, perceptual, or motor impairments are suspected, some accommodations may be made. For example, if hearing impairment is suspected, commands may be presented in written form. Similarly, if there is limited range of motion, commands should be avoided that require reaching.
+
+10. Use the CRS-R Test Completion Codes (TCC) to establish the validity of the examination and to document reasons for invalid or incomplete scores. For example, if injury to both hands prevents the patient from being able to hold an object, the motor subscale should not be scored and the remainder of the motor subscale should not be attempted. In this case, the motor subscale should be assigned a TCC of 3.3 (physical injury). Other examples include premorbid blindness or eyes sutured shut — assign TCC of 3.1 (impaired sensory function). When one or more subscales cannot be validly administered, a total score should not be calculated, although the valid subscores may still be useful for establishing a diagnosis.
+
+<span style="font-size:11px;color:#aaa;line-height:16px;display:block;margin-top:10px">Copyright 2020. &copy; Spaulding Rehabilitation Hospital Corporation. Used with permission. All Rights Reserved.</span></div>
+  </div>
+
+  <div class="collapsible">
+    <button class="coll-btn" onclick="toggleColl(this)">
+      Understanding score change
+      <span class="coll-chev">▼</span>
+    </button>
+    <div class="coll-body" style="white-space:normal">
+      <p style="font-size:13px;color:#444;line-height:19px;margin-bottom:14px">A guide to interpreting change in CRS-R scores over time, including clinically meaningful differences and patterns of recovery.</p>
+      <a class="pdf-link-btn" href="https://raw.githubusercontent.com/movementismedicine/PTMeasures/main/CRS-R%20Understanding%20Score%20Change.pdf" target="_blank">Open PDF</a>
+    </div>
+  </div>
+
+  <div class="collapsible">
+    <button class="coll-btn" onclick="toggleColl(this)">
+      Paper CRS-R manual
+      <span class="coll-chev">▼</span>
+    </button>
+    <div class="coll-body" style="white-space:normal">
+      <p style="font-size:13px;color:#444;line-height:19px;margin-bottom:14px">The complete CRS-R Administration and Scoring Guidelines manual.</p>
+      <a class="pdf-link-btn" href="https://raw.githubusercontent.com/movementismedicine/PTMeasures/main/CRS-R%20manual.pdf" target="_blank">Open PDF</a>
+      <p style="font-size:11px;color:#aaa;margin-top:14px;line-height:16px">Copyright 2004, 2020. &copy; Spaulding Rehabilitation Hospital Corporation and JFK Johnson Rehabilitation Institute. Used with permission. All Rights Reserved.</p>
+    </div>
+  </div>
+
+</div><!-- end additional materials and resources group -->
+
+</div><!-- end scroll -->
+</div><!-- end screen -->
+</div><!-- end main-screen -->
+
+<script>
+const SUBSCALES = [
+  {
+    id:'auditory', label:'Auditory function', group:'AUDITORY FUNCTION SCALE', max:4,
+    options:[
+      {score:4, label:'Consistent Movement to Command◾'},
+      {score:3, label:'Reproducible Movement to Command◾'},
+      {score:2, label:'Localization to Sound'},
+      {score:1, label:'Auditory Startle'},
+      {score:0, label:'None'}
+    ],
+    details:{
+      4:{
+        method:`1. Observe frequency of spontaneous movement for a one minute interval (See Baseline Observation and Command Following Protocol).
+
+2. Choose at least 1 object-related and 1 non-object related command from the Command Following Protocol. The type of command chosen (eye, limb, oral) should be based on patient's physical capacity and should be of low spontaneous frequency. If at least 2 out of four commands are passed, and time permits, an additional command may be attempted. The command should be repeated once during the 10 second response interval.
+
+a. Object-Related Eye Movement Commands: Present 2 common objects simultaneously and approximately 16 inches apart within the patient's field of view. Ask the patient to look at the object named (i.e. 'Look at the [name object]'). Next, reverse the positions of the 2 objects and ask the patient to look at the same object again (i.e. 'Look at the [name object]'). Administer two additional trials using the same 2 objects and repeat the above procedure with instruction to look at the other object on both trials. Two trials per object should be administered for a total of 4 trials.
+
+b. Object-Related Limb Movement Command: Present 2 common objects simultaneously and approximately 16 inches apart within the patient's field of view and within arm's (or leg's) length and ask the patient to touch the object named with their hand (or foot). Next, reverse the positions of the 2 objects and ask the patient to touch the same object again. Administer two additional trials using the same two objects and repeat the above procedure with instruction to touch the other object on both trials. Two trials per object should be administered for a total of four trials. This command may also be attempted using head movement.
+
+c. Non-Object Related Commands: Select at least 1 eye movement, limb movement or oral movement/vocalization command and present it over 4 trials at 15 second intervals. The same command should be used for all 4 trials. Movements that occur between commands (i.e. after the response interval has elapsed) should be noted but not scored.`,
+        response:`Clearly discernible and accurate responses occur within 10 seconds on all 4 trials administered. This item is credited only when all 4 trials of 2 different commands are passed. When more than one type of command from each category is attempted, scoring is based on successfully completing all 4 trials of any two different commands (e.g., 2 object-related, 2 non-object related, or one of each).`
+      },
+      3:{
+        method:`Same as the Consistent Movement to Command item.`,
+        response:`3 clearly discernible and accurate responses occur over the 4 trials on any one of the object or non-object related commands.`
+      },
+      2:{
+        method:`Standing behind the patient and out of view, present an auditory stimulus (e.g. patient's name, voice, noise) from the right side for 5 seconds. Perform a second trial presenting the auditory stimulus from the left side. Repeat above procedure for a total of 4 trials, 2 on each side. If needed, reorient the head to midline between trials.`,
+        response:`Head and/or eyes orient toward the location of the stimulus on both trials in at least one direction (ie, twice to the right or twice to the left) within 10 seconds of stimulus presentation. This item is scored when there is clear evidence of head and/or eye movement. It is not dependent on the degree or duration of movement.`
+      },
+      1:{
+        method:`Present a loud noise (eg, whistle, clap) directly above the patient's head and out of view. Administer 4 trials.`,
+        response:`Eyelid flutter or blink occurs immediately following the stimulus on at least 2 trials. If the eyes are closed, a shoulder shrug or other body startle response can be scored.`
+      },
+      0:{response:`No response to any of the above.`}
+    }
+  },
+  {
+    id:'visual', label:'Visual function', group:'VISUAL FUNCTION SCALE', max:5,
+    options:[
+      {score:5, label:'Object Recognition◾'},
+      {score:4, label:'Object Localization: Reaching*'},
+      {score:3, label:'Visual Pursuit*'},
+      {score:2, label:'Fixation*'},
+      {score:1, label:'Visual Startle'},
+      {score:0, label:'None'}
+    ],
+    details:{
+      5:{
+        method:`Same as Consistent Movement to Command on Auditory Function Scale, Section 2a and b.`,
+        response:`If the Auditory Function score was >2 AND the command used was object-related, score 5 for the Visual Function Scale. If an object-related command was not administered, administer the Object Recognition item. If the Auditory Function score was <2 AND the command used was object-related, continue with the Object Localization item below.`
+      },
+      4:{
+        method:`1. Identify the arm or leg with the greatest range of movement.
+2. For upper extremity reaching, select common objects (e.g. comb, toothbrush, etc.) For lower extremity assessment, select a ball suitable for kicking.
+3. Present the object approximately 8 inches to the left or right of the limb's resting position. The object should be placed in a position that is not obstructed from view. The patient should be instructed to 'Touch the [name object]' with the appropriate arm or leg.
+4. The command may be repeated once within the assessment interval. Do not provide any tactile cues, as these may stimulate random limb movement.
+5. Present an object twice to the left of the limb and twice to the right of the limb in random order for a total of 4 trials.`,
+        response:`Score the direction in which the limb first moves within a 10 second observation period, or score as no movement. The limb does not need to make contact with the object, only to move toward it; and movement must occur in the correct direction in 3 of the 4 trials administered.`
+      },
+      3:{
+        method:`Hold a mirror 4-6 inches directly in front of the patient's face and verbally encourage the patient to fixate on the mirror. Tilt the mirror slowly 45 degrees to the right and left of the vertical midline and 45 degrees above and below the horizontal midline. Repeat the above procedure so that a total of 2 trials are administered in each hemispace (ie twice up, twice down, twice left and twice right).`,
+        response:`Eyes must follow the mirror for 45 degrees without loss of fixation on 2 occasions in any direction. If visual pursuit is not scored, the procedure may be repeated assessing one eye at a time (using an eye patch).`
+      },
+      2:{
+        method:`Present a brightly colored or illuminated object 6 to 8 inches in front of the patient's face and then rapidly move to upper, lower, right and left visual fields, respectively for a total of 4 trials.`,
+        response:`Eyes change from initial fixation point and refixate on the new target location for more than 2 seconds. At least 2 episodes of fixation are required.`
+      },
+      1:{
+        method:`Present visual threat by passing finger 1 inch in front of patient's eye. Be careful not to touch eyelashes or create a breeze (manually open eyes if necessary). Conduct 4 trials per eye.`,
+        response:`Eyelid flutter or blink following presentation of visual threat on at least 2 trials with either eye.`
+      },
+      0:{response:`No response to any of the above.`}
+    }
+  },
+  {
+    id:'motor', label:'Motor function', group:'MOTOR FUNCTION SCALE', max:6,
+    options:[
+      {score:6, label:'Functional Object Use†'},
+      {score:5, label:'Automatic Motor Response*'},
+      {score:4, label:'Object Manipulation*'},
+      {score:3, label:'Localization to Noxious Stimulation*'},
+      {score:2, label:'Flexion withdrawal'},
+      {score:1, label:'Abnormal Posturing'},
+      {score:0, label:'None'}
+    ],
+    details:{
+      6:{
+        method:`Select 2 common objects (e.g. comb, cup). Place one of the objects in the patient's hand and instruct the patient to 'Show me how to use a [name object]'. Next, place the second object in the patient's hand and restate the same instruction. Repeat the above procedure using the same objects so that a total of 2 trials are administered with each object.`,
+        response:`Movements executed are generally compatible with both objects' specific function (e.g. comb is placed on or near the head) on all 4 trials administered. If the patient is unable to hold the object because of neuromuscular involvement, this should be noted on the record form and the item should not be scored.`
+      },
+      5:{
+        method:`Observe for automatic motor behaviors patterns such as nose scratching, grasping bedrail, crossing legs, grabbing tubes, that occur spontaneously during the examination.
+
+If spontaneous automatic motor behaviors are not observed, present a familiar gesture (e.g. wave) in association with the following series of alternating commands:
+1) 'Show me how to wave' (demonstrate gesture)
+2) 'I'm going to wave again. Do not move at all. Just hold still' (demonstrate gesture)
+3) 'Show me how to wave' (demonstrate gesture)
+4) 'I'm going to wave again. Do not move at all. Just hold still' (demonstrate gesture)
+
+For patients with limited ability to move their limbs, objects associated with oromotor activity may be used (e.g. spoon). Place the object in front of the patient's mouth without making contact. Administer the following series of commands:
+1) 'Show me how to use [name object]'
+2) 'I am going to show you [name object] again. Do not move at all. Just hold still'.
+3) 'Show me how to use [name object]'
+4) 'I am going to show you [name object] again. Do not move at all. Just hold still'.`,
+        response:`At least 2 episodes of automatic motor behavior are observed within the session and each episode can be clearly differentiated from a reflexive response.
+
+OR
+
+Patient performs the gesture (e.g. waves) or oromotor pattern on Trials 2 and 4 (regardless of performance on trials 1 and 3).`
+      },
+      4:{
+        method:`Place a baseball size ball on the dorsal surface of one of the patient's hands. Roll the ball across the index finger and thumb without touching the undersurface of the hand or fingers. While moving the ball, instruct the patient to "Take the ball." Repeat the above for a total of 4 trials.`,
+        response:`The following criteria must be met on 3 of the 4 trials administered:
+1. The wrist must rotate and the fingers should extend as the object is moved along the dorsal surface of the hand; and
+2. The object must be grasped and held for a minimum of 5 seconds. The object cannot be held by means of a grasp reflex or increased finger flexor tone.`
+      },
+      3:{
+        method:`Extend all four extremities. Apply pressure to the finger or toe of an extremity (use best extremity on each side of the body) for a minimum of 5 seconds (i.e. squeeze the finger or toe between your thumb and index finger). Administer 2 trials on each side for a total of 4 trials.`,
+        response:`The non-stimulated limb must locate and make contact with the stimulated body part at the point of stimulation or with the examiner's hand on at least 2 of the 4 trials.`
+      },
+      2:{
+        method:`Extend all 4 extremities. Apply deep pressure to nailbeds of each extremity (i.e. press the ridge of a pencil into the cuticle). Administer 1 trial per extremity.`,
+        response:`There is isolated flexion withdrawal of at least one limb. The limb must move away from the point of stimulation. If quality of response is uncertain, the trial may be repeated.`
+      },
+      1:{
+        method:`Observe response to above method.`,
+        response:`Slow, stereotyped flexion or extension of the upper and/or lower extremities occurs immediately after the stimulus is applied.`
+      },
+      0:{
+        method:`Observe response to method above.`,
+        response:`There is no discernible movement following application of noxious stimulation, secondary to hypertonic or flaccid muscle tone.`
+      }
+    }
+  },
+  {
+    id:'oromotor', label:'Oromotor/Verbal function', group:'OROMOTOR/VERBAL FUNCTION SCALE', max:3,
+    options:[
+      {score:3, label:'Intelligible Verbalization◾'},
+      {score:2, label:'Vocalization/Oral movement'},
+      {score:1, label:'Oral Reflexive Movement'},
+      {score:0, label:'None'}
+    ],
+    details:{
+      3:{
+        method:`1. Tell patient: 'I would like to hear your voice'. This should be followed by an attempt to directly elicit speech using the verbal prompts shown below. At least one prompt should be selected from the Aural Set and at least one from the Visual Set. A maximum of 4 prompts can be administered.
+2. A maximum of 3 trials should be administered for each prompt chosen from the Aural and Visual Sets. Prompts should be administered at 10 second intervals.
+
+Aural Set:
+a) 'Your name is ___'
+b) 'You live in ___'
+c) 'One, two, three, ___'
+
+Visual Set:
+a) 'This is a ___' (Hold up a common object in front of the patient's right and then left visual field for 10 seconds).
+b) 'I holding___ fingers' (Hold up 4 or 5 fingers in front of the right and then left visual field for 10 seconds).
+c) 'This is a ___' (Point to your nose while positioned at the patient's visual midline).`,
+        response:`Each of the following criteria must be met:
+1. Each verbalization must consist of at least one consonant-vowel-consonant (C-V-C) triad. For example, 'ma' would not be acceptable, but 'mom' would. Make sure objects chosen have a C-V-C sequence; and
+2. Two different words must be documented by the examiner to ensure that a repetitive word-like sound is not mistaken for a word. Words need not be appropriate or accurate for the context, but must be fully intelligible; and
+3. Words produced by writing or alphabet board are acceptable.
+
+Verbalizations that occur spontaneously or at other times during the assessment and meet the above criteria should also receive a score of 3.`
+      },
+      2:{
+        method:`Observe for non-reflexive oral movements, spontaneous vocalizations or vocalizations that occur during administration of vocalization commands (see Consistent Movement to Command item on Auditory Function Scale).`,
+        response:`At least 1 episode of non-reflexive oral movement (i.e., suggesting an attempt to speak, mouth opening other than yawning, lip licking, or any other oral movement that cannot be accounted for by reflexes) and/or vocalization occurs spontaneously or in response to application of sensory stimulation. Yawning is scored as reflexive oral movement.`
+      },
+      1:{
+        method:`Present tongue blade between patient's lips and/or teeth.`,
+        response:`There is clamping of jaws, tongue pumping or chewing movement spontaneously or following introduction of tongue blade into mouth.`
+      },
+      0:{response:`No response to any of the above.`}
+    }
+  },
+  {
+    id:'communication', label:'Communication', group:'COMMUNICATION SCALE', max:2,
+    desc:'Administer only if a score of 3 or 4 is achieved on the auditory subscale, a score of 3 is achieved on the Verbal/Oromotor Scale, or there is evidence of spontaneous communication (e.g., gestural or verbal yes/no responses during the exam).',
+    options:[
+      {score:2, label:'Functional: Accurate†'},
+      {score:1, label:'Non-functional: Intentional◾'},
+      {score:0, label:'None'}
+    ],
+    details:{
+      2:{
+        method:`Administer the 6 Situational Orientation questions from the Communication Assessment Protocol. The examiner may use the Visual Set, Auditory set or both sets, if appropriate. Repeat the question once within 10 seconds.
+
+Situational Orientation — Visually Based:
+• Am I touching my ear right now? (touch nose)
+• Am I touching my nose right now? (touch nose)
+• Am I touching my ear right now? (touch ear)
+• Am I touching my ear right now? (touch nose)
+• Am I touching my nose right now? (touch ear)
+• Am I touching my ear right now? (touch ear)
+
+Situational Orientation — Aurally Based:
+• Am I clapping my hands right now? (do not clap)
+• Am I clapping my hands right now? (clap)
+• Am I clapping my hands right now? (clap)
+• Am I clapping my hands right now? (do not clap)
+• Am I clapping my hands right now? (clap)
+• Am I clapping my hands right now? (do not clap)`,
+        response:`Clearly discernible and accurate responses (e.g head nods/shakes, thumbs up) occur within 10 seconds on all 6 of the Visual or Auditory Situational Orientation questions from the Communication Assessment Protocol.`
+      },
+      1:{
+        method:`Same as above.`,
+        response:`A clearly discernible communicative response (e.g head nods/shakes, thumbs up) must occur within 10 seconds on at least 2 of the 6 Situational Orientation questions of either set (irrespective of accuracy).`
+      },
+      0:{response:`No discernible verbal or non-verbal communication responses occur at any time.`}
+    }
+  },
+  {
+    id:'arousal', label:'Arousal', group:'AROUSAL SCALE', max:3,
+    options:[
+      {score:3, label:'Attention'},
+      {score:2, label:'Eye opening w/o Stimulation'},
+      {score:1, label:'Eye opening with Stimulation'},
+      {score:0, label:'Unarousable'}
+    ],
+    details:{
+      3:{
+        method:`Observe consistency of behavioral responses following verbal or gestural prompts.`,
+        response:`There are no more than 3 occasions across the duration of the evaluation in which the patient fails to respond to a verbal or gestural prompt.`
+      },
+      2:{
+        method:`Observe status of the eyelids across length of assessment.`,
+        response:`Eyes remain open across the length of the examination without the need for tactile, pressure or noxious stimulation.`
+      },
+      1:{
+        method:`Same as above.`,
+        response:`Tactile, pressure or noxious stimulation must be applied at least once during the examination in order for the patient to sustain eye opening (the length of time the eyes remain open may vary and is not considered in the scoring).`
+      },
+      0:{
+        response:`No eye opening noted. Note, if the eyes do not open but MCS behaviors are scored, the Arousal subscale is scored as "not testable".`
+      }
+    }
+  }
+];
+
+const TCC_OPTIONS = [
+  {v:'1',   l:'1 — test completed in full - results valid'},
+  {v:'2.1', l:'2.1 — impaired sensory function (cortical or peripheral)'},
+  {v:'2.2', l:'2.2 — aphasia'},
+  {v:'2.3', l:'2.3 — physical injury (e.g., fracture, brachial plexus, hemiparesis)'},
+  {v:'2.4', l:'2.4 — primary language barrier'},
+  {v:'2.5', l:'2.5 — illness/medical instability'},
+  {v:'2.6', l:'2.6 — examiner error'},
+  {v:'2.7', l:'2.7 — logistical reasons'},
+  {v:'2.8', l:'2.8 — other (specify):'},
+  {v:'3.1', l:'3.1 — impaired sensory function (cortical or peripheral)'},
+  {v:'3.2', l:'3.2 — aphasia'},
+  {v:'3.3', l:'3.3 — physical injury (e.g., fracture, brachial plexus, hemiparesis)'},
+  {v:'3.4', l:'3.4 — primary language barrier'},
+  {v:'3.5', l:'3.5 — illness/medical instability'},
+  {v:'3.6', l:'3.6 — examiner error'},
+  {v:'3.7', l:'3.7 — logistical reasons'},
+  {v:'3.8', l:'3.8 — other (specify):'}
+];
+
+// State
+const scores = {};
+const tcc = {};
+const previewing = {};
+
+// ── EULA gate ────────────────────────────────────────────────────────────────
+function acceptEULA() {
+  localStorage.setItem('crsr_eula_accepted', '1');
+  document.getElementById('eula-screen').style.display = 'none';
+  document.getElementById('main-screen').style.display = 'block';
+}
+
+function declineEULA() {
+  window.location.href = 'https://ptmeasures.com';
+}
+
+(function checkEULA() {
+  if (localStorage.getItem('crsr_eula_accepted') === '1') {
+    document.getElementById('eula-screen').style.display = 'none';
+    document.getElementById('main-screen').style.display = 'block';
+  }
+})();
+
+// ── Nested collapsible toggle ───────────────────────────────────────────────
+function toggleNestedColl(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+}
+
+// ── Collapsible toggle ──────────────────────────────────────────────────────
+function toggleColl(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+}
+
+// ── Checkbox toggle ─────────────────────────────────────────────────────────
+function toggleChk(row, id) {
+  const el = document.getElementById('chk_' + id);
+  if (!el) return;
+  const checked = el.classList.toggle('checked');
+  el.textContent = checked ? '✓' : '';
+}
+
+// ── Trial box toggle ────────────────────────────────────────────────────────
+function toggleTrial(el) {
+  const checked = el.classList.toggle('checked');
+  el.textContent = checked ? '✓' : '';
+}
+
+// ── Build subscale cards ────────────────────────────────────────────────────
+function buildSubscales() {
+  const container = document.getElementById('subscales');
+  SUBSCALES.forEach(sub => {
+    // Section header
+    const hdr = document.createElement('div');
+    hdr.className = 'section-hdr';
+    hdr.innerHTML = `<div class="section-title">${sub.group} <span style="font-weight:400;opacity:0.7">(max ${sub.max})</span></div><div class="section-score-badge" id="ss_${sub.id}"></div>`;
+    container.appendChild(hdr);
+
+    // Card
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.id = 'card_' + sub.id;
+
+    let html = `<div class="item-label">${sub.label}</div>`;
+    if (sub.desc) html += `<div class="item-desc">${sub.desc}</div>`;
+    html += `<div class="opts" id="opts_${sub.id}"></div>`;
+    html += `<div class="sub-score-row"><div class="sub-score-lbl">Subscale score:</div><div class="sub-score-val" id="subscore_${sub.id}">— / ${sub.max}</div></div>`;
+    html += `<div class="tcc-container">
+      <div class="tcc-lbl">Test Completion Code</div>
+      <button class="tcc-btn" id="tccbtn_${sub.id}" onclick="toggleTCC('${sub.id}')">
+        <span class="tcc-btn-text" id="tcctxt_${sub.id}">Select a code…</span>
+        <span class="tcc-chev">▼</span>
+      </button>
+      <div class="tcc-list" id="tcclist_${sub.id}">
+        <div class="tcc-group-label">Test attempted, not completed due to:</div>
+        ${TCC_OPTIONS.slice(0,9).map(o => `<div class="tcc-item" id="tccitem_${sub.id}_${o.v.replace('.','_')}" onclick="selectTCC('${sub.id}','${o.v}',\`${o.l}\`)">${o.l}</div>`).join('')}
+        <div class="tcc-group-label">Test not attempted due to:</div>
+        ${TCC_OPTIONS.slice(9).map(o => `<div class="tcc-item" id="tccitem_${sub.id}_${o.v.replace('.','_')}" onclick="selectTCC('${sub.id}','${o.v}',\`${o.l}\`)">${o.l}</div>`).join('')}
+      </div>
+    </div>`;
+
+    card.innerHTML = html;
+    container.appendChild(card);
+    renderOpts(sub);
+  });
+}
+
+// ── Render options for a subscale ───────────────────────────────────────────
+function renderOpts(sub) {
+  const container = document.getElementById('opts_' + sub.id);
+  if (!container) return;
+  container.innerHTML = '';
+
+  sub.options.forEach(opt => {
+    const isSel = scores[sub.id] === opt.score;
+    const isPrev = previewing[sub.id] === opt.score;
+    const isActive = isSel || isPrev;
+    const detail = sub.details[opt.score];
+
+    const wrap = document.createElement('div');
+    wrap.className = 'opt-wrap' + (isActive ? ' active' : '');
+
+    let detailHTML = '';
+    if (isActive && detail) {
+      detailHTML = `<div class="detail-box">`;
+      if (detail.method) {
+        detailHTML += `<div class="detail-head">Method</div><div class="detail-text">${escHtml(detail.method)}</div>`;
+      }
+      detailHTML += `<div class="detail-head">Response</div><div class="detail-text">${escHtml(detail.response)}</div>`;
+      detailHTML += `<div class="detail-btns">`;
+      if (!isSel) {
+        detailHTML += `<button class="sel-btn" onclick="selectScore('${sub.id}',${opt.score})">Select this score</button>`;
+      } else {
+        detailHTML += `<button class="desel-btn" onclick="deselectScore('${sub.id}')">Deselect</button>`;
+      }
+      detailHTML += `</div></div>`;
+    }
+
+    wrap.innerHTML = `<div class="opt-row" onclick="tapScore('${sub.id}',${opt.score})">
+      <div class="chip">${opt.score}</div>
+      <div class="opt-lbl">${escHtml(opt.label)}</div>
+      ${isPrev && !isSel ? `<button class="sel-btn" onclick="event.stopPropagation();selectScore('${sub.id}',${opt.score})">Select</button>` : ''}
+      ${isSel ? `<div class="check-badge">✓</div>` : ''}
+    </div>${detailHTML}`;
+
+    container.appendChild(wrap);
+  });
+}
+
+function escHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ── Scoring interactions ────────────────────────────────────────────────────
+function tapScore(subId, score) {
+  const sub = SUBSCALES.find(s => s.id === subId);
+  if (scores[subId] === score) {
+    delete scores[subId];
+    delete previewing[subId];
+  } else if (previewing[subId] === score) {
+    delete previewing[subId];
+  } else {
+    previewing[subId] = score;
+  }
+  renderOpts(sub);
+  updateSubScore(sub);
+  updateHeader();
+  updateSummary();
+}
+
+function selectScore(subId, score) {
+  const sub = SUBSCALES.find(s => s.id === subId);
+  scores[subId] = score;
+  delete previewing[subId];
+  renderOpts(sub);
+  updateSubScore(sub);
+  updateHeader();
+  updateSummary();
+}
+
+function deselectScore(subId) {
+  const sub = SUBSCALES.find(s => s.id === subId);
+  delete scores[subId];
+  delete previewing[subId];
+  renderOpts(sub);
+  updateSubScore(sub);
+  updateHeader();
+  updateSummary();
+}
+
+function updateSubScore(sub) {
+  const s = scores[sub.id];
+  const val = s !== undefined ? s : '—';
+  const el = document.getElementById('subscore_' + sub.id);
+  const el2 = document.getElementById('ss_' + sub.id);
+  if (el) el.textContent = val + ' / ' + sub.max;
+  if (el2) el2.textContent = s !== undefined ? val + ' / ' + sub.max : '';
+}
+
+// ── TCC ─────────────────────────────────────────────────────────────────────
+function toggleTCC(subId) {
+  const list = document.getElementById('tcclist_' + subId);
+  const btn = document.getElementById('tccbtn_' + subId);
+  const isOpen = list.classList.contains('open');
+  // Close all other open TCC lists
+  document.querySelectorAll('.tcc-list.open').forEach(l => l.classList.remove('open'));
+  document.querySelectorAll('.tcc-btn.open').forEach(b => b.classList.remove('open'));
+  if (!isOpen) {
+    list.classList.add('open');
+    btn.classList.add('open');
+  }
+}
+
+function selectTCC(subId, val, label) {
+  tcc[subId] = val;
+  document.getElementById('tcctxt_' + subId).textContent = label;
+  document.getElementById('tcclist_' + subId).classList.remove('open');
+  document.getElementById('tccbtn_' + subId).classList.remove('open');
+  document.querySelectorAll(`[id^="tccitem_${subId}_"]`).forEach(el => el.classList.remove('selected'));
+  const key = 'tccitem_' + subId + '_' + val.replace('.', '_');
+  const sel = document.getElementById(key);
+  if (sel) sel.classList.add('selected');
+  updateSummary();
+}
+
+// ── Designation logic ───────────────────────────────────────────────────────
+function getDesignation() {
+  const m = scores.motor;
+  const c = scores.communication;
+  const a = scores.auditory;
+  const v = scores.visual;
+  const o = scores.oromotor;
+  if (m >= 6 || c >= 2) return 'eMCS';
+  if (a >= 3 || v >= 5 || o >= 3 || c >= 1) return 'MCS+';
+  if ((v >= 2 && v <= 4) || (m >= 3 && m <= 5)) return 'MCS−';
+  return 'VS/UWS';
+}
+
+// ── Header update ───────────────────────────────────────────────────────────
+function updateHeader() {
+  const answered = SUBSCALES.filter(s => scores[s.id] !== undefined).length;
+  const copyBtn = document.getElementById('copy-btn');
+  copyBtn.disabled = answered === 0;
+}
+
+// ── Summary update ──────────────────────────────────────────────────────────
+function updateSummary() {
+  const box = document.getElementById('summary-box');
+  const answered = SUBSCALES.filter(s => scores[s.id] !== undefined).length;
+  const total = SUBSCALES.reduce((sum, s) => sum + (scores[s.id] ?? 0), 0);
+
+  // Extract MCS symbol from an option label (◾, *, †) — returns '' if none
+  function mcsSymbol(label) {
+    if (!label) return '';
+    if (label.includes('†')) return '†';
+    if (label.includes('◾')) return '◾';
+    if (label.includes('*')) return '*';
+    return '';
+  }
+
+  // Highest symbol across all scored subscales (for total line)
+  // Rank: † > ◾ > * > ''
+  function highestSymbol() {
+    const rank = {'†': 3, '◾': 2, '*': 1, '': 0};
+    let best = '';
+    SUBSCALES.forEach(sub => {
+      const s = scores[sub.id];
+      if (s === undefined) return;
+      const opt = sub.options.find(o => o.score === s);
+      const sym = mcsSymbol(opt ? opt.label : '');
+      if (rank[sym] > rank[best]) best = sym;
+    });
+    return best;
+  }
+
+  const rows = SUBSCALES.map(sub => {
+    const s = scores[sub.id];
+    const t = tcc[sub.id] || '--';
+    let scoreStr = '—';
+    let sym = '';
+    if (s !== undefined) {
+      const opt = sub.options.find(o => o.score === s);
+      sym = mcsSymbol(opt ? opt.label : '');
+      scoreStr = (sym ? sym + ' ' : '') + s + ' / ' + sub.max;
+    }
+    return `<div class="summary-row">
+      <div class="summary-lbl">${sub.label}</div>
+      <div class="summary-val">${scoreStr} &nbsp;|&nbsp; TCC: ${t}</div>
+    </div>`;
+  }).join('');
+
+  let totalHTML;
+  if (answered === 6) {
+    const sym = highestSymbol();
+    totalHTML = `<div class="summary-total">
+      <div class="summary-total-lbl">TOTAL SCORE:</div>
+      <div class="summary-total-val">${sym ? sym + ' ' : ''}${total} / 23 &nbsp; ${getDesignation()}</div>
+    </div>`;
+  } else if (answered > 0) {
+    totalHTML = `<div class="summary-incomplete">Score all 6 subscales to calculate total score.</div>`;
+  } else {
+    totalHTML = '';
+  }
+
+  box.innerHTML = `<div class="summary-box">
+    <div class="summary-title">Assessment Summary</div>
+    <div class="summary-legend">
+      <div class="summary-legend-item">* &nbsp; Denotes Minimally Conscious State Minus (MCS-)</div>
+      <div class="summary-legend-item">◾ Denotes Minimally Conscious State Plus (MCS+)</div>
+      <div class="summary-legend-item">† &nbsp; Denotes emergence from Minimally Conscious State (eMCS)</div>
+    </div>
+    ${rows}
+    ${totalHTML}
+  </div>`;
+}
+
+// ── Reset ───────────────────────────────────────────────────────────────────
+function resetAll() {
+  if (!confirm('Clear all scores and selections?')) return;
+  SUBSCALES.forEach(sub => {
+    delete scores[sub.id];
+    delete tcc[sub.id];
+    delete previewing[sub.id];
+    renderOpts(sub);
+    updateSubScore(sub);
+    // Reset TCC display
+    const txt = document.getElementById('tcctxt_' + sub.id);
+    if (txt) txt.textContent = 'Select a code…';
+    document.querySelectorAll(`[id^="tccitem_${sub.id}_"]`).forEach(el => el.classList.remove('selected'));
+  });
+  updateHeader();
+  updateSummary();
+  document.getElementById('copy-feedback').textContent = '';
+}
+
+// ── Copy report ─────────────────────────────────────────────────────────────
+function copyReport() {
+  const lines = ['Coma Recovery Scale - Revised 2.0'];
+  const answered = SUBSCALES.filter(s => scores[s.id] !== undefined).length;
+  const total = SUBSCALES.reduce((sum, s) => sum + (scores[s.id] ?? 0), 0);
+
+  lines.push('');
+  lines.push('--- Subscale Scores ---');
+  SUBSCALES.forEach(sub => {
+    const s = scores[sub.id];
+    const t = tcc[sub.id] || '--';
+    const tccLabel = TCC_OPTIONS.find(o => o.v === t)?.l || '--';
+    const opt = sub.options.find(o => o.score === s);
+    const sym = opt ? (opt.label.includes('†') ? '†' : opt.label.includes('◾') ? '◾' : opt.label.includes('*') ? '*' : '') : '';
+    const scoreStr = s !== undefined ? (sym ? sym + ' ' : '') + s + ' / ' + sub.max + ' — ' + (opt?.label || '') : '(not scored)';
+    lines.push(`${sub.label}: ${scoreStr}  |  TCC: ${tccLabel}`);
+  });
+
+  lines.push('');
+  if (answered === 6) {
+    lines.push(`TOTAL SCORE: ${total} / 23 — ${getDesignation()}`);
+  } else {
+    lines.push(`TOTAL SCORE: incomplete (${answered}/6 subscales scored)`);
+  }
+
+  lines.push('');
+  lines.push('Bodien YG, Chatelle C, Taubert A, Uchani S, Giacino JT, Ehrlich-Jones L. Updated Measurement Characteristics and Clinical Utility of the Coma Recovery Scale-Revised Among Individuals With Acquired Brain Injury. Archives of Physical Medicine and Rehabilitation, Volume 102, Issue 1, 2021, Pages 169-171, ISSN 0003-9993, https://doi.org/10.1016/j.apmr.2020.09.369.');
+
+  navigator.clipboard.writeText(lines.join('\n')).then(() => {
+    const fb = document.getElementById('copy-feedback');
+    fb.textContent = 'Report copied to clipboard.';
+    setTimeout(() => fb.textContent = '', 3000);
+  });
+}
+
+// ── Close TCC on outside click ──────────────────────────────────────────────
+document.addEventListener('click', e => {
+  if (!e.target.closest('.tcc-container')) {
+    document.querySelectorAll('.tcc-list.open').forEach(l => l.classList.remove('open'));
+    document.querySelectorAll('.tcc-btn.open').forEach(b => b.classList.remove('open'));
+  }
+});
+
+// ── Init ────────────────────────────────────────────────────────────────────
+buildSubscales();
+updateSummary();
+</script>
+</body>
+</html>
